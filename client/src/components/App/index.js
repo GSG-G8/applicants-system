@@ -1,11 +1,8 @@
 import React from 'react';
-import './App.css';
+import './index.css';
 
 function App() {
-  return (
-    <div>
-    </div>
-  );
+  return <div />;
 }
 
 export default App;
