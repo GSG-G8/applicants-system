@@ -1,0 +1,20 @@
+{
+  "name": "applicants-system",
+  "version": "1.0.0",
+  "description": "An application to facilitate code academy application process for applicants and help them to complete their applications easily and on time, also help code academy team to track , filter and create applications.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GSG-G8/applicants-system.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GSG-G8/applicants-system/issues"
+  },
+  "homepage": "https://github.com/GSG-G8/applicants-system#readme"
+}
