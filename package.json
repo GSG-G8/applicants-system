@@ -21,6 +21,7 @@
     "bcrypt": "^4.0.1",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.5",
+    "env2": "^2.2.2",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "pg": "^7.18.2",
@@ -28,7 +29,6 @@
     "yup": "^0.28.3"
   },
   "devDependencies": {
-    "env2": "^2.2.2",
     "jest": "^25.2.3",
     "nodemon": "^2.0.2",
     "supertest": "^4.0.2"
