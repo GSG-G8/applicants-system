@@ -1,6 +1,6 @@
 # Applicants System 
 
-## Application Link
+## Application Link :link: 
 
 [check it out from here](https://)
 
@@ -21,19 +21,19 @@ An application to facilitate code academy application process for applicants and
 
 5- Applicants can't update and change their data during Application duration.
 
-6- The pplicant does not follow up with the modifications and announcements of the code academy team.
+6- The Applicant does not follow up with the modifications and announcements of the code academy team.
 
 7- Applicants have a problem in solving technical problems.
 
-8- Admin has problems in tracking a big number of applications. 
+8- Admin has problems in tracking a big Number of applications. 
 
 
 
 ## Our Solutions :bulb: 
 
-1- make validation for client-side and the server-side to valid input fields and links patterns.
+1- make validation for client-side and the server-side to validate input fields and links patterns.
 
-2- Add all steps in one place and provided all required information and notifications to complete the application easily.
+2- Add all steps in one place and provid all required information and notifications to complete the application easily.
 
 3- Display Application progress and check completed steps.
 
@@ -43,13 +43,12 @@ An application to facilitate code academy application process for applicants and
 5- Add the applicant's profile page that displays the completed steps and topics. 
 
 
-6- Enable applicants to modify his information before application final submitting. 
+6- Enable applicants to modify their information before  submitting. 
 
 7- create an announcement tab to be displayed for the applicants.
 
-8- add discord channel links for applicants and clarify how they can use it to get answers.
 
-9- make admin's dashboard that shows all applications and checks submitted ones, also he can filter applications according to its cohort and other data.
+8- make admin's dashboard that shows all applications and checks submitted ones, also he can filter applications according to its cohort and other data.
 
 
 
@@ -88,24 +87,20 @@ The Admin sign in through sign-in page and he will be redirected to the dashboar
 - check submitted applications and detect completed ones for interviews.  
 - add announcements to be shown in code academy applications.
 - filter applications by cohort numbers or application status.
-- create a new application to send it for applicants.
+- edit cohots numbers for every new application .
+- add, delete and edit projects, technical tasks and application steps that send for applicants. 
 
-## The MVP Link
- gif
-## Application Setup
+## The MVP :rainbow:
 
-first clone this repo 
-```
-git clone https://github.com/GSG-G8/applicants-system.git
-```
-then run ```npm i``` to install the dependencies for the app.
+ GIF Image
+ 
+## Application Setup :mag: 
+- clone this repo 
+`git clone https://github.com/GSG-G8/applicants-system.git`
 
-#### Run the App
-In your terminal write:
-```
-npm start
- ```
- to start the app in the browser 
+- run `npm i  && cd client npm i `  to install all dependencies & devdependancies for the app.
+- In your terminal write: `cd .. && npm start` to start the app in the browser.
+
  
 ## Application Deployment
 
@@ -119,14 +114,14 @@ we will use `Heroku` Platform to deploy our website.
 ## Technologies :computer: 
 
 ### Frontend
-- React js
+- React JS
 - Material-UI
 - Javascript
 - HTML and CSS
 
 
 ### Backend
-- Express
+- Express JS
 
 ### Database
 - MongoDB
@@ -134,7 +129,7 @@ we will use `Heroku` Platform to deploy our website.
 
 
 
-## Team
+## Team :busts_in_silhouette:
 
 ### Team Lead
   - Asmaa Thabet  
@@ -143,5 +138,4 @@ we will use `Heroku` Platform to deploy our website.
 - Hassan Al-Najjar
 - Ahmed Salah 
 - Mohammed Flaifel 
-- Ali Dahdouh 
-
+- Ali Dahdouh
