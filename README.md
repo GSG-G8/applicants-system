@@ -9,7 +9,7 @@
 An application to facilitate code academy application process for applicants and help them to complete their applications easily and on time, also help code academy team to track , filter and create applications.  
 
 
-## Problem :heavy_exclamation_mark: 
+## Main Problems :heavy_exclamation_mark: 
 
 1- Incorrect data that entered by applicants like problems in email, full name, GitHub handle, codewars link, free codecamp link, and others.   
 
@@ -29,7 +29,7 @@ An application to facilitate code academy application process for applicants and
 
 
 
-## Solution :bulb: 
+## Our Solutions :bulb: 
 
 1- make validation for client-side and the server-side to valid input fields and links patterns.
 
@@ -109,7 +109,7 @@ npm start
  
 ## Application Deployment
 
-we us Heroku Platform to deploy our website
+we will use `Heroku` Platform to deploy our website.
 
 ## Database Schema :file_cabinet: 
 ![](https://i.imgur.com/YfOXq7Y.png)
@@ -144,3 +144,4 @@ we us Heroku Platform to deploy our website
 - Ahmed Salah 
 - Mohammed Flaifel 
 - Ali Dahdouh 
+
