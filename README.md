@@ -109,10 +109,10 @@ npm start
  
 ## Application Deployment
 
-link
+we us Heroku Platform to deploy our website
 
 ## Database Schema :file_cabinet: 
-![](https://i.imgur.com/Y8H7ngm.png)
+![](https://i.imgur.com/YfOXq7Y.png)
 
 
 
@@ -144,4 +144,3 @@ link
 - Ahmed Salah 
 - Mohammed Flaifel 
 - Ali Dahdouh 
-
