@@ -4,7 +4,13 @@
   "description": "An application to facilitate code academy application process for applicants and help them to complete their applications easily and on time, also help code academy team to track , filter and create applications.",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm start",
+    "test": "echo \"Error: no test specified\"",
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js",
+    "kill": "fuser -k 5000/tcp",
+    "kill-run": "npm run kill && npm run server"
   },
   "repository": {
     "type": "git",
@@ -24,7 +30,7 @@
     "env2": "^2.2.2",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "pg": "^7.18.2",
+    "mongoose": "^5.9.6",
     "serve-favicon": "^2.5.0",
     "yup": "^0.28.3"
   },
@@ -34,7 +40,6 @@
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-prettier": "^3.1.2",
-    "jest": "^25.2.3",
     "nodemon": "^2.0.2",
     "prettier": "^2.0.2",
     "supertest": "^4.0.2"
