@@ -6,7 +6,7 @@
   "scripts": {
     "server": "cd server && npm run dev",
     "client": "cd client && npm start",
-    "test": "jest",
+    "test": "echo \"Error: no test specified\"",
     "start": "node server/index.js",
     "dev": "nodemon server/index.js",
     "kill": "fuser -k 5000/tcp",
