@@ -107,8 +107,7 @@ The Admin sign in through sign-in page and he will be redirected to the dashboar
 we will use `Heroku` Platform to deploy our website.
 
 ## Database Schema :file_cabinet: 
-![](https://i.imgur.com/YfOXq7Y.png)
-
+![finalDatabase](https://user-images.githubusercontent.com/29041512/77883751-700a9e80-726c-11ea-9c23-db51bd700025.png)
 
 
 ## Technologies :computer: 
@@ -119,14 +118,12 @@ we will use `Heroku` Platform to deploy our website.
 - Javascript
 - HTML and CSS
 
-
 ### Backend
 - Express JS
 
 ### Database
 - MongoDB
-
-
+- mongoose
 
 
 ## Team :busts_in_silhouette:
