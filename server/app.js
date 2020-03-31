@@ -4,7 +4,7 @@ const compression = require('compression');
 const cookieParser = require('cookie-parser');
 
 const router = require('./router');
-const dataBase = require('./database');
+const dataBase = require('./databaseConfig');
 
 const app = express();
 
