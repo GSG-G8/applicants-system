@@ -8,9 +8,14 @@ if (process.env.NODE_ENV === 'production') {
   dbURI = process.env.DEV_URI;
 }
 mongoose
-  .connect(dbURI, { useNewUrlParser: true, useCreateIndex: true })
+  .connect(dbURI, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+  })
   .catch((e) => {
-    console.error('Connection error ', e.message);
+    // eslint-disable-next-line no-console
+    console.error('Connection error :', e.message);
   });
 
 const dataBase = mongoose.connection;

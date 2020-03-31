@@ -20,7 +20,8 @@ const middlewares = [
 
 app.use(middlewares);
 
-dataBase.on('open', console.log.bind(console, 'mongo database is connecting'));
+// eslint-disable-next-line no-console
+dataBase.on('open', console.log.bind(console, 'mongo database is connected'));
 
 app.use(express.static(join(__dirname, '..', 'client', 'build')));
 
