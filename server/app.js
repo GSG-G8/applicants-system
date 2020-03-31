@@ -4,7 +4,7 @@ const compression = require('compression');
 const cookieParser = require('cookie-parser');
 
 const router = require('./router');
-const dataBase = require('./databaseConfig');
+const dataBase = require('./database/connection');
 
 const app = express();
 
@@ -20,8 +20,10 @@ const middlewares = [
 
 app.use(middlewares);
 
-// eslint-disable-next-line no-console
-dataBase.on('open', console.log.bind(console, 'mongo database is connected'));
+dataBase
+  // eslint-disable-next-line no-console
+  .on('open', () => console.log('mongo database is connected'))
+  .on('error', () => process.exit(1));
 
 app.use(express.static(join(__dirname, '..', 'client', 'build')));
 
