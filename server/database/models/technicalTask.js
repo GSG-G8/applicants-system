@@ -7,4 +7,4 @@ const technicalTask = new Schema({
   taskDescription: { type: String, required: true },
 });
 
-module.exports = mongoose.model('tecTask', technicalTask);
+module.exports = mongoose.model('technicalTask', technicalTask);

@@ -7,4 +7,4 @@ const registrationStep = new Schema({
   details: { type: String, required: true },
 });
 
-module.exports = mongoose.model('regStep', registrationStep);
+module.exports = mongoose.model('registrationStep', registrationStep);
