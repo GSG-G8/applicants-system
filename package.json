@@ -7,7 +7,7 @@
     "server": "cd server && npm run dev",
     "client": "cd client && npm start",
     "test": "echo \"Error: no test specified\"",
-    "start": "node server/index.js",
+    "start": "NODE_ENV=production node server/index.js",
     "dev": "nodemon server/index.js",
     "kill": "fuser -k 5000/tcp",
     "kill-run": "npm run kill && npm run server"
