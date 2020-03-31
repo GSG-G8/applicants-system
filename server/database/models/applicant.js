@@ -111,7 +111,8 @@ const applicantSchema = new Schema({
     trim: true,
   },
   codeWarsKyu: {
-    type: Number,
+    type: String,
+    trim: true,
   },
   technicalTasks: {
     type: Boolean,
@@ -130,13 +131,19 @@ const applicantSchema = new Schema({
     trim: true,
   },
   applicationStartDate: {
-    type: Number, // we can use epoch time as number
+    type: Date,
+    required: true,
+    default: Date.now,
   },
   applicationEndDate: {
-    type: Number, // we can use epoch time as number
+    type: Date,
+    required: true,
+    default: Date.now,
   },
   applicationSubmittedDate: {
-    type: Number, // we can use epoch time as number
+    type: Date,
+    required: true,
+    default: Date.now,
   },
   accepted: {
     type: Boolean,
