@@ -50,4 +50,4 @@ const cohortSchema = new Schema(
   }
 );
 
-module.exports = mongoose.model('cohorts', cohortSchema);
+module.exports = mongoose.model('Cohort', cohortSchema);
