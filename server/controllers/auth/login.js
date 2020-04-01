@@ -1,24 +1,25 @@
 const bcrypt = require('bcrypt');
 const { sign } = require('jsonwebtoken');
 
-const user = require('../../database/models/applicant');
+const applicant = require('../../database/models/applicant');
+require('env2')('config.env');
 
-const SECRET = 'aplecant';
+const SECRET = process.env.SECRET_KEY;
 
 const login = (req, res) => {
   const { email, password } = req.body;
-  user
+  applicant
     .findOne({ email })
-    .then((data) =>
+    .then((data) => {
       bcrypt.compare(password, data.password, (err, result) => {
         if (err) res.status(400).json('Wrong Password');
         else {
           const userToken = { userId: data.id };
           const cookie = sign(userToken, SECRET);
-          res.cookie('aplecant', cookie, { httpOnly: true }).json(data);
+          res.cookie('applicant', cookie, { httpOnly: true }).json(data);
         }
-      })
-    )
+      });
+    })
     .catch(() => res.status(400).json('User not exist'));
 };
 

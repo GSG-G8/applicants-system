@@ -2,7 +2,7 @@
 
 ## Application Link :link: 
 
-[check it out from here](https://)
+[check it out from here](https://ca-applicants-system.herokuapp.com/)
 
 ## Application description :information_source: 
 
@@ -102,12 +102,14 @@ The Admin sign in through sign-in page and he will be redirected to the dashboar
 - In your terminal write: `cd .. && npm start` to start the app in the browser.
 
  
-## Application Deployment
+## Application Deployment :sparkles:
 
 we will use `Heroku` Platform to deploy our website.
 
+
 ## Database Schema :file_cabinet: 
-![finalDatabase](https://user-images.githubusercontent.com/29041512/77883751-700a9e80-726c-11ea-9c23-db51bd700025.png)
+![ApplicantsSystemDatabase](https://user-images.githubusercontent.com/29041512/78078292-93d7fc80-73b2-11ea-9966-5e787f4d93ee.png)
+
 
 
 ## Technologies :computer: 

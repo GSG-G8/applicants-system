@@ -17,7 +17,6 @@ const middlewares = [
   express.json(),
   express.urlencoded({ extended: false }),
 ];
-
 app.use(middlewares);
 
 dataBase

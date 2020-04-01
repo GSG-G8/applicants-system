@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const technicalTask = new Schema({
-  taskName: { type: String, required: true },
-  taskDescription: { type: String, required: true },
+  taskName: { type: String, required: true, trim: true },
+  taskDescription: { type: String, required: true, trim: true },
 });
 
-module.exports = mongoose.model('tecTask', technicalTask);
+module.exports = mongoose.model('technicalTask', technicalTask);

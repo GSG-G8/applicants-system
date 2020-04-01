@@ -1,7 +1,7 @@
-const applecantRouter = require('express').Router();
+const applicantRouter = require('express').Router();
 
 const login = require('../controllers/auth/login');
 
-applecantRouter.post('/login', login);
+applicantRouter.post('/login', login);
 
-module.exports = applecantRouter;
+module.exports = applicantRouter;
