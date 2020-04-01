@@ -1,7 +1,7 @@
-const cohort = require('../../database/models/cohort');
+const cohorts = require('../../database/models/cohort');
 
 module.exports = (req, res, next) => {
-  cohort
+  cohorts
     .find({})
     .then((rows) =>
       res.status(200).json({
