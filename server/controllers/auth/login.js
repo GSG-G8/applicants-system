@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const { sign } = require('jsonwebtoken');
 
-const loginValidate = require('../../utils/validation/loginValidate');
+const loginValidation = require('../../utils/validation/loginValidation');
 const applicant = require('../../database/models/applicant');
 require('env2')('config.env');
 
@@ -9,7 +9,7 @@ const SECRET = process.env.SECRET_KEY;
 
 const login = (req, res) => {
   const { email, password } = req.body;
-  loginValidate(email, password)
+  loginValidation(email, password)
     .then((valid) => {
       if (!valid) throw Error;
       else {

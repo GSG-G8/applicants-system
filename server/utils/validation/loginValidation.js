@@ -5,10 +5,10 @@ const schema = yup.object().shape({
   password: yup.string().min(4).required(),
 });
 
-const loginValidate = (email, password) =>
+const loginValidation = (email, password) =>
   schema.isValid({
     email,
     password,
   });
 
-module.exports = loginValidate;
+module.exports = loginValidation;
