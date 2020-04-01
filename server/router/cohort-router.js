@@ -1,1 +1,1 @@
-module.exports = require('../controllers');
+module.exports = require('../controllers/cohort/getCohorts');

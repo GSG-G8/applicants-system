@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
-const cohorts = require('./cohort-router');
+const getCohorts = require('./cohort-router');
 
-router.get('/cohorts', cohorts);
+router.get('/cohorts', getCohorts);
 
 module.exports = router;
