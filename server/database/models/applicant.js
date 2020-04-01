@@ -22,6 +22,7 @@ const applicantSchema = new Schema({
   location: {
     type: String,
     trim: true,
+    required: true,
   },
   address: {
     type: String,
@@ -34,13 +35,9 @@ const applicantSchema = new Schema({
   },
   mobileNumber: {
     type: Number,
-    min: 10,
-    max: 18,
   },
   age: {
     type: Number,
-    min: 18,
-    max: 115,
   },
   motivation: {
     type: String,
@@ -99,12 +96,14 @@ const applicantSchema = new Schema({
   },
   freeCodeCampPoints: {
     type: Number,
-    min: 0,
-    max: 1500,
   },
   freeCodeCampTopics: {
     type: Boolean,
     default: false,
+  },
+  freeCodeCampLink: {
+    type: String,
+    trim: true,
   },
   codeWarsLink: {
     type: String,
@@ -142,7 +141,6 @@ const applicantSchema = new Schema({
   },
   applicationSubmittedDate: {
     type: Date,
-    required: true,
     default: Date.now,
   },
   accepted: {

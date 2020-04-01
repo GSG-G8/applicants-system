@@ -1,6 +1,11 @@
-const { getApplicantById, getApplicants } = require('../controllers/applicant');
+const {
+  updateApplicant,
+  getApplicants,
+  getApplicantById,
+} = require('../controllers');
 
 module.exports = {
   getApplicantById,
   getApplicants,
+  updateApplicant,
 };
