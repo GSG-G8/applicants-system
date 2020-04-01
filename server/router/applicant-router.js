@@ -2,7 +2,7 @@ const {
   updateApplicant,
   getApplicants,
   getApplicantById,
-} = require('../controllers');
+} = require('../controllers/applicant');
 
 module.exports = {
   getApplicantById,
