@@ -34,7 +34,7 @@ const applicantSchema = new Schema({
     trim: true,
   },
   mobileNumber: {
-    type: Number,
+    type: String,
   },
   age: {
     type: Number,

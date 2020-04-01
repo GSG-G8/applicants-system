@@ -1,87 +1,31 @@
 const Applicant = require('../../database/models/applicant');
-const updateValidataion = require('../../utils/validation/applicantValidation');
+const validationUpdate = require('../../utils/validation/applicantValidation');
 
 const updateApplicant = (req, res) => {
   const { body } = req;
-  console.log(body);
+  const { id } = req.params;
+  if (!body) {
+    return res.status(400).json({
+      success: false,
+      error: 'You must provide a body to update',
+    });
+  }
+  validationUpdate(body).then((valid) => {
+    if (!valid) res.status(400).json({ err: 'error validation' });
+    else {
+      Applicant.findOne({ _id: req.params.id }, (err, applicant) => {
+        if (err) {
+          return res.status(404).json({
+            err,
+            message: 'Applicant not found!',
+          });
+        }
 
-  Applicant.findOne({ _id: req.params.id }, (err, applicant) => {
-    if (err) {
-      return res.status(404).json({
-        err,
-        message: 'Applicant not found!',
-      });
-    }
-    const {
-      location,
-      address,
-      cohorts,
-      mobileNumber,
-      age,
-      motivation,
-      englishSpeaking,
-      englishUnderstanding,
-      employmentStatus,
-      jobTitle,
-      university,
-      specialization,
-      cvLink,
-      codingExperience,
-      primaryMotivation,
-      caReading,
-      available,
-      githubLink,
-      joinDiscord,
-      freeCodeCampPoints,
-      freeCodeCampTopics,
-      freeCodeCampLink,
-      codeWarsLink,
-      codeWarsKyu,
-      technicalTasks,
-      technicalTasksLinks,
-      projectGithubLink,
-    } = body;
-    updateValidataion(
-      location,
-      address,
-      cohorts,
-      mobileNumber,
-      age,
-      motivation,
-      englishSpeaking,
-      englishUnderstanding,
-      employmentStatus,
-      jobTitle,
-      university,
-      specialization,
-      cvLink,
-      codingExperience,
-      primaryMotivation,
-      caReading,
-      available,
-      githubLink,
-      joinDiscord,
-      freeCodeCampPoints,
-      freeCodeCampTopics,
-      freeCodeCampLink,
-      codeWarsLink,
-      codeWarsKyu,
-      technicalTasks,
-      technicalTasksLinks,
-      projectGithubLink
-    ).then((valid) => {
-      if (!valid) {
-        res.status(400).json({
-          error: 'Please fill in all required fields',
-        });
-      } else {
-        applicant.codeWarsKyu = body.codeWarsKyu;
-        applicant
-          .save()
+        Applicant.updateOne({ _id: id }, body)
           .then(() =>
             res.status(200).json({
               success: true,
-              id: applicant._id,
+              id: req.params.id,
               message: 'Applicant updated!',
             })
           )
@@ -91,8 +35,8 @@ const updateApplicant = (req, res) => {
               message: 'Applicant not updated!',
             })
           );
-      }
-    });
+      });
+    }
   });
 };
 
