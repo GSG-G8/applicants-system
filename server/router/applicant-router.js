@@ -1,3 +1,6 @@
-const { signupApplicant } = require('../controllers');
+const applicantRouter = require('express').Router();
+const signupApplicant = require('../controllers/auth/signup');
 
-module.exports = signupApplicant;
+applicantRouter.post('/signup', signupApplicant);
+
+module.exports = applicantRouter;
