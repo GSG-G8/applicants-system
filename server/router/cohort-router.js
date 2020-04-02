@@ -1,1 +1,3 @@
-module.exports = require('../controllers/cohort/getCohorts');
+const getCohorts = require('../controllers/cohort/getCohorts');
+
+module.exports = getCohorts;
