@@ -1,6 +1,6 @@
 const cohorts = require('../../database/models/cohort');
 
-module.exports = (req, res, next) => {
+const getCohorts = (req, res, next) => {
   cohorts
     .find({}, (err, rows) => {
       if (err) {
@@ -15,3 +15,5 @@ module.exports = (req, res, next) => {
     })
     .catch(next);
 };
+
+module.exports = getCohorts;
