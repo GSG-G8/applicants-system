@@ -38,6 +38,7 @@ const applicantSchema = new Schema({
   },
   age: {
     type: Number,
+    min: 18,
   },
   motivation: {
     type: String,
@@ -136,17 +137,13 @@ const applicantSchema = new Schema({
   },
   applicationEndDate: {
     type: Date,
-    required: true,
-    default: Date.now,
   },
   applicationSubmittedDate: {
     type: Date,
-    default: Date.now,
   },
   accepted: {
     type: Boolean,
     default: false,
-    trim: true,
   },
 });
 module.exports = mongoose.model('applicant', applicantSchema);
