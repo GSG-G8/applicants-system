@@ -1,6 +1,15 @@
 const Applicant = require('../../database/models/applicant');
 
-const getApplicantsStats = (req, res) => {
+const getApplicantsStats = (req, res, next) => {
+  Applicant.find({}, (err, applicants) => {
+    if (err) {
+      return res.status(400).json({ statusCode: 400, error: 'Bad Request' });
+    }
+    if (!applicants.length) {
+      return res.status(404).json({ statusCode: 404, error: `Data not found` });
+    }
+    return true;
+  });
   Promise.all([
     Applicant.find({ accepted: true }).countDocuments(),
     Applicant.find({
@@ -21,12 +30,7 @@ const getApplicantsStats = (req, res) => {
         },
       });
     })
-    .catch(() =>
-      res.status(400).json({
-        statusCode: 400,
-        message: 'Bad Request',
-      })
-    );
+    .catch(next);
 };
 
 module.exports = getApplicantsStats;
