@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const technicalTask = new Schema({
+const technicalTaskSchema = new Schema({
   taskName: {
     type: String,
     required: true,
@@ -15,4 +15,4 @@ const technicalTask = new Schema({
   },
 });
 
-module.exports = mongoose.model('technicalTask', technicalTask);
+module.exports = mongoose.model('TechnicalTask', technicalTaskSchema);

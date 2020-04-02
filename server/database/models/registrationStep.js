@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const registrationStep = new Schema({
+const registrationStepSchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -15,4 +15,4 @@ const registrationStep = new Schema({
   },
 });
 
-module.exports = mongoose.model('registrationStep', registrationStep);
+module.exports = mongoose.model('RegistrationStep', registrationStepSchema);
