@@ -8,7 +8,7 @@ const dataBase = require('./database/connection');
 
 const app = express();
 
-app.disabled('x-powered-by');
+app.disable('x-powered-by');
 app.set('port', process.env.PORT || 5000);
 
 const middlewares = [
@@ -24,12 +24,12 @@ dataBase
   .on('open', () => console.log('mongo database is connected'))
   .on('error', () => process.exit(1));
 
-app.use(express.static(join(__dirname, '..', 'client', 'build')));
+// app.use(express.static(join(__dirname, '..', 'client', 'build')));
 
 app.use('/api/v1', router);
 
-app.get('*', (req, res) => {
-  res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
+// });
 
 module.exports = app;
