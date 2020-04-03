@@ -9,6 +9,6 @@ router.use(cohortRouter);
 router.use(authRouter);
 router.use(cohortRouter);
 
-router.use('/applicant', applicantRouter);
+router.use('/applicants', applicantRouter);
 
 module.exports = router;
