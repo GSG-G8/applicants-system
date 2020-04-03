@@ -98,7 +98,7 @@ The Admin sign in through sign-in page and he will be redirected to the dashboar
 - clone this repo 
 `git clone https://github.com/GSG-G8/applicants-system.git`
 
-- run `npm i  && cd client npm i `  to install all dependencies & devdependancies for the app.
+- run `npm i  && cd client npm i && npm run build `  to install all dependencies & devdependancies for the app and also build react on the server.
 - In your terminal write: `cd .. && npm start` to start the app in the browser.
 
  
@@ -108,7 +108,7 @@ we will use `Heroku` Platform to deploy our website.
 
 
 ## Database Schema :file_cabinet: 
-![ApplicantsSystemDatabase](https://user-images.githubusercontent.com/29041512/78078292-93d7fc80-73b2-11ea-9966-5e787f4d93ee.png)
+![applicantsSystemDB](https://user-images.githubusercontent.com/29041512/78392404-e0a91680-75f0-11ea-8227-72a498c54463.png)
 
 
 
