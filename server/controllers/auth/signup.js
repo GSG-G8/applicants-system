@@ -5,7 +5,7 @@ const {
   signupValidate,
 } = require('../../utils/validation/applicantSignupValidation');
 
-const signupApplicant = (req, res) => {
+const signupApplicant = (req, res, next) => {
   const {
     fullName,
     email,
@@ -50,9 +50,7 @@ const signupApplicant = (req, res) => {
         });
       }
     })
-    .catch((err) => {
-      res.status(400).json(`Error5: ${err}`);
-    });
+    .catch(next);
 };
 
 module.exports = signupApplicant;
