@@ -4,19 +4,21 @@ const getApplicantsStats = (req, res, next) => {
   Promise.all([
     Applicant.find({ accepted: true }).countDocuments(),
     Applicant.find({
-      applicationSubmittedDate: { $exists: true, $ne: null },
+      applicationSubmittedDate: { $ne: null },
     }).countDocuments(),
     Applicant.find({
       applicationSubmittedDate: null,
     }).countDocuments(),
+    Applicant.find({}).countDocuments(),
   ])
-    .then(([accepted, submitted, opened]) =>
+    .then(([accepted, submitted, opened, all]) =>
       res.status(200).json({
         statusCode: 200,
         Data: {
           accepted,
           submitted,
           opened,
+          all,
         },
       })
     )

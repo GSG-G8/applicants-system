@@ -4,11 +4,9 @@ const applicantRouter = require('./applicant-router');
 const cohortRouter = require('./cohort-router');
 const authRouter = require('./auth-router');
 
-router.use(applicantRouter);
-router.use(cohortRouter);
 router.use(authRouter);
 router.use(cohortRouter);
 
-router.use('/applicants', applicantRouter);
+router.use(applicantRouter);
 
 module.exports = router;
