@@ -22,6 +22,7 @@ const applicantSchema = new Schema({
   location: {
     type: String,
     trim: true,
+    required: true,
   },
   address: {
     type: String,
@@ -37,14 +38,11 @@ const applicantSchema = new Schema({
     trim: true,
   },
   mobileNumber: {
-    type: Number,
-    min: 10,
-    max: 18,
+    type: String,
   },
   age: {
     type: Number,
     min: 18,
-    max: 115,
   },
   motivation: {
     type: String,
@@ -103,12 +101,14 @@ const applicantSchema = new Schema({
   },
   freeCodeCampPoints: {
     type: Number,
-    min: 0,
-    max: 1500,
   },
   freeCodeCampTopics: {
     type: Boolean,
     default: false,
+  },
+  freeCodeCampLink: {
+    type: String,
+    trim: true,
   },
   codeWarsLink: {
     type: String,
@@ -141,18 +141,13 @@ const applicantSchema = new Schema({
   },
   applicationEndDate: {
     type: Date,
-    required: true,
-    default: Date.now,
   },
   applicationSubmittedDate: {
     type: Date,
-    required: true,
-    default: Date.now,
   },
   accepted: {
     type: Boolean,
     default: false,
-    trim: true,
   },
 });
 module.exports = mongoose.model('applicant', applicantSchema);

@@ -5,6 +5,15 @@ const {
   signupValidate,
 } = require('../../utils/validation/applicantSignupValidation');
 
+// two function to get first name and last name to use them in avatar
+const firstName = (string) =>
+  string.trim().toUpperCase().split(' ')[0].toString();
+
+const lastName = (string) => {
+  const strArr = string.trim().toUpperCase().split(' ');
+  return strArr[strArr.length - 1].toString();
+};
+
 const signupApplicant = (req, res, next) => {
   const {
     fullName,
@@ -16,6 +25,9 @@ const signupApplicant = (req, res, next) => {
   const fullNameModified = fullName.trim();
   const emailModified = email.trim();
   const locationModified = location.trim().toLowerCase();
+  const avatar = `https://ui-avatars.com/api/?name=${firstName(
+    fullName
+  )}+${lastName(fullName)}&rounded=true&background=ED6D23&color=F3F3F3`;
   signupValidate(
     fullNameModified,
     emailModified,
@@ -38,6 +50,7 @@ const signupApplicant = (req, res, next) => {
                 email: emailModified,
                 password: hashedPassword,
                 location: locationModified,
+                avatar,
               });
               newApplicant
                 .save()
