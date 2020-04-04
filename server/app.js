@@ -8,7 +8,7 @@ const dataBase = require('./database/connection');
 
 const app = express();
 
-app.disabled('x-powered-by');
+app.disable('x-powered-by');
 app.set('port', process.env.PORT || 5000);
 
 const middlewares = [
@@ -17,7 +17,6 @@ const middlewares = [
   express.json(),
   express.urlencoded({ extended: false }),
 ];
-
 app.use(middlewares);
 
 dataBase

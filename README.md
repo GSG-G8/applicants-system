@@ -2,7 +2,7 @@
 
 ## Application Link :link: 
 
-[check it out from here](https://)
+[check it out from here](https://ca-applicants-system.herokuapp.com/)
 
 ## Application description :information_source: 
 
@@ -98,16 +98,18 @@ The Admin sign in through sign-in page and he will be redirected to the dashboar
 - clone this repo 
 `git clone https://github.com/GSG-G8/applicants-system.git`
 
-- run `npm i  && cd client npm i `  to install all dependencies & devdependancies for the app.
+- run `npm i  && cd client npm i && npm run build `  to install all dependencies & devdependancies for the app and also build react on the server.
 - In your terminal write: `cd .. && npm start` to start the app in the browser.
 
  
-## Application Deployment
+## Application Deployment :sparkles:
 
 we will use `Heroku` Platform to deploy our website.
 
+
 ## Database Schema :file_cabinet: 
-![finalDatabase](https://user-images.githubusercontent.com/29041512/77883751-700a9e80-726c-11ea-9c23-db51bd700025.png)
+![applicantsSystemDB](https://user-images.githubusercontent.com/29041512/78392404-e0a91680-75f0-11ea-8227-72a498c54463.png)
+
 
 
 ## Technologies :computer: 

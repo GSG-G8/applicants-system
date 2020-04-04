@@ -1,13 +1,3 @@
-const {
-  createApplicant,
-  getApplicantById,
-  getApplicants,
-  updateApplicant,
-} = require('../controllers/applicant');
+const applicantRouter = require('express').Router();
 
-module.exports = {
-  createApplicant,
-  getApplicantById,
-  getApplicants,
-  updateApplicant,
-};
+module.exports = applicantRouter;

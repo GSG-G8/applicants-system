@@ -1,11 +1,5 @@
-const getApplicantById = require('./getApplicantById');
-const getApplicants = require('./getApplicants');
-const createApplicant = require('./createApplicant');
-const updateApplicant = require('./updateApplicant');
+const getApplicantsStats = require('./getApplicantsStats');
 
 module.exports = {
-  getApplicantById,
-  getApplicants,
-  createApplicant,
-  updateApplicant,
+  getApplicantsStats,
 };
