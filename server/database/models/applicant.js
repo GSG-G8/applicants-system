@@ -32,6 +32,10 @@ const applicantSchema = new Schema({
     type: String,
     trim: true,
   },
+  avatar: {
+    type: String,
+    trim: true,
+  },
   mobileNumber: {
     type: Number,
     min: 10,
