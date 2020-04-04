@@ -20,7 +20,7 @@ const schema = yup.object().shape({
   available: yup.boolean(),
   githubLink: yup.string().url().trim(),
   joinDiscord: yup.boolean(),
-  freeCodeCampPoints: yup.number().integer().min(0).max(1500),
+  freeCodeCampPoints: yup.number().integer().min(0),
   freeCodeCampTopics: yup.boolean(),
   freeCodeCampLink: yup.string().url().trim(),
   codeWarsLink: yup.string().url().trim(),
