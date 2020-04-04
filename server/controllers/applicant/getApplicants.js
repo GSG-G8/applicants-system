@@ -8,7 +8,7 @@ const getApplicants = (req, res, next) => {
     if (!rows.length) {
       return res
         .status(404)
-        .json({ statusCode: 404, error: `Users not found` });
+        .json({ statusCode: 404, error: `Applicants not found` });
     }
     return res.status(200).json({ statusCode: 200, data: rows });
   }).catch(next);
