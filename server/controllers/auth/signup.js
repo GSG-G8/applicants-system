@@ -36,13 +36,13 @@ const signupApplicant = (req, res, next) => {
     locationModified
   )
     .then((valid) => {
-      if (!valid) res.status(400).json(`Error: Validation error`);
+      if (!valid) res.status(400).json({ Error: `Validation error` });
       else {
         applicant.findOne({ email }, (error, data) => {
           if (data !== null) {
-            res
-              .status(200)
-              .json(`${emailModified} is already exists, please sign-in`);
+            res.status(400).json({
+              msg: `${emailModified} is already exists, please sign-in`,
+            });
           } else {
             hash(password, 10).then((hashedPassword) => {
               const newApplicant = new applicant({
@@ -54,9 +54,11 @@ const signupApplicant = (req, res, next) => {
               });
               newApplicant
                 .save()
-                .then(() => res.status(201).json('Registration Complete'))
+                .then(() =>
+                  res.status(201).json({ msg: 'Registration Complete' })
+                )
                 .catch((err) => {
-                  res.status(400).json(`Error: ${err}`);
+                  res.status(400).json({ Error: err });
                 });
             });
           }
