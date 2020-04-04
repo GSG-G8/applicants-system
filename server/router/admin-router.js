@@ -1,4 +1,6 @@
-const adminRouter = require('express').Router();
+const express = require('express');
+
+const adminRouter = express.Router();
 
 const {
   getApplicantsStats,

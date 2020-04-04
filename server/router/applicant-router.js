@@ -1,9 +1,10 @@
 const express = require('express');
 
 const applicantRouter = express.Router();
+
 const {
-  updateApplicant,
   getApplicantById,
+  updateApplicant,
 } = require('../controllers/applicant');
 
 applicantRouter.get('/applicants/:id', getApplicantById);
