@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 
 const router = require('./router');
 const dataBase = require('./database/connection');
+const errorHandler = require('./controllers/errors');
 
 const app = express();
 
@@ -28,8 +29,10 @@ app.use(express.static(join(__dirname, '..', 'client', 'build')));
 
 app.use('/api/v1', router);
 
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
 });
+
+app.use(errorHandler);
 
 module.exports = app;

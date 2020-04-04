@@ -1,15 +1,6 @@
-const router = require('express').Router();
-const {
-  createApplicant,
-  getApplicantById,
-  getApplicants,
-  updateApplicant,
-} = require('./applicant-router');
+const express = require('express');
 
-router.get('/show', getApplicants);
-router.get('/show/:id', getApplicantById);
-router.post('/add', createApplicant);
-router.patch('/up/:id', updateApplicant);
+const router = express.Router();
 
 const authRouter = require('./auth-router');
 const applicantRouter = require('./applicant-router');

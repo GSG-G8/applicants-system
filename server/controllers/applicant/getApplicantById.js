@@ -1,9 +1,10 @@
 const Applicant = require('../../database/models/applicant');
 
-const getApplicantById = (req, res) => {
-  Applicant.find({ _id: req.params.id })
-    .then((users) => res.json(users))
-    .catch((err) => res.status(400).json(`Error: ${err}`));
+const getApplicantById = (req, res, next) => {
+  Applicant.findById(req.params.id, (err, applicant) => {
+    if (err) res.status(400).json({ err: "Applicant doesn't exist" });
+    else res.status(200).json({ user: applicant });
+  }).catch(next);
 };
 
 module.exports = getApplicantById;
