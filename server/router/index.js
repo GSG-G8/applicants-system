@@ -11,6 +11,6 @@ router.use(authRouter);
 
 router.use(applicantRouter);
 router.use(cohortRouter);
-router.use(adminRouter);
+router.use('/admin/', adminRouter);
 
 module.exports = router;
