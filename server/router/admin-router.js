@@ -1,7 +1,10 @@
-const adminRouter = require('express').Router();
+const express = require('express');
 
-const { getApplicantsStats } = require('../controllers/applicant');
+const adminRouter = express.Router();
+
+const { getApplicantsStats, getApplicants } = require('../controllers/admin');
 
 adminRouter.get('/applicants/stats', getApplicantsStats);
+adminRouter.get('/applicants', getApplicants);
 
 module.exports = adminRouter;
