@@ -1,3 +1,5 @@
+const fs = require('fs');
+const { join } = require('path');
 const applicant = require('../../database/models/applicant');
 const updateCodewarwPoint = require('./fitchData/fitchCodewar');
 
@@ -6,8 +8,25 @@ const updatePoints = (req, res) => {
     .find()
     .then((data) =>
       data.map((element) => {
-        const { _id, codeWarsLink } = element;
-        updateCodewarwPoint(_id, String(codeWarsLink), () => {});
+        const { _id, codeWarsLink, email, fullName } = element;
+        updateCodewarwPoint(_id, String(codeWarsLink), (err, result) => {
+          if (err) {
+            const logEror = JSON.stringify({
+              type: 'codeware',
+              id: _id,
+              fullName,
+              email,
+              codeWarsLink,
+            });
+            fs.writeFileSync(
+              join(__dirname, 'fitchData', 'bugs.log'),
+              `\n ${logEror}`,
+              {
+                flag: 'a',
+              }
+            );
+          }
+        });
       })
     )
     .then(() => {
