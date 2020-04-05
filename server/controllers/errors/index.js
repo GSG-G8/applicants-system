@@ -2,10 +2,10 @@ const express = require('express');
 
 const errorHandler = express.Router();
 
-const client = require('./clientError');
-const server = require('./serverError');
+const clientError = require('./clientError');
+const serverError = require('./serverError');
 
-errorHandler.all('*', client);
-errorHandler.use(server);
+errorHandler.use(clientError);
+errorHandler.use(serverError);
 
 module.exports = errorHandler;
