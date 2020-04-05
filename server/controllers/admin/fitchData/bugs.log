@@ -1,4 +1,5 @@
 
- {"type":"codeware","id":"5e847ffa49abf469bd96009e","fullName":"Hassan","email":"bb@gmail.com","codeWarsLink":"http://www.codewars.org"}
- {"type":"codeware","id":"5e847f8a49abf469bd96009c","fullName":"Ali","email":"ali-adaa@gmail.com","codeWarsLink":"http://www.codewars.org"}
- {"type":"codeware","id":"5e8866fddb7cca1ef1c8a955","email":"aa@aa.com"}
+
+ {"type":"codeware","json":{"id":"5e847ffa49abf469bd96009e","fullName":"Hassan","email":"bb@gmail.com","codeWarsLink":"http://www.codewars.org"}}
+ {"type":"codeware","json":{"id":"5e847f8a49abf469bd96009c","fullName":"Ali","email":"ali-adaa@gmail.com","codeWarsLink":"http://www.codewars.org"}}
+ {"type":"codeware","json":{"id":"5e8866fddb7cca1ef1c8a955","email":"aa@aa.com"}}
