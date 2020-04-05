@@ -1,7 +1,15 @@
-const applicantRouter = require('express').Router();
+const express = require('express');
 
-const { getApplicantsParams } = require('../controllers/applicant');
+const applicantRouter = express.Router();
 
-applicantRouter.get('/applicants/params', getApplicantsParams);
+const {
+  getApplicantById,
+  updateApplicant,
+  getApplicantsParams,
+} = require('../controllers/applicant');
+
+applicantRouter.get('/applicants/:id', getApplicantById);
+applicantRouter.patch('/applicants/:id', updateApplicant);
+applicantRouter.get('/applicants/data/params', getApplicantsParams);
 
 module.exports = applicantRouter;
