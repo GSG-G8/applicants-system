@@ -10,9 +10,9 @@ const errorHandler = require('../controllers/errors');
 
 router.use(authRouter);
 
+router.use(adminRouter);
 router.use(applicantRouter);
 router.use(cohortRouter);
-router.use(adminRouter);
 router.use(errorHandler);
 
 module.exports = router;
