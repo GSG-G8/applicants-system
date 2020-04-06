@@ -3,35 +3,61 @@ const { sign } = require('jsonwebtoken');
 
 const loginValidation = require('../../utils/validation/loginValidation');
 const applicant = require('../../database/models/applicant');
+const admin = require('../../database/models/admin');
+
 require('env2')('config.env');
+
+const errorResponse = {
+  status: 'failed',
+  type: 'Wrong Email or Password',
+  errorMessage: 'Check Email or password',
+};
 
 const login = (req, res) => {
   const { email, password } = req.body;
   loginValidation(email, password)
     .then((valid) => {
-      if (!valid) res.status(400).json({ error: 'Check the data you entered' });
+      if (!valid)
+        res.status(400).json({
+          status: 'failed',
+          type: 'type error',
+          errorMessage: 'Check the data you entered',
+        });
       else {
         applicant
           .findOne({ email })
           .then((data) => {
             bcrypt.compare(password, data.password, (err, result) => {
-              if (!result)
-                res.status(400).json({ error: 'wrong Email or password' });
+              if (!result) res.status(400).json(errorResponse);
               else {
                 const userToken = { userId: data.id };
                 const cookie = sign(userToken, process.env.SECRET_KEY);
                 res
                   .cookie('applicant', cookie, { httpOnly: true })
-                  .json({ data });
+                  .json({ status: 'successfully', role: 'applicant', data });
               }
             });
           })
-          .catch(() =>
-            res.status(400).json({ error: 'Check Email and Password' })
-          );
+          .catch(() => {
+            admin
+              .findOne({ email })
+              .then((data) =>
+                bcrypt.compare(password, data.password, (err, result) => {
+                  if (!result) res.status(400).json(errorResponse);
+                  else {
+                    const userToken = { userId: data.id };
+                    const cookie = sign(userToken, process.env.SECRET_KEY);
+                    res
+                      .cookie('admin', cookie, { httpOnly: true })
+                      .json({ status: 'successfully', role: 'admin', data });
+                  }
+                })
+              )
+              .catch(() => res.status(400).json(errorResponse));
+          });
       }
     })
-    .catch(() => res.status(400).json({ error: 'wrong Email or password' }));
+    .catch(() => res.status(400).json(errorResponse));
 };
 
 module.exports = login;
