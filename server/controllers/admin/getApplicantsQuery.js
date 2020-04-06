@@ -13,7 +13,16 @@ const getApplicantsQuery = (req, res, next) => {
         {
           codeWarsKyu: !cwscore
             ? {
-                $in: ['8kyu', '7kyu', '6kyu', '5kyu'],
+                $in: [
+                  '8kyu',
+                  '7kyu',
+                  '6kyu',
+                  '5kyu',
+                  '4kyu',
+                  '3kyu',
+                  '2kyu',
+                  '1kyu',
+                ],
               }
             : { $eq: cwscore },
         },
