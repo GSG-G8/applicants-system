@@ -1,9 +1,9 @@
 const getApplicantById = require('./getApplicantById');
 const updateApplicant = require('./updateApplicant');
-const getApplicantsParams = require('./getApplicantsParams');
+const getApplicantsQuery = require('./getApplicantsQuery');
 
 module.exports = {
   getApplicantById,
   updateApplicant,
-  getApplicantsParams,
+  getApplicantsQuery,
 };

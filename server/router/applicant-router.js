@@ -5,11 +5,11 @@ const applicantRouter = express.Router();
 const {
   getApplicantById,
   updateApplicant,
-  getApplicantsParams,
+  getApplicantsQuery,
 } = require('../controllers/applicant');
 
 applicantRouter.get('/applicants/:id', getApplicantById);
 applicantRouter.patch('/applicants/:id', updateApplicant);
-applicantRouter.get('/applicants/data/params', getApplicantsParams);
+applicantRouter.get('/applicants/data/query', getApplicantsQuery);
 
 module.exports = applicantRouter;

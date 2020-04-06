@@ -9,8 +9,8 @@ const adminRouter = require('./admin-router');
 
 router.use(authRouter);
 
+router.use(adminRouter);
 router.use(applicantRouter);
 router.use(cohortRouter);
-router.use(adminRouter);
 
 module.exports = router;

@@ -8,7 +8,6 @@ const getCohorts = (req, res, next) => {
       }
       if (!rows.length) {
         return res.status(404).json({ Error: `Cohorts not found` });
-        // .json({ statusCode: 404, error: `Cohorts not found` });
       }
       return res.status(200).json({ statusCode: 200, data: rows });
     })

@@ -24,12 +24,12 @@ dataBase
   .on('open', () => console.log('mongo database is connected'))
   .on('error', () => process.exit(1));
 
-app.use(express.static(join(__dirname, '..', 'client', 'build')));
+// app.use(express.static(join(__dirname, '..', 'client', 'build')));
 
 app.use('/api/v1', router);
 
-app.get('*', (req, res) => {
-  res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
+// });
 
 module.exports = app;
