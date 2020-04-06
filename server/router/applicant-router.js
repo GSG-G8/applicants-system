@@ -10,8 +10,4 @@ const {
 applicantRouter.get('/:id', getApplicantById);
 applicantRouter.patch('/:id', updateApplicant);
 
-const signup = require('../controllers/auth/signup');
-
-applicantRouter.post('/signup', signup);
-
 module.exports = applicantRouter;

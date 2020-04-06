@@ -6,13 +6,7 @@ const {
 } = require('../../utils/validation/applicantSignupValidation');
 
 // two function to get first name and last name to use them in avatar
-const firstName = (string) =>
-  string.trim().toUpperCase().split(' ')[0].toString();
-
-const lastName = (string) => {
-  const strArr = string.trim().toUpperCase().split(' ');
-  return strArr[strArr.length - 1].toString();
-};
+const { firstName, lastName } = require('../../utils/helper');
 
 const signupApplicant = (req, res, next) => {
   const {
@@ -22,34 +16,25 @@ const signupApplicant = (req, res, next) => {
     passwordConfirmation,
     location,
   } = req.body;
-  const fullNameModified = fullName.trim();
-  const emailModified = email.trim();
-  const locationModified = location.trim().toLowerCase();
   const avatar = `https://ui-avatars.com/api/?name=${firstName(
     fullName
   )}+${lastName(fullName)}&rounded=true&background=ED6D23&color=F3F3F3`;
-  signupValidate(
-    fullNameModified,
-    emailModified,
-    password,
-    passwordConfirmation,
-    locationModified
-  )
+  signupValidate(fullName, email, password, passwordConfirmation, location)
     .then((valid) => {
       if (!valid) res.status(400).json({ Error: `Validation error` });
       else {
         applicant.findOne({ email }, (error, data) => {
           if (data !== null) {
             res.status(400).json({
-              msg: `${emailModified} is already exists, please sign-in`,
+              msg: `${email} is already exists, please sign-in`,
             });
           } else {
             hash(password, 10).then((hashedPassword) => {
               const newApplicant = new applicant({
-                fullName: fullNameModified,
-                email: emailModified,
+                fullName,
+                email,
                 password: hashedPassword,
-                location: locationModified,
+                location,
                 avatar,
               });
               newApplicant
@@ -65,7 +50,9 @@ const signupApplicant = (req, res, next) => {
         });
       }
     })
-    .catch(next);
+    .catch((error) =>
+      next({ type: 'add', message: 'save new applicant', error })
+    );
 };
 
 module.exports = signupApplicant;

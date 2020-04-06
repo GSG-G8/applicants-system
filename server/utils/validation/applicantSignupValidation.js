@@ -1,8 +1,8 @@
 const yup = require('yup');
 
 const schema = yup.object().shape({
-  fullName: yup.string(),
-  email: yup.string().email().min(4).required(),
+  fullName: yup.string().trim(),
+  email: yup.string().email().required(),
   password: yup
     .string()
     .required('Please Enter your password')
