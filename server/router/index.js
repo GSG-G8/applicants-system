@@ -7,11 +7,15 @@ const adminRouter = require('./admin-router');
 const applicantRouter = require('./applicant-router');
 const cohortRouter = require('./cohort-router');
 const errorHandler = require('../controllers/errors');
+const { isAuthorized, isAdmin } = require('../middlewares/auth');
 
 router.use(authRouter);
 
-router.use('/dashboard', adminRouter);
+router.use('/dashboard', isAdmin, adminRouter);
+
+router.use(isAuthorized);
 router.use('/applicants', applicantRouter);
+
 router.use(cohortRouter);
 
 router.use(errorHandler);
