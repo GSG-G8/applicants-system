@@ -1,7 +1,7 @@
 const Applicant = require('../../database/models/applicant');
 
 const getApplicantsQuery = (req, res, next) => {
-  const { submitted, cwscore, fccpoints = 220, covered = true } = req.query;
+  const { submitted, cwscore, fccpoints = 0, covered } = req.query;
 
   Applicant.find(
     {
@@ -13,25 +13,17 @@ const getApplicantsQuery = (req, res, next) => {
         {
           codeWarsKyu: !cwscore
             ? {
-                $or: [
-                  { codeWarsKyu: '8kyu' },
-                  { codeWarsKyu: '7kyu' },
-                  { codeWarsKyu: '6kyu' },
-                  { codeWarsKyu: '5kyu' },
-                ],
+                $in: ['8kyu', '7kyu', '6kyu', '5kyu'],
               }
-            : cwscore,
+            : { $eq: cwscore },
         },
-        // {
-        //   $or: [
-        //     { codeWarsKyu: '8kyu' },
-        //     { codeWarsKyu: '7kyu' },
-        //     { codeWarsKyu: '6kyu' },
-        //     { codeWarsKyu: '5kyu' },
-        //     { codeWarsKyu: { $eq: cwscore } },
-        //   ],
-        // },
-        { freeCodeCampTopics: { $eq: covered } },
+        {
+          freeCodeCampTopics: !covered
+            ? {
+                $in: [true, false],
+              }
+            : covered,
+        },
       ],
     },
     (err, rows) => {
