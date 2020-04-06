@@ -7,10 +7,10 @@ const admin = require('../../database/models/admin');
 
 require('env2')('config.env');
 
-const erroResponse = {
+const errorResponse = {
   status: 'failed',
-  type: 'wrong Email or Password',
-  erroMessage: 'Check Email or password',
+  type: 'Wrong Email or Password',
+  errorMessage: 'Check Email or password',
 };
 
 const login = (req, res) => {
@@ -21,14 +21,14 @@ const login = (req, res) => {
         res.status(400).json({
           status: 'failed',
           type: 'type error',
-          erroMessage: 'check the data you inserted',
+          errorMessage: 'Check the data you entered',
         });
       else {
         applicant
           .findOne({ email })
           .then((data) => {
             bcrypt.compare(password, data.password, (err, result) => {
-              if (!result) res.status(400).json(erroResponse);
+              if (!result) res.status(400).json(errorResponse);
               else {
                 const userToken = { userId: data.id };
                 const cookie = sign(userToken, process.env.SECRET_KEY);
@@ -43,7 +43,7 @@ const login = (req, res) => {
               .findOne({ email })
               .then((data) =>
                 bcrypt.compare(password, data.password, (err, result) => {
-                  if (!result) res.status(400).json(erroResponse);
+                  if (!result) res.status(400).json(errorResponse);
                   else {
                     const userToken = { userId: data.id };
                     const cookie = sign(userToken, process.env.SECRET_KEY);
@@ -53,11 +53,11 @@ const login = (req, res) => {
                   }
                 })
               )
-              .catch(() => res.status(400).json(erroResponse));
+              .catch(() => res.status(400).json(errorResponse));
           });
       }
     })
-    .catch(() => res.status(400).json(erroResponse));
+    .catch(() => res.status(400).json(errorResponse));
 };
 
 module.exports = login;

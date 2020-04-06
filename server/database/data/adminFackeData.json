@@ -1,12 +1,12 @@
 [
   {
-  "email":"aa@aa.com",
-  "password" : "aa",
-  "username":"ahmad"
+  "email":"a.ahmad.salah@gmail.com",
+  "password" : "$2b$10$xlhF9buzqfqLR/sEI/jrGu.Vm2K6GgbSri09PW8qM.vLkl2OC1fsC",
+  "username":"ahmad salah"
 },
 {
-  "email":"aa@aab.com",
-  "password" : "aab",
-  "username":"ahmadb"
+  "email":"a.ali.salah@gmail.com",
+  "password" : "$2b$10$xlhF9buzqfqLR/sEI/jrGu.Vm2K6GgbSri09PW8qM.vLkl2OC1fsC",
+  "username":"ali"
 }
 ]
