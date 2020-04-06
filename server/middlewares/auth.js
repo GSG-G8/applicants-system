@@ -9,6 +9,7 @@ const isAuthorized = (req, res, next) => {
     if (err) {
       res.status(401).send({ statusCode: 401, error: 'you are un authorized' });
     } else {
+      res.status(200).send({ auth: true, id: token.id });
       next();
     }
   });
@@ -20,7 +21,16 @@ const isAdmin = (req, res, next) => {
     if (!data.email) {
       res.status(401).send({ statusCode: 401, error: 'you are un authorized' });
     } else {
-      next();
+      jwt.verify(req.cookies.admin, process.env.SECRET_KEY, (err, token) => {
+        if (err) {
+          res
+            .status(401)
+            .send({ statusCode: 401, error: 'you are un authorized' });
+        } else {
+          res.status(200).send({ auth: true, id: token.id });
+          next();
+        }
+      });
     }
   });
 };
