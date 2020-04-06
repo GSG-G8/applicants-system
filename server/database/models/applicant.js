@@ -44,6 +44,10 @@ const applicantSchema = new Schema({
     type: Number,
     min: 18,
   },
+  avatar: {
+    type: String,
+    trim: true,
+  },
   motivation: {
     type: String,
     trim: true,
