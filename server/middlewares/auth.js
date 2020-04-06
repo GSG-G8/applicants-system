@@ -1,13 +1,28 @@
-const { verify } = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
+
+const admin = require('../database/models/admin');
 
 require('env2')('config.env');
 
-const isAuthorized = (req, res) => {
-  verify(req.cookies.applicant, process.env.SECRET_KEY, (err, decoded) => {
+const isAuthorized = (req, res, next) => {
+  jwt.verify(req.cookies.applicant, process.env.SECRET_KEY, (err, token) => {
     if (err) {
-      res.status(401).json({ msg: 'you are not authorized' });
+      res.status(401).send({ statusCode: 401, error: 'you are un authorized' });
+    } else {
+      next();
     }
   });
 };
 
-module.exports = { isAuthorized };
+const isAdmin = (req, res, next) => {
+  const { email } = req.body;
+  admin.findOne({ email }).then((data) => {
+    if (!data.email) {
+      res.status(401).send({ statusCode: 401, error: 'you are un authorized' });
+    } else {
+      next();
+    }
+  });
+};
+
+module.exports = { isAuthorized, isAdmin };
