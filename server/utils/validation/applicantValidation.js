@@ -2,8 +2,18 @@ const yup = require('yup');
 
 const schema = yup.object().shape({
   fullName: yup.string().trim(),
-  email: yup.string().trim(),
-  password: yup.string().trim(),
+  email: yup.string().email().trim(),
+  password: yup
+    .string()
+    .required('Please Enter your password')
+    .matches(
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+      'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character'
+    ),
+  passwordConfirmation: yup
+    .mixed()
+    .oneOf([yup.ref('password')])
+    .required(),
   address: yup.string().trim(),
   cohorts: yup.string().trim(),
   mobileNumber: yup.string().trim(),
