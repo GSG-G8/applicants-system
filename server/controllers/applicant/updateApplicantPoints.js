@@ -2,7 +2,7 @@ const fetchCodewarsPoint = require('../fetchData/fetchCodewar');
 const fetchFreeCodeCampPoint = require('../fetchData/fetchFreecodeCamp');
 const applicant = require('../../database/models/applicant');
 
-const fetchPoint = (req, res, next) => {
+const updateApplicantpoints = (req, res, next) => {
   const { id } = req.params;
   applicant
     .findOne({ _id: id })
@@ -37,4 +37,4 @@ const fetchPoint = (req, res, next) => {
       })
     );
 };
-module.exports = fetchPoint;
+module.exports = updateApplicantpoints;
