@@ -22,18 +22,22 @@ const updateApplicantpoints = (req, res, next) => {
             message: 'eror in fetching data',
           });
         } else
-          applicant.updateOne(
-            { _id: id },
-            {
-              codeWarsKyu: data[0],
-              freeCodeCampPoints: data[1],
-            }
-          );
-        res.status(200).json({
-          status: 200,
-          message: 'update points done successfully',
-          data,
-        });
+          applicant
+            .updateOne(
+              { _id: id },
+              {
+                codeWarsKyu: data[0],
+                freeCodeCampPoints: data[1].points,
+                freeCodeCampTopics: data[1].hasTarget,
+              }
+            )
+            .then(() => {
+              res.status(200).json({
+                status: 200,
+                message: 'update points done successfully',
+                data,
+              });
+            });
       })
     );
 };

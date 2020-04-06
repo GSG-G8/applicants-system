@@ -38,7 +38,8 @@ const updatePoints = (req, res) => {
               { _id },
               {
                 codeWarsKyu: result[0],
-                freeCodeCampPoints: result[1],
+                freeCodeCampPoints: result[1].points,
+                freeCodeCampTopics: result[1].hasTarget,
               }
             );
           }
