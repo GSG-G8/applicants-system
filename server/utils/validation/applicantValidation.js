@@ -7,6 +7,7 @@ const schema = yup.object().shape({
   age: yup.string().trim(),
   gender: yup.mixed().oneOf(['male', 'female']),
   motivation: yup.string().trim(),
+  avatar: yup.string().url().trim(),
   englishSpeaking: yup.string().trim(),
   englishUnderstanding: yup.string().trim(),
   employmentStatus: yup.string().trim(),
