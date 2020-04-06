@@ -25,7 +25,7 @@ const isAdmin = (req, res, next) => {
         if (err) {
           res
             .status(401)
-            .send({ statusCode: 401, error: 'you are un authorized' });
+            .send({ statusCode: 401, error: 'you are Unauthorized' });
         } else {
           res.status(200).send({ auth: true, id: token.id });
           next();
