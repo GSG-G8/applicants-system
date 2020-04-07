@@ -8,8 +8,8 @@ const {
   updateApplicantpoints,
 } = require('../controllers/applicant');
 
-applicantRouter.get('/applicants/:id', getApplicantById);
-applicantRouter.patch('/applicants/:id', updateApplicant);
 applicantRouter.get('/applicants/:id/points', updateApplicantpoints);
+applicantRouter.get('/:id', getApplicantById);
+applicantRouter.patch('/:id', updateApplicant);
 
 module.exports = applicantRouter;
