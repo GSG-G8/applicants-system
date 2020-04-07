@@ -1,1223 +1,813 @@
 const topics = [
   {
-    no: '1',
     id: 'bd7123c8c441eddfaeb5bdef',
-    cat: 'Basic HTML and HTML',
-    name: 'Say Hello to HTML Elements',
+    title: 'Say Hello to HTML Elements',
   },
   {
-    no: '2',
     id: 'bad87fee1348bd9aedf0887a',
-    cat: 'Basic HTML and HTML',
-    name: 'Headline with the h2 Element',
+    title: 'Headline with the h2 Element',
   },
-  // {
-  //   no: '3',
-  //   id: 'ebad87fee1348bd9aedf08801',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Inform with the Paragraph Element',
-  // },
-  // {
-  //   no: '4',
-  //   id: 'bad87fee1348bd9aedf08833',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Fill in the Blank with Placeholder Text',
-  // },
-  // {
-  //   no: '5',
-  //   id: 'bad87fee1348bd9aedf08802',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Uncomment HTML',
-  // },
-  // {
-  //   no: '6',
-  //   id: 'bad87fee1348bd9aedf08804',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Comment out HTML',
-  // },
-  // {
-  //   no: '7',
-  //   id: 'bad87fed1348bd9aedf08833',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Delete HTML Elements',
-  // },
-  // {
-  //   no: '8',
-  //   id: 'bad87fee1348bd9aecf08801',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Introduction to HTML5 Elements',
-  // },
-  // {
-  //   no: '9',
-  //   id: 'bad87fee1348bd9aedf08812',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Add Images to Your Website',
-  // },
-  // {
-  //   no: '10',
-  //   id: 'bad87fee1348bd9aedf08816',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Link to External Pages with Anchor Elements',
-  // },
-  // {
-  //   no: '11',
-  //   id: 'bad88fee1348bd9aedf08816',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Link to Internal Sections of a Page with Anchor Elements',
-  // },
-  // {
-  //   no: '12',
-  //   id: 'bad87fee1348bd9aede08817',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Nest an Anchor Element within a Paragraph',
-  // },
-  // {
-  //   no: '13',
-  //   id: 'bad87fee1348bd9aedf08817',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Make Dead Links Using the Hash Symbol',
-  // },
-  // {
-  //   no: '14',
-  //   id: 'bad87fee1348bd9aedf08820',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Turn an Image into a Link',
-  // },
-  // {
-  //   no: '15',
-  //   id: 'bad87fee1348bd9aedf08827',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Create a Bulleted Unordered List',
-  // },
-  // {
-  //   no: '16',
-  //   id: 'bad87fee1348bd9aedf08828',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Create an Ordered List',
-  // },
-  // {
-  //   no: '17',
-  //   id: 'bad87fee1348bd9aedf08829',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Create a Text Field',
-  // },
-  // {
-  //   no: '18',
-  //   id: 'bad87fee1348bd9aedf08830',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Add Placeholder Text to a Text Field',
-  // },
-  // {
-  //   no: '19',
-  //   id: 'bad87fee1348bd9aede08830',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Create a Form Element',
-  // },
-  // {
-  //   no: '20',
-  //   id: 'bad87fee1348bd9aedd08830',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Add a Submit Button to a Form',
-  // },
-  // {
-  //   no: '21',
-  //   id: 'bad87fee1348bd9aedc08830',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Use HTML5 to Require a Field',
-  // },
-  // {
-  //   no: '22',
-  //   id: 'bad87fee1348bd9aedf08834',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Create a Set of Radio Buttons',
-  // },
-  // {
-  //   no: '23',
-  //   id: 'bad87fee1348bd9aedf08835',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Create a Set of Checkboxes',
-  // },
-  // {
-  //   no: '24',
-  //   id: '5c6c06847491271903d37cfd',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Use the value attribute with Radio Buttons and Checkboxes',
-  // },
-  // {
-  //   no: '25',
-  //   id: 'bad87fee1348bd9aedd08835',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Check Radio Buttons and Checkboxes by Default',
-  // },
-  // {
-  //   no: '26',
-  //   id: 'bad87fee1348bd9aede08835',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Nest Many Elements within a Single div Element',
-  // },
-  // {
-  //   no: '27',
-  //   id: '587d78aa367417b2b2512aed',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Declare the Doctype of an HTML Document',
-  // },
-  // {
-  //   no: '28',
-  //   id: '587d78aa367417b2b2512aec',
-  //   cat: 'Basic HTML and HTML',
-  //   name: 'Define the Head and Body of an HTML Document',
-  // },
-  // {
-  //   no: '29',
-  //   id: 'bad87fee1348bd9aedf08803',
-  //   cat: 'Basic CSS',
-  //   name: 'Change the Color of Text',
-  // },
-  // {
-  //   no: '30',
-  //   id: 'bad87fee1348bd9aedf08805',
-  //   cat: 'Basic CSS',
-  //   name: 'Use CSS Selectors to Style Elements',
-  // },
-  // {
-  //   no: '31',
-  //   id: 'bad87fee1348bd9aecf08806',
-  //   cat: 'Basic CSS',
-  //   name: 'Use a CSS Class to Style an Element',
-  // },
-  // {
-  //   no: '32',
-  //   id: 'bad87fee1348bd9aefe08806',
-  //   cat: 'Basic CSS',
-  //   name: 'Style Multiple Elements with a CSS Class',
-  // },
-  // {
-  //   no: '33',
-  //   id: 'bad87fee1348bd9aedf08806',
-  //   cat: 'Basic CSS',
-  //   name: 'Change the Font Size of an Element',
-  // },
-  // {
-  //   no: '34',
-  //   id: 'bad87fee1348bd9aede08807',
-  //   cat: 'Basic CSS',
-  //   name: 'Set the Font Family of an Element',
-  // },
-  // {
-  //   no: '35',
-  //   id: 'bad87fee1348bd9aedf08807',
-  //   cat: 'Basic CSS',
-  //   name: 'Import a Google Font',
-  // },
-  // {
-  //   no: '36',
-  //   id: 'bad87fee1348bd9aedf08808',
-  //   cat: 'Basic CSS',
-  //   name: 'Specify How Fonts Should Degrade',
-  // },
-  // {
-  //   no: '37',
-  //   id: 'bad87fee1348bd9acdf08812',
-  //   cat: 'Basic CSS',
-  //   name: 'Size Your Images',
-  // },
-  // {
-  //   no: '38',
-  //   id: 'bad87fee1348bd9bedf08813',
-  //   cat: 'Basic CSS',
-  //   name: 'Add Borders Around Your Elements',
-  // },
-  // {
-  //   no: '39',
-  //   id: 'bad87fee1348bd9aedf08814',
-  //   cat: 'Basic CSS',
-  //   name: 'Add Rounded Corners with border-radius',
-  // },
-  // {
-  //   no: '40',
-  //   id: 'bad87fee1348bd9aedf08815',
-  //   cat: 'Basic CSS',
-  //   name: 'Make Circular Images with a border-radius',
-  // },
-  // {
-  //   no: '41',
-  //   id: 'bad87fed1348bd9aede07836',
-  //   cat: 'Basic CSS',
-  //   name: 'Give a Background Color to a div Element',
-  // },
-  // {
-  //   no: '42',
-  //   id: 'bad87eee1348bd9aede07836',
-  //   cat: 'Basic CSS',
-  //   name: 'Set the id of an Element',
-  // },
-  // {
-  //   no: '43',
-  //   id: 'bad87dee1348bd9aede07836',
-  //   cat: 'Basic CSS',
-  //   name: 'Use an id Attribute to Style an Element',
-  // },
-  // {
-  //   no: '44',
-  //   id: 'bad88fee1348bd9aedf08825',
-  //   cat: 'Basic CSS',
-  //   name: 'Adjust the Padding of an Element',
-  // },
-  // {
-  //   no: '45',
-  //   id: 'bad87fee1348bd9aedf08822',
-  //   cat: 'Basic CSS',
-  //   name: 'Adjust the Margin of an Element',
-  // },
-  // {
-  //   no: '46',
-  //   id: 'bad87fee1348bd9aedf08823',
-  //   cat: 'Basic CSS',
-  //   name: 'Add a Negative Margin to an Element',
-  // },
-  // {
-  //   no: '47',
-  //   id: 'bad87fee1348bd9aedf08824',
-  //   cat: 'Basic CSS',
-  //   name: 'Add Different Padding to Each Side of an Element',
-  // },
-  // {
-  //   no: '48',
-  //   id: 'bad87fee1248bd9aedf08824',
-  //   cat: 'Basic CSS',
-  //   name: 'Add Different Margins to Each Side of an Element',
-  // },
-  // {
-  //   no: '49',
-  //   id: 'bad87fee1348bd9aedf08826',
-  //   cat: 'Basic CSS',
-  //   name: 'Use Clockwise Notation to Specify the Padding of an Element',
-  // },
-  // {
-  //   no: '50',
-  //   id: 'bad87fee1348bd9afdf08726',
-  //   cat: 'Basic CSS',
-  //   name: 'Use Clockwise Notation to Specify the Margin of an Element',
-  // },
-  // {
-  //   no: '51',
-  //   id: '58c383d33e2e3259241f3076',
-  //   cat: 'Basic CSS',
-  //   name: 'Use Attribute Selectors to Style Elements',
-  // },
-  // {
-  //   no: '52',
-  //   id: 'bad82fee1322bd9aedf08721',
-  //   cat: 'Basic CSS',
-  //   name: 'Understand Absolute versus Relative Units',
-  // },
-  // {
-  //   no: '53',
-  //   id: 'bad87fee1348bd9aedf08736',
-  //   cat: 'Basic CSS',
-  //   name: 'Style the HTML Body Element',
-  // },
-  // {
-  //   no: '54',
-  //   id: 'bad87fee1348bd9aedf08746',
-  //   cat: 'Basic CSS',
-  //   name: 'Inherit Styles from the Body Element',
-  // },
-  // {
-  //   no: '55',
-  //   id: 'bad87fee1348bd9aedf08756',
-  //   cat: 'Basic CSS',
-  //   name: 'Prioritize One Style Over Another',
-  // },
-  // {
-  //   no: '56',
-  //   id: 'bad87fee1348bd9aedf04756',
-  //   cat: 'Basic CSS',
-  //   name: 'Override Styles in Subsequent CSS',
-  // },
-  // {
-  //   no: '57',
-  //   id: 'bad87fee1348bd8aedf06756',
-  //   cat: 'Basic CSS',
-  //   name: 'Override Class Declarations by Styling ID Attributes',
-  // },
-  // {
-  //   no: '58',
-  //   id: 'bad87fee1348bd9aedf06756',
-  //   cat: 'Basic CSS',
-  //   name: 'Override Class Declarations with Inline Styles',
-  // },
-  // {
-  //   no: '59',
-  //   id: 'bad87fee1348bd9aedf07756',
-  //   cat: 'Basic CSS',
-  //   name: 'Override All Other Styles by using Important',
-  // },
-  // {
-  //   no: '60',
-  //   id: 'bad87fee1348bd9aedf08726',
-  //   cat: 'Basic CSS',
-  //   name: 'Use Hex Code for Specific Colors',
-  // },
-  // {
-  //   no: '61',
-  //   id: 'bad87fee1348bd9aedf08721',
-  //   cat: 'Basic CSS',
-  //   name: 'Use Hex Code to Mix Colors',
-  // },
-  // {
-  //   no: '62',
-  //   id: 'bad87fee1348bd9aedf08719',
-  //   cat: 'Basic CSS',
-  //   name: 'Use Abbreviated Hex Code',
-  // },
-  // {
-  //   no: '63',
-  //   id: 'bad87fee1348bd9aede08718',
-  //   cat: 'Basic CSS',
-  //   name: 'Use RGB values to Color Elements',
-  // },
-  // {
-  //   no: '64',
-  //   id: 'bad82fee1348bd9aedf08721',
-  //   cat: 'Basic CSS',
-  //   name: 'Use RGB to Mix Colors',
-  // },
-  // {
-  //   no: '65',
-  //   id: '5a9d725e424fe3d0e10cad10',
-  //   cat: 'Basic CSS',
-  //   name: 'Use CSS Variables to change several elements at once',
-  // },
-  // {
-  //   no: '66',
-  //   id: '5a9d726c424fe3d0e10cad11',
-  //   cat: 'Basic CSS',
-  //   name: 'Create a custom CSS Variable',
-  // },
-  // {
-  //   no: '67',
-  //   id: '5a9d727a424fe3d0e10cad12',
-  //   cat: 'Basic CSS',
-  //   name: 'Use a custom CSS Variable',
-  // },
-  // {
-  //   no: '68',
-  //   id: '5a9d7286424fe3d0e10cad13',
-  //   cat: 'Basic CSS',
-  //   name: 'Attach a Fallback value to a CSS Variable',
-  // },
-  // {
-  //   no: '69',
-  //   id: '5b7d72c338cd7e35b63f3e14',
-  //   cat: 'Basic CSS',
-  //   name: 'Improve Compatibility with Browser Fallbacks',
-  // },
-  // {
-  //   no: '70',
-  //   id: '5a9d7295424fe3d0e10cad14',
-  //   cat: 'Basic CSS',
-  //   name: 'Inherit CSS Variables',
-  // },
-  // {
-  //   no: '71',
-  //   id: '5a9d72a1424fe3d0e10cad15',
-  //   cat: 'Basic CSS',
-  //   name: 'Change a variable for a specific area',
-  // },
-  // {
-  //   no: '72',
-  //   id: '5a9d72ad424fe3d0e10cad16',
-  //   cat: 'Basic CSS',
-  //   name: 'Use a media query to change a variable',
-  // },
-  // {
-  //   no: '73',
-  //   id: '587d78b0367417b2b2512b08',
-  //   cat: 'Responsive Web Design Principles',
-  //   name: 'Create a Media Query',
-  // },
-  // {
-  //   no: '74',
-  //   id: '587d78b1367417b2b2512b09',
-  //   cat: 'Responsive Web Design Principles',
-  //   name: 'Make an Image Responsive',
-  // },
-  // {
-  //   no: '75',
-  //   id: '587d78b1367417b2b2512b0a',
-  //   cat: 'Responsive Web Design Principles',
-  //   name: 'Use a Retina Image for Higher Resolution Displays',
-  // },
-  // {
-  //   no: '76',
-  //   id: '587d78b1367417b2b2512b0c',
-  //   cat: 'Responsive Web Design Principles',
-  //   name: 'Make Typography Responsive',
-  // },
-  // {
-  //   no: '77',
-  //   id: '587d78ab367417b2b2512af0',
-  //   cat: 'CSS Flexbox',
-  //   name: 'Use display: flex to Position Two Boxes',
-  // },
-  // {
-  //   no: '78',
-  //   id: '587d78ab367417b2b2512af1',
-  //   cat: 'CSS Flexbox',
-  //   name: 'Add Flex Superpowers to the Tweet Embed',
-  // },
-  // {
-  //   no: '79',
-  //   id: '587d78ab367417b2b2512af2',
-  //   cat: 'CSS Flexbox',
-  //   name: 'Use the flex-direction Property to Make a Row',
-  // },
-  // {
-  //   no: '80',
-  //   id: '587d78ab367417b2b2512af3',
-  //   cat: 'CSS Flexbox',
-  //   name: 'Apply the flex-direction Property to Create Rows in the Tweet Embed',
-  // },
-  // {
-  //   no: '81',
-  //   id: '587d78ac367417b2b2512af4',
-  //   cat: 'CSS Flexbox',
-  //   name: 'Use the flex-direction Property to Make a Column',
-  // },
-  // {
-  //   no: '82',
-  //   id: '587d78ac367417b2b2512af5',
-  //   cat: 'CSS Flexbox',
-  //   name:
-  //     'Apply the flex-direction Property to Create a Column in the Tweet Embed',
-  // },
-  // {
-  //   no: '83',
-  //   id: '587d78ac367417b2b2512af6',
-  //   cat: 'CSS Flexbox',
-  //   name: 'Align Elements Using the justify-content Property',
-  // },
-  // {
-  //   no: '84',
-  //   id: '587d78ac367417b2b2512af7',
-  //   cat: 'CSS Flexbox',
-  //   name: 'Use the justify-content Property in the Tweet Embed',
-  // },
-  // {
-  //   no: '85',
-  //   id: '587d78ad367417b2b2512af8',
-  //   cat: 'CSS Flexbox',
-  //   name: 'Align Elements Using the align-items Property',
-  // },
-  // {
-  //   no: '86',
-  //   id: '587d78ad367417b2b2512af9',
-  //   cat: 'CSS Flexbox',
-  //   name: 'Use the align-items Property in the Tweet Embed',
-  // },
-  // {
-  //   no: '87',
-  //   id: '587d78ad367417b2b2512afa',
-  //   cat: 'CSS Flexbox',
-  //   name: 'Use the flex-wrap Property to Wrap a Row or Column',
-  // },
-  // {
-  //   no: '88',
-  //   id: '587d78ad367417b2b2512afb',
-  //   cat: 'CSS Flexbox',
-  //   name: 'Use the flex-shrink Property to Shrink Items',
-  // },
-  // {
-  //   no: '89',
-  //   id: '587d78ae367417b2b2512afc',
-  //   cat: 'CSS Flexbox',
-  //   name: 'Use the flex-grow Property to Expand Items',
-  // },
-  // {
-  //   no: '90',
-  //   id: '587d78ae367417b2b2512afd',
-  //   cat: 'CSS Flexbox',
-  //   name: 'Use the flex-basis Property to Set the Initial Size of an Item',
-  // },
-  // {
-  //   no: '91',
-  //   id: '587d78ae367417b2b2512afe',
-  //   cat: 'CSS Flexbox',
-  //   name: 'Use the flex Shorthand Property',
-  // },
-  // {
-  //   no: '92',
-  //   id: '587d78ae367417b2b2512aff',
-  //   cat: 'CSS Flexbox',
-  //   name: 'Use the order Property to Rearrange Items',
-  // },
-  // {
-  //   no: '93',
-  //   id: '587d78af367417b2b2512b00',
-  //   cat: 'CSS Flexbox',
-  //   name: 'Use the align-self Property',
-  // },
-  // {
-  //   no: '94',
-  //   id: 'bd7123c9c441eddfaeb4bdef',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Comment Your JavaScript Code',
-  // },
-  // {
-  //   no: '95',
-  //   id: 'bd7123c9c443eddfaeb5bdef',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Declare JavaScript Variables',
-  // },
-  // {
-  //   no: '96',
-  //   id: '56533eb9ac21ba0edf2244a8',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Storing Values with the Assignment Operator',
-  // },
-  // {
-  //   no: '97',
-  //   id: '56533eb9ac21ba0edf2244a9',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Initializing Variables with the Assignment Operator',
-  // },
-  // {
-  //   no: '98',
-  //   id: '56533eb9ac21ba0edf2244aa',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Understanding Uninitialized Variables',
-  // },
-  // {
-  //   no: '99',
-  //   id: '56533eb9ac21ba0edf2244ab',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Understanding Case Sensitivity in Variables',
-  // },
-  // {
-  //   no: '100',
-  //   id: 'cf1111c1c11feddfaeb3bdef',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Add Two Numbers with JavaScript',
-  // },
-  // {
-  //   no: '101',
-  //   id: 'cf1111c1c11feddfaeb4bdef',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Subtract One Number from Another with JavaScript',
-  // },
-  // {
-  //   no: '102',
-  //   id: 'cf1231c1c11feddfaeb5bdef',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Multiply Two Numbers with JavaScript',
-  // },
-  // {
-  //   no: '103',
-  //   id: 'cf1111c1c11feddfaeb6bdef',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Divide One Number by Another with JavaScript',
-  // },
-  // {
-  //   no: '104',
-  //   id: '56533eb9ac21ba0edf2244ac',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Increment a Number with JavaScript',
-  // },
-  // {
-  //   no: '105',
-  //   id: '56533eb9ac21ba0edf2244ad',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Decrement a Number with JavaScript',
-  // },
-  // {
-  //   no: '106',
-  //   id: 'cf1391c1c11feddfaeb4bdef',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Create Decimal Numbers with JavaScript',
-  // },
-  // {
-  //   no: '107',
-  //   id: 'bd7993c9c69feddfaeb7bdef',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Multiply Two Decimals with JavaScript',
-  // },
-  // {
-  //   no: '108',
-  //   id: 'bd7993c9ca9feddfaeb7bdef',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Divide One Decimal by Another with JavaScript',
-  // },
-  // {
-  //   no: '109',
-  //   id: '56533eb9ac21ba0edf2244ae',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Finding a Remainder in JavaScript',
-  // },
-  // {
-  //   no: '110',
-  //   id: '56533eb9ac21ba0edf2244af',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Compound Assignment With Augmented Addition',
-  // },
-  // {
-  //   no: '111',
-  //   id: '56533eb9ac21ba0edf2244b0',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Compound Assignment With Augmented Subtraction',
-  // },
-  // {
-  //   no: '112',
-  //   id: '56533eb9ac21ba0edf2244b1',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Compound Assignment With Augmented Multiplication',
-  // },
-  // {
-  //   no: '113',
-  //   id: '56533eb9ac21ba0edf2244b2',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Compound Assignment With Augmented Division',
-  // },
-  // {
-  //   no: '114',
-  //   id: 'bd7123c9c444eddfaeb5bdef',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Declare String Variables',
-  // },
-  // {
-  //   no: '115',
-  //   id: '56533eb9ac21ba0edf2244b5',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Escaping Literal Quotes in Strings',
-  // },
-  // {
-  //   no: '116',
-  //   id: '56533eb9ac21ba0edf2244b4',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Quoting Strings with Single Quotes',
-  // },
-  // {
-  //   no: '117',
-  //   id: '56533eb9ac21ba0edf2244b6',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Escape Sequences in Strings',
-  // },
-  // {
-  //   no: '118',
-  //   id: '56533eb9ac21ba0edf2244b7',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Concatenating Strings with Plus Operator',
-  // },
-  // {
-  //   no: '119',
-  //   id: '56533eb9ac21ba0edf2244b8',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Concatenating Strings with the Plus Equals Operator',
-  // },
-  // {
-  //   no: '120',
-  //   id: '56533eb9ac21ba0edf2244b9',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Constructing Strings with Variables',
-  // },
-  // {
-  //   no: '121',
-  //   id: '56533eb9ac21ba0edf2244ed',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Appending Variables to Strings',
-  // },
-  // {
-  //   no: '122',
-  //   id: 'bd7123c9c448eddfaeb5bdef',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Find the Length of a String',
-  // },
-  // {
-  //   no: '123',
-  //   id: 'bd7123c9c549eddfaeb5bdef',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Use Bracket Notation to Find the First Character in a String',
-  // },
-  // {
-  //   no: '124',
-  //   id: '56533eb9ac21ba0edf2244ba',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Understand String Immutability',
-  // },
-  // {
-  //   no: '125',
-  //   id: 'bd7123c9c450eddfaeb5bdef',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Use Bracket Notation to Find the Nth Character in a String',
-  // },
-  // {
-  //   no: '126',
-  //   id: 'bd7123c9c451eddfaeb5bdef',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Use Bracket Notation to Find the Last Character in a String',
-  // },
-  // {
-  //   no: '127',
-  //   id: 'bd7123c9c452eddfaeb5bdef',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Use Bracket Notation to Find the Nth-to-Last Character in a String',
-  // },
-  // {
-  //   no: '128',
-  //   id: '56533eb9ac21ba0edf2244bb',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Word Blanks',
-  // },
-  // {
-  //   no: '129',
-  //   id: 'bd7993c9c69feddfaeb8bdef',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Store Multiple Values in one Variable using JavaScript Arrays',
-  // },
-  // {
-  //   no: '130',
-  //   id: 'cf1111c1c11feddfaeb7bdef',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Nest one Array within Another Array',
-  // },
-  // {
-  //   no: '131',
-  //   id: '56bbb991ad1ed5201cd392ca',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Access Array Data with Indexes',
-  // },
-  // {
-  //   no: '132',
-  //   id: 'cf1111c1c11feddfaeb8bdef',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Modify Array Data With Indexes',
-  // },
-  // {
-  //   no: '133',
-  //   id: '56592a60ddddeae28f7aa8e1',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Access Multi-Dimensional Arrays With Indexes',
-  // },
-  // {
-  //   no: '134',
-  //   id: '56bbb991ad1ed5201cd392cb',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Manipulate Arrays With push()',
-  // },
-  // {
-  //   no: '135',
-  //   id: '56bbb991ad1ed5201cd392cc',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Manipulate Arrays With pop()',
-  // },
-  // {
-  //   no: '136',
-  //   id: '56bbb991ad1ed5201cd392cd',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Manipulate Arrays With shift()',
-  // },
-  // {
-  //   no: '137',
-  //   id: '56bbb991ad1ed5201cd392ce',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Manipulate Arrays With unshift()',
-  // },
-  // {
-  //   no: '138',
-  //   id: '56533eb9ac21ba0edf2244bc',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Shopping List',
-  // },
-  // {
-  //   no: '139',
-  //   id: '56bbb991ad1ed5201cd392cf',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Write Reusable JavaScript with Functions',
-  // },
-  // {
-  //   no: '140',
-  //   id: '56533eb9ac21ba0edf2244bd',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Passing Values to Functions with Arguments',
-  // },
-  // {
-  //   no: '141',
-  //   id: '56533eb9ac21ba0edf2244be',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Global Scope and Functions',
-  // },
-  // {
-  //   no: '142',
-  //   id: '56533eb9ac21ba0edf2244bf',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Local Scope and Functions',
-  // },
-  // {
-  //   no: '143',
-  //   id: '56533eb9ac21ba0edf2244c0',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Global vs. Local Scope in Functions',
-  // },
-  // {
-  //   no: '144',
-  //   id: '56533eb9ac21ba0edf2244c2',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Return a Value from a Function with Return',
-  // },
-  // {
-  //   no: '145',
-  //   id: '598e8944f009e646fc236146',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Understanding Undefined Value returned from a Function',
-  // },
-  // {
-  //   no: '146',
-  //   id: '56533eb9ac21ba0edf2244c3',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Assignment with a Returned Value',
-  // },
-  // {
-  //   no: '147',
-  //   id: '56533eb9ac21ba0edf2244c6',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Stand in Line',
-  // },
-  // {
-  //   no: '148',
-  //   id: 'bd7123c9c441eddfaeb5bdef',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Understanding Boolean Values',
-  // },
-  // {
-  //   no: '149',
-  //   id: 'cf1111c1c12feddfaeb3bdef',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Use Conditional Logic with If Statements',
-  // },
-  // {
-  //   no: '150',
-  //   id: '56533eb9ac21ba0edf2244d0',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Comparison with the Equality Operator',
-  // },
-  // {
-  //   no: '151',
-  //   id: '56533eb9ac21ba0edf2244d1',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Comparison with the Strict Equality Operator',
-  // },
-  // {
-  //   no: '152',
-  //   id: '599a789b454f2bbd91a3ff4d',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Practice comparing different values',
-  // },
-  // {
-  //   no: '153',
-  //   id: '56533eb9ac21ba0edf2244d2',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Comparison with the Inequality Operator',
-  // },
-  // {
-  //   no: '154',
-  //   id: '56533eb9ac21ba0edf2244d3',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Comparison with the Strict Inequality Operator',
-  // },
-  // {
-  //   no: '155',
-  //   id: '56533eb9ac21ba0edf2244d4',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Comparison with the Greater Than Operator',
-  // },
-  // {
-  //   no: '156',
-  //   id: '56533eb9ac21ba0edf2244d5',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Comparison with the Greater Than Or Equal To Operator',
-  // },
-  // {
-  //   no: '157',
-  //   id: '56533eb9ac21ba0edf2244d6',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Comparison with the Less Than Operator',
-  // },
-  // {
-  //   no: '158',
-  //   id: '56533eb9ac21ba0edf2244d7',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Comparison with the Less Than Or Equal To Operator',
-  // },
-  // {
-  //   no: '159',
-  //   id: '56533eb9ac21ba0edf2244d8',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Comparisons with the Logical And Operator',
-  // },
-  // {
-  //   no: '160',
-  //   id: '56533eb9ac21ba0edf2244d9',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Comparisons with the Logical Or Operator',
-  // },
-  // {
-  //   no: '161',
-  //   id: '56533eb9ac21ba0edf2244da',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Introducing Else Statements',
-  // },
-  // {
-  //   no: '162',
-  //   id: '56533eb9ac21ba0edf2244db',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Introducing Else If Statements',
-  // },
-  // {
-  //   no: '163',
-  //   id: '5690307fddb111c6084545d7',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Logical Order in If Else Statements',
-  // },
-  // {
-  //   no: '164',
-  //   id: '56533eb9ac21ba0edf2244dc',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Chaining If Else Statements',
-  // },
-  // {
-  //   no: '165',
-  //   id: '5664820f61c48e80c9fa476c',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Golf Code',
-  // },
-  // {
-  //   no: '166',
-  //   id: '56533eb9ac21ba0edf2244dd',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Selecting from Many Options with Switch Statements',
-  // },
-  // {
-  //   no: '167',
-  //   id: '56533eb9ac21ba0edf2244de',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Adding a Default Option in Switch Statements',
-  // },
-  // {
-  //   no: '168',
-  //   id: '56533eb9ac21ba0edf2244df',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Multiple Identical Options in Switch Statements',
-  // },
-  // {
-  //   no: '169',
-  //   id: '56533eb9ac21ba0edf2244e0',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Replacing If Else Chains with Switch',
-  // },
-  // {
-  //   no: '170',
-  //   id: '5679ceb97cbaa8c51670a16b',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Returning Boolean Values from Functions',
-  // },
-  // {
-  //   no: '171',
-  //   id: '56533eb9ac21ba0edf2244c4',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Return Early Pattern for Functions',
-  // },
-  // {
-  //   no: '172',
-  //   id: '565bbe00e9cc8ac0725390f4',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Counting Cards',
-  // },
-  // {
-  //   no: '173',
-  //   id: '56bbb991ad1ed5201cd392d0',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Build JavaScript Objects',
-  // },
-  // {
-  //   no: '174',
-  //   id: '56533eb9ac21ba0edf2244c7',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Accessing Object Properties with Dot Notation',
-  // },
-  // {
-  //   no: '175',
-  //   id: '56533eb9ac21ba0edf2244c8',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Accessing Object Properties with Bracket Notation',
-  // },
-  // {
-  //   no: '176',
-  //   id: '56533eb9ac21ba0edf2244c9',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Accessing Object Properties with Variables',
-  // },
-  // {
-  //   no: '177',
-  //   id: '56bbb991ad1ed5201cd392d1',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Updating Object Properties',
-  // },
-  // {
-  //   no: '178',
-  //   id: '56bbb991ad1ed5201cd392d2',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Add New Properties to a JavaScript Object',
-  // },
-  // {
-  //   no: '179',
-  //   id: '56bbb991ad1ed5201cd392d3',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Delete Properties from a JavaScript Object',
-  // },
-  // {
-  //   no: '180',
-  //   id: '56533eb9ac21ba0edf2244ca',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Using Objects for Lookups',
-  // },
-  // {
-  //   no: '181',
-  //   id: '567af2437cbaa8c51670a16c',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Testing Objects for Properties',
-  // },
-  // {
-  //   no: '182',
-  //   id: '56533eb9ac21ba0edf2244cb',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Manipulating Complex Objects',
-  // },
-  // {
-  //   no: '183',
-  //   id: '56533eb9ac21ba0edf2244cc',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Accessing Nested Objects',
-  // },
-  // {
-  //   no: '184',
-  //   id: '56533eb9ac21ba0edf2244cd',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Accessing Nested Arrays',
-  // },
-  // {
-  //   no: '185',
-  //   id: '56533eb9ac21ba0edf2244cf',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Record Collection',
-  // },
-  // {
-  //   no: '186',
-  //   id: 'cf1111c1c11feddfaeb1bdef',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Iterate with JavaScript While Loops',
-  // },
-  // {
-  //   no: '187',
-  //   id: 'cf1111c1c11feddfaeb5bdef',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Iterate with JavaScript For Loops',
-  // },
-  // {
-  //   no: '188',
-  //   id: '56104e9e514f539506016a5c',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Iterate Odd Numbers With a For Loop',
-  // },
-  // {
-  //   no: '189',
-  //   id: '56105e7b514f539506016a5e',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Count Backwards With a For Loop',
-  // },
-  // {
-  //   no: '190',
-  //   id: '5675e877dbd60be8ad28edc6',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Iterate Through an Array with a For Loop',
-  // },
-  // {
-  //   no: '191',
-  //   id: '56533eb9ac21ba0edf2244e1',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Nesting For Loops',
-  // },
-  // {
-  //   no: '192',
-  //   id: '5a2efd662fb457916e1fe604',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Iterate with JavaScript Do...While Loops',
-  // },
-  // {
-  //   no: '193',
-  //   id: '5cfa3679138e7d9595b9d9d4',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Replace Loops using Recursion',
-  // },
-  // {
-  //   no: '194',
-  //   id: '5688e62ea601b2482ff8422b',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Profile Lookup',
-  // },
-  // {
-  //   no: '195',
-  //   id: 'cf1111c1c11feddfaeb9bdef',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Generate Random Fractions with JavaScript',
-  // },
-  // {
-  //   no: '196',
-  //   id: 'cf1111c1c12feddfaeb1bdef',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Generate Random Whole Numbers with JavaScript',
-  // },
-  // {
-  //   no: '197',
-  //   id: 'cf1111c1c12feddfaeb2bdef',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Generate Random Whole Numbers within a Range',
-  // },
-  // {
-  //   no: '198',
-  //   id: '587d7b7e367417b2b2512b23',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Use the parseInt Function',
-  // },
-  // {
-  //   no: '199',
-  //   id: '587d7b7e367417b2b2512b22',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Use the parseInt Function with a Radix',
-  // },
-  // {
-  //   no: '200',
-  //   id: '587d7b7e367417b2b2512b24',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Use the Conditional (Ternary) Operator',
-  // },
-  // {
-  //   no: '201',
-  //   id: '587d7b7e367417b2b2512b21',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Use Multiple Conditional (Ternary) Operators',
-  // },
-  // {
-  //   no: '202',
-  //   id: '5cc0bd7a49b71cb96132e54c',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Use Recursion to Create a Range of Numbers',
-  // },
-  // {
-  //   no: '203',
-  //   id: '5a858944d96184f06fd60d61',
-  //   cat: 'Basic JavaScript',
-  //   name: 'Use Recursion to Create a Countdown',
-  // },
+  {
+    id: 'bad87fee1348bd9aedf08801',
+    title: 'Inform with the Paragraph Element',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08833',
+    title: 'Fill in the Blank with Placeholder Text',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08802',
+    title: 'Uncomment HTML',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08804',
+    title: 'Comment out HTML',
+  },
+  {
+    id: 'bad87fed1348bd9aedf08833',
+    title: 'Delete HTML Elements',
+  },
+  {
+    id: 'bad87fee1348bd9aecf08801',
+    title: 'Introduction to HTML5 Elements',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08812',
+    title: 'Add Images to Your Website',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08816',
+    title: 'Link to External Pages with Anchor Elements',
+  },
+  {
+    id: 'bad88fee1348bd9aedf08816',
+    title: 'Link to Internal Sections of a Page with Anchor Elements',
+  },
+  {
+    id: 'bad87fee1348bd9aede08817',
+    title: 'Nest an Anchor Element within a Paragraph',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08817',
+    title: 'Make Dead Links Using the Hash Symbol',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08820',
+    title: 'Turn an Image into a Link',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08827',
+    title: 'Create a Bulleted Unordered List',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08828',
+    title: 'Create an Ordered List',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08829',
+    title: 'Create a Text Field',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08830',
+    title: 'Add Placeholder Text to a Text Field',
+  },
+  {
+    id: 'bad87fee1348bd9aede08830',
+    title: 'Create a Form Element',
+  },
+  {
+    id: 'bad87fee1348bd9aedd08830',
+    title: 'Add a Submit Button to a Form',
+  },
+  {
+    id: 'bad87fee1348bd9aedc08830',
+    title: 'Use HTML5 to Require a Field',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08834',
+    title: 'Create a Set of Radio Buttons',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08835',
+    title: 'Create a Set of Checkboxes',
+  },
+  {
+    id: '5c6c06847491271903d37cfd',
+    title: 'Use the value attribute with Radio Buttons and Checkboxes',
+  },
+  {
+    id: 'bad87fee1348bd9aedd08835',
+    title: 'Check Radio Buttons and Checkboxes by Default',
+  },
+  {
+    id: 'bad87fee1348bd9aede08835',
+    title: 'Nest Many Elements within a Single div Element',
+  },
+  {
+    id: '587d78aa367417b2b2512aed',
+    title: 'Declare the Doctype of an HTML Document',
+  },
+  {
+    id: '587d78aa367417b2b2512aec',
+    title: 'Define the Head and Body of an HTML Document',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08803',
+    title: 'Change the Color of Text',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08805',
+    title: 'Use CSS Selectors to Style Elements',
+  },
+  {
+    id: 'bad87fee1348bd9aecf08806',
+    title: 'Use a CSS Class to Style an Element',
+  },
+  {
+    id: 'bad87fee1348bd9aefe08806',
+    title: 'Style Multiple Elements with a CSS Class',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08806',
+    title: 'Change the Font Size of an Element',
+  },
+  {
+    id: 'bad87fee1348bd9aede08807',
+    title: 'Set the Font Family of an Element',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08807',
+    title: 'Import a Google Font',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08808',
+    title: 'Specify How Fonts Should Degrade',
+  },
+  {
+    id: 'bad87fee1348bd9acdf08812',
+    title: 'Size Your Images',
+  },
+  {
+    id: 'bad87fee1348bd9bedf08813',
+    title: 'Add Borders Around Your Elements',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08814',
+    title: 'Add Rounded Corners with border-radius',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08815',
+    title: 'Make Circular Images with a border-radius',
+  },
+  {
+    id: 'bad87fed1348bd9aede07836',
+    title: 'Give a Background Color to a div Element',
+  },
+  {
+    id: 'bad87eee1348bd9aede07836',
+    title: 'Set the id of an Element',
+  },
+  {
+    id: 'bad87dee1348bd9aede07836',
+    title: 'Use an id Attribute to Style an Element',
+  },
+  {
+    id: 'bad88fee1348bd9aedf08825',
+    title: 'Adjust the Padding of an Element',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08822',
+    title: 'Adjust the Margin of an Element',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08823',
+    title: 'Add a Negative Margin to an Element',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08824',
+    title: 'Add Different Padding to Each Side of an Element',
+  },
+  {
+    id: 'bad87fee1248bd9aedf08824',
+    title: 'Add Different Margins to Each Side of an Element',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08826',
+    title: 'Use Clockwise Notation to Specify the Padding of an Element',
+  },
+  {
+    id: 'bad87fee1348bd9afdf08726',
+    title: 'Use Clockwise Notation to Specify the Margin of an Element',
+  },
+  {
+    id: '58c383d33e2e3259241f3076',
+    title: 'Use Attribute Selectors to Style Elements',
+  },
+  {
+    id: 'bad82fee1322bd9aedf08721',
+    title: 'Understand Absolute versus Relative Units',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08736',
+    title: 'Style the HTML Body Element',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08746',
+    title: 'Inherit Styles from the Body Element',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08756',
+    title: 'Prioritize One Style Over Another',
+  },
+  {
+    id: 'bad87fee1348bd9aedf04756',
+    title: 'Override Styles in Subsequent CSS',
+  },
+  {
+    id: 'bad87fee1348bd8aedf06756',
+    title: 'Override Class Declarations by Styling ID Attributes',
+  },
+  {
+    id: 'bad87fee1348bd9aedf06756',
+    title: 'Override Class Declarations with Inline Styles',
+  },
+  {
+    id: 'bad87fee1348bd9aedf07756',
+    title: 'Override All Other Styles by using Important',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08726',
+    title: 'Use Hex Code for Specific Colors',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08721',
+    title: 'Use Hex Code to Mix Colors',
+  },
+  {
+    id: 'bad87fee1348bd9aedf08719',
+    title: 'Use Abbreviated Hex Code',
+  },
+  {
+    id: 'bad87fee1348bd9aede08718',
+    title: 'Use RGB values to Color Elements',
+  },
+  {
+    id: 'bad82fee1348bd9aedf08721',
+    title: 'Use RGB to Mix Colors',
+  },
+  {
+    id: '5a9d725e424fe3d0e10cad10',
+    title: 'Use CSS Variables to change several elements at once',
+  },
+  {
+    id: '5a9d726c424fe3d0e10cad11',
+    title: 'Create a custom CSS Variable',
+  },
+  {
+    id: '5a9d727a424fe3d0e10cad12',
+    title: 'Use a custom CSS Variable',
+  },
+  {
+    id: '5a9d7286424fe3d0e10cad13',
+    title: 'Attach a Fallback value to a CSS Variable',
+  },
+  {
+    id: '5b7d72c338cd7e35b63f3e14',
+    title: 'Improve Compatibility with Browser Fallbacks',
+  },
+  {
+    id: '5a9d7295424fe3d0e10cad14',
+    title: 'Inherit CSS Variables',
+  },
+  {
+    id: '5a9d72a1424fe3d0e10cad15',
+    title: 'Change a variable for a specific area',
+  },
+  {
+    id: '5a9d72ad424fe3d0e10cad16',
+    title: 'Use a media query to change a variable',
+  },
+  {
+    id: '587d7791367417b2b2512ab3',
+    title: 'Create Visual Balance Using the text-align Property',
+  },
+  {
+    id: '587d7791367417b2b2512ab4',
+    title: 'Adjust the Width of an Element Using the width Property',
+  },
+  {
+    id: '587d7791367417b2b2512ab5',
+    title: 'Adjust the Height of an Element Using the height Property',
+  },
+  {
+    id: '587d781a367417b2b2512ab7',
+    title: 'Use the strong Tag to Make Text Bold',
+  },
+  {
+    id: '587d781a367417b2b2512ab8',
+    title: 'Use the u Tag to Underline Text',
+  },
+  {
+    id: '587d781a367417b2b2512ab9',
+    title: 'Use the em Tag to Italicize Text',
+  },
+  {
+    id: '587d781b367417b2b2512aba',
+    title: 'Use the s Tag to Strikethrough Text',
+  },
+  {
+    id: '587d781b367417b2b2512abb',
+    title: 'Create a Horizontal Line Using the hr Element',
+  },
+  {
+    id: '587d781b367417b2b2512abc',
+    title: 'Adjust the background-color Property of Text',
+  },
+  {
+    id: '587d781b367417b2b2512abd',
+    title: 'Adjust the Size of a Header Versus a Paragraph Tag',
+  },
+  {
+    id: '587d781b367417b2b2512abe',
+    title: 'Add a box-shadow to a Card-like Element',
+  },
+  {
+    id: '587d781c367417b2b2512abf',
+    title: 'Decrease the Opacity of an Element',
+  },
+  {
+    id: '587d781c367417b2b2512ac0',
+    title: 'Use the text-transform Property to Make Text Uppercase',
+  },
+  {
+    id: '587d781c367417b2b2512ac2',
+    title: 'Set the font-size for Multiple Heading Elements',
+  },
+  {
+    id: '587d781c367417b2b2512ac3',
+    title: 'Set the font-weight for Multiple Heading Elements',
+  },
+  {
+    id: '587d781c367417b2b2512ac4',
+    title: 'Set the font-size of Paragraph Text',
+  },
+  {
+    id: '587d781d367417b2b2512ac5',
+    title: 'Set the line-height of Paragraphs',
+  },
+  {
+    id: '587d781d367417b2b2512ac8',
+    title: 'Adjust the Hover State of an Anchor Tag',
+  },
+  {
+    id: '587d781e367417b2b2512ac9',
+    title: "Change an Element's Relative Position",
+  },
+  {
+    id: '587d781e367417b2b2512aca',
+    title: 'Move a Relatively Positioned Element with CSS Offsets',
+  },
+  {
+    id: '587d781e367417b2b2512acb',
+    title: 'Lock an Element to its Parent with Absolute Positioning',
+  },
+  {
+    id: '587d781e367417b2b2512acc',
+    title: 'Lock an Element to the Browser Window with Fixed Positioning',
+  },
+  {
+    id: '587d78a3367417b2b2512ace',
+    title: 'Push Elements Left or Right with the float Property',
+  },
+  {
+    id: '587d78a3367417b2b2512acf',
+    title:
+      'Change the Position of Overlapping Elements with the z-index Property',
+  },
+  {
+    id: '587d78a3367417b2b2512ad0',
+    title: 'Center an Element Horizontally Using the margin Property',
+  },
+  {
+    id: '587d78a3367417b2b2512ad1',
+    title: 'Learn about Complementary Colors',
+  },
+  {
+    id: '587d78a4367417b2b2512ad2',
+    title: 'Learn about Tertiary Colors',
+  },
+  {
+    id: '587d78a4367417b2b2512ad3',
+    title: 'Adjust the Color of Various Elements to Complementary Colors',
+  },
+  {
+    id: '587d78a4367417b2b2512ad4',
+    title: 'Adjust the Hue of a Color',
+  },
+  {
+    id: '587d78a4367417b2b2512ad5',
+    title: 'Adjust the Tone of a Color',
+  },
+  {
+    id: '587d78a5367417b2b2512ad6',
+    title: 'Create a Gradual CSS Linear Gradient',
+  },
+  {
+    id: '587d78a5367417b2b2512ad7',
+    title: 'Use a CSS Linear Gradient to Create a Striped Element',
+  },
+  {
+    id: '587d78a5367417b2b2512ad8',
+    title: 'Create Texture by Adding a Subtle Pattern as a Background Image',
+  },
+  {
+    id: '587d78a5367417b2b2512ad9',
+    title:
+      'Use the CSS Transform scale Property to Change the Size of an Element',
+  },
+  {
+    id: '587d78a5367417b2b2512ada',
+    title: 'Use the CSS Transform scale Property to Scale an Element on Hover',
+  },
+  {
+    id: '587d78a6367417b2b2512adb',
+    title:
+      'Use the CSS Transform Property skewX to Skew an Element Along the X-Axis',
+  },
+  {
+    id: '587d78a6367417b2b2512adc',
+    title:
+      'Use the CSS Transform Property skewY to Skew an Element Along the Y-Axis',
+  },
+  {
+    id: '587d78a6367417b2b2512add',
+    title: 'Create a Graphic Using CSS',
+  },
+  {
+    id: '587d78a6367417b2b2512ade',
+    title: 'Create a More Complex Shape Using CSS and HTML',
+  },
+  {
+    id: '587d78a7367417b2b2512adf',
+    title: 'Learn How the CSS @keyframes and animation Properties Work',
+  },
+  {
+    id: '587d78a7367417b2b2512ae0',
+    title: 'Use CSS Animation to Change the Hover State of a Button',
+  },
+  {
+    id: '58a7a6ebf9a6318348e2d5aa',
+    title: 'Modify Fill Mode of an Animation',
+  },
+  {
+    id: '587d78a7367417b2b2512ae1',
+    title: 'Create Movement Using CSS Animation',
+  },
+  {
+    id: '587d78a7367417b2b2512ae2',
+    title: 'Create Visual Direction by Fading an Element from Left to Right',
+  },
+  {
+    id: '587d78a8367417b2b2512ae3',
+    title: 'Animate Elements Continually Using an Infinite Animation Count',
+  },
+  {
+    id: '587d78a8367417b2b2512ae4',
+    title: 'Make a CSS Heartbeat using an Infinite Animation Count',
+  },
+  {
+    id: '587d78a8367417b2b2512ae5',
+    title: 'Animate Elements at Variable Rates',
+  },
+  {
+    id: '587d78a8367417b2b2512ae6',
+    title: 'Animate Multiple Elements at Variable Rates',
+  },
+  {
+    id: '587d78a8367417b2b2512ae7',
+    title: 'Change Animation Timing with Keywords',
+  },
+  {
+    id: '587d78a9367417b2b2512ae8',
+    title: 'Learn How Bezier Curves Work',
+  },
+  {
+    id: '587d78a9367417b2b2512ae9',
+    title: 'Use a Bezier Curve to Move a Graphic',
+  },
+  {
+    id: '587d78a9367417b2b2512aea',
+    title: 'Make Motion More Natural Using a Bezier Curve',
+  },
+  {
+    id: '587d774c367417b2b2512a9c',
+    title:
+      'Add a Text Alternative to Images for Visually Impaired Accessibility',
+  },
+  {
+    id: '587d774c367417b2b2512a9d',
+    title: 'Know When Alt Text Should be Left Blank',
+  },
+  {
+    id: '587d774d367417b2b2512a9e',
+    title: 'Use Headings to Show Hierarchical Relationships of Content',
+  },
+  {
+    id: '587d774e367417b2b2512a9f',
+    title: 'Jump Straight to the Content Using the main Element',
+  },
+  {
+    id: '587d774e367417b2b2512aa0',
+    title: 'Wrap Content in the article Element',
+  },
+  {
+    id: '587d7787367417b2b2512aa1',
+    title: 'Make Screen Reader Navigation Easier with the header Landmark',
+  },
+  {
+    id: '587d7788367417b2b2512aa2',
+    title: 'Make Screen Reader Navigation Easier with the nav Landmark',
+  },
+  {
+    id: '587d7788367417b2b2512aa3',
+    title: 'Make Screen Reader Navigation Easier with the footer Landmark',
+  },
+  {
+    id: '587d7789367417b2b2512aa4',
+    title: 'Improve Accessibility of Audio Content with the audio Element',
+  },
+  {
+    id: '587d778a367417b2b2512aa5',
+    title: 'Improve Chart Accessibility with the figure Element',
+  },
+  {
+    id: '587d778a367417b2b2512aa6',
+    title: 'Improve Form Field Accessibility with the label Element',
+  },
+  {
+    id: '587d778b367417b2b2512aa7',
+    title: 'Wrap Radio Buttons in a fieldset Element for Better Accessibility',
+  },
+  {
+    id: '587d778b367417b2b2512aa8',
+    title: 'Add an Accessible Date Picker',
+  },
+  {
+    id: '587d778c367417b2b2512aa9',
+    title: 'Standardize Times with the HTML5 datetime Attribute',
+  },
+  {
+    id: '587d778d367417b2b2512aaa',
+    title: 'Make Elements Only Visible to a Screen Reader by Using Custom CSS',
+  },
+  {
+    id: '587d778e367417b2b2512aab',
+    title: 'Improve Readability with High Contrast Text',
+  },
+  {
+    id: '587d778f367417b2b2512aac',
+    title: 'Avoid Colorblindness Issues by Using Sufficient Contrast',
+  },
+  {
+    id: '587d778f367417b2b2512aad',
+    title:
+      'Avoid Colorblindness Issues by Carefully Choosing Colors that Convey Information',
+  },
+  {
+    id: '587d778f367417b2b2512aae',
+    title: 'Give Links Meaning by Using Descriptive Link Text',
+  },
+  {
+    id: '587d7790367417b2b2512aaf',
+    title: 'Make Links Navigable with HTML Access Keys',
+  },
+  {
+    id: '587d7790367417b2b2512ab0',
+    title: 'Use tabindex to Add Keyboard Focus to an Element',
+  },
+  {
+    id: '587d7790367417b2b2512ab1',
+    title:
+      'Use tabindex to Specify the Order of Keyboard Focus for Several Elements',
+  },
+  {
+    id: '587d78b0367417b2b2512b08',
+    title: 'Create a Media Query',
+  },
+  {
+    id: '587d78b1367417b2b2512b09',
+    title: 'Make an Image Responsive',
+  },
+  {
+    id: '587d78b1367417b2b2512b0a',
+    title: 'Use a Retina Image for Higher Resolution Displays',
+  },
+  {
+    id: '587d78b1367417b2b2512b0c',
+    title: 'Make Typography Responsive',
+  },
+  {
+    id: '587d78ab367417b2b2512af0',
+    title: 'Use display: flex to Position Two Boxes',
+  },
+  {
+    id: '587d78ab367417b2b2512af1',
+    title: 'Add Flex Superpowers to the Tweet Embed',
+  },
+  {
+    id: '587d78ab367417b2b2512af2',
+    title: 'Use the flex-direction Property to Make a Row',
+  },
+  {
+    id: '587d78ab367417b2b2512af3',
+    title:
+      'Apply the flex-direction Property to Create Rows in the Tweet Embed',
+  },
+  {
+    id: '587d78ac367417b2b2512af4',
+    title: 'Use the flex-direction Property to Make a Column',
+  },
+  {
+    id: '587d78ac367417b2b2512af5',
+    title:
+      'Apply the flex-direction Property to Create a Column in the Tweet Embed',
+  },
+  {
+    id: '587d78ac367417b2b2512af6',
+    title: 'Align Elements Using the justify-content Property',
+  },
+  {
+    id: '587d78ac367417b2b2512af7',
+    title: 'Use the justify-content Property in the Tweet Embed',
+  },
+  {
+    id: '587d78ad367417b2b2512af8',
+    title: 'Align Elements Using the align-items Property',
+  },
+  {
+    id: '587d78ad367417b2b2512af9',
+    title: 'Use the align-items Property in the Tweet Embed',
+  },
+  {
+    id: '587d78ad367417b2b2512afa',
+    title: 'Use the flex-wrap Property to Wrap a Row or Column',
+  },
+  {
+    id: '587d78ad367417b2b2512afb',
+    title: 'Use the flex-shrink Property to Shrink Items',
+  },
+  {
+    id: '587d78ae367417b2b2512afc',
+    title: 'Use the flex-grow Property to Expand Items',
+  },
+  {
+    id: '587d78ae367417b2b2512afd',
+    title: 'Use the flex-basis Property to Set the Initial Size of an Item',
+  },
+  {
+    id: '587d78ae367417b2b2512afe',
+    title: 'Use the flex Shorthand Property',
+  },
+  {
+    id: '587d78ae367417b2b2512aff',
+    title: 'Use the order Property to Rearrange Items',
+  },
+  {
+    id: '587d78af367417b2b2512b00',
+    title: 'Use the align-self Property',
+  },
+  {
+    id: '5a858944d96184f06fd60d61',
+    title: 'Create Your First CSS Grid',
+  },
+  {
+    id: '5a9036d038fddaf9a66b5d32',
+    title: 'Add Columns with grid-template-columns',
+  },
+  {
+    id: '5a9036e138fddaf9a66b5d33',
+    title: 'Add Rows with grid-template-rows',
+  },
+  {
+    id: '5a9036ee38fddaf9a66b5d34',
+    title: 'Use CSS Grid units to Change the Size of Columns and Rows',
+  },
+  {
+    id: '5a9036ee38fddaf9a66b5d35',
+    title: 'Create a Column Gap Using grid-column-gap',
+  },
+  {
+    id: '5a9036ee38fddaf9a66b5d36',
+    title: 'Create a Row Gap using grid-row-gap',
+  },
+  {
+    id: '5a9036ee38fddaf9a66b5d37',
+    title: 'Add Gaps Faster with grid-gap',
+  },
+  {
+    id: '5a90372638fddaf9a66b5d38',
+    title: 'Use grid-column to Control Spacing',
+  },
+  {
+    id: '5a90373638fddaf9a66b5d39',
+    title: 'Use grid-row to Control Spacing',
+  },
+  {
+    id: '5a90374338fddaf9a66b5d3a',
+    title: 'Align an Item Horizontally using justify-self',
+  },
+  {
+    id: '5a90375238fddaf9a66b5d3b',
+    title: 'Align an Item Vertically using align-self',
+  },
+  {
+    id: '5a90376038fddaf9a66b5d3c',
+    title: 'Align All Items Horizontally using justify-items',
+  },
+  {
+    id: '5a94fdf869fb03452672e45b',
+    title: 'Align All Items Vertically using align-items',
+  },
+  {
+    id: '5a94fe0569fb03452672e45c',
+    title: 'Divide the Grid Into an Area Template',
+  },
+  {
+    id: '5a94fe1369fb03452672e45d',
+    title: 'Place Items in Grid Areas Using the grid-area Property',
+  },
+  {
+    id: '5a94fe2669fb03452672e45e',
+    title: 'Use grid-area Without Creating an Areas Template',
+  },
+  {
+    id: '5a94fe3669fb03452672e45f',
+    title: 'Reduce Repetition Using the repeat Function',
+  },
+  {
+    id: '5a94fe4469fb03452672e460',
+    title: 'Limit Item Size Using the minmax Function',
+  },
+  {
+    id: '5a94fe5469fb03452672e461',
+    title: 'Create Flexible Layouts Using auto-fill',
+  },
+  {
+    id: '5a94fe6269fb03452672e462',
+    title: 'Create Flexible Layouts Using auto-fit',
+  },
+  {
+    id: '5a94fe7769fb03452672e463',
+    title: 'Use Media Queries to Create Responsive Layouts',
+  },
+  {
+    id: '5a94fe8569fb03452672e464',
+    title: 'Create Grids within Grids',
+  },
+  {
+    id: 'bd7158d8c442eddfaeb5bd18',
+    title: 'Build a Tribute Page',
+  },
+  {
+    id: '587d78af367417b2b2512b03',
+    title: 'Build a Survey Form',
+  },
+  {
+    id: '587d78af367417b2b2512b04',
+    title: 'Build a Product Landing Page',
+  },
+  {
+    id: '587d78b0367417b2b2512b05',
+    title: 'Build a Technical Documentation Page',
+  },
+  {
+    id: 'bd7158d8c242eddfaeb5bd13',
+    title: 'Build a Personal Portfolio Webpage',
+  },
+  {
+    id: 'bd7123c9c441eddfaeb4bdef',
+    title: 'Comment Your JavaScript Code',
+  },
+  {
+    id: 'bd7123c9c443eddfaeb5bdef',
+    title: 'Declare JavaScript Variables',
+  },
+  {
+    id: '56533eb9ac21ba0edf2244a8',
+    title: 'Storing Values with the Assignment Operator',
+  },
+  {
+    id: '56533eb9ac21ba0edf2244a9',
+    title: 'Initializing Variables with the Assignment Operator',
+  },
+  {
+    id: '56533eb9ac21ba0edf2244aa',
+    title: 'Understanding Uninitialized Variables',
+  },
+  {
+    id: '56533eb9ac21ba0edf2244ab',
+    title: 'Understanding Case Sensitivity in Variables',
+  },
 ];
 
 const topicId = [];
