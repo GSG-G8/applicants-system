@@ -1,29 +1,13 @@
 const Applicant = require('../../database/models/applicant');
 
 const getApplicantsQuery = (req, res, next) => {
-  const { submitted, cwscore, fccpoints = 0, covered } = req.query;
+  const { submitted, cwscore = 0, fccpoints = 0, covered } = req.query;
 
   Applicant.find(
     {
       applicationSubmittedDate: submitted === 'true' ? { $ne: null } : null,
       freeCodeCampPoints: { $gte: fccpoints },
-      codeWarsKyu: !cwscore
-        ? {
-            $in: [
-              '8 kyu',
-              '7 kyu',
-              '6 kyu',
-              '5 kyu',
-              '4 kyu',
-              '3 kyu',
-              '2 kyu',
-              '1 kyu',
-              null,
-              'null',
-            ],
-          }
-        : { $eq: cwscore },
-
+      codeWarsKyu: { $gte: cwscore },
       freeCodeCampTopics: !covered
         ? {
             $in: [true, false],
