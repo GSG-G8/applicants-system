@@ -9,7 +9,7 @@ const getRegistrationSteps = (req, res, next) => {
       if (!rows.length) {
         return res
           .status(404)
-          .json({ statusCode: 404, error: `Steps not found` });
+          .json({ statusCode: 404, error: `There is no Steps found` });
       }
       return res.status(200).json({ statusCode: 200, data: rows });
     })
