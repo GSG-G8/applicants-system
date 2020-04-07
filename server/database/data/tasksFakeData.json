@@ -1,0 +1,30 @@
+[
+ { 
+  "taskName": "Installing a text editor",
+  "taskDescription": "How to Installing a text editor" 
+ },
+ { 
+  "taskName": "Introduction",
+  "taskDescription": "Introduction to Front End Programming " 
+ },
+ { 
+  "taskName": "HTML & CSS",
+  "taskDescription": "start to learn about HTML & CSS" 
+ },
+ { 
+  "taskName": "Developer Tools pt 1",
+  "taskDescription": "start to learn about Developer Tools pt 1"
+ },
+ { 
+  "taskName": "HTML Project",
+  "taskDescription": "How to create HTML Project" 
+ },
+ { 
+  "taskName": "Javascript 1",
+  "taskDescription": "start to learn about Javascript 1" 
+ },
+ { 
+  "taskName": "Javascript 2",
+  "taskDescription": "start to learn about Javascript 2" 
+ }
+]
