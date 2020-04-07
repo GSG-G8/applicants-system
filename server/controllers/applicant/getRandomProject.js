@@ -1,7 +1,7 @@
 const project = require('../../database/models/project');
 
 const randomProject = (req, res) => {
-  project.findOneRandom((err, result) => {
+  project.aggregate([{ $sample: { size: 1 } }], (err, result) => {
     if (err)
       res
         .status(400)
