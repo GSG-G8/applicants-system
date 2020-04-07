@@ -5,35 +5,30 @@ const getApplicantsQuery = (req, res, next) => {
 
   Applicant.find(
     {
-      $and: [
-        {
-          applicationSubmittedDate: submitted === 'true' ? { $ne: null } : null,
-        },
-        { freeCodeCampPoints: { $gte: fccpoints } },
-        {
-          codeWarsKyu: !cwscore
-            ? {
-                $in: [
-                  '8kyu',
-                  '7kyu',
-                  '6kyu',
-                  '5kyu',
-                  '4kyu',
-                  '3kyu',
-                  '2kyu',
-                  '1kyu',
-                ],
-              }
-            : { $eq: cwscore },
-        },
-        {
-          freeCodeCampTopics: !covered
-            ? {
-                $in: [true, false],
-              }
-            : covered,
-        },
-      ],
+      applicationSubmittedDate: submitted === 'true' ? { $ne: null } : null,
+      freeCodeCampPoints: { $gte: fccpoints },
+      codeWarsKyu: !cwscore
+        ? {
+            $in: [
+              '8 kyu',
+              '7 kyu',
+              '6 kyu',
+              '5 kyu',
+              '4 kyu',
+              '3 kyu',
+              '2 kyu',
+              '1 kyu',
+              null,
+              'null',
+            ],
+          }
+        : { $eq: cwscore },
+
+      freeCodeCampTopics: !covered
+        ? {
+            $in: [true, false],
+          }
+        : covered,
     },
     (err, rows) => {
       if (err) {
