@@ -13,7 +13,7 @@ router.post('/login', login);
 
 router.use('/dashboard', isAdmin, adminRouter);
 
-router.use(cohortRouter);
+router.use('/cohorts', cohortRouter);
 
 router.use('/applicants', isAuthorized, applicantRouter);
 
