@@ -2,19 +2,18 @@ const express = require('express');
 
 const router = express.Router();
 
-const { login, logout, signup } = require('./auth-router');
+const { login, logout } = require('./auth-router');
 const adminRouter = require('./admin-router');
 const applicantRouter = require('./applicant-router');
 const cohortRouter = require('./cohort-router');
 const errorHandler = require('../controllers/errors');
 const { isAuthorized, isAdmin } = require('../middlewares/auth');
 
-router.post('/signup, signup');
 router.post('/login', login);
 
 router.use('/dashboard', isAdmin, adminRouter);
 
-router.use('/cohorts', isAdmin, cohortRouter);
+router.use(cohortRouter);
 
 router.use('/applicants', isAuthorized, applicantRouter);
 
