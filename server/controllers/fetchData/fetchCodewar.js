@@ -1,6 +1,7 @@
 const axios = require('axios');
+const writToLog = require('./writeToLog');
 
-const updateCodewarwPoint = (codeWarsLink) => {
+const codewarsPoints = (id, codeWarsLink) => {
   const applicantProfile = codeWarsLink.split('/')[4];
   if (applicantProfile) {
     return axios
@@ -8,6 +9,11 @@ const updateCodewarwPoint = (codeWarsLink) => {
       .then(({ data }) => data.ranks.languages.javascript.name)
       .catch(() => ({ eror: 'eror fetching codewars' }));
   }
-  return { codewars: 'Wrong Link Profile' };
+  writToLog({
+    type: 'Codewars',
+    error: 'Wrong Link Profile',
+    id,
+  });
+  return 'null';
 };
-module.exports = updateCodewarwPoint;
+module.exports = codewarsPoints;

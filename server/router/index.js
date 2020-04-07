@@ -12,7 +12,7 @@ router.use(authRouter);
 
 router.use(applicantRouter);
 router.use(cohortRouter);
-router.use('/admin/', adminRouter);
+router.use('/admin', adminRouter);
 router.use(errorHandler);
 
 module.exports = router;

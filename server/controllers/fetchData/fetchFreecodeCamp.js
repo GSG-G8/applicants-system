@@ -1,7 +1,8 @@
 const axios = require('axios');
 const topics = require('./topics');
+const writToLog = require('./writeToLog');
 
-const FreeCodeCampPoint = (freecodeCampLink) => {
+const FreeCodeCampPoint = (id, freecodeCampLink) => {
   const applicantProfile = freecodeCampLink.split('/')[3];
   if (applicantProfile) {
     return axios
@@ -9,12 +10,12 @@ const FreeCodeCampPoint = (freecodeCampLink) => {
         `https://api.freecodecamp.org/api/users/get-public-profile?username=${applicantProfile}`
       )
       .then(({ data }) => {
-        const { points } = data.entities.user[`${applicantProfile}`];
+        const freeCodeCamp = data.entities.user[`${applicantProfile}`].points;
         const { completedChallenges } = data.entities.user[
           `${applicantProfile}`
         ];
         let hasTarget;
-        if (points >= 200) {
+        if (freeCodeCamp >= 200) {
           const completed = completedChallenges.map(({ id }) => id);
           topics.map((element) => {
             if (!completed.includes(element)) {
@@ -26,10 +27,15 @@ const FreeCodeCampPoint = (freecodeCampLink) => {
             hasTarget = true;
           }
         } else hasTarget = false;
-        return { points, hasTarget };
+        return { freeCodeCamp, hasTarget };
       })
       .catch(() => ({ eror: 'eror fetching freecodecamp' }));
   }
-  return { points: 'Wrong Link Profile', hasTarget: false };
+  writToLog({
+    type: 'freecodecamp',
+    error: 'Wrong Link Profile',
+    id,
+  });
+  return { freeCodeCamp: 0, hasTarget: false };
 };
 module.exports = FreeCodeCampPoint;

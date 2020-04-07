@@ -6,39 +6,39 @@ const updateApplicantpoints = (req, res, next) => {
   const { id } = req.params;
   applicant
     .findOne({ _id: id })
-    .catch(() =>
-      res
-        .status(400)
-        .json({ status: 'failed', message: 'There is no data for this id' })
-    )
+    .catch(() => next())
     .then((user) =>
       Promise.all([
-        fetchCodewarsPoint(String(user.codeWarsLink)),
-        fetchFreeCodeCampPoint(String(user.freeCodeCampLink)),
-      ]).then((data) => {
-        if (data[0].eror && data[1].eror) {
-          res.status(400).json({
-            status: 'failed',
-            message: 'eror in fetching data',
-          });
-        } else
+        fetchCodewarsPoint(id, String(user.codeWarsLink)),
+        fetchFreeCodeCampPoint(id, String(user.freeCodeCampLink)),
+      ])
+        .then((data) => {
           applicant
             .updateOne(
               { _id: id },
               {
                 codeWarsKyu: data[0],
-                freeCodeCampPoints: data[1].points,
+                freeCodeCampPoints: data[1].freeCodeCamp,
                 freeCodeCampTopics: data[1].hasTarget,
               }
+            )
+            .catch(() =>
+              res.status(400).json({
+                status: 'failed',
+                message: 'eror in fetching data',
+              })
             )
             .then(() => {
               res.status(200).json({
                 status: 200,
                 message: 'update points done successfully',
-                data,
+                codeWarsKyu: `${data[0]}`,
+                freeCodeCampPoints: `${data[1].freeCodeCamp}`,
+                freeCodeCampTopics: `${data[1].hasTarget}`,
               });
             });
-      })
+        })
+        .catch(() => next())
     );
 };
 module.exports = updateApplicantpoints;
