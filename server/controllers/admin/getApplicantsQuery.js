@@ -7,7 +7,7 @@ const getApplicantsQuery = (req, res, next) => {
     {
       applicationSubmittedDate: submitted === 'true' ? { $ne: null } : null,
       freeCodeCampPoints: { $gte: fccpoints },
-      codeWarsKyu: { $lt: cwscore },
+      codeWarsKyu: { $lte: cwscore },
       freeCodeCampTopics: !covered
         ? {
             $in: [true, false],
