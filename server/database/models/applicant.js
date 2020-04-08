@@ -44,10 +44,6 @@ const applicantSchema = new Schema({
     type: Number,
     min: 18,
   },
-  avatar: {
-    type: String,
-    trim: true,
-  },
   motivation: {
     type: String,
     trim: true,
@@ -119,8 +115,7 @@ const applicantSchema = new Schema({
     trim: true,
   },
   codeWarsKyu: {
-    type: String,
-    trim: true,
+    type: Number,
   },
   technicalTasks: {
     type: Boolean,
