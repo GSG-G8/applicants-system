@@ -1,235 +1,196 @@
-[{
-  "_id": {
-      "$oid": "5e847da250f70767d930aabd"
-  },
-  "cohorts": [],
-  "jobTitle": "jobTitle",
-  "freeCodeCampTopics": false,
-  "technicalTasks": true,
-  "accepted": false,
-  "fullName": "mohamed",
-  "email": "hom@gmail.com",
-  "password": "google",
-  "location": "Gaza",
-  "address": "Gaza",
-  "mobileNumber": {
-      "$numberDouble": "4555787946664"
-  },
-  "age": {
-      "$numberInt": "30"
-  },
-  "motivation": "motivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivation",
-  "englishUnderstanding": "good",
-  "englishSpeaking": "good",
-  "employmentStatus": "no emmpjlu",
-  "university": "kalfornia",
-  "specialization": "IT",
-  "cvLink": "http://www.google.com",
-  "codingExperience": "bad",
-  "primaryMotivation": "primaryMotivationprimaryMotivationprimaryMotivationprimaryMotivation",
-  "caReading": "good",
-  "available": true,
-  "githubLink": "http://www.github.io",
-  "joinDiscord": true,
-  "freeCodeCampPoints": {
-      "$numberInt": "90"
-  },
-  "codeWarsLink": "http://www.codewars.org",
-  "codeWarsKyu": "5kyu",
-  "technicalTasksLinks": "www.technicalTasksLinks.com",
-  "projectGithubLink": "www.gitghub.com/link",
-  "applicationStartDate": {
-      "$date": {
-          "$numberLong": "1582976418966"
-      }
-  },
-  "applicationEndDate": {
-      "$date": {
-          "$numberLong": "1585741218966"
-      }
-  },
-  "applicationSubmittedDate": null,
-  "__v": {
-      "$numberInt": "0"
-  }
+[
+    {
+    "fullName": "Asmaa A.H",
+    "email": "asma@gmail.com",
+    "password": "$2b$10$gB8D2bI6/X7xTwsSRs5JQe2BvwOLEdMag8dinhfIY4Eu0tIEWVTr2",
+    "location": "Gaza",
+    "address": "Gaza",
+    "cohorts": [],
+    "gender":"female",
+    "avatar": "https://cdn.shopify.com/s/files/1/0074/5432/6862/files/mongoose-envoy-0063-tested_grande.jpg?v=1585927855",
+    "mobileNumber": "4555787946664",
+    "age": "30",
+    "motivation": "motivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivation",
+    "englishSpeaking": "good",
+    "englishUnderstanding": "good",
+    "employmentStatus": "employment status",
+    "jobTitle": "Programmer",
+    "university": "IUG",
+    "specialization": "IT",
+    "cvLink": "http://www.google.com",
+    "codingExperience": "bad",
+    "primaryMotivation": "primaryMotivationprimaryMotivationprimaryMotivationprimaryMotivation",
+    "caReading": "good",
+    "available": true,
+    "githubLink": "http://www.github.io",
+    "joinDiscord": true,
+    "freeCodeCampPoints": 220,
+    "freeCodeCampTopics": false,
+    "freeCodeCampLink": "http://www.freecodecamp.com",
+    "codeWarsLink": "http://www.codewars.org",
+    "codeWarsKyu": 5,
+    "technicalTasks": true,
+    "technicalTasksLinks": "www.technicalTasksLinks.com",
+    "projectId": "5e8ccca0b3e8dc7b018ce348",
+    "projectGithubLink": "www.gitghub.com/link",
+    "applicationStartDate": "2013-6-21T13:28:06.419Z",
+    "applicationEndDate": "2013-10-21T13:28:06.419Z",
+    "applicationSubmittedDate": null,
+    "accepted": false
 },
 {
-  "_id": {
-      "$oid": "5e847f8a49abf469bd96009c"
-  },
-  "cohorts": [],
-  "jobTitle": "jobTitle",
-  "freeCodeCampTopics": true,
-  "technicalTasks": false,
-  "accepted": true,
-  "fullName": "Ali",
-  "email": "ali-adaa@gmail.com",
-  "password": "adafskj",
-  "location": "Khalil",
-  "address": "ramalla",
-  "mobileNumber": {
-      "$numberDouble": "9720599512466"
-  },
-  "age": {
-      "$numberInt": "27"
-  },
-  "motivation": "motivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivation",
-  "englishUnderstanding": "good",
-  "englishSpeaking": "good",
-  "employmentStatus": "no emmpjlu",
-  "university": "kalfornia",
-  "specialization": "IT",
-  "cvLink": "http://www.google.com",
-  "codingExperience": "bad",
-  "primaryMotivation": "primaryMotivationprimaryMotivationprimaryMotivationprimaryMotivation",
-  "caReading": "good",
-  "available": false,
-  "githubLink": "http://www.github.io",
-  "joinDiscord": true,
-  "freeCodeCampPoints": {
-      "$numberInt": "50"
-  },
-  "codeWarsLink": "http://www.codewars.org",
-  "codeWarsKyu": "5kyu",
-  "technicalTasksLinks": "www.technicalTasksLinks.com",
-  "projectId": "lkajdfklj",
-  "projectGithubLink": "www.gitghub.com/link",
-  "applicationStartDate": {
-      "$date": {
-          "$numberLong": "1585741706654"
-      }
-  },
-  "applicationEndDate": {
-      "$date": {
-          "$numberLong": "1585741706655"
-      }
-  },
-  "applicationSubmittedDate": {
-      "$date": {
-          "$numberLong": "1585741706655"
-      }
-  },
-  "__v": {
-      "$numberInt": "0"
-  }
+    "fullName": "Ahmed Salah",
+    "email": "ahmed@gmail.com",
+    "password": "$2b$10$gB8D2bI6/X7xTwsSRs5JQe2BvwOLEdMag8dinhfIY4Eu0tIEWVTr2",
+    "location": "Gaza",
+    "address": "Gaza",
+    "cohorts": [],
+    "gender":"male",
+    "avatar": "https://cdn.shopify.com/s/files/1/0074/5432/6862/files/mongoose-envoy-0063-tested_grande.jpg?v=1585927855",
+    "mobileNumber": "4555787946664",
+    "age": "30",
+    "motivation": "motivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivation",
+    "englishSpeaking": "good",
+    "englishUnderstanding": "good",
+    "employmentStatus": "employment status",
+    "jobTitle": "Programmer",
+    "university": "AUG",
+    "specialization": "IT",
+    "cvLink": "http://www.google.com",
+    "codingExperience": "bad",
+    "primaryMotivation": "primaryMotivationprimaryMotivationprimaryMotivationprimaryMotivation",
+    "caReading": "good",
+    "available": true,
+    "githubLink": "http://www.github.io",
+    "joinDiscord": true,
+    "freeCodeCampPoints": 300,
+    "freeCodeCampTopics": true,
+    "freeCodeCampLink": "http://www.freecodecamp.com",
+    "codeWarsLink": "http://www.codewars.org",
+    "codeWarsKyu": 7,
+    "technicalTasks": true,
+    "technicalTasksLinks": "www.technicalTasksLinks.com",
+    "projectId": "5e8ccca0b3e8dc7b018ce349",
+    "projectGithubLink": "www.gitghub.com/link",
+    "applicationStartDate": "2013-12-18T13:28:06.419Z",
+    "applicationEndDate": "2013-02-18T13:28:06.419Z",
+    "applicationSubmittedDate": "2013-02-15T13:28:06.419Z",
+    "accepted": true
+},{
+    "fullName": "Ali Dahdoh",
+    "email": "ali@gmail.com",
+    "password": "$2b$10$gB8D2bI6/X7xTwsSRs5JQe2BvwOLEdMag8dinhfIY4Eu0tIEWVTr2",
+    "location": "Gaza",
+    "address": "Gaza",
+    "cohorts": [],
+    "gender":"male",
+    "avatar": "https://cdn.shopify.com/s/files/1/0074/5432/6862/files/mongoose-envoy-0063-tested_grande.jpg?v=1585927855",
+    "mobileNumber": "4555787946664",
+    "age": "27",
+    "motivation": "motivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivation",
+    "englishSpeaking": "good",
+    "englishUnderstanding": "good",
+    "employmentStatus": "employment status",
+    "jobTitle": "Programmer",
+    "university": "IUG",
+    "specialization": "IT",
+    "cvLink": "http://www.google.com",
+    "codingExperience": "bad",
+    "primaryMotivation": "primaryMotivationprimaryMotivationprimaryMotivationprimaryMotivation",
+    "caReading": "good",
+    "available": true,
+    "githubLink": "http://www.github.io",
+    "joinDiscord": true,
+    "freeCodeCampPoints": 100,
+    "freeCodeCampTopics": false,
+    "freeCodeCampLink": "http://www.freecodecamp.com",
+    "codeWarsLink": "http://www.codewars.org",
+    "codeWarsKyu": 8,
+    "technicalTasks": true,
+    "technicalTasksLinks": "www.technicalTasksLinks.com",
+    "projectId": "5e8ccca0b3e8dc7b018ce348",
+    "projectGithubLink": "www.gitghub.com/link",
+    "applicationStartDate": "2015-04-15T13:28:06.419Z",
+    "applicationEndDate": "2015-06-18T13:28:06.419Z",
+    "applicationSubmittedDate": null,
+    "accepted": false
 },
 {
-  "_id": {
-      "$oid": "5e847fbb49abf469bd96009d"
-  },
-  "cohorts": [],
-  "jobTitle": "jobTitle",
-  "freeCodeCampTopics": true,
-  "technicalTasks": false,
-  "accepted": false,
-  "fullName": "Ahmed",
-  "email": "ahmed-adaa@gmail.com",
-  "password": "wheadfasf6546510",
-  "location": "Gaza",
-  "address": "jabalia",
-  "mobileNumber": {
-      "$numberDouble": "9720599512466"
-  },
-  "age": {
-      "$numberInt": "32"
-  },
-  "motivation": "motivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivation",
-  "englishUnderstanding": "good",
-  "englishSpeaking": "good",
-  "employmentStatus": "no emmpjlu",
-  "university": "kalfornia",
-  "specialization": "IT",
-  "cvLink": "http://www.google.com",
-  "codingExperience": "bad",
-  "primaryMotivation": "primaryMotivationprimaryMotivationprimaryMotivationprimaryMotivation",
-  "caReading": "good",
-  "available": false,
-  "githubLink": "http://www.github.io",
-  "joinDiscord": true,
-  "freeCodeCampPoints": {
-      "$numberInt": "167"
-  },
-  "codeWarsLink": "http://www.codewars.org",
-  "codeWarsKyu": "5kyu",
-  "technicalTasksLinks": "www.technicalTasksLinks.com",
-  "projectId": "lkajdfklj",
-  "projectGithubLink": "www.gitghub.com/link",
-  "applicationStartDate": {
-      "$date": {
-          "$numberLong": "1585741755016"
-      }
-  },
-  "applicationEndDate": {
-      "$date": {
-          "$numberLong": "1585741755016"
-      }
-  },
-  "applicationSubmittedDate": {
-      "$date": {
-          "$numberLong": "1585741755016"
-      }
-  },
-  "__v": {
-      "$numberInt": "0"
-  }
+    "fullName": "Hasssan A",
+    "email": "hassan@gmail.com",
+    "password": "$2b$10$gB8D2bI6/X7xTwsSRs5JQe2BvwOLEdMag8dinhfIY4Eu0tIEWVTr2",
+    "location": "Gaza",
+    "address": "Gaza",
+    "cohorts": [],
+    "gender":"male",
+    "avatar": "https://cdn.shopify.com/s/files/1/0074/5432/6862/files/mongoose-envoy-0063-tested_grande.jpg?v=1585927855",
+    "mobileNumber": "4555787946664",
+    "age": "20",
+    "motivation": "motivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivation",
+    "englishSpeaking": "good",
+    "englishUnderstanding": "good",
+    "employmentStatus": "employment status",
+    "jobTitle": "Programmer",
+    "university": "IUG",
+    "specialization": "IT",
+    "cvLink": "http://www.google.com",
+    "codingExperience": "bad",
+    "primaryMotivation": "primaryMotivationprimaryMotivationprimaryMotivationprimaryMotivation",
+    "caReading": "good",
+    "available": true,
+    "githubLink": "http://www.github.io",
+    "joinDiscord": true,
+    "freeCodeCampPoints": 250,
+    "freeCodeCampTopics": false,
+    "freeCodeCampLink": "http://www.freecodecamp.com",
+    "codeWarsLink": "http://www.codewars.org",
+    "codeWarsKyu": 4,
+    "technicalTasks": true,
+    "technicalTasksLinks": "www.technicalTasksLinks.com",
+    "projectId": "5e8ccc7bb3e8dc7b018ce345",
+    "projectGithubLink": "www.gitghub.com/link",
+    "applicationStartDate": "2015-12-18T13:28:06.419Z",
+    "applicationEndDate": "2015-03-18T13:28:06.419Z",
+    "applicationSubmittedDate": "2015-02-10T13:28:06.419Z",
+    "accepted": false
 },
 {
-  "_id": {
-      "$oid": "5e847ffa49abf469bd96009e"
-  },
-  "cohorts": [],
-  "jobTitle": "jobTitle",
-  "freeCodeCampTopics": true,
-  "technicalTasks": false,
-  "accepted": true,
-  "fullName": "Hassan",
-  "email": "hassan-adaa@gmail.com",
-  "password": "wheadfasf6546510",
-  "location": "Gaza",
-  "address": "jabalia",
-  "mobileNumber": {
-      "$numberDouble": "9720599512466"
-  },
-  "age": {
-      "$numberInt": "20"
-  },
-  "motivation": "motivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivation",
-  "englishUnderstanding": "good",
-  "englishSpeaking": "good",
-  "employmentStatus": "no emmpjlu",
-  "university": "kalfornia",
-  "specialization": "IT",
-  "cvLink": "http://www.google.com",
-  "codingExperience": "bad",
-  "primaryMotivation": "primaryMotivationprimaryMotivationprimaryMotivationprimaryMotivation",
-  "caReading": "good",
-  "available": true,
-  "githubLink": "http://www.github.io",
-  "joinDiscord": true,
-  "freeCodeCampPoints": {
-      "$numberInt": "250"
-  },
-  "codeWarsLink": "http://www.codewars.org",
-  "codeWarsKyu": "5kyu",
-  "technicalTasksLinks": "www.technicalTasksLinks.com",
-  "projectId": "lkajdfklj",
-  "projectGithubLink": "www.gitghub.com/link",
-  "applicationStartDate": {
-      "$date": {
-          "$numberLong": "1585741818360"
-      }
-  },
-  "applicationEndDate": {
-      "$date": {
-          "$numberLong": "1585741818360"
-      }
-  },
-  "applicationSubmittedDate": {
-      "$date": {
-          "$numberLong": "1585741818360"
-      }
-  },
-  "__v": {
-      "$numberInt": "0"
-  }
-}]
+    "fullName": "Mohammed F ",
+    "email": "mm2020@gmail.com",
+    "password": "$2b$10$gB8D2bI6/X7xTwsSRs5JQe2BvwOLEdMag8dinhfIY4Eu0tIEWVTr2",
+    "location": "Gaza",
+    "address": "Gaza",
+    "cohorts": [],
+    "gender":"male",
+    "avatar": "https://cdn.shopify.com/s/files/1/0074/5432/6862/files/mongoose-envoy-0063-tested_grande.jpg?v=1585927855",
+    "mobileNumber": "4555787946664",
+    "age": "30",
+    "motivation": "motivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivationmotivation",
+    "englishSpeaking": "good",
+    "englishUnderstanding": "good",
+    "employmentStatus": "employment status",
+    "jobTitle": "Programmer",
+    "university": "IUG",
+    "specialization": "IT",
+    "cvLink": "http://www.google.com",
+    "codingExperience": "bad",
+    "primaryMotivation": "primaryMotivationprimaryMotivationprimaryMotivationprimaryMotivation",
+    "caReading": "good",
+    "available": true,
+    "githubLink": "http://www.github.io",
+    "joinDiscord": true,
+    "freeCodeCampPoints": 220,
+    "freeCodeCampTopics": false,
+    "freeCodeCampLink": "http://www.freecodecamp.com",
+    "codeWarsLink": "http://www.codewars.org",
+    "codeWarsKyu": 5,
+    "technicalTasks": true,
+    "technicalTasksLinks": "www.technicalTasksLinks.com",
+    "projectId": "5e8ccc7bb3e8dc7b018ce345",
+    "projectGithubLink": "www.gitghub.com/link",
+    "applicationStartDate": "2016-01-17T13:28:06.419Z",
+    "applicationEndDate": "2016-01-23T13:28:06.419Z",
+    "applicationSubmittedDate": null,
+    "accepted": false
+}
+]
