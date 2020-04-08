@@ -108,10 +108,12 @@ const applicantSchema = new Schema({
   },
   freeCodeCampLink: {
     type: String,
+    default: 'https://www.freecodecamp.org/code_academy',
     trim: true,
   },
   codeWarsLink: {
     type: String,
+    default: 'https://www.codewars.com/users/code_academy',
     trim: true,
   },
   codeWarsKyu: {
