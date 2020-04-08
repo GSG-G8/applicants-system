@@ -6,6 +6,8 @@ const { login, logout, signup } = require('./auth-router');
 const adminRouter = require('./admin-router');
 const applicantRouter = require('./applicant-router');
 const cohortRouter = require('./cohort-router');
+const tasksRouter = require('./technicalTask-router');
+const stepsRouter = require('./registrationSteps-router');
 const errorHandler = require('../controllers/errors');
 const { isAuthorized, isAdmin } = require('../middlewares/auth');
 
@@ -15,6 +17,8 @@ router.post('/login', login);
 router.use('/dashboard', isAdmin, adminRouter);
 
 router.use('/cohorts', cohortRouter);
+router.use('/tasks', tasksRouter);
+router.use('/steps', stepsRouter);
 
 router.use('/applicants', isAuthorized, applicantRouter);
 
