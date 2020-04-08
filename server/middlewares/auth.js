@@ -11,7 +11,6 @@ const isAuthorized = (req, res, next) => {
         .status(401)
         .send({ statusCode: 401, auth: false, error: 'you are Unauthorized' });
     } else {
-      res.status(200).send({ auth: true, id: token.id });
       next();
     }
   });
@@ -20,7 +19,7 @@ const isAuthorized = (req, res, next) => {
 const isAdmin = (req, res, next) => {
   const { email } = req.body;
   admin.findOne({ email }).then((data) => {
-    if (!data.email) {
+    if (data === null) {
       res
         .status(401)
         .send({ statusCode: 401, auth: false, error: 'you are Unauthorized' });
@@ -33,7 +32,6 @@ const isAdmin = (req, res, next) => {
             error: 'you are Unauthorized',
           });
         } else {
-          res.status(200).send({ auth: true, id: token.id });
           next();
         }
       });
