@@ -21,15 +21,17 @@ const signupApplicant = (req, res, next) => {
   )}+${lastName(fullName)}&rounded=true&background=ED6D23&color=F3F3F3`;
   signupValidate(fullName, email, password, passwordConfirmation, location)
     .then((valid) => {
-      if (!valid) res.status(400).json({ Error: `Validation error` });
+      if (!valid) res.status(400).json({ Error: `Check the data you entered` });
       else {
         applicant.findOne({ email }, (error, data) => {
           if (data !== null) {
             res.status(400).json({
-              msg: `${email} is already exists, please sign-in`,
+              status: 400,
+              message: `${email} is already exists, please sign-in`,
             });
           } else {
             hash(password, 10).then((hashedPassword) => {
+              // eslint-disable-next-line new-cap
               const newApplicant = new applicant({
                 fullName,
                 email,
@@ -40,10 +42,15 @@ const signupApplicant = (req, res, next) => {
               newApplicant
                 .save()
                 .then(() =>
-                  res.status(201).json({ msg: 'Registration Complete' })
+                  res
+                    .status(201)
+                    .json({ message: 'Your Signup successfully Complete' })
                 )
                 .catch((err) => {
-                  res.status(400).json({ Error: err });
+                  res.status(400).json({
+                    Error: err,
+                    message: 'There is an error with your signup',
+                  });
                 });
             });
           }
@@ -51,7 +58,7 @@ const signupApplicant = (req, res, next) => {
       }
     })
     .catch((error) =>
-      next({ type: 'add', message: 'save new applicant', error })
+      next({ type: 'add', message: 'There is a problem in your signup', error })
     );
 };
 

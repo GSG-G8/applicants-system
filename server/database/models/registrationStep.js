@@ -15,4 +15,4 @@ const registrationStepSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model('RegistrationStep', registrationStepSchema);
+module.exports = mongoose.model('registrationStep', registrationStepSchema);

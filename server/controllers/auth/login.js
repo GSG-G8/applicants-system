@@ -32,9 +32,16 @@ const login = (req, res) => {
               else {
                 const userToken = { userId: data.id };
                 const cookie = sign(userToken, process.env.SECRET_KEY);
-                res
-                  .cookie('applicant', cookie, { httpOnly: true })
-                  .json({ status: 'successfully', role: 'applicant', data });
+                res.cookie('applicant', cookie, { httpOnly: true }).json({
+                  status: 'successfully',
+                  role: 'applicant',
+                  data: {
+                    email,
+                    fullName: `${data.fullName}`,
+                    location: `${data.location}`,
+                    avatar: `${data.avatar}`,
+                  },
+                });
               }
             });
           })
@@ -47,9 +54,14 @@ const login = (req, res) => {
                   else {
                     const userToken = { userId: data.id };
                     const cookie = sign(userToken, process.env.SECRET_KEY);
-                    res
-                      .cookie('admin', cookie, { httpOnly: true })
-                      .json({ status: 'successfully', role: 'admin', data });
+                    res.cookie('admin', cookie, { httpOnly: true }).json({
+                      status: 'successfully',
+                      role: 'admin',
+                      data: {
+                        email,
+                        userName: `${data.userName}`,
+                      },
+                    });
                   }
                 })
               )
