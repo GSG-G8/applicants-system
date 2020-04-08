@@ -117,7 +117,7 @@ const applicantSchema = new Schema({
     trim: true,
   },
   codeWarsKyu: {
-    type: String,
+    type: Number,
     trim: true,
   },
   technicalTasks: {

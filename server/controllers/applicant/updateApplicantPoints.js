@@ -17,7 +17,7 @@ const updateApplicantpoints = (req, res, next) => {
             .updateOne(
               { _id: id },
               {
-                codeWarsKyu: data[0],
+                codeWarsKyu: data[0].split('')[0],
                 freeCodeCampPoints: data[1].freeCodeCamp,
                 freeCodeCampTopics: data[1].hasTarget,
               }
