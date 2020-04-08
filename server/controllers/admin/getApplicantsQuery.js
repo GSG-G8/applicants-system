@@ -1,13 +1,13 @@
 const Applicant = require('../../database/models/applicant');
 
 const getApplicantsQuery = (req, res, next) => {
-  const { submitted, cwscore = 0, fccpoints = 0, covered } = req.query;
+  const { submitted, cwscore = 9, fccpoints = 0, covered } = req.query;
 
   Applicant.find(
     {
       applicationSubmittedDate: submitted === 'true' ? { $ne: null } : null,
       freeCodeCampPoints: { $gte: fccpoints },
-      codeWarsKyu: { $gte: cwscore },
+      codeWarsKyu: { $lt: cwscore },
       freeCodeCampTopics: !covered
         ? {
             $in: [true, false],
@@ -16,7 +16,7 @@ const getApplicantsQuery = (req, res, next) => {
     },
     (err, rows) => {
       if (err) {
-        return res.status(400).json({ statusCode: 400, error: err.message });
+        return res.status(400).json({ statusCode: 400, error: 'Bad Request' });
       }
       if (!rows.length) {
         return res
