@@ -11,7 +11,9 @@
     "dev": "nodemon server/index.js",
     "kill": "fuser -k 5000/tcp",
     "kill-run": "npm run kill && npm run server",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build",
+    "build:database:pro": "NODE_ENV=production node server/database/index.js",
+    "build:database:dev": "NODE_ENV=test node server/database/index.js"
   },
   "repository": {
     "type": "git",
