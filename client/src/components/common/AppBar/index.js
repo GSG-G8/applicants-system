@@ -5,7 +5,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import logo from '../../../assets/images/logo.png';
 import './index.css';
 
-const NavBar = () => (
+const AppBar = () => (
   <div className="root">
     <MuiAppBar color="transparent">
       <Toolbar className="Toolbar">
@@ -16,4 +16,4 @@ const NavBar = () => (
   </div>
 );
 
-export default NavBar;
+export default AppBar;
