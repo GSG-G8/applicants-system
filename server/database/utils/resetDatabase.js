@@ -22,4 +22,4 @@ const resetDatabase = async () => {
   }
 };
 
-module.export = resetDatabase;
+module.exports = resetDatabase;

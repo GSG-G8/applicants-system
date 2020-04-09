@@ -5,12 +5,12 @@ module.exports = async () => {
     {
       email: 'a.ahmad.salah@gmail.com',
       password: '$2b$10$xlhF9buzqfqLR/sEI/jrGu.Vm2K6GgbSri09PW8qM.vLkl2OC1fsC',
-      username: 'ahmad salah',
+      userName: 'ahmad salah',
     },
     {
       email: 'a.ali.salah@gmail.com',
       password: '$2b$10$xlhF9buzqfqLR/sEI/jrGu.Vm2K6GgbSri09PW8qM.vLkl2OC1fsC',
-      username: 'ali',
+      userName: 'ali',
     },
   ];
   await Admin.create(admin);

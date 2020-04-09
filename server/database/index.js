@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
-
 const dbConnection = require('./dbConnection');
-
 const createCollection = require('./utils/createCollection');
 const resetDatabase = require('./utils/resetDatabase');
 
@@ -12,18 +10,18 @@ const {
   project,
   registrationStep,
   technicalTask,
-} = require('./models');
+} = require('./data');
 
 const buildDatabase = () =>
   new Promise((resolve, reject) => {
-    dbConnection()
+    dbConnection
       .then(async () => {
         await resetDatabase();
         await createCollection();
         await admin();
-        await applicant();
-        await cohort();
         await project();
+        await cohort();
+        await applicant();
         await registrationStep();
         await technicalTask();
       })
@@ -31,8 +29,14 @@ const buildDatabase = () =>
       .catch(reject);
   });
 
-buildDatabase().then(() => {
-  // eslint-disable-next-line no-console
-  console.log('Database was built successfully !');
-  mongoose.disconnect();
-});
+buildDatabase()
+  .then(() => {
+    // eslint-disable-next-line no-console
+    console.log('Database was built successfully !');
+    mongoose.disconnect();
+  })
+  .catch((err) => {
+    // eslint-disable-next-line no-console
+    console.log(err);
+    mongoose.disconnect();
+  });
