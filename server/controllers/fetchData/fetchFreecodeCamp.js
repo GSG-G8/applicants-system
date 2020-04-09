@@ -1,9 +1,9 @@
 const axios = require('axios');
 const topics = require('./topics');
-const writToLog = require('./writeToLog');
+const writeToLog = require('./writeToLog');
 
 const FreeCodeCampPoint = (id, freecodeCampLink) => {
-  const applicantProfile = freecodeCampLink.split('/')[3];
+  const applicantProfile = freecodeCampLink.split('/')[3].toLowerCase();
   if (applicantProfile) {
     return axios
       .get(
@@ -31,7 +31,7 @@ const FreeCodeCampPoint = (id, freecodeCampLink) => {
       })
       .catch(() => ({ eror: 'eror fetching freecodecamp' }));
   }
-  writToLog({
+  writeToLog({
     type: 'freecodecamp',
     error: 'Wrong Link Profile',
     id,

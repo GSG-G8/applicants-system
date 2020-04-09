@@ -25,7 +25,7 @@ const updateApplicantpoints = (req, res, next) => {
             .catch(() =>
               res.status(400).json({
                 status: 'failed',
-                message: 'eror in fetching data',
+                message: 'Error in fetching data',
               })
             )
             .then(() => {
