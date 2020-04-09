@@ -1,9 +1,9 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import logo from '../../../assets/images/logo.png'
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import logo from '../../../assets/images/logo.png';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,15 +11,15 @@ const useStyles = makeStyles((theme) => ({
     position: 'fixed',
   },
   Toolbar: {
-    justifyContent: "space-between",
+    justifyContent: 'space-between',
     minHeight: 111,
     marginRight: theme.spacing(2),
     marginLeft: theme.spacing(2),
   },
-  Logo:{
-    pointerEvents: "none",
+  Logo: {
+    pointerEvents: 'none',
     width: '25%',
-  }
+  },
 }));
 
 const NavBar = () => {
@@ -27,14 +27,14 @@ const NavBar = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar color='transparent'>
+      <AppBar color="transparent">
         <Toolbar className={classes.Toolbar}>
-          <img src={logo} alt="logo" className={classes.Logo}/>
+          <img src={logo} alt="logo" className={classes.Logo} />
           <AccountCircle />
         </Toolbar>
       </AppBar>
     </div>
   );
-}
+};
 
 export default NavBar;
