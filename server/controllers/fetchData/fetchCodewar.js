@@ -16,4 +16,5 @@ const codewarsPoints = (id, codeWarsLink) => {
   });
   return 'null';
 };
+
 module.exports = codewarsPoints;

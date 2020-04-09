@@ -1,5 +1,5 @@
 const axios = require('axios');
-const topics = require('./topics');
+const topics = require('./getTopicsId');
 const writeToLog = require('./writeToLog');
 
 const FreeCodeCampPoint = (id, freecodeCampLink) => {
@@ -29,7 +29,7 @@ const FreeCodeCampPoint = (id, freecodeCampLink) => {
         } else hasTarget = false;
         return { freeCodeCamp, hasTarget };
       })
-      .catch(() => ({ eror: 'eror fetching freecodecamp' }));
+      .catch(() => ({ error: 'Error in fetching freecodecamp' }));
   }
   writeToLog({
     type: 'freecodecamp',
@@ -38,4 +38,5 @@ const FreeCodeCampPoint = (id, freecodeCampLink) => {
   });
   return { freeCodeCamp: 0, hasTarget: false };
 };
+
 module.exports = FreeCodeCampPoint;

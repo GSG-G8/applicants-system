@@ -41,4 +41,5 @@ const updateApplicantpoints = (req, res, next) => {
         .catch(() => next())
     );
 };
+
 module.exports = updateApplicantpoints;
