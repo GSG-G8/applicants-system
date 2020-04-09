@@ -11,8 +11,6 @@ const updateApplicant = (req, res, next) => {
     technicalTasks,
     TechnicalTasksLinks,
     projectId,
-    applicationStartDate,
-    applicationEndDate,
     applicationSubmittedDate,
     accepted,
     ...rest
