@@ -1,15 +1,8 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+import './index.css';
 
- function SimpleCard(props) {
-
-  return (
-    <Card >
-      <CardContent>
-     {props.content}
-      </CardContent>
-    </Card>
-  );
+function SimpleCard(props) {
+  return <Card className={props.classname}>{props.content}</Card>;
 }
 export default SimpleCard;
