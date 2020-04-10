@@ -6,16 +6,17 @@ import logo from '../../../assets/images/logo.png';
 import useStyles from './style';
 
 const AppBar = () => {
-  const classes = useStyles()
+  const classes = useStyles();
   return (
-  <div className={classes.root}>
-    <MuiAppBar color="transparent">
-      <Toolbar className={classes.toolbar}>
-        <img src={logo} alt="logo" className={classes.logo} />
-        <AccountCircle />
-      </Toolbar>
-    </MuiAppBar>
-  </div>
-)};
+    <div className={classes.root}>
+      <MuiAppBar color="transparent">
+        <Toolbar className={classes.toolbar}>
+          <img src={logo} alt="logo" className={classes.logo} />
+          <AccountCircle />
+        </Toolbar>
+      </MuiAppBar>
+    </div>
+  );
+};
 
 export default AppBar;
