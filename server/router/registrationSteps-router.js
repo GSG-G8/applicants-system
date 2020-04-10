@@ -1,9 +1,9 @@
 const express = require('express');
 
-const registrationSteps = express.Router();
+const registrationStepsRouter = express.Router();
 
 const getRegistrationSteps = require('../controllers/registrationSteps/getRegistrationSteps');
 
-registrationSteps.use(getRegistrationSteps);
+registrationStepsRouter.use(getRegistrationSteps);
 
-module.exports = getRegistrationSteps;
+module.exports = registrationStepsRouter;

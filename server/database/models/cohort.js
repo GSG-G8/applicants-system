@@ -14,12 +14,12 @@ const cohortSchema = new Schema(
       required: true,
       trim: true,
     },
-    cohortGazaٍStartTime: {
+    cohortGazaStartTime: {
       type: String,
       required: true,
       trim: true,
     },
-    cohortGazaٍEndTime: {
+    cohortGazaEndTime: {
       type: String,
       required: true,
       trim: true,
