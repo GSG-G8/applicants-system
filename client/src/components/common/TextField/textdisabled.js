@@ -1,17 +1,18 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
-import './index.css';
+import style from './style';
 
 export default function InputDisabled({ label, value }) {
+  const classes = style();
   return (
-    <div className="contaner">
+    <div className={classes.root}>
       <TextField
         disabled
         id="outlined-disabled"
         label={label}
         defaultValue={value}
-        className="input"
+        className={classes.container}
         variant="outlined"
       />
     </div>
