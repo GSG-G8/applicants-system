@@ -1,21 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 import MuiTypography from '@material-ui/core/Typography';
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: 'rgb(237, 109, 35)',
-    },
-    secondary: {
-      main: 'rgb(59,90,111)',
-    },
-  },
-});
+import Theme from './style';
 
 const Typography = ({ children, variant, color, align }) => (
-  <ThemeProvider theme={theme}>
+  <ThemeProvider theme={Theme}>
     <MuiTypography align={align} variant={variant} color={color} gutterBottom>
       {children}
     </MuiTypography>
