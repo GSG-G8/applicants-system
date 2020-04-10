@@ -1,8 +1,10 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
-import './index.css';
+import useStyles from './style';
 
-function SimpleCard(props) {
-  return <Card className={props.classname}>{props.content}</Card>;
+function SimpleCard({ classname, content }) {
+  const classes = useStyles();
+  return <Card className={classes[`${classname}`]}>{content}</Card>;
 }
+
 export default SimpleCard;
