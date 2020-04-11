@@ -2,16 +2,16 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const dotStyle = makeStyles((theme) => ({
   steper: {
-    width: '1009px',
-    height: '751px',
+    width: '63rem',
+    height: '47rem',
     background: '#FFFFFF 0% 0% no-repeat padding-box',
     boxShadow: '0px 3px 9px #00000033',
     borderRadius: '5px',
   },
   content: {
-    padding: '92px 42px 41px 92px',
-    width: '926px',
-    height: '384px',
+    padding: '5.75rem 2.6rem 2.6rem 5.75rem',
+    width: '57.8rem',
+    height: '24rem',
   },
   buttons: {
     display: 'flex',
@@ -19,16 +19,16 @@ const dotStyle = makeStyles((theme) => ({
     justifyContent: 'flex-end',
   },
   buttonNext: {
-    width: '210px',
+    width: '13rem',
     margin: '.5rem',
-    height: '60px',
+    height: '3.75rem',
     background: '#ED6D23 0% 0% no-repeat padding-box',
     borderRadius: '5px',
   },
   buttonBack: {
-    width: '210px',
+    width: '13rem',
     margin: '.5rem',
-    height: '60px',
+    height: '3.75rem'',
     background: '#FFFFFF 0% 0% no-repeat padding-box',
     border: '1px solid #ED6D23',
     borderRadius: '5px',
