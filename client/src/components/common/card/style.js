@@ -9,10 +9,8 @@ const useStyles = makeStyles({
     alignSelf: 'flex-end',
   },
   card_sign: {
-    position: 'absolute',
     margin: '2rem 4rem 1rem 0rem',
     padding: '2rem 1rem',
-    right: '4rem',
     width: '20rem',
     height: '25rem',
     alignSelf: 'flex-start',
