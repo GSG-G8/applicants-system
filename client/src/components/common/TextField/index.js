@@ -38,22 +38,19 @@ InputText.propTypes = {
   id: PropTypes.string,
   type: PropTypes.string,
   label: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.string.isRequired,
   className: PropTypes.string,
   message: PropTypes.string,
-  placeholder: PropTypes.string,
-  onChange: PropTypes.func,
+  placeholder: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
 };
 InputText.defaultProps = {
   id: 'outlined-required',
   type: '',
   label: '',
-  value: '',
   className: '',
   message: '',
-  placeholder: '',
-  onChange: '',
   disabled: false,
 };
 export default InputText;
