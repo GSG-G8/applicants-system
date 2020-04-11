@@ -9,6 +9,13 @@ const Theme = createMuiTheme({
       main: 'rgb(59,90,111)',
     },
   },
+  typography: {
+    h1: {
+      fontFamily: 'Raleway',
+      fontSize: 48,
+      fontWeight: 'Bold',
+    },
+  },
 });
 
 export default Theme;
