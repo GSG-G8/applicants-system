@@ -1,8 +1,4 @@
 {
-  "eslint.workingDirectories": [
-    "./client",
-    "./server"
-  ],
   "editor.formatOnSave": false,
   "editor.tabSize": 2,
   "editor.codeActionsOnSave": {
