@@ -10,7 +10,9 @@ const getApplicants = (req, res, next) => {
         .status(404)
         .json({ statusCode: 404, error: `Applicants not found` });
     }
-    return res.status(200).json({ statusCode: 200, data: rows });
+    return res
+      .status(200)
+      .json({ statusCode: 200, count: rows.length, data: rows });
   }).catch(next);
 };
 module.exports = getApplicants;
