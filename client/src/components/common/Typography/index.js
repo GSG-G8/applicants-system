@@ -2,27 +2,36 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from '@material-ui/core/styles';
 import MuiTypography from '@material-ui/core/Typography';
-import Theme from './style';
+import { Theme, useStyles } from './style';
 
-const Typography = ({ children, variant, color, align }) => (
-  <ThemeProvider theme={Theme}>
-    <MuiTypography align={align} variant={variant} color={color} gutterBottom>
-      {children}
-    </MuiTypography>
-  </ThemeProvider>
-);
+const Typography = ({ children, className, ...props }) => {
+  const classes = useStyles();
+
+  return (
+    <ThemeProvider theme={Theme}>
+      <MuiTypography
+        className={classes[`${className}`]}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...props}
+        gutterBottom
+      >
+        {children}
+      </MuiTypography>
+    </ThemeProvider>
+  );
+};
 
 Typography.defaultProps = {
   variant: 'body1',
-  color: 'inherit',
   align: 'center',
+  color: 'textPrimary',
 };
 
 Typography.propTypes = {
-  align: PropTypes.string,
-  children: PropTypes.string.isRequired,
-  color: PropTypes.string,
   variant: PropTypes.string,
+  align: PropTypes.string,
+  className: PropTypes.string,
+  children: PropTypes.string.isRequired,
 };
 
 export default Typography;
