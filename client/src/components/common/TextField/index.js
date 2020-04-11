@@ -19,16 +19,16 @@ function InputText({
   return (
     <div className={classes.root}>
       <TextField
-        disabled={disabled}
         id={id}
-        label={label}
-        placeholder={placeholder}
-        defaultValue={value}
         type={type}
-        helperText={message}
+        label={label}
+        defaultValue={value}
         className={`classes.container ${className}`}
-        variant="outlined"
+        helperText={message}
+        placeholder={placeholder}
         onChange={onChange}
+        disabled={disabled}
+        variant="outlined"
       />
     </div>
   );
@@ -37,8 +37,8 @@ function InputText({
 InputText.propTypes = {
   id: PropTypes.string,
   type: PropTypes.string,
-  value: PropTypes.string,
   label: PropTypes.string,
+  value: PropTypes.string,
   className: PropTypes.string,
   message: PropTypes.string,
   placeholder: PropTypes.string,
