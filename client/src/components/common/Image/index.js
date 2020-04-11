@@ -2,7 +2,7 @@ import Image from 'material-ui-image';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function CommonImage({
+const CommonImage = ({
   src,
   width,
   height,
@@ -10,18 +10,16 @@ export default function CommonImage({
   onClick,
   alt,
   style,
-}) {
-  return (
-    <Image
-      imageStyle={{ width, height }}
-      animationDuration={animationDuration}
-      onClick={onClick}
-      alt={alt}
-      style={style}
-      src={src}
-    />
-  );
-}
+}) => (
+  <Image
+    imageStyle={{ width, height }}
+    animationDuration={animationDuration}
+    onClick={onClick}
+    alt={alt}
+    style={style}
+    src={src}
+  />
+);
 
 CommonImage.propTypes = {
   src: PropTypes.string.isRequired,
@@ -40,3 +38,4 @@ CommonImage.defaultProps = {
   alt: 'application custom image',
   style: null,
 };
+export default CommonImage;
