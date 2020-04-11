@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
-  element: {
+  circule: {
     margin: '1rem',
   },
   body: {
