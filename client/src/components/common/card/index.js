@@ -15,10 +15,9 @@ const SimpleCard = ({ ClassName, content }) => {
 
 SimpleCard.propTypes = {
   ClassName: PropTypes.string,
-  content: PropTypes.string,
+  content: PropTypes.node.isRequired,
 };
 SimpleCard.defaultProps = {
   ClassName: 'card_steper',
-  content: ' ',
 };
 export default SimpleCard;
