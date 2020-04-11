@@ -2,23 +2,42 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const dotStyle = makeStyles((theme) => ({
   steper: {
-    maxWidth: '63rem',
-    maxHeight: '46.9rem',
-    padding: '5rem',
-    flexGrow: 1,
+    width: '1009px',
+    height: '751px',
+    background: '#FFFFFF 0% 0% no-repeat padding-box',
+    boxShadow: '0px 3px 9px #00000033',
+    borderRadius: '5px',
   },
-  content: {},
+  content: {
+    padding: '92px 42px 41px 92px',
+    width: '926px',
+    height: '384px',
+  },
+  buttons: {
+    display: 'flex',
+    padding: '2rem',
+    justifyContent: 'flex-end',
+  },
   buttonNext: {
-    order: '3',
+    width: '210px',
+    margin: '.5rem',
+    height: '60px',
+    background: '#ED6D23 0% 0% no-repeat padding-box',
+    borderRadius: '5px',
   },
   buttonBack: {
-    order: '2',
+    width: '210px',
+    margin: '.5rem',
+    height: '60px',
+    background: '#FFFFFF 0% 0% no-repeat padding-box',
+    border: '1px solid #ED6D23',
+    borderRadius: '5px',
   },
 
   dots: {
     backgroundColor: 'transparent',
     display: 'flex',
-    flexWrap: 'wrap',
+    justifyContent: 'center',
   },
 }));
 

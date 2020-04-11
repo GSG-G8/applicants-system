@@ -3,9 +3,8 @@ import MobileStepper from '@material-ui/core/MobileStepper';
 // import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import dotstyle from './style';
-import './index.css';
 import PropTypes from 'prop-types';
+import dotstyle from './style';
 
 export default function TextMobileStepper({ steps }) {
   const classes = dotstyle();
@@ -31,29 +30,25 @@ export default function TextMobileStepper({ steps }) {
         position="static"
         variant="dots"
         activeStep={activeStep}
-        nextButton={
-          <div className={classes.buttonNext}>
-            <Button
-              size="small"
-              onClick={handleNext}
-              disabled={activeStep === maxSteps - 1}
-            >
-              Next
-            </Button>
-          </div>
-        }
-        backButton={
-          <div className={classes.buttonBack}>
-            <Button
-              size="small"
-              onClick={handleBack}
-              disabled={activeStep === 0}
-            >
-              Back
-            </Button>
-          </div>
-        }
       />
+      <div className={classes.buttons}>
+        <Button
+          className={classes.buttonBack}
+          size="small"
+          onClick={handleBack}
+          disabled={activeStep === 0}
+        >
+          Back
+        </Button>
+        <Button
+          className={classes.buttonNext}
+          size="small"
+          onClick={handleNext}
+          disabled={activeStep === maxSteps - 1}
+        >
+          {activeStep === maxSteps - 1 ? 'Complete' : 'Next'}
+        </Button>
+      </div>
     </div>
   );
 }
