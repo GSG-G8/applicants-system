@@ -47,7 +47,7 @@ InputText.propTypes = {
 };
 InputText.defaultProps = {
   id: 'outlined-required',
-  type: '',
+  type: 'text',
   label: '',
   className: '',
   message: '',
