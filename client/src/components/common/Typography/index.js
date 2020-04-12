@@ -25,11 +25,13 @@ Typography.defaultProps = {
   variant: 'body1',
   align: 'center',
   color: 'textPrimary',
+  className: '',
 };
 
 Typography.propTypes = {
   variant: PropTypes.string,
   align: PropTypes.string,
+  color: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.string.isRequired,
 };
