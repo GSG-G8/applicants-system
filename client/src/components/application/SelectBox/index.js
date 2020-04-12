@@ -4,38 +4,49 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import PropTypes from 'prop-types';
-import selectStyle from './style';
+import './style.css';
 
-export default function SelectBox(props) {
-  const { label, value } = props;
-  const classes = selectStyle();
-  const [select, setSelect] = React.useState('');
-
-  const handleChange = (event) => {
-    setSelect(event.target.value);
+export default class SelectBox extends React.Component {
+  state = {
+    selectValue: '',
   };
 
-  return (
-    <FormControl variant="outlined" className={classes.formControl}>
-      <InputLabel id="demo-simple-select-outlined-label">{label}</InputLabel>
-      <Select
-        labelId="demo-simple-select-outlined-label"
-        id="demo-simple-select-outlined"
-        value={select}
-        onChange={handleChange}
-        label={select}
-      >
-        {value.map((e) => (
-          <MenuItem value={e.value}>{e.item}</MenuItem>
-        ))}
-      </Select>
-    </FormControl>
-  );
+  handleChange = (event) => {
+    this.setState({ selectValue: event.target.value });
+  };
+
+  render() {
+    const { selectValue } = this.state;
+    const { label, items, className } = this.props;
+    return (
+      <div>
+        <FormControl variant="outlined" className={className}>
+          <InputLabel id="demo-simple-select-outlined-label">
+            {label}
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-outlined-label"
+            id="demo-simple-select-outlined"
+            value={selectValue}
+            onChange={this.handleChange}
+            label={label}
+          >
+            {items.map((e) => (
+              <MenuItem value={e.item}>{e.item}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </div>
+    );
+  }
 }
-SelectBox.defaultProps = {
-  label: '',
-};
+
 SelectBox.propTypes = {
-  label: PropTypes.string,
-  value: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  items: PropTypes.string.isRequired,
+  className: PropTypes.string,
+};
+
+SelectBox.defaultProps = {
+  className: 'select-box',
 };
