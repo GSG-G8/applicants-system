@@ -2,27 +2,25 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import useStyles from './style';
 
-const CustomButton = ({ children, customStyle, clickFunction }) => {
+const CustomButton = ({ children, customStyle, ...props }) => {
   const classes = useStyles();
   return (
-    <button
-      type="button"
-      onClick={clickFunction}
-      className={classes[`${customStyle}`]}
-    >
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <button type="button" className={classes[`${customStyle}`]} {...props}>
       {children}
     </button>
   );
 };
 
 CustomButton.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.node.isRequired,
   customStyle: PropTypes.string,
-  clickFunction: PropTypes.func,
+  disabled: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 CustomButton.defaultProps = {
   customStyle: 'contained', // or outlined
-  children: 'next',
-  clickFunction: null,
+  disabled: false,
+  onClick: () => {},
 };
 export default CustomButton;

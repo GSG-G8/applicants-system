@@ -22,6 +22,12 @@ const useStyles = makeStyles({
     '&:focus': {
       outline: 'none',
     },
+    '&:disabled': {
+      color: 'rgba(0, 0, 0, 0.26)',
+      boxShadow: 'none',
+      backgroundColor: 'rgba(0, 0, 0, 0.12)',
+      cursor: 'default',
+    },
   },
 
   outlined: {
@@ -45,6 +51,12 @@ const useStyles = makeStyles({
     },
     '&:focus': {
       outline: 'none',
+    },
+    '&:disabled': {
+      color: 'rgba(0, 0, 0, 0.26)',
+      boxShadow: 'none',
+      backgroundColor: 'rgba(0, 0, 0, 0.12)',
+      cursor: 'default',
     },
   },
 });
