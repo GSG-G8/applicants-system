@@ -28,7 +28,7 @@ const dotStyle = makeStyles((theme) => ({
   buttonBack: {
     width: '13rem',
     margin: '.5rem',
-    height: '3.75rem'',
+    height: '3.75rem',
     background: '#FFFFFF 0% 0% no-repeat padding-box',
     border: '1px solid #ED6D23',
     borderRadius: '5px',
