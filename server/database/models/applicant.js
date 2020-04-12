@@ -108,14 +108,17 @@ const applicantSchema = new Schema({
   },
   freeCodeCampLink: {
     type: String,
+    default: 'https://www.freecodecamp.org/code_academy',
     trim: true,
   },
   codeWarsLink: {
     type: String,
+    default: 'https://www.codewars.com/users/code_academy',
     trim: true,
   },
   codeWarsKyu: {
     type: Number,
+    trim: true,
   },
   technicalTasks: {
     type: Boolean,
@@ -133,14 +136,6 @@ const applicantSchema = new Schema({
     type: String,
     trim: true,
   },
-  applicationStartDate: {
-    type: Date,
-    required: true,
-    default: Date.now,
-  },
-  applicationEndDate: {
-    type: Date,
-  },
   applicationSubmittedDate: {
     type: Date,
   },
@@ -149,4 +144,5 @@ const applicantSchema = new Schema({
     default: false,
   },
 });
+
 module.exports = mongoose.model('applicant', applicantSchema);

@@ -11,7 +11,9 @@
     "dev": "nodemon server/index.js",
     "kill": "fuser -k 5000/tcp",
     "kill-run": "npm run kill && npm run server",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build",
+    "build:database:pro": "NODE_ENV=production node server/database/index.js",
+    "build:database:dev": "NODE_ENV=test node server/database/index.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +27,7 @@
   },
   "homepage": "https://github.com/GSG-G8/applicants-system#readme",
   "dependencies": {
+    "axios": "^0.19.2",
     "bcrypt": "^4.0.1",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.5",
@@ -32,6 +35,7 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.6",
+    "morgan": "^1.10.0",
     "serve-favicon": "^2.5.0",
     "yup": "^0.28.3"
   },

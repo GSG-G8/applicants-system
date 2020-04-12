@@ -1,18 +1,29 @@
 const jwt = require('jsonwebtoken');
 
+const applicant = require('../database/models/applicant');
 const admin = require('../database/models/admin');
 
 require('env2')('config.env');
 
 const isAuthorized = (req, res, next) => {
-  jwt.verify(req.cookies.applicant, process.env.SECRET_KEY, (err, token) => {
-    if (err) {
+  const { email } = req.body;
+  applicant.findOne({ email }).then((data) => {
+    if (data === null) {
       res
         .status(401)
         .send({ statusCode: 401, auth: false, error: 'you are Unauthorized' });
-    } else {
-      next();
     }
+    jwt.verify(req.cookies.applicant, process.env.SECRET_KEY, (err, token) => {
+      if (err) {
+        res.status(401).send({
+          statusCode: 401,
+          auth: false,
+          error: 'you are Unauthorized',
+        });
+      } else {
+        next();
+      }
+    });
   });
 };
 
