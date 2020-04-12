@@ -21,19 +21,19 @@ const Typography = ({ children, className, ...props }) => {
   );
 };
 
-Typography.defaultProps = {
-  variant: 'body1',
-  align: 'center',
-  color: 'textPrimary',
-  className: '',
-};
-
 Typography.propTypes = {
   variant: PropTypes.string,
   align: PropTypes.string,
   color: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.string.isRequired,
+};
+
+Typography.defaultProps = {
+  variant: 'body1',
+  align: 'center',
+  color: 'textPrimary',
+  className: '',
 };
 
 export default Typography;
