@@ -6,12 +6,12 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     justifyContent: 'space-between',
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
   },
   logo: {
     pointerEvents: 'none',
     width: '10rem',
-  }
+  },
 }));
 
 export default useStyles;
