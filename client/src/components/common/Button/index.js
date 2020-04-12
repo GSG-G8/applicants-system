@@ -1,20 +1,28 @@
-import React from "react";
-import PropTypes from "prop-types";
-import useStyles from "./style";
+import PropTypes from 'prop-types';
+import React from 'react';
+import useStyles from './style';
 
-const CustomButton = ({ children, customStyle }) => {
+const CustomButton = ({ children, customStyle, clickFunction }) => {
   const classes = useStyles();
-  return <button className={classes[`${customStyle}`]}>{children}</button>;
+  return (
+    <button
+      type="button"
+      onClick={clickFunction}
+      className={classes[`${customStyle}`]}
+    >
+      {children}
+    </button>
+  );
 };
 
 CustomButton.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  classes: PropTypes.object.isRequired,
-  children: PropTypes.string.isRequired,
+  children: PropTypes.string,
   customStyle: PropTypes.string,
+  clickFunction: PropTypes.func,
 };
 CustomButton.defaultProps = {
-  customStyle: "contained", //or outlined
-  children: "next",
+  customStyle: 'contained', // or outlined
+  children: 'next',
+  clickFunction: null,
 };
 export default CustomButton;
