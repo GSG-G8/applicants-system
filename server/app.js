@@ -6,6 +6,8 @@ const cookieParser = require('cookie-parser');
 const router = require('./router');
 const dataBase = require('./database/dbConnection');
 
+const errorHandler = require('./controllers/errors');
+
 const app = express();
 
 app.disable('x-powered-by');
@@ -27,6 +29,8 @@ dataBase
 app.use(express.static(join(__dirname, '..', 'client', 'build')));
 
 app.use('/api/v1', router);
+
+app.use(errorHandler);
 
 app.get('*', (req, res) => {
   res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));

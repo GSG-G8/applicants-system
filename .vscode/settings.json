@@ -5,4 +5,7 @@
     "source.fixAll": true,
     "prettier.singleQuote": true,
   },
+  "eslint.workingDirectories": [
+    "./client", "./server"
+  ]
 }
