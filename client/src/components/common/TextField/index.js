@@ -1,34 +1,56 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import './index.css';
 import PropTypes from 'prop-types';
-import InputDisabled from './textdisabled';
+import style from './style';
 
-function InputText({ id, type, label, value }) {
+function InputText({
+  id,
+  type,
+  label,
+  value,
+  className,
+  message,
+  placeholder,
+  onChange,
+  disabled,
+}) {
+  const classes = style();
+
   return (
-    <div className="contaner">
+    <div className={classes.root}>
       <TextField
         id={id}
+        type={type}
         label={label}
         defaultValue={value}
-        type={type}
-        className="input"
+        className={`classes.container ${className}`}
+        helperText={message}
+        placeholder={placeholder}
+        onChange={onChange}
+        disabled={disabled}
         variant="outlined"
       />
     </div>
   );
 }
-InputText.defaultProps = {
-  id: 'outlined-required',
-  type: '',
-  label: '',
-  value: '',
-};
 
 InputText.propTypes = {
   id: PropTypes.string,
   type: PropTypes.string,
-  value: PropTypes.string,
   label: PropTypes.string,
+  value: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  message: PropTypes.string,
+  placeholder: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 };
-export { InputText, InputDisabled };
+InputText.defaultProps = {
+  id: 'outlined-required',
+  type: 'text',
+  label: '',
+  className: '',
+  message: '',
+  disabled: false,
+};
+export default InputText;
