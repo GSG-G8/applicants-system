@@ -5,6 +5,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'fixed',
   },
   toolbar: {
+    backgroundColor: 'white',
     justifyContent: 'space-between',
   },
   logo: {
