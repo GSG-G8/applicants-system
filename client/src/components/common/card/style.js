@@ -4,8 +4,8 @@ const useStyles = makeStyles({
   card_steper: {
     margin: '2rem 0rem 1rem 2rem',
     padding: '2rem 1rem',
-    width: '40rem',
-    height: '25rem',
+    width: '63rem',
+    height: '42rem',
     alignSelf: 'flex-end',
   },
   card_sign: {

@@ -1,11 +1,13 @@
 import React from 'react';
 import MobileStepper from '@material-ui/core/MobileStepper';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import dotstyle from './style';
+import regestration from './regestrationSteps.json';
+import Typography from '../../common/Typography';
+import Card from '../../common/card';
+import Button from '../../common/Button';
 
-export default function TextMobileStepper({ steps }) {
+function DotStepper({ steps }) {
   const classes = dotstyle();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = steps.length;
@@ -19,39 +21,53 @@ export default function TextMobileStepper({ steps }) {
   };
 
   return (
-    <div className={classes.steper}>
-      <div className={classes.content}>
-        <Typography>{steps[activeStep].article}</Typography>
-      </div>
-      <MobileStepper
-        className={classes.dots}
-        steps={maxSteps}
-        position="static"
-        variant="dots"
-        activeStep={activeStep}
-      />
-      <div className={classes.buttons}>
-        <Button
-          className={classes.buttonBack}
-          size="small"
-          onClick={handleBack}
-          disabled={activeStep === 0}
-        >
-          Back
-        </Button>
-        <Button
-          className={classes.buttonNext}
-          size="small"
-          onClick={handleNext}
-          disabled={activeStep === maxSteps - 1}
-        >
-          {activeStep === maxSteps - 1 ? 'Complete' : 'Next'}
-        </Button>
-      </div>
-    </div>
+    <Card
+      content={
+        <div>
+          <div className={classes.content}>
+            <div>
+              <Typography variant="h2" color="primary">
+                {regestration.regestrationInfo.applyHeader}
+              </Typography>
+              <Typography variant="subtitle1" color="textPrimary">
+                {regestration.regestrationInfo.startChohort}
+              </Typography>
+            </div>
+            <div>
+              <Typography variant="h6" color="secondary">
+                {regestration.regestrationInfo.stepHeader}
+              </Typography>
+            </div>
+            <div className={classes.changing}>
+              <Typography variant="body2">{steps[activeStep].step1}</Typography>
+              <Typography variant="body2">{steps[activeStep].step2}</Typography>
+            </div>
+          </div>
+          <MobileStepper
+            className={classes.dots}
+            steps={maxSteps}
+            position="static"
+            variant="dots"
+            activeStep={activeStep}
+          />
+          <div className={classes.buttons}>
+            <Button onClick={handleBack} disabled={activeStep === 0}>
+              Back
+            </Button>
+            <Button onClick={handleNext} disabled={activeStep === maxSteps - 1}>
+              {activeStep === maxSteps - 1 ? 'Complete' : 'Next'}
+            </Button>
+          </div>
+        </div>
+      }
+    />
   );
 }
-
-TextMobileStepper.propTypes = {
-  steps: PropTypes.string.isRequired,
+DotStepper.propTypes = {
+  steps: PropTypes.string,
 };
+DotStepper.defaultProps = {
+  steps: regestration.regestrationDetails,
+};
+
+export { DotStepper, regestration };
