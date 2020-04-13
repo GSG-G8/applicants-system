@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+// import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import { AccountCircle, Person, ExitToApp } from '@material-ui/icons';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -12,13 +13,13 @@ const UserMenu = ({ logoutHandler }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
-  const handleMenu = (event) => {
+  const handleMenu = useCallback((event) => {
     setAnchorEl(event.currentTarget);
-  };
+  }, []);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setAnchorEl(null);
-  };
+  }, []);
 
   const classes = useStyles();
   return (
