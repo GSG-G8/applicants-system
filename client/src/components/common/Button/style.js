@@ -5,6 +5,7 @@ const useStyles = makeStyles({
     appearance: 'none',
     fontFamily: 'inherit',
     fontSize: '1rem',
+    fontWeight: 'bold',
     border: 0,
     borderRadius: '0.3rem',
     background: 'hsl(22, 85%, 53%)',
@@ -34,6 +35,7 @@ const useStyles = makeStyles({
     appearance: 'none',
     fontFamily: 'inherit',
     fontSize: '1rem',
+    fontWeight: 'bold',
     border: '0.05rem solid  hsl(22, 85%, 53%)',
     borderRadius: '0.3rem',
     background: 'transparent',
@@ -43,7 +45,7 @@ const useStyles = makeStyles({
     cursor: 'pointer',
     '&:hover': {
       backgroundColor: 'transparent',
-      fontWeight: '900',
+      fontWeight: 'bolder',
     },
     '&:active': {
       boxShadow: 'none',
