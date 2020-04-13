@@ -15,12 +15,13 @@ const DrawerList = ({ content, isFinished }) => {
       document.querySelector('#font-awesome-css')
     );
   }, []);
+
   return (
     <div>
       <List>
-        {content.map((text) => (
+        {content.map((text, index) => (
           <ListItem button key={text} className={classes.list}>
-            {isFinished ? (
+            {isFinished[index] ? (
               <Icon className="far fa-check-circle" />
             ) : (
               <Icon className="far fa-times-circle" />
@@ -38,11 +39,11 @@ const DrawerList = ({ content, isFinished }) => {
 
 DrawerList.propTypes = {
   content: PropTypes.node,
-  isFinished: PropTypes.bool,
+  isFinished: PropTypes.node,
 };
 DrawerList.defaultProps = {
   content: [],
-  isFinished: false,
+  isFinished: [],
 };
 
 export default DrawerList;

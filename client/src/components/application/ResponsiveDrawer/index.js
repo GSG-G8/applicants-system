@@ -27,11 +27,11 @@ const ResponsiveDrawer = ({ Content, IsFinished }) => {
 
 ResponsiveDrawer.propTypes = {
   Content: PropTypes.node,
-  IsFinished: PropTypes.bool,
+  IsFinished: PropTypes.node,
 };
 ResponsiveDrawer.defaultProps = {
   Content: [],
-  IsFinished: false,
+  IsFinished: [],
 };
 
 export default ResponsiveDrawer;
