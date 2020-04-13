@@ -17,17 +17,24 @@ function InputText({
   const classes = style();
 
   return (
-    <div className={classes.root}>
+    <div>
       <TextField
         id={id}
         type={type}
         label={label}
         defaultValue={value}
-        className={`classes.container ${className}`}
         helperText={message}
         placeholder={placeholder}
         onChange={onChange}
         disabled={disabled}
+        InputProps={{
+          className: classes[`${className}`],
+        }}
+        InputLabelProps={{
+          classes: {
+            root: classes.label,
+          },
+        }}
         variant="outlined"
       />
     </div>
@@ -49,7 +56,7 @@ InputText.defaultProps = {
   id: 'outlined-required',
   type: 'text',
   label: '',
-  className: '',
+  className: 'container',
   message: '',
   disabled: false,
 };
