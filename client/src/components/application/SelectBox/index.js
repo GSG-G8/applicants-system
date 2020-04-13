@@ -19,20 +19,24 @@ export default class SelectBox extends React.Component {
     const { selectValue } = this.state;
     const { label, items, className } = this.props;
     return (
-      <div>
-        <FormControl variant="outlined" className={className}>
+      <div className="label">
+        <FormControl variant="outlined" className="label">
           <InputLabel id="demo-simple-select-outlined-label">
             {label}
           </InputLabel>
+
           <Select
+            className={className}
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"
             value={selectValue}
             onChange={this.handleChange}
             label={label}
           >
-            {items.map((e) => (
-              <MenuItem value={e.item}>{e.item}</MenuItem>
+            {items.map(({ item }) => (
+              <MenuItem key={item} value={item}>
+                {item}
+              </MenuItem>
             ))}
           </Select>
         </FormControl>
@@ -43,7 +47,7 @@ export default class SelectBox extends React.Component {
 
 SelectBox.propTypes = {
   label: PropTypes.string.isRequired,
-  items: PropTypes.string.isRequired,
+  items: PropTypes.node.isRequired,
   className: PropTypes.string,
 };
 
