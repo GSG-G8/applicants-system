@@ -7,10 +7,11 @@ import Typography from '../../common/Typography';
 import Card from '../../common/card';
 import Button from '../../common/Button';
 
-function DotStepper({ steps }) {
+const { primaryHeader, Info, stepHeader, steps } = regestration;
+function DotStepper({ inSteps }) {
   const classes = dotstyle();
   const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = steps.length;
+  const maxSteps = inSteps.length;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -26,20 +27,21 @@ function DotStepper({ steps }) {
         <div>
           <div className={classes.content}>
             <div>
-              <Typography variant="h2" color="primary">
-                {regestration.regestrationInfo.applyHeader}
+              <Typography variant="h4" color="primary">
+                {primaryHeader}
               </Typography>
               <Typography variant="subtitle1" color="textPrimary">
-                {regestration.regestrationInfo.startChohort}
+                {Info}
               </Typography>
             </div>
             <div>
-              <Typography variant="h6" color="secondary">
-                {regestration.regestrationInfo.stepHeader}
+              <Typography variant="body2" color="secondary">
+                {stepHeader}
               </Typography>
             </div>
             <div className={classes.changing}>
               <Typography variant="body2">{steps[activeStep].step1}</Typography>
+
               <Typography variant="body2">{steps[activeStep].step2}</Typography>
             </div>
           </div>
@@ -51,7 +53,11 @@ function DotStepper({ steps }) {
             activeStep={activeStep}
           />
           <div className={classes.buttons}>
-            <Button onClick={handleBack} disabled={activeStep === 0}>
+            <Button
+              customStyle="outlined"
+              onClick={handleBack}
+              disabled={activeStep === 0}
+            >
               Back
             </Button>
             <Button onClick={handleNext} disabled={activeStep === maxSteps - 1}>
@@ -64,10 +70,10 @@ function DotStepper({ steps }) {
   );
 }
 DotStepper.propTypes = {
-  steps: PropTypes.string,
+  inSteps: PropTypes.node,
 };
 DotStepper.defaultProps = {
-  steps: regestration.regestrationDetails,
+  inSteps: steps,
 };
 
-export { DotStepper, regestration };
+export default DotStepper;

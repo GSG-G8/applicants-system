@@ -1,9 +1,8 @@
- { "regestrationInfo":{
-  "applyHeader":"APPLY FOR THE GAZA CODE ACADEMY!",
-  "startChohort":"The Gaza Code Academy will launch its 9th cohort in August 2020.",
-  "stepHeader":"TO BE ELIGIBLE FOR THE PROGRAM, YOU MUST MEET THE FOLLOWING BASIC CRITERIA:"
-},
-"regestrationDetails":[
+ {
+  "primaryHeader":"APPLY FOR THE GAZA CODE ACADEMY!",
+  "Info":"The Gaza Code Academy will launch its 9th cohort in August 2020.",
+  "stepHeader":"TO BE ELIGIBLE FOR THE PROGRAM, YOU MUST MEET THE FOLLOWING BASIC CRITERIA:",
+"steps":[
 { 
  "step1"  : "1- Be at least 18 years old and not currently enrolled at University",
  "step2"  : "2- Have strong English conversational and comprehension skills" 

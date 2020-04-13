@@ -5,16 +5,15 @@ const dotStyle = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    alignItems: 'flex-start',
     textAlignLast: 'left',
-    padding: '5rem 2.6rem 4rem 2rem',
-    width: '57.8rem',
-    height: '22rem',
+    paddingLeft: '15px',
+    width: '40rem',
+    height: '20rem',
   },
   buttons: {
     display: 'flex',
-    padding: '2rem',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-around',
+    padding: '1rem 1rem 5rem 22rem',
   },
   dots: {
     backgroundColor: 'transparent',
@@ -22,7 +21,7 @@ const dotStyle = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   changing: {
-    height: '2rem',
+    height: '7rem',
   },
 }));
 

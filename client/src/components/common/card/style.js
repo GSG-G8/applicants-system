@@ -2,10 +2,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   card_steper: {
-    margin: '2rem 0rem 1rem 2rem',
-    padding: '2rem 1rem',
-    width: '63rem',
-    height: '42rem',
+    margin: '1rem 0rem 1rem 1rem',
+    padding: '1rem 1rem',
+    width: '43rem',
+    height: '27rem',
     alignSelf: 'flex-end',
   },
   card_sign: {
