@@ -9,7 +9,11 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+<<<<<<< HEAD
     "axios": "^0.19.2",
+=======
+    "material-ui-image": "^3.2.3",
+>>>>>>> dca9e51b0929064b07064962075cb1f61b44ffe8
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
