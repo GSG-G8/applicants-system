@@ -1,7 +1,7 @@
-.root{
+.app-bar{
   position: fixed;
 }
-.toolbar{
+.app-bar__toolbar{
   background-color: white;
   justify-content: space-between;
 }
