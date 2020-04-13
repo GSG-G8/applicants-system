@@ -1,0 +1,11 @@
+.root{
+  position: fixed;
+}
+.toolbar{
+  background-color: white;
+  justify-content: space-between;
+}
+.logo{
+  pointer-events: none;
+  width: 10rem;
+}
