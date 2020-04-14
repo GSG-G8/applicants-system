@@ -7,11 +7,19 @@ import Typography from '../../common/Typography';
 import Card from '../../common/card';
 import Button from '../../common/Button';
 
-const { primaryHeader, Info, stepHeader, steps } = registration;
-const DotStepper = ({ inSteps }) => {
+const { primaryHeader, Info, stepHeader } = registration;
+
+const DotStepper = ({ steps }) => {
+  const mainStep = steps
+    .map((e, index) =>
+      index % 2 === 0
+        ? { element1: steps[index], element2: steps[index + 1] }
+        : false
+    )
+    .filter((e) => e !== false);
   const classes = stepperStyle();
   const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = inSteps.length;
+  const maxSteps = mainStep.length;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -20,7 +28,11 @@ const DotStepper = ({ inSteps }) => {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-  const [firstStep, secondStep] = steps[activeStep].split('.');
+
+  const handleApply = () => {
+    window.location.href = '/';
+  };
+
   return (
     <Card
       content={
@@ -36,16 +48,16 @@ const DotStepper = ({ inSteps }) => {
             </div>
             <div>
               <Typography variant="body2" color="secondary" align="left">
-                {stepHeader}
+                {stepHeader}.
               </Typography>
             </div>
             <div className={classes.changing}>
               <Typography variant="body2" align="left">
-                {firstStep}
+                {mainStep[activeStep].element1}
               </Typography>
 
               <Typography variant="body2" align="left">
-                {secondStep}
+                {mainStep[activeStep].element2}
               </Typography>
             </div>
           </div>
@@ -64,7 +76,9 @@ const DotStepper = ({ inSteps }) => {
             >
               Back
             </Button>
-            <Button onClick={handleNext}>
+            <Button
+              onClick={activeStep === maxSteps - 1 ? handleApply : handleNext}
+            >
               {activeStep === maxSteps - 1 ? 'Apply' : 'Next'}
             </Button>
           </div>
@@ -74,10 +88,10 @@ const DotStepper = ({ inSteps }) => {
   );
 };
 DotStepper.propTypes = {
-  inSteps: PropTypes.arrayOf(PropTypes.object),
+  steps: PropTypes.arrayOf(PropTypes.string),
 };
 DotStepper.defaultProps = {
-  inSteps: steps,
+  steps: '',
 };
 
 export default DotStepper;
