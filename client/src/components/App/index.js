@@ -24,7 +24,7 @@ import './index.css';
 export default class App extends React.Component {
   state = {
     user: false,
-    admin: true,
+    admin: false,
     loading: true,
   };
 
@@ -73,7 +73,59 @@ export default class App extends React.Component {
           <main className="container">
             {loading ? (
               <Limitation ClassName="body" />
-            ) : admin || user === false ? (
+            ) : admin || user === true ? (
+              admin ? (
+                <div>
+                  <Route
+                    path="/dashboard"
+                    render={(props) => <Dashboard {...props} />}
+                  />
+                  <Route
+                    path="/dashboard/applications/opened"
+                    render={(props) => <Opened {...props} />}
+                  />
+                  <Route
+                    path="/dashboard/applications/submitted"
+                    render={(props) => <SubmittedAll {...props} />}
+                  />
+                  <Route
+                    path="/dashboard/applications/submitted/:applicantID"
+                    render={(props) => <SubmittedId {...props} />}
+                  />
+                  <Route
+                    path="/dashboard/applications/completed"
+                    render={(props) => <Completed {...props} />}
+                  />
+                </div>
+              ) : (
+                <div>
+                  <Route
+                    path="/steps"
+                    render={(props) => <Login {...props} />}
+                  />
+                  <Route
+                    path="/availability"
+                    render={(props) => <Availability {...props} />}
+                  />
+                  <Route
+                    path="/tasks"
+                    render={(props) => <Tasks {...props} />}
+                  />
+                  <Route
+                    path="/project"
+                    render={(props) => <Project {...props} />}
+                  />
+                  <Route
+                    path="/submit"
+                    render={(props) => <Submit {...props} />}
+                  />
+                  <Route
+                    path="/myprofile"
+                    render={(props) => <Profile {...props} />}
+                  />
+                </div>
+              )
+            ) : (
               <div>
                 <Route exact path="/" render={(props) => <Home {...props} />} />
                 <Route
@@ -87,50 +139,6 @@ export default class App extends React.Component {
                   render={(props) => <Signup {...props} />}
                 />
                 <Route render={() => <Redirect to="/" />} />
-              </div>
-            ) : admin ? (
-              <div>
-                <Route
-                  path="/dashboard"
-                  render={(props) => <Dashboard {...props} />}
-                />
-                <Route
-                  path="/dashboard/applications/opened"
-                  render={(props) => <Opened {...props} />}
-                />
-                <Route
-                  path="/dashboard/applications/submitted"
-                  render={(props) => <SubmittedAll {...props} />}
-                />
-                <Route
-                  path="/dashboard/applications/submitted/:applicantID"
-                  render={(props) => <SubmittedId {...props} />}
-                />
-                <Route
-                  path="/dashboard/applications/completed"
-                  render={(props) => <Completed {...props} />}
-                />
-              </div>
-            ) : (
-              <div>
-                <Route path="/steps" render={(props) => <Login {...props} />} />
-                <Route
-                  path="/availability"
-                  render={(props) => <Availability {...props} />}
-                />
-                <Route path="/tasks" render={(props) => <Tasks {...props} />} />
-                <Route
-                  path="/project"
-                  render={(props) => <Project {...props} />}
-                />
-                <Route
-                  path="/submit"
-                  render={(props) => <Submit {...props} />}
-                />
-                <Route
-                  path="/myprofile"
-                  render={(props) => <Profile {...props} />}
-                />
               </div>
             )}
           </main>
