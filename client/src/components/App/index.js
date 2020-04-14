@@ -1,10 +1,11 @@
 import React from 'react';
 import './index.css';
+import NonlinearStepper from '../application/NonlinearStepper';
 
 function App() {
   return (
     <div>
-      <h1>Welcome in Applicants System</h1>
+      <NonlinearStepper />
     </div>
   );
 }
