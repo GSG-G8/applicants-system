@@ -6,13 +6,13 @@ const dotStyle = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
     paddingLeft: '1rem',
-    width: '41rem',
-    height: '16rem',
+    width: '38rem',
+    height: '15rem',
   },
   buttons: {
     display: 'flex',
     justifyContent: 'space-around',
-    padding: '1rem 1rem 5rem 22rem',
+    padding: '1rem 0rem 0rem 20rem',
   },
   dots: {
     backgroundColor: 'transparent',
@@ -20,7 +20,7 @@ const dotStyle = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   changing: {
-    height: '6rem',
+    height: '5rem',
   },
 }));
 

@@ -1,15 +1,15 @@
 import React from 'react';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import PropTypes from 'prop-types';
-import dotstyle from './style';
+import stepperStyle from './style';
 import registration from './registrationSteps.json';
 import Typography from '../../common/Typography';
 import Card from '../../common/card';
 import Button from '../../common/Button';
 
 const { primaryHeader, Info, stepHeader, steps } = registration;
-function DotStepper({ inSteps }) {
-  const classes = dotstyle();
+const DotStepper = ({ inSteps }) => {
+  const classes = stepperStyle();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = inSteps.length;
 
@@ -72,7 +72,7 @@ function DotStepper({ inSteps }) {
       }
     />
   );
-}
+};
 DotStepper.propTypes = {
   inSteps: PropTypes.arrayOf(PropTypes.object),
 };

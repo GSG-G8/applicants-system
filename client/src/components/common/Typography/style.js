@@ -51,16 +51,16 @@ const Theme = createMuiTheme({
     },
     body1: {
       fontFamily: 'Raleway',
-      fontSize: 20,
+      fontSize: 13,
     },
     body2: {
       fontFamily: 'Raleway',
-      fontSize: 15,
+      fontSize: 13,
       fontWeight: 700,
     },
     subtitle1: {
       fontFamily: 'Raleway',
-      fontSize: 18,
+      fontSize: 12,
     },
   },
 });
