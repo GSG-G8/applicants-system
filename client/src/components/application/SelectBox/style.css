@@ -1,12 +1,11 @@
-  #demo-simple-select-outlined-label {
-    line-height: 0;
-    margin: .2rem;
-  }
+    #demo-simple-select-outlined-label {
+      line-height: 0;
+      margin: .2rem;
+    }
   .label {
     width: 25rem;
     height: 1rem;
     margin-top: .5rem;
-
   }
   .select-box {
     margin: .2rem;
