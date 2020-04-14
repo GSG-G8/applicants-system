@@ -5,10 +5,9 @@ const dotStyle = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    textAlignLast: 'left',
-    paddingLeft: '15px',
-    width: '40rem',
-    height: '20rem',
+    paddingLeft: '1rem',
+    width: '41rem',
+    height: '16rem',
   },
   buttons: {
     display: 'flex',
@@ -21,7 +20,7 @@ const dotStyle = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   changing: {
-    height: '7rem',
+    height: '6rem',
   },
 }));
 

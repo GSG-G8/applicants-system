@@ -55,7 +55,7 @@ const Theme = createMuiTheme({
     },
     body2: {
       fontFamily: 'Raleway',
-      fontSize: 18,
+      fontSize: 15,
       fontWeight: 700,
     },
     subtitle1: {

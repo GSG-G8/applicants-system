@@ -2,12 +2,12 @@ import React from 'react';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import PropTypes from 'prop-types';
 import dotstyle from './style';
-import regestration from './regestrationSteps.json';
+import registration from './registrationSteps.json';
 import Typography from '../../common/Typography';
 import Card from '../../common/card';
 import Button from '../../common/Button';
 
-const { primaryHeader, Info, stepHeader, steps } = regestration;
+const { primaryHeader, Info, stepHeader, steps } = registration;
 function DotStepper({ inSteps }) {
   const classes = dotstyle();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -27,22 +27,26 @@ function DotStepper({ inSteps }) {
         <div>
           <div className={classes.content}>
             <div>
-              <Typography variant="h4" color="primary">
+              <Typography variant="h4" color="primary" align="left">
                 {primaryHeader}
               </Typography>
-              <Typography variant="subtitle1" color="textPrimary">
+              <Typography variant="subtitle1" color="textPrimary" align="left">
                 {Info}
               </Typography>
             </div>
             <div>
-              <Typography variant="body2" color="secondary">
+              <Typography variant="body2" color="secondary" align="left">
                 {stepHeader}
               </Typography>
             </div>
             <div className={classes.changing}>
-              <Typography variant="body2">{steps[activeStep].step1}</Typography>
+              <Typography variant="body2" align="left">
+                {steps[activeStep].step1}
+              </Typography>
 
-              <Typography variant="body2">{steps[activeStep].step2}</Typography>
+              <Typography variant="body2" align="left">
+                {steps[activeStep].step2}
+              </Typography>
             </div>
           </div>
           <MobileStepper
@@ -60,8 +64,8 @@ function DotStepper({ inSteps }) {
             >
               Back
             </Button>
-            <Button onClick={handleNext} disabled={activeStep === maxSteps - 1}>
-              {activeStep === maxSteps - 1 ? 'Complete' : 'Next'}
+            <Button onClick={handleNext}>
+              {activeStep === maxSteps - 1 ? 'Apply' : 'Next'}
             </Button>
           </div>
         </div>
@@ -70,7 +74,7 @@ function DotStepper({ inSteps }) {
   );
 }
 DotStepper.propTypes = {
-  inSteps: PropTypes.node,
+  inSteps: PropTypes.arrayOf(PropTypes.object),
 };
 DotStepper.defaultProps = {
   inSteps: steps,

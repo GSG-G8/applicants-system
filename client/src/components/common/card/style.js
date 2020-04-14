@@ -5,7 +5,7 @@ const useStyles = makeStyles({
     margin: '1rem 0rem 1rem 1rem',
     padding: '1rem 1rem',
     width: '43rem',
-    height: '27rem',
+    height: '24rem',
     alignSelf: 'flex-end',
   },
   card_sign: {
