@@ -20,7 +20,7 @@ const DotStepper = ({ inSteps }) => {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-
+  const [firstStep, secondStep] = steps[activeStep].split('.');
   return (
     <Card
       content={
@@ -41,11 +41,11 @@ const DotStepper = ({ inSteps }) => {
             </div>
             <div className={classes.changing}>
               <Typography variant="body2" align="left">
-                {steps[activeStep].step1}
+                {firstStep}
               </Typography>
 
               <Typography variant="body2" align="left">
-                {steps[activeStep].step2}
+                {secondStep}
               </Typography>
             </div>
           </div>
