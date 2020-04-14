@@ -1,17 +1,7 @@
     #demo-simple-select-outlined-label {
       line-height: 0;
-      margin: .2rem;
     }
-  .label {
-    width: 25rem;
-    height: 1rem;
-    margin-top: .5rem;
-  }
-  .select-box {
-    margin: .2rem;
-    width: 25rem;
-    height: 2.5rem;
-  }
-   .selectEmpty {
-    margin-top: .1rem;
+   .select-box {
+    width: 20rem;
+    height: 2.2rem;
   }

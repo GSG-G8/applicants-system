@@ -21,14 +21,14 @@ export default class SelectBox extends React.Component {
     const { selectValue } = this.state;
     const { label, items, className } = this.props;
     return (
-      <div className="label">
-        <FormControl variant="outlined" className="label">
+      <div>
+        <FormControl variant="outlined">
           <InputLabel id="demo-simple-select-outlined-label">
             {label}
           </InputLabel>
 
           <Select
-            className={className}
+            className={`select-box ${className}`}
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"
             value={selectValue}
@@ -55,5 +55,5 @@ SelectBox.propTypes = {
 };
 
 SelectBox.defaultProps = {
-  className: 'select-box',
+  className: '',
 };
