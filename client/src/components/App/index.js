@@ -48,45 +48,42 @@ export default class App extends React.Component {
         <AppBar />
         <Router>
           <Switch>
-            <Route path="/404">404</Route>
-            <Route path="/500">500</Route>
+            <Route path="/404" render={() => '404'} />
+            <Route path="/500" render={() => '500'} />
             {auth === null ? (
               <Limitation ClassName="body" />
             ) : auth === false ? (
               <Switch>
-                <Route exact path="/" render={(props) => <div> Home </div>} />
-                <Route
-                  exact
-                  path="/login"
-                  render={(props) => <div> login </div>}
-                />
-
-                <Route
-                  exact
-                  path="/signup"
-                  render={() => <div> signup </div>}
-                />
+                <Route exact path="/" render={() => 'Home'} />
+                <Route exact path="/login" render={() => 'login'} />
+                <Route exact path="/signup" render={() => 'signup'} />
                 <Route render={() => <Redirect to="/" />} />
               </Switch>
             ) : (
               <Switch>
-                <Route path="/steps">steps</Route>
-                <Route path="/availability">availability</Route>
-                <Route path="/tasks">tasks</Route>
-                <Route path="/project">project</Route>
-                <Route path="/submit">submit</Route>
-                <Route path="/myprofile">myprofile</Route>
-                <Route path="/dashboard">dashboard</Route>
-                <Route path="/dashboard/applications/opened">opened</Route>
-                <Route path="/dashboard/applications/submitted">
-                  submitted
-                </Route>
-                <Route path="/dashboard/applications/submitted/:applicantID">
-                  applicantID
-                </Route>
-                <Route path="/dashboard/applications/completed">
-                  completed
-                </Route>
+                <Route path="/steps" render={() => 'steps'} />
+                <Route path="/availability" render={() => 'availability'} />
+                <Route path="/tasks" render={() => 'tasks'} />
+                <Route path="/project" render={() => 'project'} />
+                <Route path="/submit" render={() => 'submit'} />
+                <Route path="/myprofile" render={() => 'myprofile'} />
+                <Route path="/dashboard" render={() => 'dashboard'} />
+                <Route
+                  path="/dashboard/applications/opened"
+                  render={() => 'opened'}
+                />
+                <Route
+                  path="/dashboard/applications/submitted"
+                  render={() => 'submitted'}
+                />
+                <Route
+                  path="/dashboard/applications/submitted/:applicantID"
+                  render={() => 'applicantId'}
+                />
+                <Route
+                  path="/dashboard/applications/completed"
+                  render={() => 'completed'}
+                />
               </Switch>
             )}
           </Switch>
