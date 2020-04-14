@@ -8,7 +8,6 @@ const applicantRouter = require('./applicant-router');
 const cohortRouter = require('./cohort-router');
 const tasksRouter = require('./technicalTask-router');
 const stepsRouter = require('./registrationSteps-router');
-const errorHandler = require('../controllers/errors');
 const { isAuthorized, isAdmin } = require('../middlewares/auth');
 
 router.post('/signup', signup);
@@ -24,6 +23,6 @@ router.use('/applicants', isAuthorized, applicantRouter);
 
 router.post('/logout', logout);
 
-router.use(errorHandler);
+router.use('/auth', isAuthorized);
 
 module.exports = router;
