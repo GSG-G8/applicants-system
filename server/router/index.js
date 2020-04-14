@@ -23,6 +23,7 @@ router.use('/applicants', isAuthorized, applicantRouter);
 
 router.post('/logout', logout);
 
-router.use('/auth', isAuthorized);
+router.use('/isuser', isAuthorized);
+router.use('/isadmin', isAdmin);
 
 module.exports = router;

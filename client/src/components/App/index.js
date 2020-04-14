@@ -1,93 +1,140 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
-import './index.css';
 import AppBar from '../common/AppBar';
 import Limitation from '../common/limitation';
+import Error404 from '../pages/common/errors/Error-404';
+import Error500 from '../pages/common/errors/Error-500';
+import Home from '../pages/common/Home';
+import Login from '../pages/common/Login';
+import Signup from '../pages/application/Signup';
+import Availability from '../pages/application/Availability';
+import Tasks from '../pages/application/Tasks';
+import Project from '../pages/application/Project';
+import Submit from '../pages/application/Submit';
+import Profile from '../pages/application/Profile';
+import Dashboard from '../pages/admin/Dashboard';
+import Opened from '../pages/admin/Opened';
+import SubmittedAll from '../pages/admin/Submitted_all';
+import SubmittedId from '../pages/admin/Submitted_Id';
+import Completed from '../pages/admin/Completed';
+import './index.css';
 
 export default class App extends React.Component {
   state = {
-    auth: null,
+    user: false,
+    admin: true,
+    loading: true,
   };
 
   componentDidMount() {
     axios
-      .get('/api/v1/auth')
+      .get('/api/v1/isadmin')
       .then((result) => {
         this.setState({ ...result.data });
       })
       .catch(() => {
-        this.setState({ auth: false });
+        this.setState({ admin: false, loading: false });
+      });
+    axios
+      .get('/api/v1/isuser')
+      .then((result) => {
+        this.setState({ ...result.data });
+      })
+      .catch(() => {
+        this.setState({ user: false, loading: false });
       });
   }
 
   signupHandler = () => {
     this.setState({
-      auth: true,
+      user: true,
     });
   };
 
   logoutHandler = () => {
     axios.get('/api/v1/logout').then(() => {
       this.setState({
-        auth: false,
+        user: false,
+        admin: false,
       });
     });
   };
 
   render() {
-    const { auth } = this.state;
+    const { user, admin, loading } = this.state;
     return (
       <div>
-        <AppBar />
-        <Router>
-          <Switch>
-            <Route path="/404" render={() => '404'} />
-            <Route path="/500" render={() => '500'} />
-            {auth === null ? (
+        <AppBar logoutHandler={this.logoutHandler} auth={user || admin} />
+        <Switch>
+          <Route path="/404" render={() => <Error404 />} />
+          <Route path="/500" render={() => <Error500 />} />
+          <main className="container">
+            {loading ? (
               <Limitation ClassName="body" />
-            ) : auth === false ? (
-              <Switch>
-                <Route exact path="/" render={() => 'Home'} />
-                <Route exact path="/login" render={() => 'login'} />
-                <Route exact path="/signup" render={() => 'signup'} />
+            ) : admin || user === false ? (
+              <div>
+                <Route exact path="/" render={(props) => <Home {...props} />} />
+                <Route
+                  exact
+                  path="/login"
+                  render={(props) => <Login {...props} />}
+                />
+                <Route
+                  exact
+                  path="/signup"
+                  render={(props) => <Signup {...props} />}
+                />
                 <Route render={() => <Redirect to="/" />} />
-              </Switch>
-            ) : (
-              <Switch>
-                <Route path="/steps" render={() => 'steps'} />
-                <Route path="/availability" render={() => 'availability'} />
-                <Route path="/tasks" render={() => 'tasks'} />
-                <Route path="/project" render={() => 'project'} />
-                <Route path="/submit" render={() => 'submit'} />
-                <Route path="/myprofile" render={() => 'myprofile'} />
-                <Route path="/dashboard" render={() => 'dashboard'} />
+              </div>
+            ) : admin ? (
+              <div>
+                <Route
+                  path="/dashboard"
+                  render={(props) => <Dashboard {...props} />}
+                />
                 <Route
                   path="/dashboard/applications/opened"
-                  render={() => 'opened'}
+                  render={(props) => <Opened {...props} />}
                 />
                 <Route
                   path="/dashboard/applications/submitted"
-                  render={() => 'submitted'}
+                  render={(props) => <SubmittedAll {...props} />}
                 />
                 <Route
                   path="/dashboard/applications/submitted/:applicantID"
-                  render={() => 'applicantId'}
+                  render={(props) => <SubmittedId {...props} />}
                 />
                 <Route
                   path="/dashboard/applications/completed"
-                  render={() => 'completed'}
+                  render={(props) => <Completed {...props} />}
                 />
-              </Switch>
+              </div>
+            ) : (
+              <div>
+                <Route path="/steps" render={(props) => <Login {...props} />} />
+                <Route
+                  path="/availability"
+                  render={(props) => <Availability {...props} />}
+                />
+                <Route path="/tasks" render={(props) => <Tasks {...props} />} />
+                <Route
+                  path="/project"
+                  render={(props) => <Project {...props} />}
+                />
+                <Route
+                  path="/submit"
+                  render={(props) => <Submit {...props} />}
+                />
+                <Route
+                  path="/myprofile"
+                  render={(props) => <Profile {...props} />}
+                />
+              </div>
             )}
-          </Switch>
-        </Router>
+          </main>
+        </Switch>
       </div>
     );
   }
