@@ -12,9 +12,7 @@ export default class SelectBox extends React.Component {
   };
 
   handleChange = (event) => {
-    const { setValue } = this.props;
     this.setState({ selectValue: event.target.value });
-    setValue(event.target.value);
   };
 
   render() {
@@ -51,7 +49,6 @@ SelectBox.propTypes = {
   label: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
   className: PropTypes.string,
-  setValue: PropTypes.func.isRequired,
 };
 
 SelectBox.defaultProps = {
