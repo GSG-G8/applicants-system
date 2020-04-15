@@ -6,8 +6,6 @@
   background-color: gray;
   align-content: flex-end;
   align-items: flex-end;
-  /* justify-content: center; */
-  /* border: 2px solid black; */
   height: 70vh;
   background: no-repeat fixed left center
     url("../../../../assets/images/login.svg");
