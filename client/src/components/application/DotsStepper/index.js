@@ -30,7 +30,7 @@ const DotStepper = ({ steps }) => {
   };
 
   const handleApply = () => {
-    window.location.href = '/';
+    window.location.href = '/signup';
   };
 
   return (
