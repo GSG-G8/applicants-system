@@ -30,7 +30,7 @@ export default class App extends React.Component {
 
   componentDidMount() {
     axios
-      .get('/api/v1/isadmin')
+      .get('/api/v1/isAdmin')
       .then((result) => {
         this.setState({ ...result.data });
       })
@@ -38,7 +38,7 @@ export default class App extends React.Component {
         this.setState({ admin: false, loading: false });
       });
     axios
-      .get('/api/v1/isuser')
+      .get('/api/v1/isUser')
       .then((result) => {
         this.setState({ ...result.data });
       })
