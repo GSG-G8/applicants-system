@@ -5,6 +5,7 @@ import style from './style';
 
 function InputText({
   id,
+  name,
   type,
   label,
   value,
@@ -20,6 +21,7 @@ function InputText({
     <div className={classes.root}>
       <TextField
         id={id}
+        name={name}
         type={type}
         label={label}
         defaultValue={value}
@@ -36,6 +38,7 @@ function InputText({
 
 InputText.propTypes = {
   id: PropTypes.string,
+  name: PropTypes.string,
   type: PropTypes.string,
   label: PropTypes.string,
   value: PropTypes.string.isRequired,
@@ -47,6 +50,7 @@ InputText.propTypes = {
 };
 InputText.defaultProps = {
   id: 'outlined-required',
+  name: '',
   type: 'text',
   label: '',
   className: '',
