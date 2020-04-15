@@ -24,8 +24,8 @@ router.use('/applicants', isAuthorized, applicantRouter);
 
 router.post('/logout', logout);
 
-router.use('/isuser', isAuthorized);
-router.use('/isadmin', isAdmin);
+router.use('/isUser', isAuthorized);
+router.use('/isAdmin', isAdmin);
 
 router.use(errorHandler);
 
