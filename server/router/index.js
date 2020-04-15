@@ -8,8 +8,8 @@ const applicantRouter = require('./applicant-router');
 const cohortRouter = require('./cohort-router');
 const tasksRouter = require('./technicalTask-router');
 const stepsRouter = require('./registrationSteps-router');
-const errorHandler = require('../controllers/errors');
 const { isAuthorized, isAdmin } = require('../middlewares/auth');
+const errorHandler = require('../controllers/errors');
 
 router.post('/signup', signup);
 router.post('/login', login);
@@ -23,6 +23,9 @@ router.use('/steps', stepsRouter);
 router.use('/applicants', isAuthorized, applicantRouter);
 
 router.post('/logout', logout);
+
+router.use('/isUser', isAuthorized);
+router.use('/isAdmin', isAdmin);
 
 router.use(errorHandler);
 
