@@ -30,20 +30,20 @@ export default class App extends React.Component {
 
   componentDidMount() {
     axios
-      .get('/api/v1/isAdmin')
+      .get('/api/v1/isadmin')
       .then((result) => {
-        this.setState({ ...result.data });
+        this.setState({ admin: true, loading: false, ...result.data });
       })
       .catch(() => {
-        this.setState({ admin: false, loading: false });
+        this.setState({ loading: true });
       });
     axios
-      .get('/api/v1/isUser')
+      .get('/api/v1/isuser')
       .then((result) => {
-        this.setState({ ...result.data });
+        this.setState({ user: true, loading: false, ...result.data });
       })
       .catch(() => {
-        this.setState({ user: false, loading: false });
+        this.setState({ loading: true });
       });
   }
 
