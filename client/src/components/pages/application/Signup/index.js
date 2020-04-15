@@ -5,11 +5,10 @@ import Card from '../../../common/card';
 import Typography from '../../../common/Typography';
 import Textfield from '../../../common/TextField';
 import Button from '../../../common/Button';
-import Image from '../../../common/Image';
 import signupValidate from '../../../../utils/application/SignupValidation';
+import SelectBox from '../../../application/SelectBox';
 
-const sinupImage =
-  'https://lh3.googleusercontent.com/9LamqCUIFDQwbeIo51iW7ILgaXr8jrsnSYHM3IIS_QaktqZNkhtE7E9B2MZ22aXRVJFNX7kwCapIoYMz6AS-WQF_FjOWmzy0xNP_s0ppTQ58roFCiGJRz7wYdg3_OdlSZs7RzZ_uKaeatV2SPScdCY81RLf6fk2ZFt-CGJBKWcyIeK0Rem9YY9Lt81Kp1PpPxIR1zzMXoG6V7P60DCdLOjHKmtZW2tbd8RG990o6ALF-psz5Q-UiI5L4LadxjukhhoDW006KwVmg6uyKgK5R7RkxR9r-pcsMaD9a2DoW1FjGihlue4lIO51BqmhaL8YMgAGPkWY0gocb_M_cXG2R0VXMgapw8Pmxf2SudtupghdGmss6UKOctRx7C-v2MbVyiRo2XMsn-4BGxkdNwhSkk0myp5opkxx01ogOi7ioGStBq2cv29qDLSi1MiAYtSIuvJu1huw9i8ZobtCHTBHSAWSZ5vvcYBuvjTJuQOGn0fBTI-maRcUY_jv3AWgJMcx1cdeh6dQ5iL2eTlXKBEzu-tkcrURAjyhj83VriyqWWm7W-oerHAwaSVSVSsg1rNHakl8OuMcKre7GZir3TkyyWNlt5aBLlyrV0OLeLRXFhz8AUEVDVdGetEafcpoxKCgnqnZtabXANe92OxaD_adQeQRD8C_yaJG5qW94LeO8sQuhRfjvQtEzGc2fQnEQ-Q=w892-h637-no';
+import sinupImage from '../../../../assets/images/signup.png';
 
 class SignUp extends React.Component {
   state = {
@@ -34,28 +33,15 @@ class SignUp extends React.Component {
   };
 
   submit = () => {
-    const {
-      fullName,
-      email,
-      password,
-      passwordConfirmation,
-      location,
-    } = this.state;
+    console.log(this.location);
+    const { message, ...lest } = this.state;
     signupValidate({
-      fullName,
-      email,
-      password,
-      passwordConfirmation,
-      location,
+      lest,
     }).then((result) =>
       result
         ? axios
             .post('/api/v1/signup', {
-              fullName,
-              email,
-              password,
-              passwordConfirmation,
-              location,
+              lest,
             })
             .then((response) => {
               this.throwMessage(response.message);
@@ -66,6 +52,7 @@ class SignUp extends React.Component {
   };
 
   handleCange = (event) => {
+    console.log(event);
     const { value, name } = event.target;
     this.setState({
       [name]: value,
@@ -73,20 +60,24 @@ class SignUp extends React.Component {
   };
 
   render() {
-    const { message } = this.state;
     const {
       fullName,
       email,
       password,
       location,
       passwordConfirmation,
+      message,
     } = this.state;
     return (
       <div className="page">
         <div className="header">head</div>
         <div className="container">
           <div>
-            <img src={sinupImage} className="signupImg" alt="GSG" />
+            <img
+              src={sinupImage}
+              className="signupImg"
+              alt="GSG Code Academy"
+            />
           </div>
           <div className="right__content">
             <Card
@@ -103,58 +94,47 @@ class SignUp extends React.Component {
                     </Typography>
                   </div>
                   <div className="form">
-                    <Typography variant="subtitle1" color="secondary">
-                      <Textfield
-                        name="fullName"
-                        label="full Name"
-                        value={fullName}
-                        className="signForm"
-                        placeholder="Enter your Full Name"
-                        onChange={this.handleCange}
-                      />
-                    </Typography>
-                    <Typography variant="subtitle1" color="secondary">
-                      <Textfield
-                        label="Email"
-                        name="email"
-                        value={email}
-                        className="signForm"
-                        placeholder="Enter Your Email"
-                        onChange={this.handleCange}
-                      />
-                    </Typography>
-                    <Typography variant="subtitle1" color="secondary">
-                      <Textfield
-                        label="password"
-                        type="password"
-                        name="password"
-                        value={password}
-                        className="signForm"
-                        placeholder="Enter Your Password"
-                        onChange={this.handleCange}
-                      />
-                    </Typography>
-                    <Typography variant="subtitle1" color="secondary">
-                      <Textfield
-                        label="Confirm Password"
-                        type="password"
-                        name="passwordConfirmation"
-                        value={passwordConfirmation}
-                        className="signForm"
-                        placeholder="Confirm your Password"
-                        onChange={this.handleCange}
-                      />
-                    </Typography>
-                    <Typography variant="subtitle1" color="secondary">
-                      <Textfield
-                        label="Location"
-                        name="location"
-                        value={location}
-                        className="signForm"
-                        placeholder="Enter your location"
-                        onChange={this.handleCange}
-                      />
-                    </Typography>
+                    <Textfield
+                      name="fullName"
+                      label="full Name"
+                      value={fullName}
+                      className="signForm"
+                      placeholder="Enter your Full Name"
+                      onChange={this.handleCange}
+                    />
+                    <Textfield
+                      label="Email"
+                      name="email"
+                      value={email}
+                      className="signForm"
+                      placeholder="Enter Your Email"
+                      onChange={this.handleCange}
+                    />
+                    <Textfield
+                      label="password"
+                      type="password"
+                      name="password"
+                      value={password}
+                      className="signForm"
+                      placeholder="Enter Your Password"
+                      onChange={this.handleCange}
+                    />
+                    <Textfield
+                      label="Confirm Password"
+                      type="password"
+                      name="passwordConfirmation"
+                      value={passwordConfirmation}
+                      className="signForm"
+                      placeholder="Confirm your Password"
+                      onChange={this.handleCange}
+                    />
+                    <SelectBox
+                      items={['gaza', 'khalil']}
+                      label="Location"
+                      name="location"
+                      value={location}
+                      className="signForm"
+                    />
                   </div>
                   <div className="message">
                     <Typography variant="body2" color="primary" align="left">

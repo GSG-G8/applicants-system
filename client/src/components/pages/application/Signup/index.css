@@ -19,7 +19,12 @@
   width: 20rem;
   line-height: 0;
 }
-
+.signForm input{
+  height: .5rem;
+}
+.signForm label{
+  line-height: .5;
+}
 .message {
   width: 85%;
   height: 1.5rem;
