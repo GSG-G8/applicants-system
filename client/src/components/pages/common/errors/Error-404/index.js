@@ -1,5 +1,11 @@
 import React from 'react';
+import Image from '../../../../common/Image/index';
+import ErrorImage from '../../../../../assets/images/error404.jpg';
 
-const Error = () => <h1>Error 404</h1>;
+const Error404 = () => (
+  <div>
+    <Image alt="Error 404" src={ErrorImage} style={{ marginTop: '3rem' }} />
+  </div>
+);
 
-export default Error;
+export default Error404;
