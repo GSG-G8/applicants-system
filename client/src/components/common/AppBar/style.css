@@ -1,0 +1,12 @@
+.app-bar{
+  position: fixed;
+  z-index: 1;
+}
+.app-bar__toolbar{
+  background-color: white;
+  justify-content: space-between;
+}
+.logo{
+  pointer-events: none;
+  width: 10rem;
+}
