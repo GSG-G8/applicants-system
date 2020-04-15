@@ -19,15 +19,15 @@ const DrawerList = ({ content, isFinished }) => {
   return (
     <div>
       <List>
-        {content.map((text, index) => (
-          <ListItem button key={text} className={classes.list}>
-            {isFinished[index] ? (
+        {content.map((e) => (
+          <ListItem button key={e.text} className={classes.list}>
+            {e.isFinished ? (
               <Icon className="far fa-check-circle" />
             ) : (
               <Icon className="far fa-times-circle" />
             )}
             <ListItemText
-              primary={text}
+              primary={e.text}
               classes={{ primary: classes.listText }}
             />
           </ListItem>
@@ -39,11 +39,9 @@ const DrawerList = ({ content, isFinished }) => {
 
 DrawerList.propTypes = {
   content: PropTypes.node,
-  isFinished: PropTypes.node,
 };
 DrawerList.defaultProps = {
   content: [],
-  isFinished: [],
 };
 
 export default DrawerList;

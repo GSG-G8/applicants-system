@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import DrawerList from './list';
 import useStyles from './style';
 
-const ResponsiveDrawer = ({ Content, IsFinished }) => {
+const ResponsiveDrawer = ({ Content }) => {
   const classes = useStyles();
 
   return (
@@ -18,7 +18,7 @@ const ResponsiveDrawer = ({ Content, IsFinished }) => {
           variant="persistent"
           open
         >
-          <DrawerList content={Content} isFinished={IsFinished} />
+          <DrawerList content={Content} />
         </Drawer>
       </Hidden>
     </div>
@@ -27,11 +27,15 @@ const ResponsiveDrawer = ({ Content, IsFinished }) => {
 
 ResponsiveDrawer.propTypes = {
   Content: PropTypes.node,
-  IsFinished: PropTypes.node,
 };
 ResponsiveDrawer.defaultProps = {
-  Content: [],
-  IsFinished: [],
+  Content: [
+    { text: 'first', isFinished: true },
+    { text: 'second', isFinished: false },
+    { text: 'third', isFinished: false },
+    { text: 'fourth', isFinished: true },
+    { text: 'fifth', isFinished: true },
+  ],
 };
 
 export default ResponsiveDrawer;
