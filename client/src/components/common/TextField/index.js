@@ -23,7 +23,7 @@ function InputText({
         type={type}
         label={label}
         defaultValue={value}
-        className={`classes.container ${className}`}
+        className={`classes.container  ${className}`}
         helperText={message}
         placeholder={placeholder}
         onChange={onChange}
