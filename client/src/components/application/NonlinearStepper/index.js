@@ -123,6 +123,9 @@ export default function HorizontalNonLinearStepper() {
               )}
             </div>
           </div>
+          <div>
+            <h1>fullName: {formValues.fullName}</h1>
+          </div>
         </div>
       </Container>
     </div>

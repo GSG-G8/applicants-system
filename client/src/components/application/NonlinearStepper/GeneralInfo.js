@@ -7,13 +7,14 @@ import {
   FormControl,
   MenuItem,
   InputLabel,
+  TextField,
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import InputText from '../../common/TextField';
 
 import Typography from '../../common/Typography';
 
-const GereralInfos = ({ handleFormInput }) => (
+const GereralInfos = ({ handleFormInput, formValues }) => (
   <>
     <Typography variant="h6" color="primary">
       Gender
@@ -30,23 +31,30 @@ const GereralInfos = ({ handleFormInput }) => (
       <FormControlLabel value="male" control={<Radio />} label="Male" />
     </RadioGroup>
     <InputText
+      variant="outlined"
       id="nameID"
-      value="name"
+      value={formValues.fullName}
       fullWidth
       placeholder="Enter full name"
       label="Full Name"
       name="fullName"
       onChange={handleFormInput}
     />
-    <InputText
+    <br />
+    <br />
+    <TextField
+      variant="outlined"
       id="mobID"
       fullWidth
-      value="mob"
+      value={formValues.MobNumber}
       placeholder="Enter Mobile Number"
       label="Mobile Number"
       name="MobNumber"
       onChange={handleFormInput}
     />
+    <br />
+    <br />
+
     <FormControl variant="outlined" fullWidth>
       <InputLabel id="demo-simple-select-label">Age</InputLabel>
       <Select
@@ -71,9 +79,9 @@ const GereralInfos = ({ handleFormInput }) => (
         name="address"
         onChange={handleFormInput}
       >
-        <MenuItem value={10}>Gaza</MenuItem>
-        <MenuItem value={20}>North</MenuItem>
-        <MenuItem value={30}>Khanunis</MenuItem>
+        <MenuItem value="10">10</MenuItem>
+        <MenuItem value="20">20</MenuItem>
+        <MenuItem value="30">30</MenuItem>
       </Select>
     </FormControl>
   </>
