@@ -4,8 +4,6 @@ import { Button, Container } from '@material-ui/core';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
-import Typography from '@material-ui/core/Typography';
-import axios from 'axios';
 import ProInfos from './ProInfos';
 import GeneralInfos from './GeneralInfo';
 
@@ -28,17 +26,16 @@ const useStyles = makeStyles((theme) => ({
 export default function HorizontalNonLinearStepper() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-  const [completed, setCompleted] = React.useState({});
   const [formValues, setFormValues] = useState({
-    gender: 'Male',
-    fullName: 'sadsad',
-    MobNumber: '10',
-    age: '30',
-    adress: '20',
-    eConfident: '10',
-    eUnderstand: '30',
-    currentEmploy: '20',
-    jobTitle: '10',
+    gender: '',
+    fullName: '',
+    MobNumber: '',
+    age: '',
+    adress: '',
+    eConfident: '',
+    eUnderstand: '',
+    currentEmploy: '',
+    jobTitle: '',
   });
   const handleFormInput = (e) => {
     setFormValues({
@@ -48,21 +45,8 @@ export default function HorizontalNonLinearStepper() {
   };
   const steps = ['General Information', 'Professional Information'];
 
-  const totalSteps = () => steps.length;
-
-  const completedSteps = () => Object.keys(completed).length;
-
-  const isLastStep = () => activeStep === totalSteps() - 1;
-
-  const allStepsCompleted = () => completedSteps() === totalSteps();
-
   const handleNext = () => {
-    const newActiveStep = isLastStep()
-      ? // It's the last step, but not all steps have been completed,
-        // find the first step that has been completed
-        steps.findIndex((step, i) => !(i in completed))
-      : activeStep + 1;
-    setActiveStep(newActiveStep);
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const handleBack = () => {
@@ -73,17 +57,6 @@ export default function HorizontalNonLinearStepper() {
     setActiveStep(step);
   };
 
-  // const handleComplete = () => {
-  //   const newCompleted = completed;
-  //   newCompleted[activeStep] = true;
-  //   setCompleted(newCompleted);
-  //   handleNext();
-  // };
-
-  // const handleReset = () => {
-  //   setActiveStep(0);
-  //   setCompleted({});
-  // };
   function getStepContent(step) {
     switch (step) {
       case 0:
@@ -103,12 +76,8 @@ export default function HorizontalNonLinearStepper() {
     }
   }
 
-  const handleSubmit = async (values) => {
-    const response = await axios.post(
-      'https://jsonplaceholder.typicode.com/posts',
-      values
-    );
-    console.log(response);
+  const handleSubmit = (values) => {
+    console.log(values);
   };
 
   return (
@@ -117,63 +86,41 @@ export default function HorizontalNonLinearStepper() {
         <Stepper nonLinear activeStep={activeStep}>
           {steps.map((label, index) => (
             <Step key={label}>
-              <StepButton
-                onClick={handleStep(index)}
-                // completed={completed[index]}
-              >
-                {label}
-              </StepButton>
+              <StepButton onClick={handleStep(index)}>{label}</StepButton>
             </Step>
           ))}
         </Stepper>
         <div>
-          {/* {allStepsCompleted() ? (
           <div>
-            <Typography className={classes.instructions}>
-              All steps completed - you&apos;re finished
-            </Typography>
-            <Button onClick={handleReset}>Reset</Button>
-          </div>
-        ) : ( */}
-          <div>
-            <Typography className={classes.instructions}>
-              {getStepContent(activeStep)}
-            </Typography>
+            {getStepContent(activeStep)}
             <div>
               <Button
                 disabled={activeStep === 0}
                 onClick={handleBack}
-                className={classes.button}
+                className={classes.backButton}
               >
                 Back
               </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleNext}
-                className={classes.button}
-              >
-                Next
-              </Button>
-
-              {/* {activeStep !== steps.length &&
-                (completed[activeStep] ? (
-                  <Typography variant="caption" className={classes.completed}>
-                    Step {activeStep + 1} already completed
-                  </Typography>
-                ) : (
+              {activeStep === steps.length - 1 ? (
+                <div>
                   <Button
                     variant="contained"
                     color="primary"
-                    onClick={handleComplete}
+                    type="submit"
+                    onClick={(e) => handleSubmit(formValues)}
                   >
-                    {completedSteps() === totalSteps() - 1
-                      ? "Finish"
-                      : "Complete Step"}
-                  </Button> */}
-              <button type="submit" onClick={(e) => handleSubmit(formValues)}>
-                Submit
-              </button>
+                    Next
+                  </Button>
+                </div>
+              ) : (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleNext}
+                >
+                  {activeStep === steps.length - 1 ? 'Submit' : 'Next'}
+                </Button>
+              )}
             </div>
           </div>
         </div>

@@ -1,16 +1,21 @@
 import React from 'react';
-import { Radio, Select, Container, Grid } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import MenuItem from '@material-ui/core/MenuItem';
-import InputLabel from '@material-ui/core/InputLabel';
+import {
+  Radio,
+  Select,
+  FormControlLabel,
+  RadioGroup,
+  FormControl,
+  MenuItem,
+  InputLabel,
+} from '@material-ui/core';
+import PropTypes from 'prop-types';
+import InputText from '../../common/TextField';
 
 import Typography from '../../common/Typography';
 
 const GereralInfos = ({ handleFormInput }) => (
   <>
-    <Typography variant="subtitle1" color="primary">
+    <Typography variant="h6" color="primary">
       Gender
     </Typography>
 
@@ -24,51 +29,61 @@ const GereralInfos = ({ handleFormInput }) => (
 
       <FormControlLabel value="male" control={<Radio />} label="Male" />
     </RadioGroup>
-    <TextField
+    <InputText
+      id="nameID"
+      value="name"
       fullWidth
       placeholder="Enter full name"
       label="Full Name"
       name="fullName"
       onChange={handleFormInput}
     />
-    <br />
-
-    <TextField
+    <InputText
+      id="mobID"
       fullWidth
+      value="mob"
       placeholder="Enter Mobile Number"
       label="Mobile Number"
       name="MobNumber"
       onChange={handleFormInput}
     />
-    <br />
-
-    <InputLabel id="demo-simple-select-label">Age</InputLabel>
-    <Select
-      fullWidth
-      labelId="demo-simple-select-label"
-      id="demo-simple-select"
-      name="age"
-      onChange={handleFormInput}
-    >
-      <MenuItem value={10}>Ten</MenuItem>
-      <MenuItem value={20}>Twenty</MenuItem>
-      <MenuItem value={30}>Thirty</MenuItem>
-    </Select>
-    <br />
-
-    <InputLabel id="demo-simple-select-label">Adress</InputLabel>
-    <Select
-      fullWidth
-      labelId="demo-simple-select-label"
-      id="demo-simple-select"
-      name="adress"
-      onChange={handleFormInput}
-    >
-      <MenuItem value={10}>Gaza</MenuItem>
-      <MenuItem value={20}>North</MenuItem>
-      <MenuItem value={30}>Khanunis</MenuItem>
-    </Select>
+    <FormControl variant="outlined" fullWidth>
+      <InputLabel id="demo-simple-select-label">Age</InputLabel>
+      <Select
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
+        label="Age"
+        name="age"
+        onChange={handleFormInput}
+      >
+        <MenuItem value={10}>Ten</MenuItem>
+        <MenuItem value={20}>Twenty</MenuItem>
+        <MenuItem value={30}>Thirty</MenuItem>
+      </Select>
+      <br />
+    </FormControl>
+    <FormControl variant="outlined" fullWidth>
+      <InputLabel id="demo-simple-select-label">Adress</InputLabel>
+      <Select
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
+        label="Adress"
+        name="address"
+        onChange={handleFormInput}
+      >
+        <MenuItem value={10}>Gaza</MenuItem>
+        <MenuItem value={20}>North</MenuItem>
+        <MenuItem value={30}>Khanunis</MenuItem>
+      </Select>
+    </FormControl>
   </>
 );
+
+GereralInfos.propTypes = {
+  handleFormInput: PropTypes.func,
+};
+GereralInfos.defaultProps = {
+  handleFormInput: '',
+};
 
 export default GereralInfos;
