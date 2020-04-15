@@ -104,7 +104,7 @@ export default class App extends React.Component {
                   render={(props) => <Completed {...props} />}
                 />
               </div>
-            ) : user ? (
+            ) : (
               <div>
                 <Route path="/steps" render={(props) => <Login {...props} />} />
                 <Route
@@ -125,8 +125,6 @@ export default class App extends React.Component {
                   render={(props) => <Profile {...props} />}
                 />
               </div>
-            ) : (
-              <Limitation ClassName="body" />
             )}
           </main>
         </Switch>
