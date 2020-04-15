@@ -1,0 +1,19 @@
+ {
+  "primaryHeader":"APPLY FOR THE GAZA CODE ACADEMY!",
+  "Info":"The Gaza Code Academy will launch its 9th cohort in August 2020.",
+  "stepHeader":"TO BE ELIGIBLE FOR THE PROGRAM, YOU MUST MEET THE FOLLOWING BASIC CRITERIA:",
+"registrationSteps":[
+"1- Be at least 18 years old and not currently enrolled at University.",
+"2- Have strong English conversational and comprehension skills.",
+"3- Have full-time availability from August 2020 to January 2021 to fully participate in the entirety of the 6-month course.",
+"4- Have the motivation to launch a career as a developer.",
+"5- Have the maturity and professionalism to treat the Code Academy like a job training (not school).",
+"6- Have the availability and determination to put in many hours of hard work and effort into completing the application’s technical tasks.",
+"7- Have a strong love for problem-solving and being persistent in the face of challenge.",
+"8- Have a commitment to the community by volunteering as a mentor for future Code Academy cohorts."
+],
+"slectionProcess": {
+  "processes" : "We will only consider applicants who have reached the required levels on CodeWars and FreeCodeCamp as specified in the email you will receive after applying.  We will then review the entire application, including the projects, the typing school, and especially the motivation statements. Applicants who pass this initial screening will be invited to come in for a short onsite test to check they have a clear grasp of the fundamentals needed to be successful on the course.Those who pass this test will be invited for a short interview so we can get to know the personality and attitudes of the applicants.We will then select up to 30 people to join us for Week 0, in which we look for strengths in areas such as teamwork,sensitivity to the needs of others and positive and realistic commitment.Finally we will select 16 people to join us for the course."
+},
+"availability" : " The Code Academy is a 6 month FULL-TIME course from August 2020 - January 2021. If you are successful in the next steps of the application process, you will be invited for an on-site test, an in-person technical interview, and then potentially to join 'Week 0' which is a one week prep course that is the final step of the selection process. Week 0 will take place in late July and is a mandatory part of the process to be considered for the Code Academy.Unlike in previous years, we are changing our policy and applicants who are currently attending University will not be selected for the course.  You must either be graduated or not studying, or not planning to study, at University.برنامج الأكاديمية مدته ٦ شهور، دوام كامل ٥ أيام بالأسبوع بواقع ٨ ساعات في اليوم، رح تبدأ المجموعة التاسعة في أغسطس٢٠٢٠  وحتى يناير   ٢٠٢١ ـ اذا نجحت في تخطي جميع مراحل الطلب سنقوم بدعوتك لمقابلة تقنية و بعدها رح يتم اختيار مجموعة لياخدوا مكانهم في (الأسبوع رقم ٠) وهو أسبوع تحضيري وتقييمي إجباري للمشتركين اللي أتموا جميع خطوات طلب الالتحاق وهو جزء من عملية اختيار المشاركين في البرنامج  -  الأسبوع التحضيري رح يبدا في أخر شهر يوليو لمدة ٥ أيام.Yes, I am fully available for Week 0 AND the entire duration of the course. I have no other work or university obligations during this time."
+}
