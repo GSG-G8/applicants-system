@@ -21,10 +21,9 @@ const AppBar = ({ auth, logoutHandler }) => (
 export default AppBar;
 
 AppBar.propTypes = {
-  logoutHandler: PropTypes.func,
+  logoutHandler: PropTypes.func.isRequired,
   auth: PropTypes.bool,
 };
 AppBar.defaultProps = {
-  logoutHandler: '',
-  auth: '',
+  auth: false,
 };
