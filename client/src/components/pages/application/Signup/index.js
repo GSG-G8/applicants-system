@@ -13,13 +13,11 @@ const sinupImage =
 
 class SignUp extends React.Component {
   state = {
-    body: {
-      fullName: '',
-      email: '',
-      password: '',
-      passwordConfirmation: '',
-      location: '',
-    },
+    fullName: '',
+    email: '',
+    password: '',
+    passwordConfirmation: '',
+    location: '',
     message: '',
   };
 
@@ -36,26 +34,41 @@ class SignUp extends React.Component {
   };
 
   submit = () => {
-    const { body } = this.state;
-    signupValidate(body).then((result) =>
+    const {
+      fullName,
+      email,
+      password,
+      passwordConfirmation,
+      location,
+    } = this.state;
+    signupValidate({
+      fullName,
+      email,
+      password,
+      passwordConfirmation,
+      location,
+    }).then((result) =>
       result
         ? axios
-            .post('/api/v1/signup', body)
-            .then((response) => {
-              console.log(response);
-              this.throwMessage('Your user added successfully');
+            .post('/api/v1/signup', {
+              fullName,
+              email,
+              password,
+              passwordConfirmation,
+              location,
             })
-            .catch(() => this.throwMessage('Please Enter Correct Information'))
-        : this.throwMessage('Please Enter Correct Information')
+            .then((response) => {
+              this.throwMessage(response.message);
+            })
+            .catch(() => this.throwMessage('Please Enter Correct Data'))
+        : this.throwMessage('Please Enter Correct Data')
     );
   };
 
   handleCange = (event) => {
     const { value, name } = event.target;
     this.setState({
-      body: {
-        [name]: value,
-      },
+      [name]: value,
     });
   };
 
@@ -67,18 +80,13 @@ class SignUp extends React.Component {
       password,
       location,
       passwordConfirmation,
-    } = this.state.body;
+    } = this.state;
     return (
       <div className="page">
         <div className="header">head</div>
         <div className="container">
           <div>
-            <img
-              src={sinupImage}
-              className="signupImg"
-              // imageStyle={{ width: '20rem', height: '20rem' }}
-              alt="GSG"
-            />
+            <img src={sinupImage} className="signupImg" alt="GSG" />
           </div>
           <div className="right__content">
             <Card
