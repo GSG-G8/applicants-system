@@ -1,0 +1,15 @@
+.root{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 100px;
+  flex-wrap: wrap;
+  width: auto;
+
+}
+
+.img{
+  pointer-events: none;
+  width: 22rem;
+}
