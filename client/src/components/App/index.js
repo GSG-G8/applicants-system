@@ -80,7 +80,7 @@ export default class App extends React.Component {
           <Route render={() => <Redirect to="/" />} />
           <main className="container">
             {loading ? (
-              <Limitation ClassName="body" />
+              <Route path="*" render={() => <Error404 />} />
             ) : admin ? (
               <div>
                 <Route

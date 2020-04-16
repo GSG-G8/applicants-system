@@ -1,10 +1,15 @@
 import React from 'react';
-import Image from '../../../../common/Image/index';
+import { Link } from 'react-router-dom';
 import ErrorImage from '../../../../../assets/images/error404.jpg';
+import './index.css';
 
 const Error404 = () => (
   <div>
-    <Image alt="Error 404" src={ErrorImage} style={{ marginTop: '3rem' }} />
+    <img alt="Error 404" src={ErrorImage} className="error_404" />
+
+    <Link to="/" className="link">
+      Back to Home
+    </Link>
   </div>
 );
 
