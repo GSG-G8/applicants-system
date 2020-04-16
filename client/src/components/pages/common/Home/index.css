@@ -1,12 +1,10 @@
-.root{
+.home{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 6.25rem;
   flex-wrap: wrap;
-  width: auto;
-
 }
 
 .img{

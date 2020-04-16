@@ -5,9 +5,10 @@ const dotStyle = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    paddingTop: '1rem',
     paddingLeft: '1rem',
     width: '38rem',
-    height: '15rem',
+    height: '12rem',
   },
   buttons: {
     display: 'flex',

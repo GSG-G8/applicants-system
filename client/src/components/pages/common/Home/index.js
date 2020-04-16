@@ -1,16 +1,16 @@
 import React from 'react';
 import DotsStepper from '../../../application/DotsStepper';
 import { registrationSteps } from '../../../application/DotsStepper/registrationSteps.json';
-import draw1 from '../../../../assets/images/draw1.svg';
+import HomeImg from '../../../../assets/images/HomeImg.svg';
 
 import './index.css';
 
 const Home = () => (
   <>
-    <div className="root">
+    <div className="home">
       <DotsStepper steps={registrationSteps} />
 
-      <img className="img" src={draw1} alt="background" />
+      <img className="img" src={HomeImg} alt="background" />
     </div>
   </>
 );
