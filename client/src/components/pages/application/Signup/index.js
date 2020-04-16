@@ -1,5 +1,4 @@
 import React from 'react';
-import './index.css';
 import axios from 'axios';
 import Card from '../../../common/card';
 import Typography from '../../../common/Typography';
@@ -7,8 +6,9 @@ import Textfield from '../../../common/TextField';
 import Button from '../../../common/Button';
 import signupValidate from '../../../../utils/application/SignupValidation';
 import SelectBox from '../../../application/SelectBox';
+import './index.css';
 
-import sinupImage from '../../../../assets/images/signup.svg';
+import signupImage from '../../../../assets/images/signup.svg';
 
 class SignUp extends React.Component {
   state = {
@@ -45,7 +45,7 @@ class SignUp extends React.Component {
     );
   };
 
-  handleCange = (event) => {
+  handleChange = (event) => {
     const { value, name } = event.target;
     this.setState({
       [name]: value,
@@ -67,7 +67,7 @@ class SignUp extends React.Component {
         <div className="container">
           <div>
             <img
-              src={sinupImage}
+              src={signupImage}
               className="signupImg"
               alt="GSG Code Academy"
             />
@@ -93,7 +93,7 @@ class SignUp extends React.Component {
                       value={fullName}
                       className="signForm"
                       placeholder="Enter your Full Name"
-                      onChange={this.handleCange}
+                      onChange={this.handleChange}
                     />
                     <Textfield
                       label="Email"
@@ -101,7 +101,7 @@ class SignUp extends React.Component {
                       value={email}
                       className="signForm"
                       placeholder="Enter Your Email"
-                      onChange={this.handleCange}
+                      onChange={this.handleChange}
                     />
                     <Textfield
                       label="password"
@@ -110,7 +110,7 @@ class SignUp extends React.Component {
                       value={password}
                       className="signForm"
                       placeholder="Enter Your Password"
-                      onChange={this.handleCange}
+                      onChange={this.handleChange}
                     />
                     <Textfield
                       label="Confirm Password"
@@ -119,14 +119,14 @@ class SignUp extends React.Component {
                       value={passwordConfirmation}
                       className="signForm"
                       placeholder="Confirm your Password"
-                      onChange={this.handleCange}
+                      onChange={this.handleChange}
                     />
                     <SelectBox
                       items={['gaza', 'khalil']}
                       label="Location"
                       name="location"
                       value={location}
-                      setval={this.handleCange}
+                      setval={this.handleChange}
                       className="signForm"
                     />
                   </div>
