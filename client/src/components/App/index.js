@@ -127,6 +127,7 @@ export default class App extends React.Component {
               </div>
             )}
           </main>
+          <Route path="*" component={Error404} />
         </Switch>
       </div>
     );
