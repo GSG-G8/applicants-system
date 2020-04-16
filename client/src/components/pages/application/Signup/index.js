@@ -28,20 +28,17 @@ class SignUp extends React.Component {
     window.location.href = '/404';
   };
 
-  throwMessage = (message) => {
-    this.setState({ message });
-  };
+  throwMessage = (message) => this.setState({ message });
 
   submit = () => {
     const { message, ...lest } = this.state;
     signupValidate(lest).then((result) =>
       result
         ? axios
-            .post('/api/v1/signup', {
-              lest,
-            })
+            .post('/api/v1/signup', lest)
             .then((response) => {
-              this.throwMessage(response.message);
+              console.log(response);
+              this.throwMessage(response.data.message, true);
             })
             .catch(() => this.throwMessage('Please Enter Correct Data'))
         : this.throwMessage('Please Enter Correct Data')
