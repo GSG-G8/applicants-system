@@ -12,12 +12,14 @@ export default class SelectBox extends React.Component {
   };
 
   handleChange = (event) => {
+    const { setval } = this.props;
     this.setState({ selectValue: event.target.value });
+    setval(event);
   };
 
   render() {
     const { selectValue } = this.state;
-    const { label, items, className } = this.props;
+    const { label, items, className, name } = this.props;
     return (
       <div>
         <FormControl variant="outlined">
@@ -26,12 +28,13 @@ export default class SelectBox extends React.Component {
           </InputLabel>
 
           <Select
+            label={label}
             className={`select-box ${className}`}
             labelId="demo-simple-select-outlined-label"
+            name={name}
             id="demo-simple-select-outlined"
             value={selectValue}
             onChange={this.handleChange}
-            label={label}
           >
             {items.map((item) => (
               <MenuItem key={item} value={item}>
@@ -47,10 +50,13 @@ export default class SelectBox extends React.Component {
 
 SelectBox.propTypes = {
   label: PropTypes.string.isRequired,
-  items: PropTypes.arrayOf(PropTypes.string).isRequired,
+  name: PropTypes.string.isRequired,
   className: PropTypes.string,
+  setval: PropTypes.func,
+  items: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 SelectBox.defaultProps = {
   className: '',
+  setval: '',
 };

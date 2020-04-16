@@ -8,7 +8,7 @@ import Button from '../../../common/Button';
 import signupValidate from '../../../../utils/application/SignupValidation';
 import SelectBox from '../../../application/SelectBox';
 
-import sinupImage from '../../../../assets/images/signup.png';
+import sinupImage from '../../../../assets/images/signup.svg';
 
 class SignUp extends React.Component {
   state = {
@@ -33,11 +33,8 @@ class SignUp extends React.Component {
   };
 
   submit = () => {
-    console.log(this.location);
     const { message, ...lest } = this.state;
-    signupValidate({
-      lest,
-    }).then((result) =>
+    signupValidate(lest).then((result) =>
       result
         ? axios
             .post('/api/v1/signup', {
@@ -52,7 +49,6 @@ class SignUp extends React.Component {
   };
 
   handleCange = (event) => {
-    console.log(event);
     const { value, name } = event.target;
     this.setState({
       [name]: value,
@@ -133,6 +129,7 @@ class SignUp extends React.Component {
                       label="Location"
                       name="location"
                       value={location}
+                      setval={this.handleCange}
                       className="signForm"
                     />
                   </div>
