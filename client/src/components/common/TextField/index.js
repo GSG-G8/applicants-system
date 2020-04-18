@@ -12,6 +12,7 @@ function InputText({
   message,
   placeholder,
   onChange,
+  name,
   disabled,
 }) {
   const classes = style();
@@ -19,6 +20,7 @@ function InputText({
   return (
     <div className={classes.root}>
       <TextField
+        fullWidth
         id={id}
         type={type}
         label={label}
@@ -28,6 +30,7 @@ function InputText({
         placeholder={placeholder}
         onChange={onChange}
         disabled={disabled}
+        name={name}
         variant="outlined"
       />
     </div>
@@ -43,6 +46,7 @@ InputText.propTypes = {
   message: PropTypes.string,
   placeholder: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  name: PropTypes.string,
   disabled: PropTypes.bool,
 };
 InputText.defaultProps = {
@@ -51,6 +55,7 @@ InputText.defaultProps = {
   label: '',
   className: '',
   message: '',
+  name: '',
   disabled: false,
 };
 export default InputText;

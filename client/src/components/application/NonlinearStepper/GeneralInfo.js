@@ -31,10 +31,8 @@ const GereralInfos = ({ handleFormInput, formValues }) => (
       <FormControlLabel value="male" control={<Radio />} label="Male" />
     </RadioGroup>
     <InputText
-      variant="outlined"
       id="nameID"
       value={formValues.fullName}
-      fullWidth
       placeholder="Enter full name"
       label="Full Name"
       name="fullName"
@@ -42,10 +40,8 @@ const GereralInfos = ({ handleFormInput, formValues }) => (
     />
     <br />
     <br />
-    <TextField
-      variant="outlined"
+    <InputText
       id="mobID"
-      fullWidth
       value={formValues.MobNumber}
       placeholder="Enter Mobile Number"
       label="Mobile Number"
@@ -89,9 +85,11 @@ const GereralInfos = ({ handleFormInput, formValues }) => (
 
 GereralInfos.propTypes = {
   handleFormInput: PropTypes.func,
+  formValues: PropTypes.string,
 };
 GereralInfos.defaultProps = {
   handleFormInput: '',
+  formValues: '',
 };
 
 export default GereralInfos;
