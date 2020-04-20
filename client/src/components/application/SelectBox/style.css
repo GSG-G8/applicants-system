@@ -1,7 +1,11 @@
-    #demo-simple-select-outlined-label {
+    /* #demo-simple-select-outlined-label {
       line-height: 0;
     }
    .select-box {
     width: 20rem;
     height: 2.2rem;
+  } */
+
+  .select-box {
+    margin-top: 1rem;
   }

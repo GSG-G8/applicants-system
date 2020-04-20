@@ -1,31 +1,28 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, Container } from '@material-ui/core';
+import { Container, ThemeProvider } from '@material-ui/core';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
 import ProInfos from './ProInfos';
 import GeneralInfos from './GeneralInfo';
+import { Theme } from '../../common/Typography/style';
+import Button from '../../common/Button';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
+  gender: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    margin: theme.spacing(3),
   },
-  button: {
-    marginRight: theme.spacing(1),
-  },
-  completed: {
-    display: 'inline-block',
-  },
-  instructions: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
+  nextButton: {
+    marginLeft: theme.spacing(4),
   },
 }));
 
 export default function HorizontalNonLinearStepper() {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = useState(0);
   const [formValues, setFormValues] = useState({
     gender: '',
     fullName: '',
@@ -83,50 +80,43 @@ export default function HorizontalNonLinearStepper() {
   return (
     <div className={classes.root}>
       <Container maxWidth="sm">
-        <Stepper nonLinear activeStep={activeStep}>
-          {steps.map((label, index) => (
-            <Step key={label}>
-              <StepButton onClick={handleStep(index)}>{label}</StepButton>
-            </Step>
-          ))}
-        </Stepper>
-        <div>
+        <ThemeProvider theme={Theme}>
+          <Stepper nonLinear activeStep={activeStep}>
+            {steps.map((label, index) => (
+              <Step key={label}>
+                <StepButton onClick={handleStep(index)}>{label}</StepButton>
+              </Step>
+            ))}
+          </Stepper>
           <div>
-            {getStepContent(activeStep)}
             <div>
-              <Button
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                className={classes.backButton}
-              >
-                Back
-              </Button>
-              {activeStep === steps.length - 1 ? (
-                <div>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    type="submit"
-                    onClick={(e) => handleSubmit(formValues)}
-                  >
-                    Next
-                  </Button>
-                </div>
-              ) : (
+              {getStepContent(activeStep)}
+              <div className={classes.gender}>
                 <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleNext}
+                  customStyle="outlined"
+                  disabled={activeStep === 0}
+                  onClick={handleBack}
                 >
-                  {activeStep === steps.length - 1 ? 'Submit' : 'Next'}
+                  Back
                 </Button>
-              )}
+                <div className={classes.nextButton}>
+                  {activeStep === steps.length - 1 ? (
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      type="submit"
+                      onClick={(e) => handleSubmit(formValues)}
+                    >
+                      Next
+                    </Button>
+                  ) : (
+                    <Button onClick={handleNext}>Next</Button>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
-          <div>
-            <h1>fullName: {formValues.fullName}</h1>
-          </div>
-        </div>
+        </ThemeProvider>
       </Container>
     </div>
   );

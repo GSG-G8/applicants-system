@@ -6,51 +6,51 @@ import Select from '@material-ui/core/Select';
 import PropTypes from 'prop-types';
 import './style.css';
 
-export default class SelectBox extends React.Component {
-  state = {
-    selectValue: '',
-  };
+const SelectBox = ({
+  label,
+  items,
+  className,
+  onChange,
+  name,
+  selectValue,
+}) => (
+  <div>
+    <FormControl variant="outlined" fullWidth>
+      <InputLabel className="select-box" id="demo-simple-select-outlined-label">
+        {label}
+      </InputLabel>
 
-  handleChange = (event) => {
-    this.setState({ selectValue: event.target.value });
-  };
-
-  render() {
-    const { selectValue } = this.state;
-    const { label, items, className } = this.props;
-    return (
-      <div>
-        <FormControl variant="outlined">
-          <InputLabel id="demo-simple-select-outlined-label">
-            {label}
-          </InputLabel>
-
-          <Select
-            className={`select-box ${className}`}
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            value={selectValue}
-            onChange={this.handleChange}
-            label={label}
-          >
-            {items.map((item) => (
-              <MenuItem key={item} value={item}>
-                {item}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </div>
-    );
-  }
-}
+      <Select
+        className={`select-box ${className}`}
+        labelId="demo-simple-select-outlined-label"
+        id="demo-simple-select-outlined"
+        value={selectValue}
+        onChange={onChange}
+        label={label}
+        name={name}
+      >
+        {items.map((item) => (
+          <MenuItem key={item} value={item}>
+            {item}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
+  </div>
+);
 
 SelectBox.propTypes = {
   label: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
   className: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  selectValue: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
 };
 
 SelectBox.defaultProps = {
   className: '',
+  selectValue: '',
 };
+
+export default SelectBox;

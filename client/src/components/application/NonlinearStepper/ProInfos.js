@@ -1,91 +1,68 @@
 import React from 'react';
-import { Select, Container, FormControl } from '@material-ui/core';
-import MenuItem from '@material-ui/core/MenuItem';
-import InputLabel from '@material-ui/core/InputLabel';
+import { Container } from '@material-ui/core';
 import PropTypes from 'prop-types';
+import InputText from '../../common/TextField';
+import SelectBox from '../SelectBox';
 
-const ProInfos = ({ handleFormInput }) => (
+const ProInfos = ({ handleFormInput, formValues }) => (
   <>
     <Container maxWidth="sm">
-      <FormControl variant="outlined" fullWidth>
-        <InputLabel htmlFor="outlined-age-native-simple">
-          How confident are you at understanding English ?
-        </InputLabel>
-        <Select
-          fullWidth
-          labelId="english-understand"
-          label="How confident are you at understanding English ?"
-          name="eConfident"
-          onChange={handleFormInput}
-        >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-        <br />
-      </FormControl>
-      <FormControl variant="outlined" fullWidth>
-        <InputLabel id="english-understand">
-          How confident are you at speaking English ?
-        </InputLabel>
-        <Select
-          fullWidth
-          label="How confident are you at speaking English"
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          name="eUnderstand"
-          onChange={handleFormInput}
-        >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-        <br />
-      </FormControl>
-      <FormControl variant="outlined" fullWidth>
-        <InputLabel id="employment-status">
-          What is current Employment status ?
-        </InputLabel>
-        <Select
-          fullWidth
-          label="What is current Employment status ?"
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          name="currentEmploy"
-          onChange={handleFormInput}
-        >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-        <br />
-      </FormControl>
-      <FormControl variant="outlined" fullWidth>
-        <InputLabel id="english-understand">
-          If Employed what is you job title ?
-        </InputLabel>
-        <Select
-          fullWidth
-          label="If Employed what is you job title ?"
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          name="jobTitle"
-          onChange={handleFormInput}
-        >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </FormControl>
+      <SelectBox
+        label="How confident are you at English speaking?"
+        name="eConfident"
+        items={[
+          'Totally Confident',
+          "I'm an intermediate speaker",
+          "I'm a beginner speaker",
+          "I can't speak English at all",
+        ]}
+        onChange={handleFormInput}
+        selectValue={formValues.eConfident}
+      />
+      <SelectBox
+        label="How confident are you in understanding English?"
+        name="eUnderstand"
+        items={[
+          'Totally Confident',
+          "I'm understand at an intermediate level",
+          "I'm understand at a beginner level",
+          "I can't understand English at all",
+        ]}
+        onChange={handleFormInput}
+        selectValue={formValues.eUnderstand}
+      />
+      <SelectBox
+        label="What is your current Employment Status?"
+        name="currentEmploy"
+        items={[
+          'I am a student',
+          'I am unemployed',
+          'I am employed full-time',
+          'I am employed part-time',
+        ]}
+        onChange={handleFormInput}
+        selectValue={formValues.currentEmploy}
+      />
+      <InputText
+        id="job-title"
+        value={formValues.jobTitle}
+        placeholder="Enter your job title.."
+        label="If employed, what is your job title?"
+        name="jobTitle"
+        message="Use n/a if you are not employed"
+        onChange={handleFormInput}
+      />
     </Container>
   </>
 );
 
 ProInfos.propTypes = {
   handleFormInput: PropTypes.func,
+  formValues: PropTypes.string,
 };
 ProInfos.defaultProps = {
   handleFormInput: '',
+  formValues: '',
 };
 
 export default ProInfos;
