@@ -64,6 +64,7 @@ export default class App extends React.Component {
 
   render() {
     const { user, admin, loading } = this.state;
+
     return (
       <div>
         <AppBar logoutHandler={this.logoutHandler} auth={user || admin} />
@@ -77,11 +78,8 @@ export default class App extends React.Component {
             path="/signup"
             render={(props) => <Signup {...props} />}
           />
-          <Route render={() => <Redirect to="/" />} />
           <main className="container">
-            {loading ? (
-              <Limitation ClassName="body" />
-            ) : admin ? (
+            {admin ? (
               <div>
                 <Route
                   path="/dashboard"
@@ -104,7 +102,7 @@ export default class App extends React.Component {
                   render={(props) => <Completed {...props} />}
                 />
               </div>
-            ) : (
+            ) : user ? (
               <div>
                 <Route path="/steps" render={(props) => <Login {...props} />} />
                 <Route
@@ -125,6 +123,8 @@ export default class App extends React.Component {
                   render={(props) => <Profile {...props} />}
                 />
               </div>
+            ) : (
+              <Redirect to="/404" />
             )}
           </main>
         </Switch>
