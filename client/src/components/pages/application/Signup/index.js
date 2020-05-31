@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import Alert from '../../../common/Alert';
 import Card from '../../../common/card';
 import Typography from '../../../common/Typography';
@@ -23,8 +24,10 @@ class SignUp extends React.Component {
   state = initialState;
 
   handleSignIn = () => {
-    const { history } = this.props;
-    history.push('/login');
+    const {
+      history: { push },
+    } = this.props;
+    push('/login');
   };
 
   throwMessage = (message) => this.setState({ message });
@@ -191,5 +194,11 @@ class SignUp extends React.Component {
     );
   }
 }
+
+SignUp.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default SignUp;
