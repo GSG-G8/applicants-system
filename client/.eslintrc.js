@@ -24,12 +24,14 @@ module.exports = {
         extensions: [".js", ".jsx"]
       }
     ],
+    "react/jsx-props-no-spreading": "off",
+    "no-nested-ternary" :"off",
     quotes: [
       2,
       "single",
       {
         avoidEscape: true, // allows strings to use single-quotes or double-quotes so long as the string contains a quote that would have to be escaped otherwise
-        allowTemplateLiterals: true // allows strings to use backticks
+        allowTemplateLiterals: true // allows strings to use backtick
       }
     ],
     // configure the prettier plugin
