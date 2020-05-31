@@ -1,14 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ErrorImage from '../../../../../assets/images/error404.jpg';
+import Typography from '@material-ui/core/Typography';
 import './index.css';
 
 const Error404 = () => (
-  <div>
-    <img alt="Error 404" src={ErrorImage} className="error_404" />
-
-    <Link to="/" className="link">
-      Back to Home
+  <div className="notfound">
+    <div className="notfound-404">
+      <div className="h1">
+        <Typography variant="h1">oops!</Typography>
+      </div>
+      <div className="h2">
+        <Typography variant="h5">404 - The Page can't be found</Typography>
+      </div>
+    </div>
+    <Link className="link" to="/">
+      Back TO Home page
     </Link>
   </div>
 );
