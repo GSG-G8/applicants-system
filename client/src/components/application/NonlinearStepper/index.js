@@ -65,7 +65,8 @@ export default function HorizontalNonLinearStepper() {
 
   const handleSubmit = (values) => {
     nLinearStepperValidation(values).catch((err) => console.log(err.errors));
-    // console.log({ dataToPost: values });
+    console.log({ dataToPost: values });
+    setFormValues('');
   };
 
   return (

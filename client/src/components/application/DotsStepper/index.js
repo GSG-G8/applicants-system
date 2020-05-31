@@ -52,11 +52,11 @@ const DotStepper = ({ steps }) => {
               </Typography>
             </div>
             <div className={classes.changing}>
-              <Typography variant="body2" align="left">
+              <Typography variant="body1" align="left">
                 {mainStep[activeStep].element1}
               </Typography>
 
-              <Typography variant="body2" align="left">
+              <Typography variant="body1" align="left">
                 {mainStep[activeStep].element2}
               </Typography>
             </div>
