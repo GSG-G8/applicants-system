@@ -18,8 +18,8 @@ export default class SelectBox extends React.Component {
   };
 
   render() {
-    const { selectValue } = this.state;
-    const { label, items, className, name } = this.props;
+    // const { selectValue } = this.state;
+    const { label, items, className, name, value } = this.props;
     return (
       <div>
         <FormControl variant="outlined">
@@ -33,7 +33,7 @@ export default class SelectBox extends React.Component {
             labelId="demo-simple-select-outlined-label"
             name={name}
             id="demo-simple-select-outlined"
-            value={selectValue}
+            value={value}
             onChange={this.handleChange}
           >
             {items.map((item) => (
@@ -54,6 +54,7 @@ SelectBox.propTypes = {
   className: PropTypes.string,
   setval: PropTypes.func,
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 SelectBox.defaultProps = {

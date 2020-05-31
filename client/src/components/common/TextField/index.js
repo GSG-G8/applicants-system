@@ -24,6 +24,7 @@ function InputText({
         name={name}
         type={type}
         label={label}
+        value={value}
         defaultValue={value}
         className={`classes.container  ${className}`}
         helperText={message}

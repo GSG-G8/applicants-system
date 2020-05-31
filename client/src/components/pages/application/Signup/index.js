@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Card from '../../../common/card';
 import Typography from '../../../common/Typography';
-import Textfield from '../../../common/TextField';
+import TextField from '../../../common/TextField';
 import Button from '../../../common/Button';
 import signupValidate from '../../../../utils/application/SignupValidation';
 import SelectBox from '../../../application/SelectBox';
@@ -10,25 +10,27 @@ import './index.css';
 
 import signupImage from '../../../../assets/images/signup.svg';
 
+const initialState = {
+  fullName: '',
+  email: '',
+  password: '',
+  passwordConfirmation: '',
+  location: '',
+  message: '',
+};
 class SignUp extends React.Component {
-  state = {
-    fullName: '',
-    email: '',
-    password: '',
-    passwordConfirmation: '',
-    location: '',
-    message: '',
-  };
+  state = initialState;
 
-  handleSignin = () => {
-    window.location.href = '/signin';
-  };
-
-  handleEror = () => {
-    window.location.href = '/404';
+  handleSignIn = () => {
+    const { history } = this.props;
+    history.push('/login');
   };
 
   throwMessage = (message) => this.setState({ message });
+
+  resetForm = () => {
+    this.setState(initialState);
+  };
 
   submit = () => {
     const { message, ...lest } = this.state;
@@ -37,7 +39,7 @@ class SignUp extends React.Component {
         ? axios
             .post('/api/v1/signup', lest)
             .then((response) => {
-              console.log(response);
+              this.resetForm();
               this.throwMessage(response.data.message, true);
             })
             .catch(() => this.throwMessage('Please Enter Correct Data'))
@@ -87,7 +89,7 @@ class SignUp extends React.Component {
                     </Typography>
                   </div>
                   <div className="form">
-                    <Textfield
+                    <TextField
                       name="fullName"
                       label="full Name"
                       value={fullName}
@@ -95,7 +97,7 @@ class SignUp extends React.Component {
                       placeholder="Enter your Full Name"
                       onChange={this.handleChange}
                     />
-                    <Textfield
+                    <TextField
                       label="Email"
                       name="email"
                       value={email}
@@ -103,7 +105,7 @@ class SignUp extends React.Component {
                       placeholder="Enter Your Email"
                       onChange={this.handleChange}
                     />
-                    <Textfield
+                    <TextField
                       label="password"
                       type="password"
                       name="password"
@@ -112,7 +114,7 @@ class SignUp extends React.Component {
                       placeholder="Enter Your Password"
                       onChange={this.handleChange}
                     />
-                    <Textfield
+                    <TextField
                       label="Confirm Password"
                       type="password"
                       name="passwordConfirmation"
@@ -136,7 +138,7 @@ class SignUp extends React.Component {
                     </Typography>
                   </div>
                   <div className="buttons">
-                    <Button onClick={this.handleSignin}>Sign In</Button>
+                    <Button onClick={this.handleSignIn}>Sign In</Button>
                     <Button customStyle="outlined" onClick={this.submit}>
                       Sign Up
                     </Button>
