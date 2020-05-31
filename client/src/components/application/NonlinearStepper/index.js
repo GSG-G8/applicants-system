@@ -7,6 +7,7 @@ import ProInfos from './ProInfos';
 import GeneralInfos from './GeneralInfo';
 import { Theme } from '../../common/Typography/style';
 import Button from '../../common/Button';
+import nLinearStepperValidation from '../../../utils/application/nLinearStepperValidation';
 import useStyles from './style';
 
 export default function HorizontalNonLinearStepper() {
@@ -63,7 +64,8 @@ export default function HorizontalNonLinearStepper() {
   }
 
   const handleSubmit = (values) => {
-    console.log({ dataToPost: values });
+    nLinearStepperValidation(values).catch((err) => console.log(err.errors));
+    // console.log({ dataToPost: values });
   };
 
   return (
