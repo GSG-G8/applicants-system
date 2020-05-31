@@ -7,33 +7,27 @@ import PropTypes from 'prop-types';
 import './style.css';
 
 export default class SelectBox extends React.Component {
-  state = {
-    selectValue: '',
-  };
-
   handleChange = (event) => {
-    const { setval } = this.props;
-    this.setState({ selectValue: event.target.value });
-    setval(event);
+    const { setVal } = this.props;
+    setVal(event);
   };
 
   render() {
-    // const { selectValue } = this.state;
-    const { label, items, className, name, value } = this.props;
+    const { label, items, className, name, value, isError } = this.props;
     return (
       <div>
         <FormControl variant="outlined">
           <InputLabel id="demo-simple-select-outlined-label">
             {label}
           </InputLabel>
-
           <Select
             label={label}
-            className={`select-box ${className}`}
+            className={`${className} select-box`}
             labelId="demo-simple-select-outlined-label"
             name={name}
             id="demo-simple-select-outlined"
             value={value}
+            error={isError}
             onChange={this.handleChange}
           >
             {items.map((item) => (
@@ -52,12 +46,13 @@ SelectBox.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   className: PropTypes.string,
-  setval: PropTypes.func,
+  setVal: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
   value: PropTypes.string.isRequired,
+  isError: PropTypes.bool,
 };
 
 SelectBox.defaultProps = {
   className: '',
-  setval: '',
+  isError: false,
 };

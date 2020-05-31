@@ -14,6 +14,7 @@ function InputText({
   placeholder,
   onChange,
   disabled,
+  isError,
 }) {
   const classes = style();
 
@@ -32,6 +33,7 @@ function InputText({
         onChange={onChange}
         disabled={disabled}
         variant="outlined"
+        error={isError}
       />
     </div>
   );
@@ -48,6 +50,7 @@ InputText.propTypes = {
   placeholder: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
+  isError: PropTypes.bool,
 };
 InputText.defaultProps = {
   id: 'outlined-required',
@@ -57,5 +60,6 @@ InputText.defaultProps = {
   className: '',
   message: '',
   disabled: false,
+  isError: false,
 };
 export default InputText;

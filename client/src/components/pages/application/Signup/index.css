@@ -15,9 +15,13 @@
 }
 
 .signForm {
-  height: 2.2rem;
+  height: 2.7rem;
   width: 20rem;
   line-height: 0;
+}
+
+.extra {
+  height: 2.7rem;
 }
 
 .signForm input {
@@ -26,13 +30,6 @@
 
 .signForm label {
   line-height: .5;
-}
-
-.message {
-  width: 85%;
-  height: 1.5rem;
-  margin: 0 auto;
-  margin-top: .8rem;
 }
 
 .card_sign__head {
@@ -54,18 +51,17 @@
 
 @media only screen and (max-width: 600px) {
   .container {
-    display: block;
+    padding-top: 2rem;
+    align-items: center;
   }
   .signupImg {
-    width: 25rem;
-    height: auto;
-    padding-top: 4rem;
+    display: none;
   }
   .right__content {
+    align-self: center;
     padding: 0;
   }
   .signForm {
     width: 15rem;
   }
-
 }
