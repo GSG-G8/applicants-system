@@ -58,7 +58,12 @@ const ProInfos = ({ handleFormInput, formValues }) => (
 
 ProInfos.propTypes = {
   handleFormInput: PropTypes.func,
-  formValues: PropTypes.string,
+  formValues: PropTypes.shape({
+    eConfident: PropTypes.string,
+    eUnderstand: PropTypes.string,
+    currentEmploy: PropTypes.string,
+    jobTitle: PropTypes.string,
+  }),
 };
 ProInfos.defaultProps = {
   handleFormInput: '',

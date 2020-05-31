@@ -30,7 +30,7 @@ const GereralInfos = ({ handleFormInput, formValues }) => {
   return (
     <>
       <div className={classes.gender}>
-        <Typography variant="" color="primary">
+        <Typography variant="h5" color="primary">
           Gender
         </Typography>
         <RadioGroup
@@ -64,8 +64,6 @@ const GereralInfos = ({ handleFormInput, formValues }) => {
         name="fullName"
         onChange={handleFormInput}
       />
-      <br />
-      <br />
       <InputText
         id="mobID"
         value={formValues.MobNumber}
@@ -74,8 +72,6 @@ const GereralInfos = ({ handleFormInput, formValues }) => {
         name="MobNumber"
         onChange={handleFormInput}
       />
-      <br />
-      <br />
       <SelectBox
         label="Age"
         name="age"
@@ -100,13 +96,19 @@ const GereralInfos = ({ handleFormInput, formValues }) => {
   );
 };
 
-GereralInfos.propTypes = {
-  handleFormInput: PropTypes.func,
-  formValues: PropTypes.string,
-};
 GereralInfos.defaultProps = {
   handleFormInput: '',
   formValues: '',
+};
+GereralInfos.propTypes = {
+  handleFormInput: PropTypes.func,
+  formValues: PropTypes.shape({
+    gender: PropTypes.string,
+    fullName: PropTypes.string,
+    MobNumber: PropTypes.string,
+    age: PropTypes.string,
+    adress: PropTypes.string,
+  }),
 };
 
 export default GereralInfos;

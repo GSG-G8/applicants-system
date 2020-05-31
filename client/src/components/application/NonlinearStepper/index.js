@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { Container, ThemeProvider } from '@material-ui/core';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -8,17 +7,7 @@ import ProInfos from './ProInfos';
 import GeneralInfos from './GeneralInfo';
 import { Theme } from '../../common/Typography/style';
 import Button from '../../common/Button';
-
-const useStyles = makeStyles((theme) => ({
-  gender: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    margin: theme.spacing(3),
-  },
-  nextButton: {
-    marginLeft: theme.spacing(4),
-  },
-}));
+import useStyles from './style';
 
 export default function HorizontalNonLinearStepper() {
   const classes = useStyles();
@@ -74,7 +63,7 @@ export default function HorizontalNonLinearStepper() {
   }
 
   const handleSubmit = (values) => {
-    console.log(values);
+    console.log({ dataToPost: values });
   };
 
   return (
@@ -105,7 +94,7 @@ export default function HorizontalNonLinearStepper() {
                       variant="contained"
                       color="primary"
                       type="submit"
-                      onClick={(e) => handleSubmit(formValues)}
+                      onClick={() => handleSubmit(formValues)}
                     >
                       Next
                     </Button>
