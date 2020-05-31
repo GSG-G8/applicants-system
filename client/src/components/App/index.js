@@ -64,7 +64,22 @@ export default class App extends React.Component {
 
   render() {
     const { user, admin, loading } = this.state;
-
+    const { pathname } = window.location;
+    const paths = pathname.split('/');
+    const lastIndexUrl = paths[paths.length - 1];
+    const Routes = [
+      '/dashboard',
+      '/dashboard/applications/opened',
+      '/dashboard/applications/submitted',
+      `/dashboard/applications/submitted/${lastIndexUrl}`,
+      '/dashboard/applications/completed',
+      '/steps',
+      '/availability',
+      '/tasks',
+      '/project',
+      '/submit',
+      '/myprofile',
+    ];
     return (
       <div>
         <AppBar logoutHandler={this.logoutHandler} auth={user || admin} />
@@ -78,51 +93,64 @@ export default class App extends React.Component {
             path="/signup"
             render={(props) => <Signup {...props} />}
           />
+
           <main className="container">
-            {admin ? (
-              <div>
-                <Route
-                  path="/dashboard"
-                  render={(props) => <Dashboard {...props} />}
-                />
-                <Route
-                  path="/dashboard/applications/opened"
-                  render={(props) => <Opened {...props} />}
-                />
-                <Route
-                  path="/dashboard/applications/submitted"
-                  render={(props) => <SubmittedAll {...props} />}
-                />
-                <Route
-                  path="/dashboard/applications/submitted/:applicantID"
-                  render={(props) => <SubmittedId {...props} />}
-                />
-                <Route
-                  path="/dashboard/applications/completed"
-                  render={(props) => <Completed {...props} />}
-                />
-              </div>
-            ) : user ? (
-              <div>
-                <Route path="/steps" render={(props) => <Login {...props} />} />
-                <Route
-                  path="/availability"
-                  render={(props) => <Availability {...props} />}
-                />
-                <Route path="/tasks" render={(props) => <Tasks {...props} />} />
-                <Route
-                  path="/project"
-                  render={(props) => <Project {...props} />}
-                />
-                <Route
-                  path="/submit"
-                  render={(props) => <Submit {...props} />}
-                />
-                <Route
-                  path="/myprofile"
-                  render={(props) => <Profile {...props} />}
-                />
-              </div>
+            {Routes.includes(pathname) ? (
+              loading ? (
+                <div className="limitation">
+                  <Limitation />
+                </div>
+              ) : admin ? (
+                <div>
+                  <Route
+                    path="/dashboard"
+                    render={(props) => <Dashboard {...props} />}
+                  />
+                  <Route
+                    path="/dashboard/applications/opened"
+                    render={(props) => <Opened {...props} />}
+                  />
+                  <Route
+                    path="/dashboard/applications/submitted"
+                    render={(props) => <SubmittedAll {...props} />}
+                  />
+                  <Route
+                    path="/dashboard/applications/submitted/:applicantID"
+                    render={(props) => <SubmittedId {...props} />}
+                  />
+                  <Route
+                    path="/dashboard/applications/completed"
+                    render={(props) => <Completed {...props} />}
+                  />
+                </div>
+              ) : (
+                <div>
+                  <Route
+                    path="/steps"
+                    render={(props) => <Login {...props} />}
+                  />
+                  <Route
+                    path="/availability"
+                    render={(props) => <Availability {...props} />}
+                  />
+                  <Route
+                    path="/tasks"
+                    render={(props) => <Tasks {...props} />}
+                  />
+                  <Route
+                    path="/project"
+                    render={(props) => <Project {...props} />}
+                  />
+                  <Route
+                    path="/submit"
+                    render={(props) => <Submit {...props} />}
+                  />
+                  <Route
+                    path="/myprofile"
+                    render={(props) => <Profile {...props} />}
+                  />
+                </div>
+              )
             ) : (
               <Redirect to="/404" />
             )}
