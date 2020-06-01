@@ -11,7 +11,7 @@ import GeneralInfos from './GeneralInfo';
 import { Theme } from '../../common/Typography/style';
 import Button from '../../common/Button';
 import nLinearStepperValidation from '../../../utils/application/nLinearStepperValidation';
-import useStyles from './style';
+import { useStyles } from './style';
 
 export default function HorizontalNonLinearStepper({ userID }) {
   const classes = useStyles();
@@ -80,7 +80,7 @@ export default function HorizontalNonLinearStepper({ userID }) {
     try {
       await nLinearStepperValidation(values);
       try {
-        await Axios.patch(`/api/v1/applicants/${userID}`, {
+        await Axios.patch(`/api/v1/applicants/5e8d90bcced90b367c76ab5c`, {
           gender: formValues.gender,
           fullName: formValues.fullName,
           mobileNumber: formValues.mobileNumber,

@@ -3,8 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 const style = makeStyles((theme) => ({
   root: {
     '& .MuiTextField-root': {
-      marginTop: theme.spacing(1),
-      // width: '40.7rem',
+      margin: theme.spacing(2),
+    },
+    '& .MuiFormHelperText-root': {
+      marginBottom: '-28px',
     },
   },
   container: {

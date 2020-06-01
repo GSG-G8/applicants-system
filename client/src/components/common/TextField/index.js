@@ -23,15 +23,16 @@ function InputText({
       <TextField
         fullWidth
         id={id}
+        name={name}
         type={type}
         label={label}
+        value={value}
         defaultValue={value}
-        className={`classes.container ${className}`}
+        className={`classes.container  ${className}`}
         helperText={message}
         placeholder={placeholder}
         onChange={onChange}
         disabled={disabled}
-        name={name}
         variant="outlined"
         error={isError}
       />
@@ -41,6 +42,7 @@ function InputText({
 
 InputText.propTypes = {
   id: PropTypes.string,
+  name: PropTypes.string,
   type: PropTypes.string,
   label: PropTypes.string,
   value: PropTypes.string.isRequired,
@@ -48,17 +50,16 @@ InputText.propTypes = {
   message: PropTypes.string,
   placeholder: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  name: PropTypes.string,
   disabled: PropTypes.bool,
   isError: PropTypes.bool,
 };
 InputText.defaultProps = {
   id: 'outlined-required',
+  name: '',
   type: 'text',
   label: '',
   className: '',
   message: '',
-  name: '',
   disabled: false,
   isError: false,
 };

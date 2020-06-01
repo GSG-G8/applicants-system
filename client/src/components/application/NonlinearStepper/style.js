@@ -11,4 +11,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default useStyles;
+const GeneralInfoStyles = makeStyles((theme) => ({
+  button: {
+    marginRight: theme.spacing(1),
+  },
+  gender: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  instructions: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  },
+}));
+
+export { useStyles, GeneralInfoStyles };

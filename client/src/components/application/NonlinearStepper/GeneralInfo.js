@@ -1,32 +1,13 @@
 import React from 'react';
-import {
-  Radio,
-  FormControlLabel,
-  RadioGroup,
-  makeStyles,
-} from '@material-ui/core';
+import { Radio, FormControlLabel, RadioGroup } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import InputText from '../../common/TextField';
 import SelectBox from '../SelectBox';
 import Typography from '../../common/Typography';
-
-const useStyles = makeStyles((theme) => ({
-  button: {
-    marginRight: theme.spacing(1),
-  },
-  gender: {
-    display: 'flex',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-  },
-  instructions: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-  },
-}));
+import { GeneralInfoStyles } from './style';
 
 const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
-  const classes = useStyles();
+  const classes = GeneralInfoStyles();
 
   return (
     <>
@@ -65,6 +46,7 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         name="fullName"
         onChange={handleFormInput}
         isError={errorMsg.includes('Full Name is required')}
+        message="ex:- Sam Smith"
       />
       <InputText
         id="mobID"
@@ -74,13 +56,14 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         name="mobileNumber"
         onChange={handleFormInput}
         isError={errorMsg.includes('Mobile Nubmer is required')}
+        message="ex:- 05xx xxx xxx"
       />
       <SelectBox
         label="Age"
         name="age"
         items={['<18', '18-20', '21-25', '26-30', '31-35', '36-40', '40+']}
-        onChange={handleFormInput}
-        selectValue={formValues.age}
+        setVal={handleFormInput}
+        value={formValues.age}
         isError={errorMsg.includes('Age is required')}
       />
       <SelectBox
@@ -93,8 +76,8 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
           'Khan Younis',
           'Rafah',
         ]}
-        onChange={handleFormInput}
-        selectValue={formValues.address}
+        setVal={handleFormInput}
+        value={formValues.address}
         isError={errorMsg.includes('Address is required')}
       />
     </>

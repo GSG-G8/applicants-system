@@ -16,8 +16,8 @@ const ProInfos = ({ handleFormInput, formValues, errorMsg }) => (
           "I'm a beginner speaker",
           "I can't speak English at all",
         ]}
-        onChange={handleFormInput}
-        selectValue={formValues.eConfident}
+        setVal={handleFormInput}
+        value={formValues.eConfident}
         isError={errorMsg.includes('Language Confident is required')}
       />
       <SelectBox
@@ -29,8 +29,8 @@ const ProInfos = ({ handleFormInput, formValues, errorMsg }) => (
           "I'm understand at a beginner level",
           "I can't understand English at all",
         ]}
-        onChange={handleFormInput}
-        selectValue={formValues.eUnderstand}
+        setVal={handleFormInput}
+        value={formValues.eUnderstand}
         isError={errorMsg.includes('Language Understand is required')}
       />
       <SelectBox
@@ -42,8 +42,8 @@ const ProInfos = ({ handleFormInput, formValues, errorMsg }) => (
           'I am employed full-time',
           'I am employed part-time',
         ]}
-        onChange={handleFormInput}
-        selectValue={formValues.currentEmploy}
+        setVal={handleFormInput}
+        value={formValues.currentEmploy}
         isError={errorMsg.includes('Current Employment is required')}
       />
       <InputText

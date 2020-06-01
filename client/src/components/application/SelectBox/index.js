@@ -6,55 +6,54 @@ import Select from '@material-ui/core/Select';
 import PropTypes from 'prop-types';
 import './style.css';
 
-const SelectBox = ({
-  label,
-  items,
-  className,
-  onChange,
-  name,
-  selectValue,
-  isError,
-}) => (
-  <div>
-    <FormControl variant="outlined" fullWidth>
-      <InputLabel className="select-box" id="demo-simple-select-outlined-label">
-        {label}
-      </InputLabel>
+export default class SelectBox extends React.Component {
+  handleChange = (event) => {
+    const { setVal } = this.props;
+    setVal(event);
+  };
 
-      <Select
-        className={`select-box ${className}`}
-        labelId="demo-simple-select-outlined-label"
-        id="demo-simple-select-outlined"
-        value={selectValue}
-        onChange={onChange}
-        label={label}
-        name={name}
-        error={isError}
-      >
-        {items.map((item) => (
-          <MenuItem key={item} value={item}>
-            {item}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
-  </div>
-);
+  render() {
+    const { label, items, className, name, value, isError } = this.props;
+    return (
+      <div>
+        <FormControl className="MuiFormControl-root" variant="outlined">
+          <InputLabel id="demo-simple-select-outlined-label">
+            {label}
+          </InputLabel>
+          <Select
+            fullWidth
+            label={label}
+            className={`${className} select-box`}
+            labelId="demo-simple-select-outlined-label"
+            name={name}
+            id="demo-simple-select-outlined"
+            value={value}
+            error={isError}
+            onChange={this.handleChange}
+          >
+            {items.map((item) => (
+              <MenuItem key={item} value={item}>
+                {item}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </div>
+    );
+  }
+}
 
 SelectBox.propTypes = {
   label: PropTypes.string.isRequired,
-  items: PropTypes.arrayOf(PropTypes.string).isRequired,
-  className: PropTypes.string,
   name: PropTypes.string.isRequired,
-  selectValue: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  className: PropTypes.string,
+  setVal: PropTypes.func.isRequired,
+  items: PropTypes.arrayOf(PropTypes.string).isRequired,
+  value: PropTypes.string.isRequired,
   isError: PropTypes.bool,
 };
 
 SelectBox.defaultProps = {
   className: '',
-  selectValue: '',
   isError: false,
 };
-
-export default SelectBox;

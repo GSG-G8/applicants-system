@@ -1,6 +1,7 @@
 import React from 'react';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import stepperStyle from './style';
 import registration from './registrationSteps.json';
 import Typography from '../../common/Typography';
@@ -10,6 +11,7 @@ import Button from '../../common/Button';
 const { primaryHeader, Info, stepHeader } = registration;
 
 const DotStepper = ({ steps }) => {
+  const history = useHistory();
   const mainStep = steps
     .map((e, index) =>
       index % 2 === 0
@@ -30,7 +32,7 @@ const DotStepper = ({ steps }) => {
   };
 
   const handleApply = () => {
-    window.location.href = '/';
+    history.push('/signup');
   };
 
   return (
