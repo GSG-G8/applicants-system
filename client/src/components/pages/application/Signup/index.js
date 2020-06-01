@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
 import Alert from '../../../common/Alert';
 import Card from '../../../common/card';
 import Typography from '../../../common/Typography';
@@ -80,7 +81,9 @@ class SignUp extends React.Component {
     } = this.state;
     return (
       <div className="page">
-        <Alert Msg="SignUp Successfully" />
+        <Helmet>
+          <title>SignUp</title>
+        </Helmet>
         {message.includes('SignUp Successfully') && (
           <Alert Msg="SignUp Successfully" />
         )}
