@@ -6,9 +6,11 @@ const stepperSchema = yup.object().shape({
   mobileNumber: yup.string().required('Mobile Nubmer is required'),
   age: yup.string().required('Age is required').trim(),
   address: yup.string().required('Address is required'),
-  eConfident: yup.string().required('Language Confident is required'),
-  eUnderstand: yup.string().required('Language Understand is required'),
-  currentEmploy: yup.string().required('Current Employment is required'),
+  englishSpeaking: yup.string().required('Language Confident is required'),
+  englishUnderstanding: yup
+    .string()
+    .required('Language Understand is required'),
+  employmentStatus: yup.string().required('Current Employment is required'),
 });
 
 const nLinearStepperValidation = (value) =>

@@ -9,7 +9,7 @@ const ProInfos = ({ handleFormInput, formValues, errorMsg }) => (
     <Container maxWidth="sm">
       <SelectBox
         label="How confident are you at English speaking?"
-        name="eConfident"
+        name="englishSpeaking"
         items={[
           'Totally Confident',
           "I'm an intermediate speaker",
@@ -17,12 +17,12 @@ const ProInfos = ({ handleFormInput, formValues, errorMsg }) => (
           "I can't speak English at all",
         ]}
         setVal={handleFormInput}
-        value={formValues.eConfident}
+        value={formValues.englishSpeaking}
         isError={errorMsg.includes('Language Confident is required')}
       />
       <SelectBox
         label="How confident are you in understanding English?"
-        name="eUnderstand"
+        name="englishUnderstanding"
         items={[
           'Totally Confident',
           "I'm understand at an intermediate level",
@@ -30,12 +30,12 @@ const ProInfos = ({ handleFormInput, formValues, errorMsg }) => (
           "I can't understand English at all",
         ]}
         setVal={handleFormInput}
-        value={formValues.eUnderstand}
+        value={formValues.englishUnderstanding}
         isError={errorMsg.includes('Language Understand is required')}
       />
       <SelectBox
         label="What is your current Employment Status?"
-        name="currentEmploy"
+        name="employmentStatus"
         items={[
           'I am a student',
           'I am unemployed',
@@ -43,7 +43,7 @@ const ProInfos = ({ handleFormInput, formValues, errorMsg }) => (
           'I am employed part-time',
         ]}
         setVal={handleFormInput}
-        value={formValues.currentEmploy}
+        value={formValues.employmentStatus}
         isError={errorMsg.includes('Current Employment is required')}
       />
       <InputText
@@ -62,9 +62,9 @@ const ProInfos = ({ handleFormInput, formValues, errorMsg }) => (
 ProInfos.propTypes = {
   handleFormInput: PropTypes.func,
   formValues: PropTypes.shape({
-    eConfident: PropTypes.string,
-    eUnderstand: PropTypes.string,
-    currentEmploy: PropTypes.string,
+    englishSpeaking: PropTypes.string,
+    englishUnderstanding: PropTypes.string,
+    employmentStatus: PropTypes.string,
     jobTitle: PropTypes.string,
   }),
   errorMsg: PropTypes.arrayOf(PropTypes.string),

@@ -6,7 +6,7 @@ const style = makeStyles((theme) => ({
       margin: theme.spacing(2),
     },
     '& .MuiFormHelperText-root': {
-      marginBottom: '-28px',
+      marginBottom: '-20px',
     },
   },
   container: {

@@ -13,6 +13,8 @@ import Button from '../../common/Button';
 import nLinearStepperValidation from '../../../utils/application/nLinearStepperValidation';
 import { useStyles } from './style';
 
+const steps = ['General Information', 'Professional Information'];
+
 export default function HorizontalNonLinearStepper({ userID }) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
@@ -22,9 +24,9 @@ export default function HorizontalNonLinearStepper({ userID }) {
     mobileNumber: '',
     age: '',
     address: '',
-    eUnderstand: '',
-    eConfident: '',
-    currentEmploy: '',
+    englishUnderstanding: '',
+    englishSpeaking: '',
+    employmentStatus: '',
     jobTitle: '',
   });
   const [errMsg, setErrMsg] = useState([]);
@@ -36,7 +38,6 @@ export default function HorizontalNonLinearStepper({ userID }) {
       [e.target.name]: e.target.value,
     });
   };
-  const steps = ['General Information', 'Professional Information'];
 
   const handleNext = () => {
     setMessage('');
@@ -77,19 +78,30 @@ export default function HorizontalNonLinearStepper({ userID }) {
   }
 
   const handleSubmit = async (values) => {
+    const {
+      gender,
+      fullName,
+      mobileNumber,
+      age,
+      address,
+      englishUnderstanding,
+      englishSpeaking,
+      employmentStatus,
+      jobTitle,
+    } = formValues;
     try {
       await nLinearStepperValidation(values);
       try {
-        await Axios.patch(`/api/v1/applicants/5e8d90bcced90b367c76ab5c`, {
-          gender: formValues.gender,
-          fullName: formValues.fullName,
-          mobileNumber: formValues.mobileNumber,
-          age: formValues.age,
-          address: formValues.address,
-          englishUnderstanding: formValues.eUnderstand,
-          englishSpeaking: formValues.eConfident,
-          employmentStatus: formValues.currentEmploy,
-          jobTitle: formValues.jobTitle,
+        await Axios.patch(`/api/v1/applicants/${userID}`, {
+          gender,
+          fullName,
+          mobileNumber,
+          age,
+          address,
+          englishUnderstanding,
+          englishSpeaking,
+          employmentStatus,
+          jobTitle,
         });
       } catch (error) {
         setErrMsg(error.message);
