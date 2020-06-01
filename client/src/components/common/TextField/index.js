@@ -5,6 +5,7 @@ import style from './style';
 
 function InputText({
   id,
+  name,
   type,
   label,
   value,
@@ -13,6 +14,7 @@ function InputText({
   placeholder,
   onChange,
   disabled,
+  isError,
 }) {
   const classes = style();
 
@@ -20,15 +22,18 @@ function InputText({
     <div className={classes.root}>
       <TextField
         id={id}
+        name={name}
         type={type}
         label={label}
+        value={value}
         defaultValue={value}
-        className={`classes.container ${className}`}
+        className={`classes.container  ${className}`}
         helperText={message}
         placeholder={placeholder}
         onChange={onChange}
         disabled={disabled}
         variant="outlined"
+        error={isError}
       />
     </div>
   );
@@ -36,6 +41,7 @@ function InputText({
 
 InputText.propTypes = {
   id: PropTypes.string,
+  name: PropTypes.string,
   type: PropTypes.string,
   label: PropTypes.string,
   value: PropTypes.string.isRequired,
@@ -44,13 +50,16 @@ InputText.propTypes = {
   placeholder: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
+  isError: PropTypes.bool,
 };
 InputText.defaultProps = {
   id: 'outlined-required',
+  name: '',
   type: 'text',
   label: '',
   className: '',
   message: '',
   disabled: false,
+  isError: false,
 };
 export default InputText;
