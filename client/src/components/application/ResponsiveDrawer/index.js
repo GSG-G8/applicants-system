@@ -30,11 +30,12 @@ ResponsiveDrawer.propTypes = {
 };
 ResponsiveDrawer.defaultProps = {
   Content: [
-    { text: 'first', isFinished: true },
-    { text: 'second', isFinished: false },
-    { text: 'third', isFinished: false },
-    { text: 'fourth', isFinished: true },
-    { text: 'fifth', isFinished: true },
+    { text: 'APPLICATION STEPS', url: 'steps' },
+    { text: 'Availability', url: 'availability' },
+    { text: 'Accounts', url: 'accounts' },
+    { text: 'Technical Tasks', url: 'tasks' },
+    { text: 'Final Project', url: 'project' },
+    { text: 'Submit Application', url: 'submit' },
   ],
 };
 
