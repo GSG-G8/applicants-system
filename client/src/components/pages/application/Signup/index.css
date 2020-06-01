@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.signupImg {
+  width: 40rem;
+  height: 30rem;
+}
+
+.signForm {
+  height: 2.7rem;
+  width: 20rem;
+  line-height: 0;
+}
+
+.extra {
+  height: 2.7rem;
+}
+
+.signForm input {
+  height: .5rem;
+}
+
+.signForm label {
+  line-height: .5;
+}
+
+.card_sign__head {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.right__content {
+  padding: 3rem 5rem 0 5rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: .5rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    padding: 2rem 0rem 0rem 5rem;
+    align-items: stretch;
+    justify-content: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+  }
+  .signupImg {
+    display: none;
+  }
+  .right__content {
+    align-self: center;
+    padding-top: 1rem;
+  }
+  .signForm {
+    max-width: 20rem;
+  }
+}
