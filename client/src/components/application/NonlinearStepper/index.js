@@ -104,7 +104,7 @@ export default function HorizontalNonLinearStepper({ userID }) {
           jobTitle,
         });
       } catch (error) {
-        setErrMsg(error.message);
+        setMessage(error.message);
       }
     } catch ({ errors }) {
       setErrMsg(errors);

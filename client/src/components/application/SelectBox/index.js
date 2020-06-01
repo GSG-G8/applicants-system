@@ -16,12 +16,11 @@ export default class SelectBox extends React.Component {
     const { label, items, className, name, value, isError } = this.props;
     return (
       <div>
-        <FormControl className="MuiFormControl-root" variant="outlined">
+        <FormControl variant="outlined">
           <InputLabel id="demo-simple-select-outlined-label">
             {label}
           </InputLabel>
           <Select
-            fullWidth
             label={label}
             className={`${className} select-box`}
             labelId="demo-simple-select-outlined-label"

@@ -5,9 +5,6 @@ const style = makeStyles((theme) => ({
     '& .MuiTextField-root': {
       margin: theme.spacing(2),
     },
-    '& .MuiFormHelperText-root': {
-      marginBottom: '-20px',
-    },
   },
   container: {
     padding: '1rem',

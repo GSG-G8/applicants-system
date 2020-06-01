@@ -5,6 +5,7 @@ import style from './style';
 
 function InputText({
   id,
+  name,
   type,
   label,
   value,
@@ -12,7 +13,6 @@ function InputText({
   message,
   placeholder,
   onChange,
-  name,
   disabled,
   isError,
 }) {
@@ -21,7 +21,6 @@ function InputText({
   return (
     <div className={classes.root}>
       <TextField
-        fullWidth
         id={id}
         name={name}
         type={type}
