@@ -5,6 +5,7 @@
 .container {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-end;
 }
@@ -51,17 +52,20 @@
 
 @media only screen and (max-width: 600px) {
   .container {
-    padding-top: 2rem;
-    align-items: center;
+    padding: 2rem 0rem 0rem 5rem;
+    align-items: stretch;
+    justify-content: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
   }
   .signupImg {
     display: none;
   }
   .right__content {
     align-self: center;
-    padding: 0;
+    padding-top: 1rem;
   }
   .signForm {
-    width: 15rem;
+    max-width: 20rem;
   }
 }

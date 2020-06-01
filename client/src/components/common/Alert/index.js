@@ -3,7 +3,6 @@ import Alert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Snackbar from '@material-ui/core/Snackbar';
-import './style.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Alerts = ({ Type, Msg }) => {
+const Alerts = ({ Type, Msg, vertical, horizontal }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 
@@ -26,7 +25,12 @@ const Alerts = ({ Type, Msg }) => {
   };
   return (
     <div className={classes.root}>
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical, horizontal }}
+      >
         <Alert onClose={handleClose} severity={Type}>
           {Msg}
         </Alert>
@@ -38,9 +42,13 @@ const Alerts = ({ Type, Msg }) => {
 Alerts.propTypes = {
   Type: PropTypes.string,
   Msg: PropTypes.string.isRequired,
+  vertical: PropTypes.string,
+  horizontal: PropTypes.string,
 };
 Alerts.defaultProps = {
   Type: 'success',
+  vertical: 'top',
+  horizontal: 'center',
 };
 
 export default Alerts;

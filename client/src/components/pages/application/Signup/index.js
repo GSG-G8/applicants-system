@@ -61,9 +61,10 @@ class SignUp extends React.Component {
       },
       () => {
         const { message, ...rest } = this.state;
-        signupValidate(rest)
-          .then(this.throwMessage(''))
-          .catch(({ errors }) => this.throwMessage(errors));
+        if (message.length > 0)
+          signupValidate(rest)
+            .then(this.throwMessage(''))
+            .catch(({ errors }) => this.throwMessage(errors));
       }
     );
   };
@@ -79,6 +80,7 @@ class SignUp extends React.Component {
     } = this.state;
     return (
       <div className="page">
+        <Alert Msg="SignUp Successfully" />
         {message.includes('SignUp Successfully') && (
           <Alert Msg="SignUp Successfully" />
         )}
@@ -164,7 +166,8 @@ class SignUp extends React.Component {
                         message.includes('Not same')
                       }
                       message={
-                        message.includes('Not same')
+                        message.includes('Not same') ||
+                        message.includes('Confirm your password')
                           ? 'Your password is not Match'
                           : ''
                       }
