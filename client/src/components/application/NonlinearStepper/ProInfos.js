@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import InputText from '../../common/TextField';
 import SelectBox from '../SelectBox';
 
-const ProInfos = ({ handleFormInput, formValues }) => (
+const ProInfos = ({ handleFormInput, formValues, errorMsg }) => (
   <>
     <Container maxWidth="sm">
       <SelectBox
@@ -18,6 +18,7 @@ const ProInfos = ({ handleFormInput, formValues }) => (
         ]}
         onChange={handleFormInput}
         selectValue={formValues.eConfident}
+        isError={errorMsg.includes('Language Confident is required')}
       />
       <SelectBox
         label="How confident are you in understanding English?"
@@ -30,6 +31,7 @@ const ProInfos = ({ handleFormInput, formValues }) => (
         ]}
         onChange={handleFormInput}
         selectValue={formValues.eUnderstand}
+        isError={errorMsg.includes('Language Understand is required')}
       />
       <SelectBox
         label="What is your current Employment Status?"
@@ -42,6 +44,7 @@ const ProInfos = ({ handleFormInput, formValues }) => (
         ]}
         onChange={handleFormInput}
         selectValue={formValues.currentEmploy}
+        isError={errorMsg.includes('Current Employment is required')}
       />
       <InputText
         id="job-title"
@@ -64,10 +67,12 @@ ProInfos.propTypes = {
     currentEmploy: PropTypes.string,
     jobTitle: PropTypes.string,
   }),
+  errorMsg: PropTypes.arrayOf(PropTypes.string),
 };
 ProInfos.defaultProps = {
-  handleFormInput: '',
+  handleFormInput: () => {},
   formValues: '',
+  errorMsg: [],
 };
 
 export default ProInfos;

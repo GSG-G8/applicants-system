@@ -25,8 +25,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const GereralInfos = ({ handleFormInput, formValues }) => {
+const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
   const classes = useStyles();
+
   return (
     <>
       <div className={classes.gender}>
@@ -63,14 +64,16 @@ const GereralInfos = ({ handleFormInput, formValues }) => {
         label="Full Name"
         name="fullName"
         onChange={handleFormInput}
+        isError={errorMsg.includes('Full Name is required')}
       />
       <InputText
         id="mobID"
-        value={formValues.MobNumber}
+        value={formValues.mobileNumber}
         placeholder="Enter Mobile Number"
         label="Mobile Number"
-        name="MobNumber"
+        name="mobileNumber"
         onChange={handleFormInput}
+        isError={errorMsg.includes('Mobile Nubmer is required')}
       />
       <SelectBox
         label="Age"
@@ -78,10 +81,11 @@ const GereralInfos = ({ handleFormInput, formValues }) => {
         items={['<18', '18-20', '21-25', '26-30', '31-35', '36-40', '40+']}
         onChange={handleFormInput}
         selectValue={formValues.age}
+        isError={errorMsg.includes('Age is required')}
       />
       <SelectBox
         label="Where do you live in Gaza?"
-        name="adress"
+        name="address"
         items={[
           'North of Gaza Strip',
           'Gaza City',
@@ -90,25 +94,28 @@ const GereralInfos = ({ handleFormInput, formValues }) => {
           'Rafah',
         ]}
         onChange={handleFormInput}
-        selectValue={formValues.adress}
+        selectValue={formValues.address}
+        isError={errorMsg.includes('Address is required')}
       />
     </>
   );
 };
 
 GereralInfos.defaultProps = {
-  handleFormInput: '',
+  handleFormInput: () => {},
   formValues: '',
+  errorMsg: [],
 };
 GereralInfos.propTypes = {
   handleFormInput: PropTypes.func,
   formValues: PropTypes.shape({
     gender: PropTypes.string,
     fullName: PropTypes.string,
-    MobNumber: PropTypes.string,
+    mobileNumber: PropTypes.string,
     age: PropTypes.string,
-    adress: PropTypes.string,
+    address: PropTypes.string,
   }),
+  errorMsg: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default GereralInfos;

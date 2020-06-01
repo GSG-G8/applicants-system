@@ -13,6 +13,7 @@ const SelectBox = ({
   onChange,
   name,
   selectValue,
+  isError,
 }) => (
   <div>
     <FormControl variant="outlined" fullWidth>
@@ -28,6 +29,7 @@ const SelectBox = ({
         onChange={onChange}
         label={label}
         name={name}
+        error={isError}
       >
         {items.map((item) => (
           <MenuItem key={item} value={item}>
@@ -46,11 +48,13 @@ SelectBox.propTypes = {
   name: PropTypes.string.isRequired,
   selectValue: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+  isError: PropTypes.bool,
 };
 
 SelectBox.defaultProps = {
   className: '',
   selectValue: '',
+  isError: false,
 };
 
 export default SelectBox;

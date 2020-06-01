@@ -3,6 +3,9 @@ import { Container, ThemeProvider } from '@material-ui/core';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
+import Axios from 'axios';
+import PropTypes from 'prop-types';
+
 import ProInfos from './ProInfos';
 import GeneralInfos from './GeneralInfo';
 import { Theme } from '../../common/Typography/style';
@@ -10,21 +13,24 @@ import Button from '../../common/Button';
 import nLinearStepperValidation from '../../../utils/application/nLinearStepperValidation';
 import useStyles from './style';
 
-export default function HorizontalNonLinearStepper() {
+export default function HorizontalNonLinearStepper({ userID }) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [formValues, setFormValues] = useState({
     gender: '',
     fullName: '',
-    MobNumber: '',
+    mobileNumber: '',
     age: '',
-    adress: '',
-    eConfident: '',
+    address: '',
     eUnderstand: '',
+    eConfident: '',
     currentEmploy: '',
     jobTitle: '',
   });
+  const [errMsg, setErrMsg] = useState([]);
+  const [message, setMessage] = useState([]);
   const handleFormInput = (e) => {
+    setErrMsg([]);
     setFormValues({
       ...formValues,
       [e.target.name]: e.target.value,
@@ -33,10 +39,12 @@ export default function HorizontalNonLinearStepper() {
   const steps = ['General Information', 'Professional Information'];
 
   const handleNext = () => {
+    setMessage('');
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const handleBack = () => {
+    setMessage('');
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
@@ -51,22 +59,45 @@ export default function HorizontalNonLinearStepper() {
           <GeneralInfos
             handleFormInput={handleFormInput}
             formValues={formValues}
+            errorMsg={errMsg}
           />
         );
 
       case 1:
         return (
-          <ProInfos handleFormInput={handleFormInput} formValues={formValues} />
+          <ProInfos
+            handleFormInput={handleFormInput}
+            formValues={formValues}
+            errorMsg={errMsg}
+          />
         );
       default:
         return 'Unknown step';
     }
   }
 
-  const handleSubmit = (values) => {
-    nLinearStepperValidation(values).catch((err) => console.log(err.errors));
-    console.log({ dataToPost: values });
-    setFormValues('');
+  const handleSubmit = async (values) => {
+    try {
+      await nLinearStepperValidation(values);
+      try {
+        await Axios.patch(`/api/v1/applicants/${userID}`, {
+          gender: formValues.gender,
+          fullName: formValues.fullName,
+          mobileNumber: formValues.mobileNumber,
+          age: formValues.age,
+          address: formValues.address,
+          englishUnderstanding: formValues.eUnderstand,
+          englishSpeaking: formValues.eConfident,
+          employmentStatus: formValues.currentEmploy,
+          jobTitle: formValues.jobTitle,
+        });
+      } catch (error) {
+        setErrMsg(error.message);
+      }
+    } catch ({ errors }) {
+      setErrMsg(errors);
+      setMessage(errors[0]);
+    }
   };
 
   return (
@@ -82,6 +113,7 @@ export default function HorizontalNonLinearStepper() {
           </Stepper>
           <div>
             <div>
+              <div style={{ textAlign: 'center' }}>{message}</div>
               {getStepContent(activeStep)}
               <div className={classes.gender}>
                 <Button
@@ -113,3 +145,7 @@ export default function HorizontalNonLinearStepper() {
     </div>
   );
 }
+
+HorizontalNonLinearStepper.propTypes = {
+  userID: PropTypes.string.isRequired,
+};
