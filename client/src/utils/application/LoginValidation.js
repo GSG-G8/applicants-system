@@ -10,10 +10,6 @@ const schema = yup.object().shape({
       'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character'
     ),
 });
-const loginValidate = ({ email, password }) =>
-  schema.isValid({
-    email,
-    password,
-  });
+const loginValidate = (value) => schema.validate(value, { abortEarly: false });
 
 export default loginValidate;
