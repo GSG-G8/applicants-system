@@ -1,4 +1,4 @@
-.container {
+.login-container {
   padding: 6rem;
   padding-top: 10vh;
   display: flex;
@@ -26,7 +26,7 @@
 }
 
 @media screen and (max-width: 420px) {
-  .container {
+  .login-container {
     padding:1rem;
   }
   .login-button-container, .login-input-container {

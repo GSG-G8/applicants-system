@@ -78,7 +78,7 @@ class Login extends React.Component {
     const { message } = this.state;
     return (
       <ThemeProvider theme={Theme}>
-        <div className="container">
+        <div className="login-container">
           <Helmet>
             <title>Login</title>
           </Helmet>
