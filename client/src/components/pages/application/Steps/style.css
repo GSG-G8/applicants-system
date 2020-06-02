@@ -1,0 +1,41 @@
+.Container_page {
+  background-color: rgb(245, 245, 245);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Container_page__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.backGround {
+  position: absolute;
+  z-index: 0;
+  top: 20%;
+  height: 70vh;
+  right: 2%;
+}
+
+.text_Welcome {
+  align-self: center;
+  color: rgb(255, 123, 0);
+}
+
+.steps_buttons {
+  align-self: flex-end;
+}
+
+.steps {
+  padding-top: 3rem;
+  height: 20rem;
+}
+
+.steps__list {
+  margin-top: 1rem;
+  list-style: none;
+}

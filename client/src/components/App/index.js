@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
+import ResponseDrawer from '../application/ResponsiveDrawer';
 import AppBar from '../common/AppBar';
 import Limitation from '../common/limitation';
 import Error404 from '../pages/common/errors/Error-404';
@@ -9,6 +10,7 @@ import Error500 from '../pages/common/errors/Error-500';
 import Home from '../pages/common/Home';
 import Login from '../pages/common/Login';
 import Signup from '../pages/application/Signup';
+import Steps from '../pages/application/Steps';
 import Availability from '../pages/application/Availability';
 import Tasks from '../pages/application/Tasks';
 import Project from '../pages/application/Project';
@@ -126,9 +128,10 @@ export default class App extends React.Component {
                 </div>
               ) : (
                 <div>
+                  <ResponseDrawer />
                   <Route
                     path="/steps"
-                    render={(props) => <Login {...props} />}
+                    render={(props) => <Steps {...props} />}
                   />
                   <Route
                     path="/availability"
