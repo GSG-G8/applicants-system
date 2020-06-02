@@ -1,35 +1,26 @@
-import React from 'react';
-import { ThemeProvider } from '@material-ui/core/styles';
+import React, { useState } from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
-import TextField from '@material-ui/core/TextField';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import Theme from './theme';
+import TextField from '../../../common/TextField';
 import SimpleCard from '../../../common/card';
 import Typography from '../../../common/Typography';
 import Button from '../../../common/Button';
+import WelcomeImg from '../../../../assets/images/signup.svg';
 import loginValidate from '../../../../utils/application/LoginValidation';
 
 import './index.css';
 
-class Login extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: '',
-      password: '',
-      role: '',
-      message: [],
-    };
-  }
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState([]);
 
-  throwMessage = (message) => {
-    this.setState({ message });
+  const throwMessage = (msg) => {
+    setMessage(msg);
   };
 
-  login = () => {
-    const { email, password } = this.state;
+  const login = () => {
     loginValidate({
       email,
       password,
@@ -41,127 +32,101 @@ class Login extends React.Component {
                 email,
                 password,
               })
-              .then((response) => {
-                this.setState({ role: response.data.role }, () => {
-                  this.redirect();
-                });
+              .then(({ data: { role } }) => {
+                if (role === 'admin') {
+                  window.location.replace('/dashboard');
+                } else {
+                  window.location.replace('/steps');
+                }
               })
-              .catch(() =>
-                this.setState({
-                  message: 'Please Check your Email or Password',
-                })
-              )
-          : this.setState({ message: 'Please Check your Email or Password' })
+              .catch(() => setMessage(['Please Check your Email or Password']))
+          : setMessage(['Please Check your Email or Password'])
       )
-      .catch(({ errors }) => this.throwMessage(errors));
+      .catch(({ errors }) => throwMessage(errors));
   };
 
-  updateEmail = (e) => {
-    this.setState({ email: e.target.value });
+  const updateEmail = (e) => {
+    setEmail(e.target.value);
   };
 
-  updatePassword = (e) => {
-    this.setState({ password: e.target.value });
+  const updatePassword = (e) => {
+    setPassword(e.target.value);
   };
 
-  redirect() {
-    const { role } = this.state;
-    const { history } = this.props;
-    if (role === 'applicant') {
-      history.push('/steps');
-    } else if (role === 'admin') {
-      history.push('/dashboard');
-    }
-  }
-
-  render() {
-    const { message } = this.state;
-    return (
-      <ThemeProvider theme={Theme}>
-        <div className="login-container">
-          <Helmet>
-            <title>Login</title>
-          </Helmet>
+  return (
+    <div className="page">
+      <Helmet>
+        <title>Login</title>
+      </Helmet>
+      <div className="container">
+        <div>
+          <img src={WelcomeImg} className="WelcomeImg" alt="GSG Code Academy" />
+        </div>
+        <div className="right__content">
           <SimpleCard
             ClassName="card_sign"
             content={
-              <>
-                <Typography variant="h4" align="center" color="primary">
-                  Sign In
-                </Typography>
-                <Typography variant="h6" align="center" color="secondary">
-                  Please enter your login details
-                </Typography>
-                <div className="login-input-container">
+              <div>
+                <div className="card_sign__head">
+                  <Typography variant="h6" color="primary">
+                    Sign In
+                  </Typography>
+                  <Typography variant="body2" color="secondary">
+                    Please enter your login details
+                  </Typography>
+                </div>
+                <div className="form">
                   <TextField
+                    className="signForm"
                     id="email"
                     label="Email"
                     variant="outlined"
                     type="email"
                     placeholder="Enter Email"
-                    onChange={this.updateEmail}
-                    isError={message.includes('email must be a valid email')}
+                    onChange={updateEmail}
+                    isError={
+                      message.includes('Please Enter your email') ||
+                      message.includes('Please Check your Email or Password')
+                    }
                     message={
-                      message.includes('email must be a valid email')
+                      message.includes('Please Enter a valid email')
                         ? 'Please Enter a valid email'
                         : ''
                     }
                   />
-                  <Typography variant="body2" color="primary" align="left">
-                    {message.includes('email must be a valid email')
-                      ? 'Please Enter a valid email'
-                      : ''}
-                  </Typography>
                   <TextField
+                    className="signForm"
                     id="password"
                     label="Password"
                     variant="outlined"
                     type="password"
                     placeholder="Enter Password"
-                    onChange={this.updatePassword}
-                    isError={message.includes(
-                      'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character'
-                    )}
+                    onChange={updatePassword}
+                    isError={
+                      message.includes('Please Check your Email or Password') ||
+                      message.includes('Please Enter your password') ||
+                      message.includes('Must Contain 8 Characters')
+                    }
                     message={
-                      message.includes(
-                        'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character'
-                      )
-                        ? 'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character'
+                      message.includes('Please Check your Email or Password')
+                        ? 'Please Check your Email or Password'
                         : ''
                     }
                   />
-                  <Typography variant="body2" color="primary" align="left">
-                    {message.includes(
-                      'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character'
-                    )
-                      ? 'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character'
-                      : ''}
-                  </Typography>
                 </div>
-                <Typography variant="body2" color="primary" align="left">
-                  {message.includes('Please Check your Email or Password')
-                    ? 'Please Check your Email or Password'
-                    : ''}
-                </Typography>
-                <div className="login-button-container">
-                  <Button onClick={this.login}>Login</Button>
+                <div className="buttons button_login">
+                  <Button onClick={login}>Login</Button>
                   <Link to="/signup">
                     <Button customStyle="outlined">Sign Up</Button>
                   </Link>
                 </div>
-              </>
+              </div>
             }
           />
         </div>
-      </ThemeProvider>
-    );
-  }
-}
-
-Login.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }).isRequired,
+      </div>
+    </div>
+  );
 };
 
 export default Login;

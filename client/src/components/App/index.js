@@ -19,7 +19,7 @@ import Opened from '../pages/admin/Opened';
 import SubmittedAll from '../pages/admin/Submitted_all';
 import SubmittedId from '../pages/admin/Submitted_Id';
 import Completed from '../pages/admin/Completed';
-
+import ResponsiveDrawer from '../application/ResponsiveDrawer';
 import './index.css';
 
 export default class App extends React.Component {
@@ -55,11 +55,12 @@ export default class App extends React.Component {
   };
 
   logoutHandler = () => {
-    axios.get('/api/v1/logout').then(() => {
+    axios.post('/api/v1/logout').then(() => {
       this.setState({
         user: false,
         admin: false,
       });
+      window.location.replace('/');
     });
   };
 
@@ -126,6 +127,7 @@ export default class App extends React.Component {
                 </div>
               ) : (
                 <div>
+                  <ResponsiveDrawer />
                   <Route
                     path="/steps"
                     render={(props) => <Login {...props} />}

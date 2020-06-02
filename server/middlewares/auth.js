@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+const { verify } = require('jsonwebtoken');
 
 const applicant = require('../database/models/applicant');
 const admin = require('../database/models/admin');
@@ -13,7 +13,7 @@ const isAuthorized = (req, res, next) => {
         .status(401)
         .send({ statusCode: 401, auth: false, error: 'you are Unauthorized' });
     }
-    jwt.verify(req.cookies.applicant, process.env.SECRET_KEY, (err, token) => {
+    verify(req.cookies.applicant, process.env.SECRET_KEY, (err, token) => {
       if (err) {
         res.status(401).send({
           statusCode: 401,
@@ -35,7 +35,7 @@ const isAdmin = (req, res, next) => {
         .status(401)
         .send({ statusCode: 401, auth: false, error: 'you are Unauthorized' });
     } else {
-      jwt.verify(req.cookies.admin, process.env.SECRET_KEY, (err, token) => {
+      verify(req.cookies.admin, process.env.SECRET_KEY, (err, token) => {
         if (err) {
           res.status(401).send({
             statusCode: 401,
@@ -50,4 +50,47 @@ const isAdmin = (req, res, next) => {
   });
 };
 
-module.exports = { isAuthorized, isAdmin };
+const userAuthorized = (req, res, next) => {
+  try {
+    verify(req.cookies.applicant, process.env.SECRET_KEY, (err, token) => {
+      if (err) {
+        res.status(401).send({
+          statusCode: 401,
+          auth: false,
+          error: 'you are Unauthorized',
+        });
+      } else {
+        res.status(200).json({
+          statusCode: 200,
+          auth: true,
+          error: 'you are authorized',
+        });
+      }
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+const adminAuthorized = (req, res, next) => {
+  try {
+    verify(req.cookies.admin, process.env.SECRET_KEY, (err, token) => {
+      if (err) {
+        res.status(401).send({
+          statusCode: 401,
+          auth: false,
+          error: 'you are Unauthorized',
+        });
+      } else {
+        res.status(200).json({
+          statusCode: 200,
+          auth: true,
+          error: 'you are authorized',
+        });
+      }
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+module.exports = { isAuthorized, isAdmin, userAuthorized, adminAuthorized };
