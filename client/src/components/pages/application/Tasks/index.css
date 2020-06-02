@@ -1,0 +1,35 @@
+.tasks-container{
+  margin-top:15vh;
+margin-left:25vw;
+margin-bottom:10vh;
+width:60vw;
+
+}
+
+.tasks-title{
+  color: rgb(255, 123, 0);
+}
+
+.tasks-background {
+  position: fixed;
+  z-index: 0;
+  top: 20%;
+  height: 70vh;
+  right: 2%;
+}
+
+.tasks_buttons{
+  width:25rem;
+  margin-top: 3rem;
+  margin-left: 15vw;
+  display:flex;
+  justify-content: space-around;
+}
+
+.tasks-paragraph{
+  margin-left: 2.5rem;
+  margin-bottom: 2rem;
+  background-color: rgb(230,230,230);
+  border-radius: 10px;
+  padding:0.5rem;
+}
