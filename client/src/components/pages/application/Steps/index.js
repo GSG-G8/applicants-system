@@ -27,7 +27,7 @@ const Steps = ({ fullName }) => {
   return (
     <div className="Container_page">
       <Helmet>
-        <title>SignUp</title>
+        <title>Steps</title>
       </Helmet>
       <img src={backGround} alt="backGround" className="backGround" />
       <div className="Container_page__content">

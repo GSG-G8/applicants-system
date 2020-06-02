@@ -99,7 +99,7 @@ export default class App extends React.Component {
 
           <main className="container">
             {Routes.includes(pathname) ? (
-              loading === false ? (
+              loading ? (
                 <div className="limitation">
                   <Limitation />
                 </div>
