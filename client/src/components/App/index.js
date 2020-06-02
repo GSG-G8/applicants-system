@@ -10,6 +10,7 @@ import Home from '../pages/common/Home';
 import Login from '../pages/common/Login';
 import Signup from '../pages/application/Signup';
 import Availability from '../pages/application/Availability';
+import Accounts from '../pages/application/Accounts';
 import Tasks from '../pages/application/Tasks';
 import Project from '../pages/application/Project';
 import Submit from '../pages/application/Submit';
@@ -19,6 +20,7 @@ import Opened from '../pages/admin/Opened';
 import SubmittedAll from '../pages/admin/Submitted_all';
 import SubmittedId from '../pages/admin/Submitted_Id';
 import Completed from '../pages/admin/Completed';
+import ResponseDrawer from '../application/ResponsiveDrawer';
 
 import './index.css';
 
@@ -76,6 +78,7 @@ export default class App extends React.Component {
       '/dashboard/applications/completed',
       '/steps',
       '/availability',
+      '/accounts',
       '/tasks',
       '/project',
       '/submit',
@@ -97,7 +100,7 @@ export default class App extends React.Component {
 
           <main className="container">
             {Routes.includes(pathname) ? (
-              loading ? (
+              loading === false ? (
                 <div className="limitation">
                   <Limitation />
                 </div>
@@ -126,6 +129,7 @@ export default class App extends React.Component {
                 </div>
               ) : (
                 <div>
+                  <ResponseDrawer />
                   <Route
                     path="/steps"
                     render={(props) => <Login {...props} />}
@@ -133,6 +137,10 @@ export default class App extends React.Component {
                   <Route
                     path="/availability"
                     render={(props) => <Availability {...props} />}
+                  />
+                  <Route
+                    path="/accounts"
+                    render={(props) => <Accounts {...props} />}
                   />
                   <Route
                     path="/tasks"
