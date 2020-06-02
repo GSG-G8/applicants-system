@@ -57,6 +57,7 @@ const ProInfos = ({ handleFormInput, formValues, errorMsg }) => (
         name="jobTitle"
         message="Use n/a if you are not employed"
         onChange={handleFormInput}
+        isError={errorMsg.includes('job title is required')}
       />
     </Container>
   </>
