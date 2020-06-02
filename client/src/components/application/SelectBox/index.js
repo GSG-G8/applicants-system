@@ -13,7 +13,15 @@ export default class SelectBox extends React.Component {
   };
 
   render() {
-    const { label, items, className, name, value, isError } = this.props;
+    const {
+      label,
+      items,
+      className,
+      name,
+      value,
+      isError,
+      fullWidth,
+    } = this.props;
     return (
       <div>
         <FormControl variant="outlined">
@@ -29,6 +37,7 @@ export default class SelectBox extends React.Component {
             value={value}
             error={isError}
             onChange={this.handleChange}
+            fullWidth={fullWidth}
           >
             {items.map((item) => (
               <MenuItem key={item} value={item}>
@@ -50,9 +59,11 @@ SelectBox.propTypes = {
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
   value: PropTypes.string.isRequired,
   isError: PropTypes.bool,
+  fullWidth: PropTypes.bool,
 };
 
 SelectBox.defaultProps = {
   className: '',
   isError: false,
+  fullWidth: false,
 };

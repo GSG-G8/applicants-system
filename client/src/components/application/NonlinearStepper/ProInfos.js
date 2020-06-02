@@ -8,6 +8,7 @@ const ProInfos = ({ handleFormInput, formValues, errorMsg }) => (
   <>
     <Container maxWidth="sm">
       <SelectBox
+        fullWidth
         label="How confident are you at English speaking?"
         name="englishSpeaking"
         items={[
@@ -21,6 +22,7 @@ const ProInfos = ({ handleFormInput, formValues, errorMsg }) => (
         isError={errorMsg.includes('Language Confident is required')}
       />
       <SelectBox
+        fullWidth
         label="How confident are you in understanding English?"
         name="englishUnderstanding"
         items={[
@@ -34,6 +36,7 @@ const ProInfos = ({ handleFormInput, formValues, errorMsg }) => (
         isError={errorMsg.includes('Language Understand is required')}
       />
       <SelectBox
+        fullWidth
         label="What is your current Employment Status?"
         name="employmentStatus"
         items={[

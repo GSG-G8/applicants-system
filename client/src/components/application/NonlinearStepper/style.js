@@ -1,6 +1,15 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiFormHelperText-root': {
+      marginBottom: '-20px',
+    },
+    '& .MuiFormControl-root': {
+      width: '100%',
+    },
+  },
+
   gender: {
     display: 'flex',
     justifyContent: 'flex-end',
