@@ -1,0 +1,12 @@
+.WelcomeImg {
+  width: 40rem;
+  height: 30rem;
+}
+.button_login {
+  padding-top: 2rem;
+}
+@media only screen and (max-width: 600px) {
+  .WelcomeImg {
+    display: none;
+  }
+}
