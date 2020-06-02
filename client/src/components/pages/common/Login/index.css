@@ -1,38 +1,12 @@
-.container {
-  padding: 6rem;
-  padding-top: 10vh;
-  display: flex;
-  flex-direction: row-reverse;
-  background-color: gray;
-  align-content: flex-end;
-  align-items: flex-end;
-  height: 70vh;
-  background: no-repeat fixed left center
-    url("../../../../assets/images/login.svg");
-  background-size: 45%;
-
+.WelcomeImg {
+  width: 40rem;
+  height: 30rem;
 }
-
-.login-button-container {
-  display: flex;
-  justify-content: space-around;
+.button_login {
+  padding-top: 2rem;
 }
- 
-.login-input-container{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  height: 13rem;
-}
-
-@media screen and (max-width: 420px) {
-  .container {
-    padding:1rem;
-  }
-  .login-button-container, .login-input-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-  height: 10rem;
+@media only screen and (max-width: 600px) {
+  .WelcomeImg {
+    display: none;
   }
 }

@@ -1,19 +1,18 @@
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
-  email: yup.string().email().required('Please Enter your email'),
+  email: yup
+    .string()
+    .email('Please Enter a valid email')
+    .required('Please Enter your email'),
   password: yup
     .string()
-    .required('Please Enter your password')
     .matches(
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-      'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character'
-    ),
+      'Must Contain 8 Characters'
+    )
+    .required('Please Enter your password'),
 });
-const loginValidate = ({ email, password }) =>
-  schema.isValid({
-    email,
-    password,
-  });
+const loginValidate = (value) => schema.validate(value, { abortEarly: false });
 
 export default loginValidate;
