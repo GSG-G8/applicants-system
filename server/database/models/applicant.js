@@ -41,7 +41,7 @@ const applicantSchema = new Schema({
     type: String,
   },
   age: {
-    type: Number,
+    type: String,
     min: 18,
   },
   motivation: {

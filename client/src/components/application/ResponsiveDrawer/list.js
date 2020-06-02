@@ -47,7 +47,7 @@ const DrawerList = ({ content, isFinished }) => {
           .classList.remove(`${classes.buttonEffect}`);
       }
     }
-  }, [pathname]);
+  }, [pathname, content, classes]);
 
   return (
     <div>
