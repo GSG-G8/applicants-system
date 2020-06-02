@@ -5,12 +5,14 @@ import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
 import Axios from 'axios';
 import PropTypes from 'prop-types';
-
 import ProInfos from './ProInfos';
 import GeneralInfos from './GeneralInfo';
 import { Theme } from '../../common/Typography/style';
 import Button from '../../common/Button';
-import nLinearStepperValidation from '../../../utils/application/nLinearStepperValidation';
+import {
+  generalInfosValidation,
+  prosInfoValidation,
+} from '../../../utils/application/nLinearStepperValidation';
 import { useStyles } from './style';
 
 const steps = ['General Information', 'Professional Information'];
@@ -39,9 +41,15 @@ export default function HorizontalNonLinearStepper({ userID }) {
     });
   };
 
-  const handleNext = () => {
-    setMessage('');
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  const handleNext = async () => {
+    try {
+      await generalInfosValidation(formValues);
+      await setMessage('');
+      await setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    } catch ({ errors }) {
+      setErrMsg(errors);
+      setMessage(errors[0]);
+    }
   };
 
   const handleBack = () => {
@@ -90,7 +98,8 @@ export default function HorizontalNonLinearStepper({ userID }) {
       jobTitle,
     } = formValues;
     try {
-      await nLinearStepperValidation(values);
+      await generalInfosValidation(values);
+      await prosInfoValidation(values);
       try {
         await Axios.patch(`/api/v1/applicants/${userID}`, {
           gender,
@@ -125,7 +134,7 @@ export default function HorizontalNonLinearStepper({ userID }) {
           </Stepper>
           <div>
             <div>
-              <div style={{ textAlign: 'center' }}>{message}</div>
+              <div className={classes.validation}>{message}</div>
               {getStepContent(activeStep)}
               <div className={classes.gender}>
                 <Button

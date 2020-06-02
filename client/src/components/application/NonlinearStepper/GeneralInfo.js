@@ -21,7 +21,6 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
           name="gender"
           onChange={handleFormInput}
           value={formValues.gender}
-          defaultValue="Female"
         >
           <FormControlLabel
             className={classes.gender}
@@ -69,7 +68,7 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
       />
       <SelectBox
         fullWidth
-        label="Where do you live in Gaza?"
+        label="Address"
         name="address"
         items={[
           'North of Gaza Strip',

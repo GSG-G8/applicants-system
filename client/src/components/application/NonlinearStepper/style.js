@@ -10,6 +10,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  validation: {
+    textAlign: 'center',
+    color: 'red',
+    fontSize: '14px',
+  },
   gender: {
     display: 'flex',
     justifyContent: 'flex-end',
