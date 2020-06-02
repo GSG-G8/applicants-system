@@ -69,7 +69,7 @@ const Login = () => {
               <div>
                 <div className="card_sign__head">
                   <Typography variant="h6" color="primary">
-                    Sign In
+                    Login
                   </Typography>
                   <Typography variant="body2" color="secondary">
                     Please enter your login details
@@ -108,7 +108,8 @@ const Login = () => {
                       message.includes('Must Contain 8 Characters')
                     }
                     message={
-                      message.includes('Please Check your Email or Password')
+                      message.includes('Please Check your Email or Password') ||
+                      message.includes('Must Contain 8 Characters')
                         ? 'Please Check your Email or Password'
                         : ''
                     }
