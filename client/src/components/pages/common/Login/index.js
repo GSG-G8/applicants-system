@@ -72,7 +72,7 @@ const Login = () => {
                     Login
                   </Typography>
                   <Typography variant="body2" color="secondary">
-                    Please enter your login details
+                    Please enter your account details
                   </Typography>
                 </div>
                 <div className="form">
