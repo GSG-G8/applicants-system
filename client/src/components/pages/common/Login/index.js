@@ -118,6 +118,7 @@ class Login extends React.Component {
                     variant="outlined"
                     type="password"
                     placeholder="Enter Password"
+                    onChange={this.updatePassword}
                     isError={message.includes(
                       'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character'
                     )}
