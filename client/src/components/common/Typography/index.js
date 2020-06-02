@@ -13,7 +13,6 @@ const Typography = ({ children, className, ...props }) => {
         className={classes[`${className}`]}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
-        gutterBottom
       >
         {children}
       </MuiTypography>
