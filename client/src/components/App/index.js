@@ -19,6 +19,7 @@ import Opened from '../pages/admin/Opened';
 import SubmittedAll from '../pages/admin/Submitted_all';
 import SubmittedId from '../pages/admin/Submitted_Id';
 import Completed from '../pages/admin/Completed';
+
 import './index.css';
 
 export default class App extends React.Component {
