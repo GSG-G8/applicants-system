@@ -22,7 +22,6 @@
 }
 
 .text_Welcome {
-  padding-top: .2rem;
   align-self: center;
   color: rgb(255, 123, 0);
 }
@@ -32,8 +31,8 @@
 }
 
 .steps {
-  padding-top: 4rem;
-  min-height: 20rem;
+  padding-top: 3rem;
+  height: 20rem;
 }
 
 .steps__list {
