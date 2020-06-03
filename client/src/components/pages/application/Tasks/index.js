@@ -17,10 +17,13 @@ const getData = async () => {
 
 const Tasks = ({ fullName, isFinished }) => {
   const [data, setData] = useState();
-  const [noOfCheckedItem, setNoOfCheckedItem] = useState(0);
-  const [done, setDone] = useState(isFinished);
+  const [check, setCheckedItem] = useState(0);
   const history = useHistory();
 
+  const handleNext = (checked) => {
+    if (checked) setCheckedItem(check + 1);
+    else setCheckedItem(check - 1);
+  };
   useEffect(() => {
     if (!data) {
       getData().then(setData);
@@ -52,19 +55,7 @@ const Tasks = ({ fullName, isFinished }) => {
                   <Checkbox checked />
                 ) : (
                   <Checkbox
-                    onChange={(e) => {
-                      if (e.target.checked) {
-                        setNoOfCheckedItem(noOfCheckedItem + 1);
-                        if (noOfCheckedItem >= data.length - 1) {
-                          setDone(true);
-                        }
-                      } else {
-                        setNoOfCheckedItem(noOfCheckedItem - 1);
-                        if (noOfCheckedItem <= data.length - 1) {
-                          setDone(false);
-                        }
-                      }
-                    }}
+                    onChange={({ target: { checked } }) => handleNext(checked)}
                   />
                 )}
                 {taskName} <br />
@@ -77,12 +68,17 @@ const Tasks = ({ fullName, isFinished }) => {
             </div>
           ))
         ) : (
-          <Limitation />
+          <div className="loading">
+            <Limitation />
+          </div>
         )}
       </div>
       <div className="tasks_buttons">
         <Button onClick={() => history.push('/accounts')}>Back </Button>
-        <Button disabled={!done} onClick={() => history.push('/project')}>
+        <Button
+          disabled={data && check < data.length}
+          onClick={() => history.push('/project')}
+        >
           Next
         </Button>
       </div>
@@ -90,12 +86,11 @@ const Tasks = ({ fullName, isFinished }) => {
   );
 };
 
-Tasks.defaultProps = {
-  isFinished: false,
-};
-
 Tasks.propTypes = {
   fullName: PropTypes.string.isRequired,
   isFinished: PropTypes.bool,
+};
+Tasks.defaultProps = {
+  isFinished: false,
 };
 export default Tasks;
