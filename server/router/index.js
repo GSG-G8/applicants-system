@@ -25,7 +25,7 @@ router.use('/cohorts', cohortRouter);
 router.use('/tasks', tasksRouter);
 router.use('/steps', stepsRouter);
 
-router.use('/applicants', applicantRouter);
+router.use('/applicants', isAuthorized, applicantRouter);
 
 router.post('/logout', logout);
 
