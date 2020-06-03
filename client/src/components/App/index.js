@@ -11,6 +11,7 @@ import Login from '../pages/common/Login';
 import Signup from '../pages/application/Signup';
 import Steps from '../pages/application/Steps';
 import Availability from '../pages/application/Availability';
+import Accounts from '../pages/application/Accounts';
 import Tasks from '../pages/application/Tasks';
 import Project from '../pages/application/Project';
 import Submit from '../pages/application/Submit';
@@ -78,6 +79,7 @@ export default class App extends React.Component {
       '/dashboard/applications/completed',
       '/steps',
       '/availability',
+      '/accounts',
       '/tasks',
       '/project',
       '/submit',
@@ -136,6 +138,10 @@ export default class App extends React.Component {
                   <Route
                     path="/availability"
                     render={(props) => <Availability {...props} />}
+                  />
+                  <Route
+                    path="/accounts"
+                    render={(props) => <Accounts {...props} />}
                   />
                   <Route
                     path="/tasks"

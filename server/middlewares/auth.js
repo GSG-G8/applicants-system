@@ -1,20 +1,9 @@
 const { verify } = require('jsonwebtoken');
 
-const applicant = require('../database/models/applicant');
-const admin = require('../database/models/admin');
-
 require('env2')('config.env');
 
 const isAuthorized = (req, res, next) => {
-  const { email } = req.body;
-  applicant.findOne({ email }).then((data) => {
-    if (data === null) {
-      res.status(401).send({
-        statusCode: 401,
-        auth: false,
-        message: 'you are Unauthorized',
-      });
-    }
+  try {
     verify(req.cookies.applicant, process.env.SECRET_KEY, (err, token) => {
       if (err) {
         res.status(401).send({
@@ -26,32 +15,27 @@ const isAuthorized = (req, res, next) => {
         next();
       }
     });
-  });
+  } catch (err) {
+    next(err);
+  }
 };
 
 const isAdmin = (req, res, next) => {
-  const { email } = req.body;
-  admin.findOne({ email }).then((data) => {
-    if (data === null) {
-      res.status(401).send({
-        statusCode: 401,
-        auth: false,
-        message: 'you are Unauthorized',
-      });
-    } else {
-      verify(req.cookies.admin, process.env.SECRET_KEY, (err, token) => {
-        if (err) {
-          res.status(401).send({
-            statusCode: 401,
-            auth: false,
-            message: 'you are Unauthorized',
-          });
-        } else {
-          next();
-        }
-      });
-    }
-  });
+  try {
+    verify(req.cookies.applicant, process.env.SECRET_KEY, (err, token) => {
+      if (err) {
+        res.status(401).send({
+          statusCode: 401,
+          auth: false,
+          message: 'you are Unauthorized',
+        });
+      } else {
+        next();
+      }
+    });
+  } catch (err) {
+    next(err);
+  }
 };
 
 const userAuthorized = (req, res, next) => {
@@ -64,9 +48,11 @@ const userAuthorized = (req, res, next) => {
           message: 'you are Unauthorized',
         });
       } else {
+        const { userId } = token;
         res.status(200).json({
           statusCode: 200,
           auth: true,
+          userId,
           message: 'you are authorized',
         });
       }
@@ -86,9 +72,11 @@ const adminAuthorized = (req, res, next) => {
           message: 'you are Unauthorized',
         });
       } else {
+        const { AdminId } = token;
         res.status(200).json({
           statusCode: 200,
           auth: true,
+          AdminId,
           message: 'you are authorized',
         });
       }
@@ -97,4 +85,5 @@ const adminAuthorized = (req, res, next) => {
     next(err);
   }
 };
+
 module.exports = { isAuthorized, isAdmin, userAuthorized, adminAuthorized };
