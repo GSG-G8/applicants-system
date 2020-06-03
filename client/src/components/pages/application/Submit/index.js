@@ -18,8 +18,9 @@ const getUserID = async () => {
 const Submit = () => {
   const [UserId, setId] = useState('');
   const [userName, setName] = useState('');
-  const [isSubmitted, setSubmit] = useState(false);
+  const [applicationSubmittedDate, setDate] = useState();
   const history = useHistory();
+  const date = new Date();
 
   useEffect(() => {
     getUserID().then((data) => {
@@ -30,17 +31,16 @@ const Submit = () => {
     if (UserId) {
       axios.get(`/api/v1/applicants/${UserId}`).then(({ data: { user } }) => {
         setName(user.fullName);
-        setSubmit(user.isSubmitted);
+        setDate(user.applicationSubmittedDate);
       });
     }
-  }, [UserId]);
+  }, [UserId, applicationSubmittedDate]);
   const Next = async () => {
-    await setSubmit(true);
-    await axios
-      .patch(`/api/v1/applicants/${UserId}`, {
-        isSubmitted,
-      })
-      .catch();
+    setDate(date);
+    await axios.patch(`/api/v1/applicants/${UserId}`, {
+      applicationSubmittedDate: date,
+    });
+    // window.location.replace('/submit');
   };
 
   const Name = userName.split(' ')[0];
@@ -51,7 +51,7 @@ const Submit = () => {
       </Helmet>
       <img src={backGround} alt="backGround" className="backGround" />
       {UserId && userName ? (
-        isSubmitted === false ? (
+        !applicationSubmittedDate ? (
           <>
             <div className="text_Welcome">
               <Typography variant="h3" color="default">
