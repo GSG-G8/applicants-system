@@ -139,6 +139,10 @@ const applicantSchema = new Schema({
   applicationSubmittedDate: {
     type: Date,
   },
+  isSubmitted: {
+    type: Boolean,
+    default: false,
+  },
   accepted: {
     type: Boolean,
     default: false,

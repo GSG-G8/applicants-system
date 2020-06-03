@@ -64,9 +64,11 @@ const userAuthorized = (req, res, next) => {
           message: 'you are Unauthorized',
         });
       } else {
+        const { userId } = token;
         res.status(200).json({
           statusCode: 200,
           auth: true,
+          userId,
           message: 'you are authorized',
         });
       }
