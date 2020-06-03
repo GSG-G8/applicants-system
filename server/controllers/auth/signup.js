@@ -1,5 +1,4 @@
 const { hash } = require('bcrypt');
-const axios = require('axios');
 const applicant = require('../../database/models/applicant');
 const {
   signupValidate,
@@ -31,21 +30,12 @@ const signupApplicant = (req, res, next) => {
             });
           } else {
             hash(password, 10).then(async (hashedPassword) => {
-              const randomProject = `${req.protocol}://${req.get(
-                'host'
-              )}/api/v1/applicants/project`;
-              const {
-                data: { _id },
-              } = await axios.get(randomProject);
-
-              // eslint-disable-next-line new-cap
               const newApplicant = new applicant({
                 fullName,
                 email,
                 password: hashedPassword,
                 location,
                 avatar,
-                projectId: _id,
               });
               newApplicant
                 .save()
