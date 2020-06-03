@@ -1,7 +1,3 @@
-.Profile__container {
-
-}
-
 .profileImage {
   position: absolute;
   left: 0;
@@ -13,20 +9,30 @@
   margin-left: 2rem;
 }
 
-.Profile__avatar{
+.Profile__avatar {
   width: 6rem;
   height: 6rem;
   border-radius: 50%;
 }
-.Profile__table{
-text-align: center;  margin: 0 auto;
-  width: 80%;
+
+.Profile__table {
+  text-align: center;
+  margin: 0 auto;
+  width: 85%;
   line-height: 2rem;
 }
-.doted td{
-    text-align: left;
-    border-bottom: 1px dotted rgb(189, 180, 180);
+
+.doted td {
+  text-align: left;
+  border-bottom: 1px dotted rgb(189, 180, 180);
 }
+
 .item {
-  width: 40%;
+  padding-left: 2rem;
+}
+
+.profile_check_box {
+  height: .1rem;
+  margin: 0;
+  padding: 0;
 }

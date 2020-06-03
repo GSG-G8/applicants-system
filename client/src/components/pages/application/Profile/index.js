@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import Checkbox from '@material-ui/core/Checkbox';
 // import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
@@ -20,15 +20,20 @@ const applicantData = async (id) => {
   return user;
 };
 
+const getTec = async () => {
+  const { data } = (await axios.get('/api/v1/tasks')).data;
+  return data;
+};
+
 const Profile = ({ fullName, id }) => {
   const [data, setData] = useState();
+  const [tec, setTec] = useState();
   // const history = useHistory();
 
   useEffect(() => {
-    if (!data) {
-      applicantData('5e847f8a49abf469bd96009c').then(setData);
-    }
-  }, [data]);
+    if (!data) applicantData('5e847f8a49abf469bd96009c').then(setData);
+    if (!tec) getTec().then(setTec);
+  }, [data, tec]);
 
   return (
     <div className="Container_page">
@@ -54,12 +59,16 @@ const Profile = ({ fullName, id }) => {
                   </td>
                 </tr>
                 <tr className="doted">
-                  <td className="item">
+                  <td>
                     <Typography variant="body2" color="primary" align="left">
                       User Name
                     </Typography>
                   </td>
-                  <td>{data.fullName}</td>
+                  <td>
+                    <Typography variant="body2" align="left">
+                      {data.fullName}
+                    </Typography>
+                  </td>
                 </tr>
                 <tr className="doted">
                   <td>
@@ -71,27 +80,40 @@ const Profile = ({ fullName, id }) => {
                 </tr>
                 <tr>
                   <td className="item">
-                    <Typography variant="body2" align="center">
+                    <Typography variant="body2" align="left">
                       Email
                     </Typography>
                   </td>
-                  <td>{data.email}</td>
+                  <td>
+                    {' '}
+                    <Typography variant="body2" align="left">
+                      {data.email}
+                    </Typography>
+                  </td>
                 </tr>
                 <tr>
                   <td className="item">
-                    <Typography variant="body2" align="center">
+                    <Typography variant="body2" align="left">
                       Gender
                     </Typography>
                   </td>
-                  <td>{data.gender}</td>
+                  <td>
+                    <Typography variant="body2" align="left">
+                      {data.gender}
+                    </Typography>
+                  </td>
                 </tr>
-                <tr>
+                <tr className="doted">
                   <td className="item">
-                    <Typography variant="body2" align="center">
+                    <Typography variant="body2" align="left">
                       Age
                     </Typography>
                   </td>
-                  <td>{data.age}</td>
+                  <td>
+                    <Typography variant="body2" align="left">
+                      {data.age}
+                    </Typography>
+                  </td>
                 </tr>
                 <tr className="doted">
                   <td>
@@ -101,6 +123,65 @@ const Profile = ({ fullName, id }) => {
                   </td>
                   <td />
                 </tr>
+                <tr>
+                  <td className="item">
+                    <Typography variant="body2" align="left">
+                      Github
+                    </Typography>
+                  </td>
+                  <td>
+                    <Typography variant="body2" align="left">
+                      {data.githubLink}
+                    </Typography>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="item">
+                    <Typography variant="body2" align="left">
+                      FreeCode Camp
+                    </Typography>
+                  </td>
+                  <td>
+                    <Typography variant="body2" align="left">
+                      {data.freeCodeCampLink}
+                    </Typography>
+                  </td>
+                </tr>
+                <tr className="doted">
+                  <td className="item">
+                    <Typography variant="body2" align="left">
+                      Code Wares
+                    </Typography>
+                  </td>
+                  <td>
+                    <Typography variant="body2" align="left">
+                      {data.codeWarsLink}/
+                    </Typography>
+                  </td>
+                </tr>
+                <tr className="doted">
+                  <td>
+                    <Typography variant="body2" color="primary" align="left">
+                      Technical Task
+                    </Typography>
+                  </td>
+                  <td />
+                </tr>
+                {tec &&
+                  tec.map(({ taskName }) => (
+                    <tr>
+                      <td className="item" colSpan="2">
+                        <Typography variant="body2" align="left">
+                          <Checkbox
+                            checked={data && data.technicalTasks}
+                            className="profile_check_box"
+                            color="primary"
+                          />
+                          {taskName}
+                        </Typography>
+                      </td>
+                    </tr>
+                  ))}
               </table>
             }
           />
