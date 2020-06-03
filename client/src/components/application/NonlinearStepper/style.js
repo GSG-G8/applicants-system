@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: '-20px',
     },
     '& .MuiFormControl-root': {
-      width: '100%',
+      width: '94%',
     },
   },
 

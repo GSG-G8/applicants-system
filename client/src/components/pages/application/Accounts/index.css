@@ -1,9 +1,9 @@
-
 .Container_page {
   background-color: rgb(245, 245, 245);
   width: 100vw;
   height: 100vh;
 }
+
 .backGround {
   position: absolute;
   z-index: 0;
@@ -11,6 +11,7 @@
   height: 70vh;
   right: 2%;
 }
+
 .text_Welcome {
   position: absolute;
   top: 15%;
@@ -18,42 +19,49 @@
   color: rgb(255, 123, 0);
 }
 .Form_container {
-  margin-top: 10%;
+  margin: 2% 0 0 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
+
 .Form_container input {
   height: 0.3rem;
   background-color: rgb(255, 255, 255);
   width: 30rem;
 }
+
 .Form_container h5 {
   padding-left: 4%;
   margin-bottom: 3%;
 }
+
 .Form_container p {
   padding-left: 4%;
   margin-top: 1rem;
   font-weight: bolder;
 }
-.label_container{
+
+.label_container {
   display: flex;
   align-items: center;
   padding-left: 4%;
   height: 0.5rem;
   margin-top: 0.5rem;
 }
+
 .label_container p {
   padding-left: 5%;
   font-weight: bolder;
   margin: 0;
 }
+
 .label_container img {
   margin: 0;
   width: 1.5rem;
   height: 1.3rem;
 }
+
 .container_buttons {
   display: flex;
   justify-content: space-around;
@@ -61,14 +69,15 @@
   margin: 0 auto;
   margin-top: 1.5rem;
 }
-.check_box{
+
+.check_box {
   display: flex;
   flex-direction: row;
   width: 24rem;
   padding-left: 5%;
 }
 
-.check_box p{
+.check_box p {
   padding: 0;
   margin-top: 1rem;
   font-weight: bolder;

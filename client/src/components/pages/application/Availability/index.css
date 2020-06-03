@@ -1,0 +1,29 @@
+.availability {
+  max-width: 43rem;
+  display: flex;
+  min-height: 22rem;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.availability__head {
+  margin: 0 0 1rem 0;
+}
+.nonlinearSelect{
+  background-color: white;
+  width: 31.5rem;
+}
+
+.availability__buttons {
+  display: flex;
+  justify-content: space-evenly;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+
+.availability__stepper {
+  display: flex;
+  justify-content: flex-start;
+  margin: 5rem 0 0 -12rem;
+}
