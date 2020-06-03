@@ -15,7 +15,7 @@ const randomProject = (req, res, next) => {
           .json({ statusCode: 404, error: `Project not found` });
       }
 
-      return res.status(200).json({ status: 'successfully', _id });
+      return res.status(200).json({ status: 'successfully', projectId: _id });
     })
     .catch(next);
 };

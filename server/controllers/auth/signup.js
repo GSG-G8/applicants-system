@@ -14,6 +14,7 @@ const signupApplicant = (req, res, next) => {
     password,
     passwordConfirmation,
     location,
+    projectId,
   } = req.body;
   const avatar = `https://ui-avatars.com/api/?name=${firstName(
     fullName
@@ -36,6 +37,7 @@ const signupApplicant = (req, res, next) => {
                 password: hashedPassword,
                 location,
                 avatar,
+                projectId,
               });
               newApplicant
                 .save()

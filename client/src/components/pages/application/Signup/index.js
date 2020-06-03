@@ -18,6 +18,7 @@ const initialState = {
   password: '',
   passwordConfirmation: '',
   location: '',
+  projectId: '',
   message: [],
 };
 
@@ -37,9 +38,13 @@ class SignUp extends React.Component {
     this.setState(initialState);
   };
 
-  submit = () => {
+  submit = async () => {
+    const {
+      data: { projectId },
+    } = await axios.get('/api/v1/project/random');
+    // eslint-disable-next-line react/no-unused-state
+    this.setState({ projectId });
     const { message, ...rest } = this.state;
-    axios.post('/api/v1/applicants/project');
     signupValidate(rest)
       .then((result) =>
         result

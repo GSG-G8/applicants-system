@@ -10,7 +10,6 @@ const updateApplicant = (req, res, next) => {
     codeWarsKyu,
     technicalTasks,
     TechnicalTasksLinks,
-    projectId,
     applicationSubmittedDate,
     accepted,
     ...rest
