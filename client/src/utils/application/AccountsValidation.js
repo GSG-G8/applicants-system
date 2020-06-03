@@ -5,13 +5,16 @@ const schema = yup.object().shape({
     .string()
     .trim()
     .required('Enter GitHub link')
-    .matches(/^(https):\/\/(github.com)\/[a-zA-Z0-9-_]+$/, 'Error Github link'),
+    .matches(
+      /^(https):\/\/(github.com)\/[a-zA-Z0-9-_]+$/,
+      'Error in Github link'
+    ),
   freeCodeCampLink: yup
     .string()
     .trim()
     .matches(
       /^(https):\/\/(www.freecodecamp.org)\/[a-zA-Z0-9-_]+$/,
-      'Error FreeCodeCamp link'
+      'Error in FreeCodeCamp link'
     )
     .required('Enter FreeCodeCamp link'),
   codeWarsLink: yup
@@ -19,7 +22,7 @@ const schema = yup.object().shape({
     .trim()
     .matches(
       /^(https):\/\/(www.codewars.com)\/(users)\/[a-zA-Z0-9-_]+$/,
-      'Error CodeWars link'
+      'Error in CodeWars link'
     )
     .required('Enter CodeWars link'),
 });

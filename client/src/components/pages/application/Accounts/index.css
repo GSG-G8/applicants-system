@@ -20,7 +20,7 @@
 .Form_container {
   position: absolute;
   top: 20%;
-  right: 35%;
+  right: 20%;
   margin-top: 1.5rem;
   padding-top: 2%;
   height: 2.7rem;
@@ -65,4 +65,11 @@
   width: 90%;
   margin: 0 auto;
   margin-top: 1.5rem;
+}
+.check_box{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 80%;
+  padding-left: 5%;
 }
