@@ -52,7 +52,7 @@ const login = (req, res) => {
                 bcrypt.compare(password, data.password, (err, result) => {
                   if (!result) res.status(400).json(errorResponse);
                   else {
-                    const userToken = { userId: data.id };
+                    const userToken = { AdminId: data.id };
                     const cookie = sign(userToken, process.env.SECRET_KEY);
                     res.cookie('admin', cookie, { httpOnly: true }).json({
                       status: 'successfully',
