@@ -42,7 +42,7 @@ const Project = () => {
   }, [UserId]);
 
   const Next = () => {
-    FProjectValidation({ projectTitle, githubLink })
+    FProjectValidation({ githubLink })
       .then(() =>
         axios.patch(`/api/v1/applicants/${UserId}`, {
           githubLink,

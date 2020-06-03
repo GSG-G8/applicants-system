@@ -1,7 +1,6 @@
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
-  projectTitle: yup.string().trim().required('Enter Project Title'),
   githubLink: yup
     .string()
     .trim()
