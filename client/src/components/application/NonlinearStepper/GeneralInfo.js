@@ -10,7 +10,7 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
   const classes = GeneralInfoStyles();
 
   return (
-    <>
+    <div className="availability">
       <div className={classes.gender}>
         <Typography variant="h5" color="primary">
           Gender
@@ -58,7 +58,7 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         message="ex:- 05xx xxx xxx"
       />
       <SelectBox
-        fullWidth
+        className="nonlinearSelect"
         label="Age"
         name="age"
         items={['<18', '18-20', '21-25', '26-30', '31-35', '36-40', '40+']}
@@ -67,7 +67,7 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         isError={errorMsg.includes('Age is required')}
       />
       <SelectBox
-        fullWidth
+        className="nonlinearSelect"
         label="Address"
         name="address"
         items={[
@@ -81,7 +81,7 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         value={formValues.address}
         isError={errorMsg.includes('Address is required')}
       />
-    </>
+    </div>
   );
 };
 

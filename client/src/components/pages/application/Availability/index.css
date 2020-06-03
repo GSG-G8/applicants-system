@@ -9,6 +9,9 @@
 .availability__head {
   margin: 0 0 1rem -2rem;
 }
+.nonlinearSelect{
+  width: 31.5rem;
+}
 
 .availability__buttons {
   display: flex;

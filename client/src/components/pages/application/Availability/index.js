@@ -70,7 +70,7 @@ const Availability = () => {
               </Typography>
               <Typography variant="body2" align="left">
                 {availability.split('.')[1]}.
-              </Typography>{' '}
+              </Typography>
               <Typography variant="body2" align="right">
                 {availability.split('.')[2]}.
               </Typography>
