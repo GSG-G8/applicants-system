@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import PropTypes from 'prop-types';
 import Limitation from '../../../common/limitation';
 import Typography from '../../../common/Typography';
 import Button from '../../../common/Button';
@@ -14,15 +13,35 @@ const getSteps = async () => {
   return data;
 };
 
-const Steps = ({ fullName }) => {
+const getUserID = async () => {
+  const { data } = await axios.get('/api/v1/isUser');
+  return data;
+};
+
+const Steps = () => {
+  const [UserId, setId] = useState('');
   const [steps, setSteps] = useState();
+  const [userName, setName] = useState('');
   const history = useHistory();
 
   useEffect(() => {
-    if (!steps) {
-      getSteps().then(setSteps);
+    getUserID().then((data) => {
+      if (data.message === 'you are authorized') {
+        setId(data.userId);
+      }
+    });
+    if (UserId) {
+      getSteps()
+        .then((data) => setSteps(data))
+        .then(() =>
+          axios
+            .get(`/api/v1/applicants/${UserId}`)
+            .then(({ data: { user } }) => setName(user.fullName))
+        );
     }
-  }, [steps]);
+  }, [UserId]);
+
+  const Name = userName.split(' ')[0];
 
   return (
     <div className="Container_page">
@@ -31,31 +50,33 @@ const Steps = ({ fullName }) => {
       </Helmet>
       <img src={backGround} alt="backGround" className="backGround" />
       <div className="Container_page__content">
-        <div className="text_Welcome">
-          <Typography variant="h4" color="default">
-            Welcome, {fullName}
-          </Typography>
-        </div>
-        <div className="steps">
-          {steps && (
-            <Typography variant="h6" color="default" align="left">
-              Application STEPS
-            </Typography>
-          )}
-          {steps ? (
-            steps.map(({ title, details }) => (
-              <ul className="steps__list">
-                <li>
-                  <Typography variant="body2" align="left">
-                    {title} {details}
-                  </Typography>
-                </li>
-              </ul>
-            ))
-          ) : (
-            <Limitation />
-          )}
-        </div>
+        {steps && userName ? (
+          <>
+            <div className="text_Welcome">
+              <Typography variant="h4" color="default">
+                Welcome, {Name}
+              </Typography>
+            </div>
+            <div className="steps">
+              <Typography variant="h6" color="default" align="left">
+                Application STEPS
+              </Typography>
+
+              {steps.map(({ title, details }) => (
+                <ul className="steps__list">
+                  <li>
+                    <Typography variant="body2" align="left">
+                      {title} {details}
+                    </Typography>
+                  </li>
+                </ul>
+              ))}
+            </div>
+          </>
+        ) : (
+          <Limitation />
+        )}
+
         {steps && (
           <div className="steps_buttons">
             <Button onClick={() => history.push('/availability')}>Next</Button>
@@ -64,10 +85,6 @@ const Steps = ({ fullName }) => {
       </div>
     </div>
   );
-};
-
-Steps.propTypes = {
-  fullName: PropTypes.string.isRequired,
 };
 
 export default Steps;
