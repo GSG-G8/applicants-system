@@ -182,6 +182,25 @@ const Profile = ({ fullName, id }) => {
                       </td>
                     </tr>
                   ))}
+                <tr>
+                  <td className="item" colSpan="2">
+                    <Typography variant="body2" align="left">
+                      <Checkbox
+                        checked={data && data.projectGithubLink}
+                        className="profile_check_box"
+                        color="primary"
+                      />
+                      <a
+                        className="Link"
+                        href={data.projectGithubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Project Github Link
+                      </a>
+                    </Typography>
+                  </td>
+                </tr>
               </table>
             }
           />
