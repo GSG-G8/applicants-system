@@ -23,6 +23,7 @@ const Project = () => {
   const [message, setMessage] = useState([]);
   const [UserId, setId] = useState('');
   const [userName, setName] = useState('');
+  const [projectId, setProject] = useState('');
   const history = useHistory();
 
   const throwMessage = (msg) => setMessage(msg);
@@ -37,9 +38,17 @@ const Project = () => {
       axios.get(`/api/v1/applicants/${UserId}`).then(({ data: { user } }) => {
         setGithubLink(user.githubLink);
         setName(user.fullName);
+        setProject(user.projectId);
       });
     }
   }, [UserId]);
+
+  useEffect(() => {
+    axios.get(`/api/v1/project/${projectId}`).then(({ data: { project } }) => {
+      setProjectTitle(project.projectName);
+      setProjectDesc(project.projectInstructions);
+    });
+  });
 
   const Next = () => {
     FProjectValidation({ githubLink })
@@ -69,16 +78,7 @@ const Project = () => {
           <div className="label_container">
             <Typography className="label">Project Title</Typography>
           </div>
-          <TextField
-            name="projectTitle"
-            value={projectTitle}
-            onChange={(e) => setProjectTitle(e.target.value)}
-            placeholder="Enter Your Project Title"
-            isError={message.includes('Enter Project Title')}
-            message={
-              message.includes('Enter Project Title') && 'Enter Project Title'
-            }
-          />
+          <TextField name="projectTitle" value={projectTitle} />
         </>
         <>
           <div className="label_container">
@@ -87,11 +87,8 @@ const Project = () => {
           <TextareaAutosize
             aria-label="minimum height"
             rowsMin={11}
-            placeholder="Enter Your Project Description"
             className="text_area"
-            name="projectDesc"
             value={projectDesc}
-            onChange={(e) => setProjectDesc(e.target.value)}
           />
         </>
         <>
