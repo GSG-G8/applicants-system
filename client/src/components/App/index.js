@@ -28,26 +28,21 @@ export default class App extends React.Component {
   state = {
     user: false,
     admin: false,
-    loading: true,
   };
 
   componentDidMount() {
     axios
       .get('/api/v1/isAdmin')
       .then((result) => {
-        this.setState({ admin: true, loading: false, ...result.data });
+        this.setState({ admin: true, ...result.data });
       })
-      .catch(() => {
-        this.setState({ loading: true });
-      });
+      .catch(() => {});
     axios
       .get('/api/v1/isUser')
       .then((result) => {
-        this.setState({ user: true, loading: false, ...result.data });
+        this.setState({ user: true, ...result.data });
       })
-      .catch(() => {
-        this.setState({ loading: true });
-      });
+      .catch();
   }
 
   signupHandler = () => {
@@ -67,7 +62,7 @@ export default class App extends React.Component {
   };
 
   render() {
-    const { user, admin, loading } = this.state;
+    const { user, admin } = this.state;
     const { pathname } = window.location;
     const paths = pathname.split('/');
     const lastIndexUrl = paths[paths.length - 1];
@@ -84,28 +79,19 @@ export default class App extends React.Component {
       '/project',
       '/submit',
       '/myprofile',
+      '/',
+      '/login',
+      '/signup',
     ];
     return (
       <div>
         <AppBar logoutHandler={this.logoutHandler} auth={user || admin} />
+        <Route path="/404" render={() => <Error404 />} />
+        <Route path="/500" render={() => <Error500 />} />
         <Switch>
-          <Route path="/404" render={() => <Error404 />} />
-          <Route path="/500" render={() => <Error500 />} />
-          <Route exact path="/" render={(props) => <Home {...props} />} />
-          <Route exact path="/login" render={(props) => <Login {...props} />} />
-          <Route
-            exact
-            path="/signup"
-            render={(props) => <Signup {...props} />}
-          />
-
           <main className="container">
             {Routes.includes(pathname) ? (
-              loading ? (
-                <div className="limitation">
-                  <Limitation />
-                </div>
-              ) : admin ? (
+              admin ? (
                 <div>
                   <Route
                     path="/dashboard"
@@ -128,7 +114,7 @@ export default class App extends React.Component {
                     render={(props) => <Completed {...props} />}
                   />
                 </div>
-              ) : (
+              ) : user ? (
                 <div>
                   <ResponsiveDrawer />
                   <Route
@@ -160,6 +146,24 @@ export default class App extends React.Component {
                     render={(props) => <Profile {...props} />}
                   />
                 </div>
+              ) : (
+                <>
+                  <Route
+                    exact
+                    path="/"
+                    render={(props) => <Home {...props} />}
+                  />
+                  <Route
+                    exact
+                    path="/login"
+                    render={(props) => <Login {...props} />}
+                  />
+                  <Route
+                    exact
+                    path="/signup"
+                    render={(props) => <Signup {...props} />}
+                  />
+                </>
               )
             ) : (
               <Redirect to="/404" />
