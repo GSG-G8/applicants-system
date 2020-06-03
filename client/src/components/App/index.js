@@ -128,26 +128,50 @@ export default class App extends React.Component {
                 </div>
               ) : (
                 <div>
-                  <ResponsiveDrawer />
                   <Route
                     path="/steps"
-                    render={(props) => <Steps {...props} />}
+                    render={(props) => (
+                      <>
+                        <ResponsiveDrawer />
+                        <Steps {...props} />
+                      </>
+                    )}
                   />
                   <Route
                     path="/availability"
-                    render={(props) => <Availability {...props} />}
+                    render={(props) => (
+                      <>
+                        <ResponsiveDrawer />
+                        <Availability {...props} />
+                      </>
+                    )}
                   />
                   <Route
                     path="/tasks"
-                    render={(props) => <Tasks {...props} />}
+                    render={(props) => (
+                      <>
+                        <ResponsiveDrawer />
+                        <Tasks {...props} />
+                      </>
+                    )}
                   />
                   <Route
                     path="/project"
-                    render={(props) => <Project {...props} />}
+                    render={(props) => (
+                      <>
+                        <ResponsiveDrawer />
+                        <Project {...props} />
+                      </>
+                    )}
                   />
                   <Route
                     path="/submit"
-                    render={(props) => <Submit {...props} />}
+                    render={(props) => (
+                      <>
+                        <ResponsiveDrawer />
+                        <Submit {...props} />
+                      </>
+                    )}
                   />
                   <Route
                     path="/myprofile"

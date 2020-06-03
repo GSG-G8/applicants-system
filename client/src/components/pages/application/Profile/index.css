@@ -1,0 +1,32 @@
+.Profile__container {
+
+}
+
+.profileImage {
+  position: absolute;
+  left: 0;
+  opacity: .7;
+  margin: 0;
+  width: 15rem;
+  align-self: flex-end;
+  transform: scaleX(-1);
+  margin-left: 2rem;
+}
+
+.Profile__avatar{
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+}
+.Profile__table{
+text-align: center;  margin: 0 auto;
+  width: 80%;
+  line-height: 2rem;
+}
+.doted td{
+    text-align: left;
+    border-bottom: 1px dotted rgb(189, 180, 180);
+}
+.item {
+  width: 40%;
+}
