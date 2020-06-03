@@ -5,10 +5,13 @@ import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
 import Axios from 'axios';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import ProInfos from './ProInfos';
 import GeneralInfos from './GeneralInfo';
 import { Theme } from '../../common/Typography/style';
+import Alert from '../../common/Alert';
 import Button from '../../common/Button';
+
 import {
   generalInfosValidation,
   prosInfoValidation,
@@ -18,6 +21,7 @@ import { useStyles } from './style';
 const steps = ['General Information', 'Professional Information'];
 
 export default function HorizontalNonLinearStepper({ userID }) {
+  const history = useHistory();
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [formValues, setFormValues] = useState({
@@ -112,6 +116,7 @@ export default function HorizontalNonLinearStepper({ userID }) {
           employmentStatus,
           jobTitle,
         });
+        history.push('/accounts');
       } catch (error) {
         setMessage(error.message);
       }
@@ -134,7 +139,6 @@ export default function HorizontalNonLinearStepper({ userID }) {
           </Stepper>
           <div>
             <div>
-              <div className={classes.validation}>{message}</div>
               {getStepContent(activeStep)}
               <div className={classes.gender}>
                 <Button
@@ -160,6 +164,7 @@ export default function HorizontalNonLinearStepper({ userID }) {
                 </div>
               </div>
             </div>
+            {message.length > 0 && <Alert Type="warning" Msg={message} />}
           </div>
         </ThemeProvider>
       </Container>
