@@ -38,6 +38,7 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         </RadioGroup>
       </div>
       <InputText
+        className="nonlinearSelect"
         id="nameID"
         value={formValues.fullName}
         placeholder="Enter full name"
@@ -48,6 +49,7 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         message="ex:- Sam Smith"
       />
       <InputText
+        className="nonlinearSelect"
         id="mobID"
         value={formValues.mobileNumber}
         placeholder="Enter Mobile Number"

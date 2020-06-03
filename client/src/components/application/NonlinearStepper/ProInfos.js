@@ -48,6 +48,7 @@ const ProInfos = ({ handleFormInput, formValues, errorMsg }) => (
       isError={errorMsg.includes('Current Employment is required')}
     />
     <InputText
+      className="nonlinearSelect"
       id="job-title"
       value={formValues.jobTitle}
       placeholder="Enter your job title.."

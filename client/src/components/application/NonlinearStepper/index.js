@@ -20,21 +20,11 @@ import { useStyles } from './style';
 
 const steps = ['General Information', 'Professional Information'];
 
-export default function HorizontalNonLinearStepper({ userID }) {
+export default function HorizontalNonLinearStepper({ userID, UserData }) {
   const history = useHistory();
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
-  const [formValues, setFormValues] = useState({
-    gender: '',
-    fullName: '',
-    mobileNumber: '',
-    age: '',
-    address: '',
-    englishUnderstanding: '',
-    englishSpeaking: '',
-    employmentStatus: '',
-    jobTitle: '',
-  });
+  const [formValues, setFormValues] = useState(UserData);
   const [errMsg, setErrMsg] = useState([]);
   const [message, setMessage] = useState([]);
   const handleFormInput = (e) => {
@@ -179,4 +169,5 @@ export default function HorizontalNonLinearStepper({ userID }) {
 
 HorizontalNonLinearStepper.propTypes = {
   userID: PropTypes.string.isRequired,
+  UserData: PropTypes.string.isRequired,
 };

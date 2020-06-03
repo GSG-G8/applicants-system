@@ -18,8 +18,16 @@ const getUserID = async () => {
   return data;
 };
 
+const applicantData = async (id) => {
+  const {
+    data: { user },
+  } = await axios.get(`/api/v1/applicants/${id}`);
+  return user;
+};
+
 const Availability = () => {
   const [UserId, setId] = useState();
+  const [data, setData] = useState();
   const [available, setAvailable] = useState(false);
   const [alert, throwAlert] = useState(false);
   const [nonLinear, setNonLinear] = useState(false);
@@ -43,12 +51,18 @@ const Availability = () => {
   };
 
   useEffect(() => {
-    getUserID().then((data) => {
-      if (data.message === 'you are authorized') {
-        setId(data.userId);
-      }
-    });
-  }, [UserId]);
+    if (!UserId)
+      getUserID().then((data) => {
+        if (data.message === 'you are authorized') {
+          setId(data.userId);
+        }
+      });
+    if (!data && UserId)
+      applicantData(UserId).then((data) => {
+        setData(data);
+        setAvailable(data.available);
+      });
+  }, [UserId, available, data]);
 
   return (
     <div className="Container_page">
@@ -107,7 +121,7 @@ const Availability = () => {
           <Limitation />
         ) : (
           <div className="availability__stepper">
-            <NonLinearStepper userID={UserId} />
+            <NonLinearStepper userID={UserId} UserData={data} />
           </div>
         )}
       </div>
