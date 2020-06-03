@@ -1,13 +1,27 @@
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
-  GitHubAccount: yup
+  githubLink: yup
     .string()
     .trim()
-    .required('Enter GitHub Account')
-    .matches(/[https://github.com].*/, 'GitHup Not Match'),
-  FreeCodeCampAccount: yup.string().trim().required('Enter CodeWars Account'),
-  CodeWarsAccount: yup.string().trim().required('Enter FreeCodeCamp Account'),
+    .required('Enter GitHub link')
+    .matches(/^(https):\/\/(github.com)\/[a-zA-Z0-9-_]+$/, 'Error Github link'),
+  freeCodeCampLink: yup
+    .string()
+    .trim()
+    .matches(
+      /^(https):\/\/(www.freecodecamp.org)\/[a-zA-Z0-9-_]+$/,
+      'Error FreeCodeCamp link'
+    )
+    .required('Enter FreeCodeCamp link'),
+  codeWarsLink: yup
+    .string()
+    .trim()
+    .matches(
+      /^(https):\/\/(www.codewars.com)\/(users)\/[a-zA-Z0-9-_]+$/,
+      'Error CodeWars link'
+    )
+    .required('Enter CodeWars link'),
 });
 const AccountsVallation = (value) =>
   schema.validate(value, { abortEarly: false });

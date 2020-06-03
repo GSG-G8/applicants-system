@@ -9,6 +9,7 @@ import Error500 from '../pages/common/errors/Error-500';
 import Home from '../pages/common/Home';
 import Login from '../pages/common/Login';
 import Signup from '../pages/application/Signup';
+import Steps from '../pages/application/Steps';
 import Availability from '../pages/application/Availability';
 import Accounts from '../pages/application/Accounts';
 import Tasks from '../pages/application/Tasks';
@@ -20,8 +21,7 @@ import Opened from '../pages/admin/Opened';
 import SubmittedAll from '../pages/admin/Submitted_all';
 import SubmittedId from '../pages/admin/Submitted_Id';
 import Completed from '../pages/admin/Completed';
-import ResponseDrawer from '../application/ResponsiveDrawer';
-
+import ResponsiveDrawer from '../application/ResponsiveDrawer';
 import './index.css';
 
 export default class App extends React.Component {
@@ -57,11 +57,12 @@ export default class App extends React.Component {
   };
 
   logoutHandler = () => {
-    axios.get('/api/v1/logout').then(() => {
+    axios.post('/api/v1/logout').then(() => {
       this.setState({
         user: false,
         admin: false,
       });
+      window.location.replace('/');
     });
   };
 
@@ -100,7 +101,7 @@ export default class App extends React.Component {
 
           <main className="container">
             {Routes.includes(pathname) ? (
-              loading === false ? (
+              loading ? (
                 <div className="limitation">
                   <Limitation />
                 </div>
@@ -129,10 +130,10 @@ export default class App extends React.Component {
                 </div>
               ) : (
                 <div>
-                  <ResponseDrawer />
+                  <ResponsiveDrawer />
                   <Route
                     path="/steps"
-                    render={(props) => <Login {...props} />}
+                    render={(props) => <Steps {...props} />}
                   />
                   <Route
                     path="/availability"

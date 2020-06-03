@@ -8,7 +8,12 @@ const applicantRouter = require('./applicant-router');
 const cohortRouter = require('./cohort-router');
 const tasksRouter = require('./technicalTask-router');
 const stepsRouter = require('./registrationSteps-router');
-const { isAuthorized, isAdmin } = require('../middlewares/auth');
+const {
+  isAuthorized,
+  isAdmin,
+  userAuthorized,
+  adminAuthorized,
+} = require('../middlewares/auth');
 const errorHandler = require('../controllers/errors');
 
 router.post('/signup', signup);
@@ -20,12 +25,12 @@ router.use('/cohorts', cohortRouter);
 router.use('/tasks', tasksRouter);
 router.use('/steps', stepsRouter);
 
-router.use('/applicants', isAuthorized, applicantRouter);
+router.use('/applicants', applicantRouter);
 
 router.post('/logout', logout);
 
-router.use('/isUser', isAuthorized);
-router.use('/isAdmin', isAdmin);
+router.use('/isUser', userAuthorized);
+router.use('/isAdmin', adminAuthorized);
 
 router.use(errorHandler);
 
