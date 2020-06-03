@@ -8,8 +8,8 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import ProInfos from './ProInfos';
 import GeneralInfos from './GeneralInfo';
+import Typography from '../../common/Typography';
 import { Theme } from '../../common/Typography/style';
-import Alert from '../../common/Alert';
 import Button from '../../common/Button';
 
 import {
@@ -128,6 +128,11 @@ export default function HorizontalNonLinearStepper({ userID }) {
 
   return (
     <div className={classes.root}>
+      <div className="availability__head">
+        <Typography variant="h6" color="default" align="left">
+          Availability
+        </Typography>
+      </div>
       <Container maxWidth="sm">
         <ThemeProvider theme={Theme}>
           <Stepper nonLinear activeStep={activeStep}>
@@ -139,6 +144,7 @@ export default function HorizontalNonLinearStepper({ userID }) {
           </Stepper>
           <div>
             <div>
+              <div className={classes.validation}>{message}</div>
               {getStepContent(activeStep)}
               <div className={classes.gender}>
                 <Button
@@ -164,7 +170,6 @@ export default function HorizontalNonLinearStepper({ userID }) {
                 </div>
               </div>
             </div>
-            {message.length > 0 && <Alert Type="warning" Msg={message} />}
           </div>
         </ThemeProvider>
       </Container>
