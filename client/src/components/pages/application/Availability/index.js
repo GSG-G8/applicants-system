@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import PropTypes from 'prop-types';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import NonLinearStepper from '../../../application/NonlinearStepper';
@@ -14,7 +13,13 @@ import backGround from '../../../../assets/images/backGround.svg';
 import { availability } from './availability.json';
 import './index.css';
 
-const Availability = ({ fullName, userID }) => {
+const getUserID = async () => {
+  const { data } = await axios.get('/api/v1/isUser');
+  return data;
+};
+
+const Availability = () => {
+  const [UserId, setId] = useState();
   const [available, setAvailable] = useState(false);
   const [alert, throwAlert] = useState(false);
   const [nonLinear, setNonLinear] = useState(false);
@@ -22,11 +27,11 @@ const Availability = ({ fullName, userID }) => {
   const history = useHistory();
 
   const next = async () => {
-    if (!available) throwAlert(true);
+    if (!available || !UserId) throwAlert(true);
     else {
       setLoading(true);
       try {
-        await axios.patch(`/api/v1/applicants/${userID}`, {
+        await axios.patch(`/api/v1/applicants/${UserId}`, {
           available,
         });
         setLoading(false);
@@ -37,7 +42,13 @@ const Availability = ({ fullName, userID }) => {
     }
   };
 
-  useEffect(() => {});
+  useEffect(() => {
+    getUserID().then((data) => {
+      if (data.message === 'you are authorized') {
+        setId(data.userId);
+      }
+    });
+  }, [UserId]);
 
   return (
     <div className="Container_page">
@@ -48,11 +59,6 @@ const Availability = ({ fullName, userID }) => {
       <div className="Container_page__content">
         {!nonLinear && !loading ? (
           <>
-            <div className="text_Welcome">
-              <Typography variant="h4" color="default">
-                Welcome, {fullName}
-              </Typography>
-            </div>
             <div className="availability__head">
               <Typography variant="h6" color="default" align="left">
                 Availability
@@ -101,17 +107,12 @@ const Availability = ({ fullName, userID }) => {
           <Limitation />
         ) : (
           <div className="availability__stepper">
-            <NonLinearStepper userID={userID} />
+            <NonLinearStepper userID={UserId} />
           </div>
         )}
       </div>
     </div>
   );
-};
-
-Availability.propTypes = {
-  fullName: PropTypes.string.isRequired,
-  userID: PropTypes.string.isRequired,
 };
 
 export default Availability;
