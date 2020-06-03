@@ -151,7 +151,9 @@ const Accounts = () => {
                 <Typography className="label">Discord</Typography>
               </div>
               <div className="check_box">
-                <Checkbox checked={joinDiscord} onClick={handleChange} />
+                <>
+                  <Checkbox checked={joinDiscord} onClick={handleChange} />
+                </>
                 <Typography>
                   Click in this Link to Join The discord channel for code
                   academy applicants{' '}
