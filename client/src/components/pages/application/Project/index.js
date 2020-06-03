@@ -11,18 +11,44 @@ import FProjectValidation from '../../../../utils/application/ProjectValidation'
 
 import './style.css';
 
+const getUserID = async () => {
+  const { data } = await axios.get('/api/v1/isUser');
+  return data;
+};
+
 const Project = () => {
   const [projectTitle, setProjectTitle] = useState('');
   const [projectDesc, setProjectDesc] = useState('');
   const [githubLink, setGithubLink] = useState('');
   const [message, setMessage] = useState([]);
+  const [UserId, setId] = useState('');
+  const [userName, setName] = useState('');
   const history = useHistory();
 
   const throwMessage = (msg) => setMessage(msg);
 
+  useEffect(() => {
+    getUserID().then((data) => {
+      if (data.message === 'you are authorized') {
+        setId(data.userId);
+      }
+    });
+    if (UserId) {
+      axios.get(`/api/v1/applicants/${UserId}`).then(({ data: { user } }) => {
+        setGithubLink(user.githubLink);
+        setName(user.fullName);
+      });
+    }
+  }, [UserId]);
+
   const Next = () => {
     FProjectValidation({ projectTitle, githubLink })
-      .then((e) => throwMessage(''))
+      .then(() =>
+        axios.patch(`/api/v1/applicants/${UserId}`, {
+          githubLink,
+        })
+      )
+      .then(() => history.push('/submit'))
       .catch(({ errors }) => throwMessage(errors));
   };
 
@@ -34,7 +60,7 @@ const Project = () => {
       <img src={backGround} alt="backGround" className="backGround" />
       <div className="text_Welcome">
         <Typography variant="h3" color="default">
-          Welcome, User
+          Welcome, {userName}
         </Typography>
       </div>
       <div className="Form_container">
