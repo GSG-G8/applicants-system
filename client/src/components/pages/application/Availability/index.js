@@ -9,6 +9,7 @@ import NonLinearStepper from '../../../application/NonlinearStepper';
 import Alert from '../../../common/Alert';
 import Typography from '../../../common/Typography';
 import Button from '../../../common/Button';
+import Limitation from '../../../common/limitation';
 import backGround from '../../../../assets/images/backGround.svg';
 import { availability } from './availability.json';
 import './index.css';
@@ -17,19 +18,23 @@ const Availability = ({ fullName, userID }) => {
   const [available, setAvailable] = useState(false);
   const [alert, throwAlert] = useState(false);
   const [nonLinear, setNonLinear] = useState(false);
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
 
   const next = async () => {
     if (!available) throwAlert(true);
-    else
+    else {
+      setLoading(true);
       try {
-        await axios.patch(`/api/v1/applicants/5e847f8a49abf469bd96009c`, {
+        await axios.patch(`/api/v1/applicants/${userID}`, {
           available,
         });
+        setLoading(false);
         setNonLinear(true);
       } catch (error) {
         throwAlert(true);
       }
+    }
   };
 
   useEffect(() => {});
@@ -41,7 +46,7 @@ const Availability = ({ fullName, userID }) => {
       </Helmet>
       <img src={backGround} alt="backGround" className="backGround" />
       <div className="Container_page__content">
-        {!nonLinear ? (
+        {!nonLinear && !loading ? (
           <>
             <div className="text_Welcome">
               <Typography variant="h4" color="default">
@@ -92,6 +97,8 @@ const Availability = ({ fullName, userID }) => {
               />
             )}
           </>
+        ) : loading ? (
+          <Limitation />
         ) : (
           <div className="availability__stepper">
             <NonLinearStepper userID={userID} />
