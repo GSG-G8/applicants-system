@@ -128,12 +128,12 @@ export default function HorizontalNonLinearStepper({ userID }) {
 
   return (
     <div className={classes.root}>
-      <div className="availability__head">
-        <Typography variant="h6" color="default" align="left">
-          Availability
-        </Typography>
-      </div>
       <Container maxWidth="sm">
+        <div className="availability__head">
+          <Typography variant="h6" color="default" align="left">
+            Availability
+          </Typography>
+        </div>
         <ThemeProvider theme={Theme}>
           <Stepper nonLinear activeStep={activeStep}>
             {steps.map((label, index) => (
