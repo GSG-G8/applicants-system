@@ -5,10 +5,13 @@ import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
 import Axios from 'axios';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import ProInfos from './ProInfos';
 import GeneralInfos from './GeneralInfo';
+import Typography from '../../common/Typography';
 import { Theme } from '../../common/Typography/style';
 import Button from '../../common/Button';
+
 import {
   generalInfosValidation,
   prosInfoValidation,
@@ -17,20 +20,11 @@ import { useStyles } from './style';
 
 const steps = ['General Information', 'Professional Information'];
 
-export default function HorizontalNonLinearStepper({ userID }) {
+export default function HorizontalNonLinearStepper({ userID, UserData }) {
+  const history = useHistory();
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
-  const [formValues, setFormValues] = useState({
-    gender: '',
-    fullName: '',
-    mobileNumber: '',
-    age: '',
-    address: '',
-    englishUnderstanding: '',
-    englishSpeaking: '',
-    employmentStatus: '',
-    jobTitle: '',
-  });
+  const [formValues, setFormValues] = useState(UserData);
   const [errMsg, setErrMsg] = useState([]);
   const [message, setMessage] = useState([]);
   const handleFormInput = (e) => {
@@ -112,6 +106,7 @@ export default function HorizontalNonLinearStepper({ userID }) {
           employmentStatus,
           jobTitle,
         });
+        history.push('/accounts');
       } catch (error) {
         setMessage(error.message);
       }
@@ -124,6 +119,11 @@ export default function HorizontalNonLinearStepper({ userID }) {
   return (
     <div className={classes.root}>
       <Container maxWidth="sm">
+        <div className="availability__head">
+          <Typography variant="h6" color="default" align="left">
+            Availability
+          </Typography>
+        </div>
         <ThemeProvider theme={Theme}>
           <Stepper nonLinear activeStep={activeStep}>
             {steps.map((label, index) => (
@@ -169,4 +169,5 @@ export default function HorizontalNonLinearStepper({ userID }) {
 
 HorizontalNonLinearStepper.propTypes = {
   userID: PropTypes.string.isRequired,
+  UserData: PropTypes.string.isRequired,
 };

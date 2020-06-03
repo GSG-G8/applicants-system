@@ -63,7 +63,6 @@ const Accounts = () => {
       .catch(({ errors }) => throwMessage(errors));
   };
 
-  const Name = userName.split(' ')[0];
   return (
     <div className="Container_page">
       <Helmet>
@@ -72,11 +71,6 @@ const Accounts = () => {
       <img src={backGround} alt="backGround" className="backGround" />
       {UserId && userName ? (
         <>
-          <div className="text_Welcome">
-            <Typography variant="h3" color="default">
-              Welcome, {Name}
-            </Typography>
-          </div>
           <div className="Form_container">
             <Typography variant="h5">Accounts</Typography>
             <>
