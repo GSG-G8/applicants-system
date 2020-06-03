@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+import { TextareaAutosize } from '@material-ui/core';
 import TextField from '../../../common/TextField';
 import Typography from '../../../common/Typography';
 import backGround from '../../../../assets/images/backGround.svg';
@@ -19,13 +21,16 @@ const Project = () => {
   const throwMessage = (msg) => setMessage(msg);
 
   const Next = () => {
-    FProjectValidation({ projectTitle, projectDesc, githubLink })
+    FProjectValidation({ projectTitle, githubLink })
       .then((e) => throwMessage(''))
-      .catch(({ errors }) => console.log(errors));
+      .catch(({ errors }) => throwMessage(errors));
   };
 
   return (
     <div className="Container_page">
+      <Helmet>
+        <title>Final Project</title>
+      </Helmet>
       <img src={backGround} alt="backGround" className="backGround" />
       <div className="text_Welcome">
         <Typography variant="h3" color="default">
@@ -39,24 +44,28 @@ const Project = () => {
             <Typography className="label">Project Title</Typography>
           </div>
           <TextField
-            name="projectDesc"
-            value={projectDesc}
-            onChange={(e) => setProjectDesc(e.target.value)}
+            name="projectTitle"
+            value={projectTitle}
+            onChange={(e) => setProjectTitle(e.target.value)}
             placeholder="Enter Your Project Title"
+            isError={message.includes('Enter Project Title')}
+            message={
+              message.includes('Enter Project Title') && 'Enter Project Title'
+            }
           />
         </>
         <>
           <div className="label_container">
             <Typography className="label">Project Description</Typography>
           </div>
-
-          <textarea
-            rows="5"
-            className="text_area"
-            name="githubLink"
-            value={githubLink}
-            onChange={(e) => setGithubLink(e.target.value)}
+          <TextareaAutosize
+            aria-label="minimum height"
+            rowsMin={11}
             placeholder="Enter Your Project Description"
+            className="text_area"
+            name="projectDesc"
+            value={projectDesc}
+            onChange={(e) => setProjectDesc(e.target.value)}
           />
         </>
         <>
@@ -64,10 +73,18 @@ const Project = () => {
             <Typography className="label">Project Link in Github</Typography>
           </div>
           <TextField
-            name="projectTitle"
-            value={projectTitle}
-            onChange={(e) => setProjectTitle(e.target.value)}
+            name="githubLink"
+            value={githubLink}
+            onChange={(e) => setGithubLink(e.target.value)}
             placeholder="Enter Your Github Link"
+            isError={
+              message.includes('Enter GitHub link') ||
+              message.includes('Github Not Match')
+            }
+            message={
+              message.includes('Enter GitHub link') ||
+              (message.includes('Github Not Match') && 'Error Github link')
+            }
           />
         </>
         <div className="container_buttons">
