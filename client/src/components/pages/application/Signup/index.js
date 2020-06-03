@@ -39,6 +39,7 @@ class SignUp extends React.Component {
 
   submit = () => {
     const { message, ...rest } = this.state;
+    axios.post('/api/v1/applicants/project');
     signupValidate(rest)
       .then((result) =>
         result
