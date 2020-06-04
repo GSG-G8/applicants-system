@@ -13,32 +13,42 @@ import tasksValidation from '../../../../utils/application/tasksValidation';
 
 import './index.css';
 
-const getData = async () => {
-  const { data } = (await axios.get('/api/v1/tasks')).data;
-  return data;
-};
 const getUserID = async () => {
   const { data } = await axios.get('/api/v1/isUser');
   return data;
 };
+const getTasksData = async (user) => {
+  const array = [];
+  const taskData = (await axios.get('/api/v1/tasks')).data;
+  if (user.technicalTasks) {
+    await taskData.data.forEach(() => {
+      array.push(true);
+    });
+  } else if (!user.technicalTasks) {
+    await taskData.data.forEach(() => {
+      array.push(false);
+    });
+  }
+  return { taskData, array };
+};
+const getUserData = async (UserId) => {
+  const {
+    data: { user },
+  } = await axios.get(`/api/v1/applicants/${UserId}`);
+  return user;
+};
 
 const Tasks = () => {
   const [data, setData] = useState();
-  const [arrayChecks, setCheckedItem] = useState([]);
+  const [arrayChecks, setCheckedItem] = useState([false]);
   const [UserId, setId] = useState('');
   const [technicalTasks, setTechnicalTasks] = useState('');
   const [message, setMessage] = useState('');
   const [technicalTasksLinks, setTechnicalTasksLinks] = useState('');
-  const array = [];
+  const [isDisable, setDisable] = useState(false);
   const history = useHistory();
 
   const throwMessage = (msg) => setMessage(msg);
-  useEffect(() => {
-    if (!data) {
-      getData().then(setData);
-    }
-  }, [data]);
-
   useEffect(() => {
     getUserID().then((response) => {
       if (response.message === 'you are authorized') {
@@ -46,37 +56,41 @@ const Tasks = () => {
       }
     });
     if (UserId) {
-      axios.get(`/api/v1/applicants/${UserId}`).then(({ data: { user } }) => {
+      getUserData(UserId).then((user) => {
+        setTechnicalTasks(user.technicalTasks);
         if (user.technicalTasksLinks) {
           setTechnicalTasksLinks(user.technicalTasksLinks);
         }
-        setTechnicalTasks(user.technicalTasks);
-        if (user.technicalTasks && data) {
-          data.forEach(() => {
-            array.push(true);
-          });
+        getTasksData(user).then(({ taskData, array }) => {
+          setData(taskData.data);
           setCheckedItem(array);
-        }
+        });
       });
     }
-  }, [UserId, technicalTasks, data]);
+  }, [UserId]);
+  useEffect(() => {
+    if (!arrayChecks.includes(false)) {
+      setTechnicalTasks(true);
+      setDisable(false);
+    } else {
+      setDisable(true);
+    }
+  }, [arrayChecks]);
 
   const Next = () => {
-    if (!arrayChecks.includes(false)) {
-      tasksValidation({ technicalTasks, technicalTasksLinks })
-        .then(() =>
-          axios
-            .patch(`/api/v1/applicants/${UserId}`, {
-              technicalTasks,
-              technicalTasksLinks,
-            })
-            .then(() => {
-              history.push('/project');
-            })
-            .catch(() => throwMessage('Please try again later'))
-        )
-        .catch(({ errors }) => throwMessage(errors));
-    }
+    tasksValidation({ technicalTasks, technicalTasksLinks })
+      .then(() =>
+        axios
+          .patch(`/api/v1/applicants/${UserId}`, {
+            technicalTasks,
+            technicalTasksLinks,
+          })
+          .then(() => {
+            history.push('/project');
+          })
+          .catch(() => throwMessage('Please try again later'))
+      )
+      .catch(({ errors }) => throwMessage(errors));
   };
 
   return (
@@ -107,15 +121,8 @@ const Tasks = () => {
                       const newArr = [...arrayChecks];
                       newArr[elementIndex] = !arrayChecks[elementIndex];
                       setCheckedItem(newArr);
-                      if (!arrayChecks.includes(false)) {
-                        setTechnicalTasks(true);
-                      }
                     }}
-                    checked={
-                      arrayChecks.includes(false) || arrayChecks.length === 0
-                        ? arrayChecks[index]
-                        : true
-                    }
+                    checked={!!arrayChecks[index]}
                   />
                   {taskName} <br />
                 </Typography>
@@ -154,7 +161,7 @@ const Tasks = () => {
           </div>
           <div className="tasks_buttons">
             <Button onClick={() => history.push('/accounts')}>Back </Button>
-            <Button disabled={!!arrayChecks.includes(false)} onClick={Next}>
+            <Button disabled={isDisable} onClick={Next}>
               Next
             </Button>
           </div>
