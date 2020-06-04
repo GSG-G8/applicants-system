@@ -28,7 +28,6 @@ const Project = () => {
   const [githubLink, setGithubLink] = useState('');
   const [message, setMessage] = useState([]);
   const [UserId, setId] = useState('');
-  const [userName, setName] = useState('');
   const history = useHistory();
 
   const throwMessage = (msg) => setMessage(msg);
@@ -42,7 +41,6 @@ const Project = () => {
     if (UserId) {
       axios.get(`/api/v1/applicants/${UserId}`).then(({ data: { user } }) => {
         setGithubLink(user.githubLink);
-        setName(user.fullName);
         projectData(user.projectId).then((project) => {
           setProjectTitle(project.projectName);
           setProjectDesc(project.projectInstructions);
@@ -50,13 +48,6 @@ const Project = () => {
       });
     }
   }, [UserId]);
-
-  // useEffect(() => {
-  //   axios.get(`/api/v1/project/${projectId}`).then(({ data: { project } }) => {
-  //     setProjectTitle(project.projectName);
-  //     setProjectDesc(project.projectInstructions);
-  //   });
-  // });
 
   const Next = () => {
     FProjectValidation({ githubLink })
@@ -76,9 +67,7 @@ const Project = () => {
       </Helmet>
       <img src={backGround} alt="backGround" className="backGround" />
       <div className="text_Welcome">
-        <Typography variant="h3" color="default">
-          Welcome, {userName}
-        </Typography>
+        <Typography variant="h3" color="default" />
       </div>
       {projectTitle && projectDesc ? (
         <div className="Form_container">
@@ -87,7 +76,11 @@ const Project = () => {
             <div className="label_container">
               <Typography className="label">Project Title</Typography>
             </div>
-            <TextField name="projectTitle" value={projectTitle} />
+            <TextField
+              onChange={() => {}}
+              name="projectTitle"
+              value={projectTitle}
+            />
           </>
           <>
             <div className="label_container">
@@ -105,23 +98,26 @@ const Project = () => {
               <Typography className="label">Project Link in Github</Typography>
             </div>
             <TextField
+              id="github-link"
               name="githubLink"
               value={githubLink}
               onChange={(e) => setGithubLink(e.target.value)}
-              placeholder="Enter Your Github Link"
+              placeholder="ex:- https://github.com/{username}/{repo_name}"
               isError={
-                message.includes('Enter GitHub link') ||
+                message.includes('Enter your GitHub Link') ||
                 message.includes('Github Not Match')
               }
-              message={
-                message.includes('Enter GitHub link') ||
-                (message.includes('Github Not Match') && 'Error Github link')
-              }
+              message={`${
+                message.includes('Enter your GitHub Link') ||
+                message.includes('Github Not Match')
+                  ? 'Error in Github link'
+                  : ''
+              }`}
             />
           </>
           <div className="container_buttons">
             <Button
-              onClick={() => history.push('/submit')}
+              onClick={() => history.push('/tasks')}
               customStyle="outlined"
             >
               Back

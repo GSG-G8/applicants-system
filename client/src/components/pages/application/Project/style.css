@@ -11,19 +11,12 @@
   height: 70vh;
   right: 2%;
 }
-.text_Welcome {
-  position: absolute;
-  top: 15%;
-  right: 40%;
-  color: rgb(255, 123, 0);
-}
 .Form_container {
-  position: absolute;
+  z-index: 1;
   top: 20%;
   right: 35%;
   margin-top: 1.5rem;
   padding-top: 2%;
-  /* height: 2.7rem; */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -64,12 +57,9 @@
   justify-content: space-around;
   width: 90%;
   margin: 0 auto;
-  margin-top: 1.5rem;
 }
-
-
 .text_area {
-  height: 200px;
+    height: 200px;
     padding: 12px 20px;
     box-sizing: border-box;
     resize: none;
@@ -78,6 +68,5 @@
     background-color: rgb(255, 255, 255);
     width: 31.7rem;
     margin-left: 16px;
-    border-radius: 5px;
-    
+    border-radius: 5px; 
 }
