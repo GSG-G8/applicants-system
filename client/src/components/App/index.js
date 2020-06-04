@@ -3,7 +3,6 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 import AppBar from '../common/AppBar';
-import Limitation from '../common/limitation';
 import Error404 from '../pages/common/errors/Error-404';
 import Error500 from '../pages/common/errors/Error-500';
 import Home from '../pages/common/Home';
@@ -28,6 +27,8 @@ export default class App extends React.Component {
   state = {
     user: false,
     admin: false,
+    USERID: '',
+    userData: '',
   };
 
   componentDidMount() {
@@ -39,8 +40,11 @@ export default class App extends React.Component {
       .catch(() => {});
     axios
       .get('/api/v1/isUser')
-      .then((result) => {
-        this.setState({ user: true, ...result.data });
+      .then(({ data: { userId } }) => {
+        this.setState({ user: true, USERID: userId });
+        axios.get(`/api/v1/applicants/${userId}`).then(({ data: { user } }) => {
+          this.setState({ userData: user });
+        });
       })
       .catch();
   }
@@ -62,7 +66,9 @@ export default class App extends React.Component {
   };
 
   render() {
-    const { user, admin } = this.state;
+    const { user, admin, userData, USERID } = this.state;
+    // console.log(userData);
+    // const { joinDiscord } = userData;
     const { pathname } = window.location;
     const paths = pathname.split('/');
     const lastIndexUrl = paths[paths.length - 1];
