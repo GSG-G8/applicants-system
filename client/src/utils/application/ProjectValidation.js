@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
-  githubLink: yup
+  projectGithubLink: yup
     .string()
     .trim()
     .required('Enter your GitHub Link')

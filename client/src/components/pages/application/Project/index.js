@@ -25,7 +25,7 @@ const projectData = async (ID) => {
 const Project = () => {
   const [projectTitle, setProjectTitle] = useState('');
   const [projectDesc, setProjectDesc] = useState('');
-  const [githubLink, setGithubLink] = useState('');
+  const [projectGithubLink, setProjectGithubLink] = useState('');
   const [message, setMessage] = useState([]);
   const [UserId, setId] = useState('');
   const history = useHistory();
@@ -40,7 +40,7 @@ const Project = () => {
     });
     if (UserId) {
       axios.get(`/api/v1/applicants/${UserId}`).then(({ data: { user } }) => {
-        setGithubLink(user.githubLink);
+        setProjectGithubLink(user.projectGithubLink);
         projectData(user.projectId).then((project) => {
           setProjectTitle(project.projectName);
           setProjectDesc(project.projectInstructions);
@@ -50,10 +50,10 @@ const Project = () => {
   }, [UserId]);
 
   const Next = () => {
-    FProjectValidation({ githubLink })
+    FProjectValidation({ projectGithubLink })
       .then(() =>
         axios.patch(`/api/v1/applicants/${UserId}`, {
-          githubLink,
+          projectGithubLink,
         })
       )
       .then(() => history.push('/submit'))
@@ -100,8 +100,8 @@ const Project = () => {
             <TextField
               id="github-link"
               name="githubLink"
-              value={githubLink}
-              onChange={(e) => setGithubLink(e.target.value)}
+              value={projectGithubLink}
+              onChange={(e) => setProjectGithubLink(e.target.value)}
               placeholder="ex:- https://github.com/{username}/{repo_name}"
               isError={
                 message.includes('Enter your GitHub Link') ||
