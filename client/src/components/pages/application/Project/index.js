@@ -97,23 +97,25 @@ const Project = () => {
             <div className="label_container">
               <Typography className="label">Project Link in Github</Typography>
             </div>
-            <TextField
-              id="github-link"
-              name="githubLink"
-              value={projectGithubLink}
-              onChange={(e) => setProjectGithubLink(e.target.value)}
-              placeholder="ex:- https://github.com/{username}/{repo_name}"
-              isError={
-                message.includes('Enter your GitHub Link') ||
-                message.includes('Github Not Match')
-              }
-              message={`${
-                message.includes('Enter your GitHub Link') ||
-                message.includes('Github Not Match')
-                  ? 'Error in Github link'
-                  : ''
-              }`}
-            />
+            <div className="github-field">
+              <TextField
+                id="github-link"
+                name="githubLink"
+                value={projectGithubLink}
+                onChange={(e) => setProjectGithubLink(e.target.value)}
+                placeholder="ex:- https://github.com/{username}/{repo_name}"
+                isError={
+                  message.includes('Enter your GitHub Link') ||
+                  message.includes('Github Not Match')
+                }
+                message={`${
+                  message.includes('Enter your GitHub Link') ||
+                  message.includes('Github Not Match')
+                    ? 'Error in Github link'
+                    : ''
+                }`}
+              />
+            </div>
           </>
           <div className="container_buttons">
             <Button
