@@ -38,3 +38,21 @@
   margin: 0 auto;
   margin-top: 15%;
 }
+
+.tasks_input {
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+}
+.tasks_input input {
+  width: 30rem;
+  background-color: white;
+}
+
+.custom-checkbox:checked {
+  margin: 9px;
+  background-color:#707070;
+
+  cursor: pointer;
+  height: 1rem;
+  width: 1rem;
+}

@@ -8,6 +8,9 @@ import Typography from '../../../common/Typography';
 import Button from '../../../common/Button';
 import backGround from '../../../../assets/images/backGround.svg';
 import Alert from '../../../common/Alert';
+import TextField from '../../../common/TextField';
+import gitHub from '../../../../assets/icons/github.svg';
+import tasksValidation from '../../../../utils/application/tasksValidation';
 
 import './index.css';
 
@@ -25,11 +28,11 @@ const Tasks = () => {
   const [check, setCheckedItem] = useState(0);
   const [UserId, setId] = useState('');
   const [technicalTasks, setTechnicalTasks] = useState('');
-  const [alertMessage, setAlertMessage] = useState(null);
+  const [alertMessage, setAlertMessage] = useState('');
+  const [TechnicalTasksLinks, setTechnicalTasksLinks] = useState('');
   const history = useHistory();
 
   const throwAlertMessage = (msg) => setAlertMessage(msg);
-
   const handleNext = (e) => {
     e.target.checked = !e.target.checked;
     if (e.target.checked) {
@@ -58,15 +61,21 @@ const Tasks = () => {
   }, [UserId, technicalTasks]);
 
   const Next = () => {
-    axios
-      .patch(`/api/v1/applicants/${UserId}`, {
-        technicalTasks: true,
-      })
-      .then(() => {
-        history.push('/project');
-      })
-      .catch(() => throwAlertMessage('Please try again later'));
+    tasksValidation({ technicalTasks, TechnicalTasksLinks })
+      .then(() =>
+        axios
+          .patch(`/api/v1/applicants/${UserId}`, {
+            technicalTasks: true,
+            TechnicalTasksLinks,
+          })
+          .then(() => {
+            history.push('/project');
+          })
+          .catch(() => throwAlertMessage('Please try again later'))
+      )
+      .catch(({ errors }) => throwAlertMessage(errors));
   };
+
   return (
     <div className="tasks-container">
       <Helmet>
@@ -86,7 +95,14 @@ const Tasks = () => {
             <div className="tasks__list">
               <Typography variant="h6" align="left">
                 {technicalTasks ? (
-                  <Checkbox checked={technicalTasks} />
+                  <input
+                    type="checkbox"
+                    checked
+                    className="custom-checkbox"
+                    onChange={() => {
+                      console.log({ technicalTasks }, 'batata');
+                    }}
+                  />
                 ) : (
                   <Checkbox onChange={handleNext} />
                 )}
@@ -104,6 +120,22 @@ const Tasks = () => {
             <Limitation />
           </div>
         )}
+      </div>
+      <div className="label_container tasks_input">
+        <img src={gitHub} alt="GitHub" />
+        <Typography className="label" variant="body1" align="left">
+          Project link
+        </Typography>
+
+        <TextField
+          name="technicalTasksProjects"
+          onChange={(e) => setTechnicalTasksLinks(e.target.value)}
+          isError={
+            alertMessage.includes('Please enter a valid Github link like https://github.com/yourGithubName/yourProjectName') 
+          }
+          message={alertMessage}
+          placeholder="ex: https://github.com/{code_academy}"
+        />
       </div>
       <div className="tasks_buttons">
         <Button onClick={() => history.push('/accounts')}>Back </Button>
