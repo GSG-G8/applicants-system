@@ -6,12 +6,10 @@ const {
   getApplicantById,
   updateApplicant,
   updateApplicantpoints,
-  randomProject,
 } = require('../controllers/applicant');
 
 applicantRouter.get('/:id', getApplicantById);
 applicantRouter.patch('/:id', updateApplicant);
 applicantRouter.get('/:id/points', updateApplicantpoints);
-applicantRouter.get('/project', randomProject);
 
 module.exports = applicantRouter;

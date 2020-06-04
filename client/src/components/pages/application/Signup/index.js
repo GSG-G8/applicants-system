@@ -37,7 +37,7 @@ class SignUp extends React.Component {
     this.setState(initialState);
   };
 
-  submit = () => {
+  submit = async () => {
     const { message, ...rest } = this.state;
     signupValidate(rest)
       .then((result) =>
