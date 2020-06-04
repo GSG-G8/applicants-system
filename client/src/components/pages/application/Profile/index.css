@@ -48,6 +48,9 @@
 .item {
   padding-left: 2rem;
 }
+.points-value{
+  padding-bottom: 0.3rem;
+}
 
 .profile_check_box {
   height: .1rem;
