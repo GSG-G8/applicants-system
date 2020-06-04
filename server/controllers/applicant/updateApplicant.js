@@ -10,8 +10,8 @@ const updateApplicant = (req, res, next) => {
     codeWarsKyu,
     technicalTasks,
     TechnicalTasksLinks,
-    projectId,
     applicationSubmittedDate,
+    projectId,
     accepted,
     ...rest
   } = req.body;

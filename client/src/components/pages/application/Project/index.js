@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { TextareaAutosize } from '@material-ui/core';
 import TextField from '../../../common/TextField';
+import Limitation from '../../../common/limitation';
 import Typography from '../../../common/Typography';
 import backGround from '../../../../assets/images/backGround.svg';
 import Button from '../../../common/Button';
@@ -15,7 +16,12 @@ const getUserID = async () => {
   const { data } = await axios.get('/api/v1/isUser');
   return data;
 };
-
+const projectData = async (ID) => {
+  const {
+    data: { project },
+  } = await axios.get(`/api/v1/project/${ID}`);
+  return project;
+};
 const Project = () => {
   const [projectTitle, setProjectTitle] = useState('');
   const [projectDesc, setProjectDesc] = useState('');
@@ -37,9 +43,20 @@ const Project = () => {
       axios.get(`/api/v1/applicants/${UserId}`).then(({ data: { user } }) => {
         setGithubLink(user.githubLink);
         setName(user.fullName);
+        projectData(user.projectId).then((project) => {
+          setProjectTitle(project.projectName);
+          setProjectDesc(project.projectInstructions);
+        });
       });
     }
   }, [UserId]);
+
+  // useEffect(() => {
+  //   axios.get(`/api/v1/project/${projectId}`).then(({ data: { project } }) => {
+  //     setProjectTitle(project.projectName);
+  //     setProjectDesc(project.projectInstructions);
+  //   });
+  // });
 
   const Next = () => {
     FProjectValidation({ githubLink })
@@ -63,66 +80,58 @@ const Project = () => {
           Welcome, {userName}
         </Typography>
       </div>
-      <div className="Form_container">
-        <Typography variant="h5">Final Project</Typography>
-        <>
-          <div className="label_container">
-            <Typography className="label">Project Title</Typography>
+      {projectTitle && projectDesc ? (
+        <div className="Form_container">
+          <Typography variant="h5">Final Project</Typography>
+          <>
+            <div className="label_container">
+              <Typography className="label">Project Title</Typography>
+            </div>
+            <TextField name="projectTitle" value={projectTitle} />
+          </>
+          <>
+            <div className="label_container">
+              <Typography className="label">Project Description</Typography>
+            </div>
+            <TextareaAutosize
+              aria-label="minimum height"
+              rowsMin={11}
+              className="text_area"
+              value={projectDesc}
+            />
+          </>
+          <>
+            <div className="label_container">
+              <Typography className="label">Project Link in Github</Typography>
+            </div>
+            <TextField
+              name="githubLink"
+              value={githubLink}
+              onChange={(e) => setGithubLink(e.target.value)}
+              placeholder="Enter Your Github Link"
+              isError={
+                message.includes('Enter GitHub link') ||
+                message.includes('Github Not Match')
+              }
+              message={
+                message.includes('Enter GitHub link') ||
+                (message.includes('Github Not Match') && 'Error Github link')
+              }
+            />
+          </>
+          <div className="container_buttons">
+            <Button
+              onClick={() => history.push('/submit')}
+              customStyle="outlined"
+            >
+              Back
+            </Button>
+            <Button onClick={Next}>Next</Button>
           </div>
-          <TextField
-            name="projectTitle"
-            value={projectTitle}
-            onChange={(e) => setProjectTitle(e.target.value)}
-            placeholder="Enter Your Project Title"
-            isError={message.includes('Enter Project Title')}
-            message={
-              message.includes('Enter Project Title') && 'Enter Project Title'
-            }
-          />
-        </>
-        <>
-          <div className="label_container">
-            <Typography className="label">Project Description</Typography>
-          </div>
-          <TextareaAutosize
-            aria-label="minimum height"
-            rowsMin={11}
-            placeholder="Enter Your Project Description"
-            className="text_area"
-            name="projectDesc"
-            value={projectDesc}
-            onChange={(e) => setProjectDesc(e.target.value)}
-          />
-        </>
-        <>
-          <div className="label_container">
-            <Typography className="label">Project Link in Github</Typography>
-          </div>
-          <TextField
-            name="githubLink"
-            value={githubLink}
-            onChange={(e) => setGithubLink(e.target.value)}
-            placeholder="Enter Your Github Link"
-            isError={
-              message.includes('Enter GitHub link') ||
-              message.includes('Github Not Match')
-            }
-            message={
-              message.includes('Enter GitHub link') ||
-              (message.includes('Github Not Match') && 'Error Github link')
-            }
-          />
-        </>
-        <div className="container_buttons">
-          <Button
-            onClick={() => history.push('/submit')}
-            customStyle="outlined"
-          >
-            Back
-          </Button>
-          <Button onClick={Next}>Next</Button>
         </div>
-      </div>
+      ) : (
+        <Limitation />
+      )}
     </div>
   );
 };
