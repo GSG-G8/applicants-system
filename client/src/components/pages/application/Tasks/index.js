@@ -7,7 +7,6 @@ import Limitation from '../../../common/limitation';
 import Typography from '../../../common/Typography';
 import Button from '../../../common/Button';
 import backGround from '../../../../assets/images/backGround.svg';
-import Alert from '../../../common/Alert';
 import TextField from '../../../common/TextField';
 import gitHub from '../../../../assets/icons/github.svg';
 import tasksValidation from '../../../../utils/application/tasksValidation';
@@ -25,22 +24,15 @@ const getUserID = async () => {
 
 const Tasks = () => {
   const [data, setData] = useState();
-  const [check, setCheckedItem] = useState(0);
+  const [arrayChecks, setCheckedItem] = useState([]);
   const [UserId, setId] = useState('');
   const [technicalTasks, setTechnicalTasks] = useState('');
-  const [alertMessage, setAlertMessage] = useState('');
-  const [TechnicalTasksLinks, setTechnicalTasksLinks] = useState('');
+  const [message, setMessage] = useState('');
+  const [technicalTasksLinks, setTechnicalTasksLinks] = useState('');
+  const array = [];
   const history = useHistory();
 
-  const throwAlertMessage = (msg) => setAlertMessage(msg);
-  const handleNext = (e) => {
-    e.target.checked = !e.target.checked;
-    if (e.target.checked) {
-      setCheckedItem(check - 1);
-    } else {
-      setCheckedItem(check + 1);
-    }
-  };
+  const throwMessage = (msg) => setMessage(msg);
   useEffect(() => {
     if (!data) {
       getData().then(setData);
@@ -55,25 +47,36 @@ const Tasks = () => {
     });
     if (UserId) {
       axios.get(`/api/v1/applicants/${UserId}`).then(({ data: { user } }) => {
-        if (technicalTasks === '') setTechnicalTasks(user.technicalTasks);
+        if (user.technicalTasksLinks) {
+          setTechnicalTasksLinks(user.technicalTasksLinks);
+        }
+        setTechnicalTasks(user.technicalTasks);
+        if (user.technicalTasks && data) {
+          data.forEach(() => {
+            array.push(true);
+          });
+          setCheckedItem(array);
+        }
       });
     }
-  }, [UserId, technicalTasks]);
+  }, [UserId, technicalTasks, data]);
 
   const Next = () => {
-    tasksValidation({ technicalTasks, TechnicalTasksLinks })
-      .then(() =>
-        axios
-          .patch(`/api/v1/applicants/${UserId}`, {
-            technicalTasks: true,
-            TechnicalTasksLinks,
-          })
-          .then(() => {
-            history.push('/project');
-          })
-          .catch(() => throwAlertMessage('Please try again later'))
-      )
-      .catch(({ errors }) => throwAlertMessage(errors));
+    if (!arrayChecks.includes(false)) {
+      tasksValidation({ technicalTasks, technicalTasksLinks })
+        .then(() =>
+          axios
+            .patch(`/api/v1/applicants/${UserId}`, {
+              technicalTasks,
+              technicalTasksLinks,
+            })
+            .then(() => {
+              history.push('/project');
+            })
+            .catch(() => throwMessage('Please try again later'))
+        )
+        .catch(({ errors }) => throwMessage(errors));
+    }
   };
 
   return (
@@ -81,71 +84,86 @@ const Tasks = () => {
       <Helmet>
         <title>Technical Tasks</title>
       </Helmet>
-      {alertMessage && <Alert Type="error" Msg={alertMessage} />}
       <img src={backGround} alt="backGround" className="tasks-background" />
-      <div className="tasks-title" />
-      <div className="tasks-details">
-        {data && (
-          <Typography variant="h6" color="default" align="left">
-            Technical Tasks
-          </Typography>
-        )}
-        {data ? (
-          data.map(({ taskName, taskDescription }) => (
-            <div className="tasks__list">
-              <Typography variant="h6" align="left">
-                {technicalTasks ? (
-                  <input
-                    type="checkbox"
-                    checked
-                    className="custom-checkbox"
-                    onChange={() => {
-                      console.log({ technicalTasks }, 'batata');
-                    }}
-                  />
-                ) : (
-                  <Checkbox onChange={handleNext} />
-                )}
-                {taskName} <br />
+      {data ? (
+        <>
+          <div className="tasks-title" />
+          <div className="tasks-details">
+            {data && (
+              <Typography variant="h6" color="default" align="left">
+                Technical Tasks
               </Typography>
-              <div className="tasks-paragraph">
-                <Typography variant="body2" align="justify">
-                  {taskDescription}
-                </Typography>
-              </div>
-            </div>
-          ))
-        ) : (
-          <div className="loading">
-            <Limitation />
-          </div>
-        )}
-      </div>
-      <div className="label_container tasks_input">
-        <img src={gitHub} alt="GitHub" />
-        <Typography className="label" variant="body1" align="left">
-          Project link
-        </Typography>
+            )}
 
-        <TextField
-          name="technicalTasksProjects"
-          onChange={(e) => setTechnicalTasksLinks(e.target.value)}
-          isError={
-            alertMessage.includes('Please enter a valid Github link like https://github.com/yourGithubName/yourProjectName') 
-          }
-          message={alertMessage}
-          placeholder="ex: https://github.com/{code_academy}"
-        />
-      </div>
-      <div className="tasks_buttons">
-        <Button onClick={() => history.push('/accounts')}>Back </Button>
-        <Button
-          disabled={technicalTasks ? false : data && check < data.length}
-          onClick={Next}
-        >
-          Next
-        </Button>
-      </div>
+            {data.map(({ taskName, taskDescription }, index) => (
+              <div className="tasks__list">
+                <Typography variant="h6" align="left">
+                  <Checkbox
+                    index={index}
+                    onChange={(e) => {
+                      const elementIndex = e.target.parentElement.parentElement.getAttribute(
+                        'index'
+                      );
+                      const newArr = [...arrayChecks];
+                      newArr[elementIndex] = !arrayChecks[elementIndex];
+                      setCheckedItem(newArr);
+                      if (!arrayChecks.includes(false)) {
+                        setTechnicalTasks(true);
+                      }
+                    }}
+                    checked={
+                      arrayChecks.includes(false) || arrayChecks.length === 0
+                        ? arrayChecks[index]
+                        : true
+                    }
+                  />
+                  {taskName} <br />
+                </Typography>
+                <div className="tasks-paragraph">
+                  <Typography variant="body2" align="justify">
+                    {taskDescription}
+                  </Typography>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="task_container_field">
+            <div className="label_container">
+              <img src={gitHub} alt="GitHub" />
+              <Typography className="label">Project link</Typography>
+            </div>
+            <TextField
+              name="technicalTasksProjects"
+              value={technicalTasksLinks}
+              onChange={(e) => {
+                setTechnicalTasksLinks(e.target.value);
+                setMessage('');
+              }}
+              isError={
+                message.includes('Enter GitHub link') ||
+                message.includes('Error in Github link')
+              }
+              message={
+                message.includes('Error in Github link') &&
+                technicalTasksLinks.trim() !== ''
+                  ? 'Error Github link'
+                  : ''
+              }
+              placeholder="ex: https://github.com/{yourGithubProfile}/{yourProjectName}"
+            />
+          </div>
+          <div className="tasks_buttons">
+            <Button onClick={() => history.push('/accounts')}>Back </Button>
+            <Button disabled={!!arrayChecks.includes(false)} onClick={Next}>
+              Next
+            </Button>
+          </div>
+        </>
+      ) : (
+        <div className="loading">
+          <Limitation />
+        </div>
+      )}
     </div>
   );
 };

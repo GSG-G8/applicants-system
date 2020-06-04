@@ -1,13 +1,13 @@
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
-  TechnicalTasksLinks: yup
+  technicalTasksLinks: yup
     .string()
     .trim()
-    .required()
+    .required('Enter GitHub link')
     .matches(
-      /^(https):\/\/(github.com)\/[a-zA-Z0-9-_/]+$/,
-      'Please enter a valid Github link like https://github.com/yourGithubName/yourProjectName'
+      /^(https):\/\/(github.com)\/[a-zA-Z0-9-_]+\/[a-zA-Z0-9-_]+$/,
+      'Error in Github link'
     ),
   technicalTasks: yup.boolean().required('Please complete all technical tasks'),
 });
