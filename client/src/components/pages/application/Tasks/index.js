@@ -30,9 +30,13 @@ const Tasks = () => {
 
   const throwAlertMessage = (msg) => setAlertMessage(msg);
 
-  const handleNext = (checked) => {
-    if (checked) setCheckedItem(check + 1);
-    else setCheckedItem(check - 1);
+  const handleNext = (e) => {
+    e.target.checked = !e.target.checked;
+    if (e.target.checked) {
+      setCheckedItem(check - 1);
+    } else {
+      setCheckedItem(check + 1);
+    }
   };
   useEffect(() => {
     if (!data) {
@@ -48,10 +52,10 @@ const Tasks = () => {
     });
     if (UserId) {
       axios.get(`/api/v1/applicants/${UserId}`).then(({ data: { user } }) => {
-        setTechnicalTasks(user.technicalTasks);
+        if (technicalTasks === '') setTechnicalTasks(user.technicalTasks);
       });
     }
-  }, [UserId]);
+  }, [UserId, technicalTasks]);
 
   const Next = () => {
     axios
@@ -82,11 +86,9 @@ const Tasks = () => {
             <div className="tasks__list">
               <Typography variant="h6" align="left">
                 {technicalTasks ? (
-                  <Checkbox checked />
+                  <Checkbox checked={technicalTasks} />
                 ) : (
-                  <Checkbox
-                    onChange={({ target: { checked } }) => handleNext(checked)}
-                  />
+                  <Checkbox onChange={handleNext} />
                 )}
                 {taskName} <br />
               </Typography>
@@ -105,7 +107,10 @@ const Tasks = () => {
       </div>
       <div className="tasks_buttons">
         <Button onClick={() => history.push('/accounts')}>Back </Button>
-        <Button disabled={data && check < data.length} onClick={Next}>
+        <Button
+          disabled={technicalTasks ? false : data && check < data.length}
+          onClick={Next}
+        >
           Next
         </Button>
       </div>
