@@ -150,7 +150,12 @@ export default class App extends React.Component {
                   />
                   <Route
                     path="/accounts"
-                    render={(props) => <Accounts {...props} />}
+                    render={(props) => (
+                      <>
+                        <ResponsiveDrawer />
+                        <Accounts {...props} />
+                      </>
+                    )}
                   />
                   <Route
                     path="/tasks"

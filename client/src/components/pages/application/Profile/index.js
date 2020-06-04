@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Checkbox from '@material-ui/core/Checkbox';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import PropTypes from 'prop-types';
 import Card from '../../../common/card';
 import Limitation from '../../../common/limitation';
 import Typography from '../../../common/Typography';
-// import Button from '../../../common/Button';
+import Button from '../../../common/Button';
 import backGround from '../../../../assets/images/backGround.svg';
 import profileImage from '../../../../assets/images/HomeImg.svg';
 
@@ -25,23 +24,47 @@ const getTec = async () => {
   return data;
 };
 
-const Profile = ({ fullName, id }) => {
+const updatePoints = async (id) => {
+  const Points = await axios.get(`/api/v1/applicants/${id}/points`);
+  return Points;
+};
+
+const getUserID = async () => {
+  const { data } = await axios.get('/api/v1/isUser');
+  return data;
+};
+
+const Profile = () => {
   const [data, setData] = useState();
   const [tec, setTec] = useState();
-  // const history = useHistory();
+  const [UserId, setId] = useState();
+  const history = useHistory();
 
   useEffect(() => {
-    if (!data) applicantData('5e847f8a49abf469bd96009c').then(setData);
+    if (!UserId)
+      getUserID().then((response) => {
+        if (response.message === 'you are authorized') {
+          setId(response.userId);
+        }
+      });
+    if (!data && UserId) {
+      updatePoints(UserId).then();
+      applicantData(UserId).then(setData);
+    }
     if (!tec) getTec().then(setTec);
-  }, [data, tec]);
+  }, [data, tec, UserId]);
 
   return (
-    <div className="Container_page">
+    <div className="Container_page Container_page_profile">
       <Helmet>
         <title>Profile</title>
       </Helmet>
-      <img src={backGround} alt="backGround" className="backGround" />
-      <img src={profileImage} alt="backGround" className="profileImage" />
+      <img src={backGround} alt="backGround" className="profile backGround" />
+      <img
+        src={profileImage}
+        alt="backGround"
+        className="profileImage profile"
+      />
 
       {data ? (
         <div className="Profile__container">
@@ -85,7 +108,6 @@ const Profile = ({ fullName, id }) => {
                     </Typography>
                   </td>
                   <td>
-                    {' '}
                     <Typography variant="body2" align="left">
                       {data.email}
                     </Typography>
@@ -182,6 +204,14 @@ const Profile = ({ fullName, id }) => {
                       </td>
                     </tr>
                   ))}
+                <tr className="doted">
+                  <td>
+                    <Typography variant="body2" color="primary" align="left">
+                      Project
+                    </Typography>
+                  </td>
+                  <td />
+                </tr>
                 <tr>
                   <td className="item" colSpan="2">
                     <Typography variant="body2" align="left">
@@ -193,12 +223,97 @@ const Profile = ({ fullName, id }) => {
                       <a
                         className="Link"
                         href={data.projectGithubLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        target="popup"
+                        onClick={() => {
+                          window.open(
+                            'https://discord.com/',
+                            'popup',
+                            'width=600,height=600,scrollbars=no,resizable=no'
+                          );
+                        }}
                       >
                         Project Github Link
                       </a>
                     </Typography>
+                  </td>
+                </tr>
+                <tr className="doted">
+                  <td>
+                    <Typography variant="body2" color="primary" align="left">
+                      Submitted
+                    </Typography>
+                  </td>
+                  <td />
+                </tr>
+                <tr>
+                  <td className="item">
+                    <Typography variant="body2" align="left">
+                      Code Wares Score
+                    </Typography>
+                  </td>
+                  <td>
+                    <Typography variant="body2" color="primary" align="left">
+                      {data.codeWarsKyu}
+                    </Typography>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="item">
+                    <Typography variant="body2" align="left">
+                      FreeCode Camp Score
+                    </Typography>
+                  </td>
+                  <td>
+                    <Typography variant="body2" color="primary" align="left">
+                      {data.freeCodeCampPoints}
+                    </Typography>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="item" colSpan="2">
+                    <Typography variant="body2" align="left">
+                      <Checkbox
+                        checked={data && data.freeCodeCampTopics}
+                        className="profile_check_box"
+                        color="primary"
+                      />
+                      FreeCode Camp Topics
+                    </Typography>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="item" colSpan="2">
+                    <Typography variant="body2" align="left">
+                      <Checkbox
+                        checked={data && data.applicationSubmittedDate}
+                        className="profile_check_box"
+                        color="primary"
+                      />
+                      Submitted
+                      {`on ${
+                        data.applicationSubmittedDate &&
+                        data.applicationSubmittedDate.split('T')[0]
+                      }`}
+                    </Typography>
+                  </td>
+                </tr>
+                <tr className="doted">
+                  <td className="item" colSpan="2">
+                    <Typography variant="body2" align="left">
+                      <Checkbox
+                        checked={data && data.accepted}
+                        className="profile_check_box"
+                        color="primary"
+                      />
+                      Accepted
+                    </Typography>
+                  </td>
+                </tr>
+                <tr>
+                  <td colSpan="2" className="profile__btn">
+                    <Button onClick={() => history.push('/steps')}>
+                      Go Back
+                    </Button>
                   </td>
                 </tr>
               </table>
@@ -212,11 +327,6 @@ const Profile = ({ fullName, id }) => {
       )}
     </div>
   );
-};
-
-Profile.propTypes = {
-  fullName: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
 };
 
 export default Profile;
