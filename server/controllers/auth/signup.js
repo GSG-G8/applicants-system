@@ -1,5 +1,6 @@
 const { hash } = require('bcrypt');
 const applicant = require('../../database/models/applicant');
+const project = require('../../database/models/project');
 const {
   signupValidate,
 } = require('../../utils/validation/applicantSignupValidation');
@@ -14,7 +15,6 @@ const signupApplicant = (req, res, next) => {
     password,
     passwordConfirmation,
     location,
-    projectId,
   } = req.body;
   const avatar = `https://ui-avatars.com/api/?name=${firstName(
     fullName
@@ -31,27 +31,32 @@ const signupApplicant = (req, res, next) => {
             });
           } else {
             hash(password, 10).then(async (hashedPassword) => {
-              const newApplicant = new applicant({
-                fullName,
-                email,
-                password: hashedPassword,
-                location,
-                avatar,
-                projectId,
-              });
-              newApplicant
-                .save()
-                .then(() =>
-                  res
-                    .status(201)
-                    .json({ message: 'Your Signup successfully Complete' })
-                )
-                .catch((err) => {
-                  res.status(400).json({
-                    Error: err,
-                    message: 'There is an error with your signup',
-                  });
+              project.aggregate([{ $sample: { size: 1 } }]).then((result) => {
+                // eslint-disable-next-line no-underscore-dangle
+                const projectId = result[0]._id;
+
+                const newApplicant = new applicant({
+                  fullName,
+                  email,
+                  password: hashedPassword,
+                  location,
+                  avatar,
+                  projectId,
                 });
+                newApplicant
+                  .save()
+                  .then(() =>
+                    res
+                      .status(201)
+                      .json({ message: 'Your Signup successfully Complete' })
+                  )
+                  .catch((err) => {
+                    res.status(400).json({
+                      Error: err,
+                      message: 'There is an error with your signup',
+                    });
+                  });
+              });
             });
           }
         });

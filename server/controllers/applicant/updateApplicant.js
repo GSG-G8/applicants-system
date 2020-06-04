@@ -11,6 +11,7 @@ const updateApplicant = (req, res, next) => {
     technicalTasks,
     TechnicalTasksLinks,
     applicationSubmittedDate,
+    projectId,
     accepted,
     ...rest
   } = req.body;
