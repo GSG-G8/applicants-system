@@ -71,7 +71,7 @@
     margin-left: 16px;
     border-radius: 5px; 
 }
-.MuiFormHelperText-root.Mui-error {
+.github-field .MuiFormHelperText-root.Mui-error {
   color: #f44336;
   position: absolute;
   top: 69%;
