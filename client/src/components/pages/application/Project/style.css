@@ -74,6 +74,7 @@
 .github-field .MuiFormHelperText-root.Mui-error {
   color: #f44336;
   position: absolute;
-  top: 69%;
+  width: 151px;
+  top: 73%;
   right: 67%;
 }
