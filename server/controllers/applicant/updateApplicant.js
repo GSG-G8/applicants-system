@@ -9,8 +9,8 @@ const updateApplicant = (req, res, next) => {
     freeCodeCampTopics,
     codeWarsKyu,
     TechnicalTasksLinks,
-    projectId,
     applicationSubmittedDate,
+    projectId,
     accepted,
     ...rest
   } = req.body;
