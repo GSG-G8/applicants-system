@@ -10,3 +10,9 @@
   pointer-events: none;
   width: 10rem;
 }
+
+@media only screen and (max-width: 610px) {
+  .logo{
+    padding-left: 2rem;
+  }
+}
