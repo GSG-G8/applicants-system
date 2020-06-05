@@ -11,6 +11,7 @@ import Login from '../pages/common/Login';
 import Signup from '../pages/application/Signup';
 import Steps from '../pages/application/Steps';
 import Availability from '../pages/application/Availability';
+import Accounts from '../pages/application/Accounts';
 import Tasks from '../pages/application/Tasks';
 import Project from '../pages/application/Project';
 import Submit from '../pages/application/Submit';
@@ -78,6 +79,7 @@ export default class App extends React.Component {
       '/dashboard/applications/completed',
       '/steps',
       '/availability',
+      '/accounts',
       '/tasks',
       '/project',
       '/submit',
@@ -128,26 +130,59 @@ export default class App extends React.Component {
                 </div>
               ) : (
                 <div>
-                  <ResponsiveDrawer />
                   <Route
                     path="/steps"
-                    render={(props) => <Steps {...props} />}
+                    render={(props) => (
+                      <>
+                        <ResponsiveDrawer />
+                        <Steps {...props} />
+                      </>
+                    )}
                   />
                   <Route
                     path="/availability"
-                    render={(props) => <Availability {...props} />}
+                    render={(props) => (
+                      <>
+                        <ResponsiveDrawer />
+                        <Availability {...props} />
+                      </>
+                    )}
+                  />
+                  <Route
+                    path="/accounts"
+                    render={(props) => (
+                      <>
+                        <ResponsiveDrawer />
+                        <Accounts {...props} />
+                      </>
+                    )}
                   />
                   <Route
                     path="/tasks"
-                    render={(props) => <Tasks {...props} />}
+                    render={(props) => (
+                      <>
+                        <ResponsiveDrawer />
+                        <Tasks {...props} />
+                      </>
+                    )}
                   />
                   <Route
                     path="/project"
-                    render={(props) => <Project {...props} />}
+                    render={(props) => (
+                      <>
+                        <ResponsiveDrawer />
+                        <Project {...props} />
+                      </>
+                    )}
                   />
                   <Route
                     path="/submit"
-                    render={(props) => <Submit {...props} />}
+                    render={(props) => (
+                      <>
+                        <ResponsiveDrawer />
+                        <Submit {...props} />
+                      </>
+                    )}
                   />
                   <Route
                     path="/myprofile"

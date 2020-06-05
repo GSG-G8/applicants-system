@@ -8,8 +8,7 @@ const updateApplicant = (req, res, next) => {
     freeCodeCampPoints,
     freeCodeCampTopics,
     codeWarsKyu,
-    technicalTasks,
-    TechnicalTasksLinks,
+    applicationSubmittedDate,
     projectId,
     accepted,
     ...rest

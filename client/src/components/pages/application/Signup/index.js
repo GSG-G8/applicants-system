@@ -37,13 +37,32 @@ class SignUp extends React.Component {
     this.setState(initialState);
   };
 
-  submit = () => {
-    const { message, ...rest } = this.state;
-    signupValidate(rest)
+  submit = async () => {
+    const {
+      fullName,
+      email,
+      password,
+      passwordConfirmation,
+      location,
+    } = this.state;
+    const FullName = fullName.replace(/\s+/g, ' ');
+    signupValidate({
+      fullName,
+      email,
+      password,
+      passwordConfirmation,
+      location,
+    })
       .then((result) =>
         result
           ? axios
-              .post('/api/v1/signup', rest)
+              .post('/api/v1/signup', {
+                fullName: FullName,
+                email,
+                password,
+                passwordConfirmation,
+                location,
+              })
               .then(() => {
                 this.resetForm();
                 this.throwMessage('SignUp Successfully');
@@ -80,101 +99,107 @@ class SignUp extends React.Component {
       message,
     } = this.state;
     return (
-      <div className="page">
+      <div className="sign_page">
         <Helmet>
           <title>SignUp</title>
         </Helmet>
         {message.includes('SignUp Successfully') && (
           <Alert Msg="SignUp Successfully" />
         )}
-        <div className="container">
-          <div>
-            <img
-              src={signupImage}
-              className="signupImg"
-              alt="GSG Code Academy"
-            />
-          </div>
-          <div className="right__content">
-            <Card
-              ClassName="card_sign"
-              content={
-                <div>
-                  <div className="card_sign__head">
-                    <Typography variant="h6" color="primary">
-                      Sign Up
-                    </Typography>
-                    <Typography variant="body2" color="secondary">
-                      Please Enter your information to be able to register as a
-                      new user. please
-                    </Typography>
-                  </div>
-                  <div className="form">
-                    <TextField
-                      name="fullName"
-                      label="full Name"
-                      value={fullName}
-                      className="signForm"
-                      placeholder="Enter your Full Name"
-                      onChange={this.handleChange}
-                      isError={message.includes('Enter your First Name')}
-                    />
-                    <TextField
-                      label="Email"
-                      name="email"
-                      value={email}
-                      className="signForm extra"
-                      placeholder="Enter Your Email"
-                      onChange={this.handleChange}
-                      isError={
-                        message.includes('Enter your Email') ||
-                        message.includes('Your Email is Exist')
-                      }
-                      message={
-                        message.includes('Your Email is Exist')
-                          ? 'Your Email is Exist'
-                          : message.includes('Enter your Email')
-                          ? 'You Must add an Email'
-                          : ''
-                      }
-                    />
-                    <TextField
-                      label="password"
-                      type="password"
-                      name="password"
-                      value={password}
-                      className="signForm extra"
-                      placeholder="Enter Your Password"
-                      onChange={this.handleChange}
-                      isError={
-                        message.includes('Please Enter your password') ||
-                        message.includes('Not Matches')
-                      }
-                      message={
-                        message.includes('Not Matches')
-                          ? 'Must Contain 8 Characters and Number,special'
-                          : ''
-                      }
-                    />
-                    <TextField
-                      label="Confirm Password"
-                      type="password"
-                      name="passwordConfirmation"
-                      value={passwordConfirmation}
-                      className="signForm extra"
-                      placeholder="Confirm your Password"
-                      onChange={this.handleChange}
-                      isError={
-                        message.includes('Confirm your password') ||
-                        message.includes('Not same')
-                      }
-                      message={
-                        message.includes('Not same') ||
-                        message.includes('Confirm your password')
-                          ? 'Your password is not Match'
-                          : ''
-                      }
-                    />
+        <div>
+          <img src={signupImage} className="singImg" alt="GSG Code Academy" />
+        </div>
+        <div className="right__content">
+          <Card
+            ClassName="card_sign"
+            content={
+              <div>
+                <div className="card_sign__head">
+                  <Typography variant="h6" color="primary">
+                    Sign Up
+                  </Typography>
+                  <Typography variant="body2" color="secondary">
+                    Please Enter your information to be able to register as a
+                    new user. please
+                  </Typography>
+                </div>
+                <div className="form">
+                  <TextField
+                    name="fullName"
+                    label="full Name"
+                    value={fullName}
+                    className="Input_form"
+                    placeholder="Enter your Full Name"
+                    onChange={this.handleChange}
+                    isError={
+                      message.includes('Enter your First Name') ||
+                      message.includes('You must add only Letters')
+                    }
+                    message={
+                      message.includes('Enter your First Name')
+                        ? 'You must enter at least 5 characters'
+                        : message.includes('You must add only Letters')
+                        ? 'You must add only Letters'
+                        : ''
+                    }
+                  />
+                  <TextField
+                    label="Email"
+                    name="email"
+                    value={email}
+                    className="Input_form"
+                    placeholder="Enter Your Email"
+                    onChange={this.handleChange}
+                    isError={
+                      message.includes('Enter your Email') ||
+                      message.includes('Your Email is Exist')
+                    }
+                    message={
+                      message.includes('Your Email is Exist')
+                        ? 'Your Email is Exist'
+                        : message.includes('Enter your Email')
+                        ? 'You Must add an Email'
+                        : ''
+                    }
+                  />
+                  <TextField
+                    label="password"
+                    type="password"
+                    name="password"
+                    value={password}
+                    className="Input_form"
+                    placeholder="Enter Your Password"
+                    onChange={this.handleChange}
+                    isError={
+                      message.includes('Please Enter your password') ||
+                      message.includes('Not Matches')
+                    }
+                    message={
+                      message.includes('Not Matches')
+                        ? 'Must Contain 8 Characters and Number,special'
+                        : ''
+                    }
+                  />
+                  <TextField
+                    label="Confirm Password"
+                    type="password"
+                    name="passwordConfirmation"
+                    value={passwordConfirmation}
+                    className="Input_form "
+                    placeholder="Confirm your Password"
+                    onChange={this.handleChange}
+                    isError={
+                      message.includes('Confirm your password') ||
+                      message.includes('Not same')
+                    }
+                    message={
+                      message.includes('Not same') ||
+                      message.includes('Confirm your password')
+                        ? 'Your password is not Match'
+                        : ''
+                    }
+                  />
+                  <div className="Extra">
                     <SelectBox
                       items={['gaza', 'khalil']}
                       label="Location"
@@ -185,16 +210,16 @@ class SignUp extends React.Component {
                       isError={message.includes('Select your Location')}
                     />
                   </div>
-                  <div className="buttons">
-                    <Button onClick={this.handleSignIn}>Login</Button>
-                    <Button customStyle="outlined" onClick={this.submit}>
-                      Sign Up
-                    </Button>
-                  </div>
                 </div>
-              }
-            />
-          </div>
+                <div className="buttons">
+                  <Button onClick={this.handleSignIn}>Login</Button>
+                  <Button customStyle="outlined" onClick={this.submit}>
+                    Sign Up
+                  </Button>
+                </div>
+              </div>
+            }
+          />
         </div>
       </div>
     );

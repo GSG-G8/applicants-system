@@ -47,7 +47,7 @@ InputText.propTypes = {
   value: PropTypes.string.isRequired,
   className: PropTypes.string,
   message: PropTypes.string,
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
   isError: PropTypes.bool,
@@ -59,6 +59,7 @@ InputText.defaultProps = {
   label: '',
   className: '',
   message: '',
+  placeholder: '',
   disabled: false,
   isError: false,
 };
