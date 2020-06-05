@@ -16,6 +16,10 @@ const useStyles = makeStyles({
     color: 'rgba(0, 0, 0, 0.850)',
     fontWeight: 'bolder',
   },
+  userImage: {
+    width: '2rem',
+    height: '2rem',
+  },
 });
 
 export default useStyles;

@@ -9,7 +9,7 @@ import Button from '../Button';
 
 import './style.css';
 
-const AppBar = ({ auth, logoutHandler }) => {
+const AppBar = ({ auth, logoutHandler, UserAvatar }) => {
   const history = useHistory();
   const { pathname } = window.location;
   return (
@@ -18,7 +18,7 @@ const AppBar = ({ auth, logoutHandler }) => {
         <Toolbar className="app-bar__toolbar">
           <img src={logo} alt="Logo" className="logo" />
           {auth ? (
-            <UserMenu logoutHandler={logoutHandler} />
+            <UserMenu logoutHandler={logoutHandler} UserAvatar={UserAvatar} />
           ) : pathname !== '/login' ? (
             <Button
               onClick={() => {
@@ -45,6 +45,7 @@ export default AppBar;
 AppBar.propTypes = {
   logoutHandler: PropTypes.func.isRequired,
   auth: PropTypes.bool,
+  UserAvatar: PropTypes.string.isRequired,
 };
 AppBar.defaultProps = {
   auth: false,

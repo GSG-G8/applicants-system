@@ -16,7 +16,7 @@ const getUserID = async () => {
   return data;
 };
 
-const UserMenu = ({ logoutHandler }) => {
+const UserMenu = ({ logoutHandler, UserAvatar }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [UserId, setId] = useState('');
   const [userName, setName] = useState('');
@@ -54,7 +54,7 @@ const UserMenu = ({ logoutHandler }) => {
         onClick={handleMenu}
         color="inherit"
       >
-        <AccountCircle />
+        <img src={UserAvatar} alt="user Avatar" className={classes.userImage} />
       </IconButton>
       <div className={classes.UserName}>
         <Typography color="default" variant="h6">
@@ -94,6 +94,7 @@ const UserMenu = ({ logoutHandler }) => {
 
 UserMenu.propTypes = {
   logoutHandler: PropTypes.func.isRequired,
+  UserAvatar: PropTypes.string.isRequired,
 };
 
 export default UserMenu;

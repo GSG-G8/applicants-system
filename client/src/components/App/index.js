@@ -88,6 +88,7 @@ export default class App extends React.Component {
       technicalTasksLinks,
       projectGithubLink,
       applicationSubmittedDate,
+      avatar,
     } = userData;
 
     const { pathname } = window.location;
@@ -110,7 +111,11 @@ export default class App extends React.Component {
     const staticRoutes = ['/', '/login', '/signup'];
     return (
       <div>
-        <AppBar logoutHandler={this.logoutHandler} auth={user || admin} />
+        <AppBar
+          logoutHandler={this.logoutHandler}
+          auth={user || admin}
+          UserAvatar={avatar}
+        />
         <Switch>
           <Route path="/500" render={() => <Error500 />} />
           <Route path="/404" render={() => <Error404 />} />
