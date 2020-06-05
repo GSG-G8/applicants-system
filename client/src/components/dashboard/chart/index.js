@@ -14,7 +14,20 @@ class ChartsPage extends React.Component {
     ).data.data.map(({ applicationSubmittedDate }) =>
       applicationSubmittedDate ? applicationSubmittedDate.split('-')[1] : ''
     );
-    const Months = ['01', '02', '03', '04', '05', '06', '07'];
+    const Months = [
+      '01',
+      '02',
+      '03',
+      '04',
+      '05',
+      '06',
+      '07',
+      '8',
+      '9',
+      '10',
+      '11',
+      '12',
+    ];
     const countSubmittedDates = Months.map((item) => {
       let counter = 0;
       SubmittedDates.reduce((prevVal, curVal) => {
@@ -36,10 +49,16 @@ class ChartsPage extends React.Component {
           'May',
           'June',
           'July',
+          'August',
+          'September',
+          'October',
+          'November',
+          'November',
+          'December',
         ],
         datasets: [
           {
-            label: 'Submitted Applicants',
+            label: 'Monthly Submitted Applicants',
             fill: true,
             lineTension: 0.3,
             backgroundColor: 'transparent',
@@ -68,12 +87,7 @@ class ChartsPage extends React.Component {
     const { dataLine } = this.state;
     return (
       <MDBContainer>
-        <Line
-          data={dataLine}
-          options={{ responsive: true }}
-          width="700"
-          height="350"
-        />
+        <Line data={dataLine} options={{ responsive: true }} />
       </MDBContainer>
     );
   }
