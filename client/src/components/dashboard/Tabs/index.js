@@ -46,7 +46,7 @@ const DashBar = () => (
       </li>
       <li>
         <Link className="dashLink" to="/dashboard">
-          <img src={staticImg9} alt="dash" className="dash__bar__img" />/
+          <img src={staticImg9} alt="dash" className="dash__bar__img" />
         </Link>
       </li>
       <li>
