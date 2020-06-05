@@ -45,6 +45,7 @@ const Accounts = () => {
         setFreeCode(user.freeCodeCampLink);
         setCodeWars(user.codeWarsLink);
         setName(user.fullName);
+        setDiscord(user.joinDiscord);
       });
     }
   }, [UserId]);
