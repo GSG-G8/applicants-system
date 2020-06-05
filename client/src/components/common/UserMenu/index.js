@@ -76,7 +76,11 @@ const UserMenu = ({ logoutHandler }) => {
             containerElement={<Link to="/profile" />}
             onClick={handleClose}
           >
-            <Person className={classes.profile} /> See Profile
+            <Person className={classes.profile} />
+            <Link className="Link" to="/myprofile">
+              {' '}
+              See Profile{' '}
+            </Link>
           </MenuItem>
           <MenuItem onClick={logoutHandler}>
             <ExitToApp className={classes.logout} />

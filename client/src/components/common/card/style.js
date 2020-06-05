@@ -18,6 +18,15 @@ const useStyles = makeStyles({
     boxShadow: '0px 3px 9px #00000033',
     borderRadius: '5px',
   },
+  card_profile: {
+    margin: '2rem 4rem 1rem 0rem',
+    padding: '.2rem .2rem',
+    width: '35rem',
+    minHeight: '35rem',
+    background: '#FFFFFF 0% 0% no-repeat padding-box',
+    boxShadow: '0px 3px 9px #00000033',
+    borderRadius: '5px',
+  },
 });
 
 export default useStyles;

@@ -1,0 +1,59 @@
+.Container_page_profile {
+  height: auto;
+  margin: 0;
+  
+}
+
+.profile {
+  bottom: 1;
+}
+
+.Profile__container {
+  margin: 4rem 0 1rem 0;
+}
+
+.profileImage {
+  position: absolute;
+  left: 0;
+  opacity: .7;
+  margin: 0;
+  width: 15rem;
+  align-self: flex-end;
+  transform: scaleX(-1);
+  margin-left: 2rem;
+}
+
+.profile__btn {
+  line-height: 5rem;
+}
+
+.Profile__avatar {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+}
+
+.Profile__table {
+  text-align: center;
+  margin: 0 auto;
+  width: 90%;
+  line-height: 2rem;
+}
+
+.doted td {
+  text-align: left;
+  border-bottom: 1px dotted rgb(189, 180, 180);
+}
+
+.item {
+  padding-left: 2rem;
+}
+.points-value{
+  padding-bottom: 0.3rem;
+}
+
+.profile_check_box {
+  height: .1rem;
+  margin: 0;
+  padding: 0;
+}

@@ -9,7 +9,6 @@ const Home = () => (
   <>
     <div className="home">
       <DotsStepper steps={registrationSteps} />
-
       <img className="img" src={HomeImg} alt="background" />
     </div>
   </>
