@@ -94,83 +94,85 @@ const Tasks = () => {
   };
 
   return (
-    <div className="tasks-container">
+    <div className="Task_page">
       <Helmet>
         <title>Technical Tasks</title>
       </Helmet>
-      <img src={backGround} alt="backGround" className="tasks-background" />
-      {data ? (
-        <>
-          <div className="tasks-title" />
-          <div className="tasks-details">
-            {data && (
-              <Typography variant="h6" color="default" align="left">
-                Technical Tasks
-              </Typography>
-            )}
-
-            {data.map(({ taskName, taskDescription }, index) => (
-              <div className="tasks__list">
-                <Typography variant="h6" align="left">
-                  <Checkbox
-                    index={index}
-                    onChange={(e) => {
-                      const elementIndex = e.target.parentElement.parentElement.getAttribute(
-                        'index'
-                      );
-                      const newArr = [...arrayChecks];
-                      newArr[elementIndex] = !arrayChecks[elementIndex];
-                      setCheckedItem(newArr);
-                    }}
-                    checked={!!arrayChecks[index]}
-                  />
-                  {taskName} <br />
+      <img src={backGround} alt="backGround" className="backGround" />
+      <div className="Form_container">
+        {data ? (
+          <div className="availability">
+            <div className="tasks-title" />
+            <div className="tasks-details">
+              {data && (
+                <Typography variant="h6" color="default" align="left">
+                  Technical Tasks
                 </Typography>
-                <div className="tasks-paragraph">
-                  <Typography variant="body2" align="justify">
-                    {taskDescription}
+              )}
+
+              {data.map(({ taskName, taskDescription }, index) => (
+                <div className="tasks__list">
+                  <Typography variant="h6" align="left">
+                    <Checkbox
+                      index={index}
+                      onChange={(e) => {
+                        const elementIndex = e.target.parentElement.parentElement.getAttribute(
+                          'index'
+                        );
+                        const newArr = [...arrayChecks];
+                        newArr[elementIndex] = !arrayChecks[elementIndex];
+                        setCheckedItem(newArr);
+                      }}
+                      checked={!!arrayChecks[index]}
+                    />
+                    {taskName} <br />
                   </Typography>
+                  <div className="tasks-paragraph">
+                    <Typography variant="body2" align="justify">
+                      {taskDescription}
+                    </Typography>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-          <div className="task_container_field">
-            <div className="label_container">
-              <img src={gitHub} alt="GitHub" />
-              <Typography className="label">Project link</Typography>
+              ))}
             </div>
-            <TextField
-              name="technicalTasksProjects"
-              value={technicalTasksLinks}
-              onChange={(e) => {
-                setTechnicalTasksLinks(e.target.value);
-                setMessage('');
-              }}
-              isError={
-                message.includes('Enter GitHub link') ||
-                message.includes('Error in Github link')
-              }
-              message={
-                message.includes('Error in Github link') &&
-                technicalTasksLinks.trim() !== ''
-                  ? 'Error Github link'
-                  : ''
-              }
-              placeholder="ex: https://github.com/{yourGithubProfile}/{yourProjectName}"
-            />
+            <div className="task_container_field">
+              <div className="label_container">
+                <img src={gitHub} alt="GitHub" />
+                <Typography className="label">Project link</Typography>
+              </div>
+              <TextField
+                name="technicalTasksProjects"
+                value={technicalTasksLinks}
+                onChange={(e) => {
+                  setTechnicalTasksLinks(e.target.value);
+                  setMessage('');
+                }}
+                isError={
+                  message.includes('Enter Your GitHub Project link') ||
+                  message.includes('Error in Github project link')
+                }
+                message={
+                  message.includes('Error in Github project link') &&
+                  technicalTasksLinks.trim() !== ''
+                    ? 'Error in Github project link'
+                    : ''
+                }
+                placeholder="ex: https://github.com/{yourGithubProfile}/{yourProjectName}"
+              />
+            </div>
+            <div className="tasks_buttons">
+              <Button onClick={() => history.push('/accounts')}>Back </Button>
+              <Button disabled={isDisable} onClick={Next}>
+                Next
+              </Button>
+            </div>
           </div>
-          <div className="tasks_buttons">
-            <Button onClick={() => history.push('/accounts')}>Back </Button>
-            <Button disabled={isDisable} onClick={Next}>
-              Next
-            </Button>
+        ) : (
+          <div className="loading">
+            <Limitation />
           </div>
-        </>
-      ) : (
-        <div className="loading">
-          <Limitation />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
