@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'fixed',
     left: theme.spacing(2),
     fontSize: '2rem',
-    zIndex: '1',
+    zIndex: '10',
     [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
