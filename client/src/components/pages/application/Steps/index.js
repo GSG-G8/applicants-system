@@ -32,7 +32,9 @@ const Steps = () => {
     });
     if (UserId) {
       getSteps()
-        .then((data) => setSteps(data))
+        .then((data) => {
+          setSteps(data);
+        })
         .then(() =>
           axios
             .get(`/api/v1/applicants/${UserId}`)
@@ -48,28 +50,28 @@ const Steps = () => {
       <Helmet>
         <title>Steps</title>
       </Helmet>
+      <div className="text_Welcome">
+        <Typography variant="h4" color="default">
+          Welcome, {Name}
+        </Typography>
+      </div>
       <img src={backGround} alt="backGround" className="backGround" />
       <div className="Container_page__content">
         {steps && userName ? (
           <>
-            <div className="text_Welcome">
-              <Typography variant="h4" color="default">
-                Welcome, {Name}
-              </Typography>
-            </div>
             <div className="steps">
               <Typography variant="h6" color="default" align="left">
-                Application STEPS
+                Application Steps
               </Typography>
 
               {steps.map(({ title, details }) => (
-                <ul className="steps__list">
-                  <li>
+                <div className="steps__list">
+                  <div>
                     <Typography variant="body2" align="left">
                       {title} {details}
                     </Typography>
-                  </li>
-                </ul>
+                  </div>
+                </div>
               ))}
             </div>
           </>

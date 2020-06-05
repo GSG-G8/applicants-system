@@ -1,16 +1,4 @@
 
-.Container_page {
-  background-color: rgb(245, 245, 245);
-  width: 100vw;
-  height: 100vh;
-}
-.backGround {
-  position: absolute;
-  z-index: 0;
-  top: 20%;
-  height: 70vh;
-  right: 2%;
-}
 .Form_container {
   z-index: 1;
   top: 20%;

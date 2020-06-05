@@ -1,23 +1,4 @@
-.Container_page {
-  background-color: rgb(245, 245, 245);
-  width: 100vw;
-  height: 100vh;
-}
 
-.backGround {
-  position: absolute;
-  z-index: 0;
-  top: 20%;
-  height: 70vh;
-  right: 2%;
-}
-
-.text_Welcome {
-  position: absolute;
-  top: 15%;
-  right: 40%;
-  color: rgb(255, 123, 0);
-}
 .Form_container {
   margin: 2% 0 0 0;
   display: flex;
