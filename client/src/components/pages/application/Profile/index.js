@@ -219,6 +219,7 @@ const ProfilePage = () => {
                           checked={data && data.projectGithubLink}
                           className="profile_check_box"
                           color="primary"
+                          disabled
                         />
                         <a
                           className="Link"
@@ -276,6 +277,7 @@ const ProfilePage = () => {
                           checked={data && data.freeCodeCampTopics}
                           className="profile_check_box"
                           color="primary"
+                          disabled
                         />
                         FreeCode Camp Topics
                       </Typography>
@@ -288,6 +290,7 @@ const ProfilePage = () => {
                           checked={data && data.applicationSubmittedDate}
                           className="profile_check_box"
                           color="primary"
+                          disabled
                         />
                         Submitted
                         {data.applicationSubmittedDate &&
@@ -302,6 +305,7 @@ const ProfilePage = () => {
                           checked={data && data.accepted}
                           className="profile_check_box"
                           color="primary"
+                          disabled
                         />
                         Accepted
                       </Typography>
