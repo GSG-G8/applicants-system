@@ -57,15 +57,16 @@ const Steps = () => {
       <Helmet>
         <title>Steps</title>
       </Helmet>
-      <div className="text_Welcome">
-        <Typography variant="h4" color="default">
-          Welcome, {Name}
-        </Typography>
-      </div>
+
       <img src={backGround} alt="backGround" className="backGround" />
       <div className="Container_page__content">
         {steps && userName ? (
           <>
+            <div className="text_Welcome">
+              <Typography variant="h4" color="default">
+                Welcome, {Name}
+              </Typography>
+            </div>
             <div className="steps">
               <Typography variant="h6" color="default" align="left">
                 Application Steps
