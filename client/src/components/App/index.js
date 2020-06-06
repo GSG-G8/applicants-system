@@ -113,7 +113,7 @@ export default class App extends React.Component {
       <div>
         <AppBar
           logoutHandler={this.logoutHandler}
-          auth={user || admin}
+          auth={user}
           UserAvatar={avatar}
         />
         <Switch>
