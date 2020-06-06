@@ -54,77 +54,75 @@ const Login = () => {
   };
 
   return (
-    <div className="page">
+    <div className="sign_page">
       <Helmet>
         <title>Login</title>
       </Helmet>
-      <div className="container">
-        <div>
-          <img src={WelcomeImg} className="WelcomeImg" alt="GSG Code Academy" />
-        </div>
-        <div className="right__content">
-          <SimpleCard
-            ClassName="card_sign"
-            content={
-              <div>
-                <div className="card_sign__head">
-                  <Typography variant="h6" color="primary">
-                    Login
-                  </Typography>
-                  <Typography variant="body2" color="secondary">
-                    Please enter your account details
-                  </Typography>
-                </div>
-                <div className="form">
-                  <TextField
-                    className="signForm"
-                    id="email"
-                    label="Email"
-                    variant="outlined"
-                    type="email"
-                    placeholder="Enter Email"
-                    onChange={updateEmail}
-                    isError={
-                      message.includes('Please Enter your email') ||
-                      message.includes('Please Check your Email or Password')
-                    }
-                    message={
-                      message.includes('Please Enter a valid email')
-                        ? 'Please Enter a valid email'
-                        : ''
-                    }
-                  />
-                  <TextField
-                    className="signForm"
-                    id="password"
-                    label="Password"
-                    variant="outlined"
-                    type="password"
-                    placeholder="Enter Password"
-                    onChange={updatePassword}
-                    isError={
-                      message.includes('Please Check your Email or Password') ||
-                      message.includes('Please Enter your password') ||
-                      message.includes('Must Contain 8 Characters')
-                    }
-                    message={
-                      message.includes('Please Check your Email or Password') ||
-                      message.includes('Must Contain 8 Characters')
-                        ? 'Please Check your Email or Password'
-                        : ''
-                    }
-                  />
-                </div>
-                <div className="buttons button_login">
-                  <Button onClick={login}>Login</Button>
-                  <Link to="/signup">
-                    <Button customStyle="outlined">Sign Up</Button>
-                  </Link>
-                </div>
+      <div>
+        <img src={WelcomeImg} className="singImg" alt="GSG Code Academy" />
+      </div>
+      <div className="right__content">
+        <SimpleCard
+          ClassName="card_sign"
+          content={
+            <div>
+              <div className="card_sign__head">
+                <Typography variant="h6" color="primary">
+                  Login
+                </Typography>
+                <Typography variant="body2" color="secondary">
+                  Please enter your account details
+                </Typography>
               </div>
-            }
-          />
-        </div>
+              <div className="form">
+                <TextField
+                  className="Input_form"
+                  id="email"
+                  label="Email"
+                  variant="outlined"
+                  type="email"
+                  placeholder="Enter Email"
+                  onChange={updateEmail}
+                  isError={
+                    message.includes('Please Enter your email') ||
+                    message.includes('Please Check your Email or Password')
+                  }
+                  message={
+                    message.includes('Please Enter a valid email')
+                      ? 'Please Enter a valid email'
+                      : ''
+                  }
+                />
+                <TextField
+                  className="Input_form"
+                  id="password"
+                  label="Password"
+                  variant="outlined"
+                  type="password"
+                  placeholder="Enter Password"
+                  onChange={updatePassword}
+                  isError={
+                    message.includes('Please Check your Email or Password') ||
+                    message.includes('Please Enter your password') ||
+                    message.includes('Must Contain 8 Characters')
+                  }
+                  message={
+                    message.includes('Please Check your Email or Password') ||
+                    message.includes('Must Contain 8 Characters')
+                      ? 'Please Check your Email or Password'
+                      : ''
+                  }
+                />
+              </div>
+              <div className="buttons button_login Extra_login">
+                <Button onClick={login}>Login</Button>
+                <Link to="/signup">
+                  <Button customStyle="outlined">Sign Up</Button>
+                </Link>
+              </div>
+            </div>
+          }
+        />
       </div>
     </div>
   );

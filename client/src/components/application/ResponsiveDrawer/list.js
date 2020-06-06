@@ -10,7 +10,6 @@ import useStyles from './style';
 
 const DrawerList = ({ content, isFinished }) => {
   const classes = useStyles();
-  const [Finished, setFinished] = useState(isFinished);
   const history = useHistory();
   const { pathname } = window.location;
   useEffect(() => {
@@ -70,10 +69,6 @@ const DrawerList = ({ content, isFinished }) => {
                 parentElement.getAttribute('index') ||
                 parentElement.parentElement.getAttribute('index');
 
-              const newArr = [...Finished];
-              newArr[elementIndex] = !Finished[elementIndex];
-              setFinished(newArr);
-
               // eslint-disable-next-line no-plusplus
               for (let i = 0; i <= content.length - 1; i++) {
                 if (i === elementIndex) {
@@ -96,7 +91,7 @@ const DrawerList = ({ content, isFinished }) => {
               else parentElement.classList.add(`${classes.buttonEffect}`);
             }}
           >
-            {Finished[index] ? (
+            {isFinished[index] ? (
               <Icon className="far fa-check-circle" />
             ) : (
               <Icon className="far fa-times-circle" />

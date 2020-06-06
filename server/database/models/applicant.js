@@ -141,6 +141,10 @@ const applicantSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  clickedSteps: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = mongoose.model('applicant', applicantSchema);

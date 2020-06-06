@@ -104,11 +104,14 @@ const Availability = () => {
                 }
               />
             </div>
-            <div className="availability__buttons">
-              <Button onClick={() => history.push('/steps')}>Back</Button>
-              <Button customStyle="outlined" onClick={() => next()}>
-                Next
+            <div className="container_buttons">
+              <Button
+                customStyle="outlined"
+                onClick={() => history.push('/steps')}
+              >
+                Back
               </Button>
+              <Button onClick={() => next()}>Next</Button>
             </div>
             {alert && (
               <Alert
@@ -120,7 +123,7 @@ const Availability = () => {
         ) : loading ? (
           <Limitation />
         ) : (
-          <div className="availability__stepper">
+          <div className="Container_page__availability">
             <NonLinearStepper userID={UserId} UserData={data} />
           </div>
         )}
