@@ -9,7 +9,7 @@ import Button from '../Button';
 
 import './style.css';
 
-const AppBar = ({ auth, logoutHandler, UserAvatar }) => {
+const AppBar = ({ auth, logoutHandler, UserAvatar, loading }) => {
   const history = useHistory();
   const { pathname } = window.location;
   return (
@@ -17,7 +17,7 @@ const AppBar = ({ auth, logoutHandler, UserAvatar }) => {
       <MuiAppBar color="transparent">
         <Toolbar className="app-bar__toolbar">
           <img src={logo} alt="Logo" className="logo" />
-          {auth ? (
+          {auth && !loading ? (
             <UserMenu logoutHandler={logoutHandler} UserAvatar={UserAvatar} />
           ) : pathname !== '/login' ? (
             <Button
@@ -45,8 +45,10 @@ export default AppBar;
 AppBar.propTypes = {
   logoutHandler: PropTypes.func.isRequired,
   auth: PropTypes.bool,
+  loading: PropTypes.bool,
   UserAvatar: PropTypes.string.isRequired,
 };
 AppBar.defaultProps = {
   auth: false,
+  loading: true,
 };
