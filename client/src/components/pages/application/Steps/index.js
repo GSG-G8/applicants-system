@@ -43,6 +43,13 @@ const Steps = () => {
     }
   }, [UserId]);
 
+  const Next = () => {
+    axios.patch(`/api/v1/applicants/${UserId}`, {
+      clickedSteps: true,
+    });
+    history.push('/availability');
+  };
+
   const Name = userName.split(' ')[0];
 
   return (
@@ -81,7 +88,7 @@ const Steps = () => {
 
         {steps && (
           <div className="steps_buttons">
-            <Button onClick={() => history.push('/availability')}>Next</Button>
+            <Button onClick={Next}>Next</Button>
           </div>
         )}
       </div>
