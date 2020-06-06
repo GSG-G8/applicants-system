@@ -22,7 +22,7 @@ const isAuthorized = (req, res, next) => {
 
 const isAdmin = (req, res, next) => {
   try {
-    verify(req.cookies.applicant, process.env.SECRET_KEY, (err, token) => {
+    verify(req.cookies.admin, process.env.SECRET_KEY, (err, token) => {
       if (err) {
         res.status(401).send({
           statusCode: 401,
