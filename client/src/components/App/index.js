@@ -28,7 +28,11 @@ export default class App extends React.Component {
   state = {
     user: false,
     admin: false,
+<<<<<<< HEAD
     USERID: '',
+=======
+    userId: '',
+>>>>>>> 7eede2c961e98abdfb87189a8e7df2644c6eafa6
     userData: '',
   };
 
@@ -42,7 +46,11 @@ export default class App extends React.Component {
     axios
       .get('/api/v1/isUser')
       .then(({ data: { userId } }) => {
+<<<<<<< HEAD
         this.setState({ user: true, USERID: userId });
+=======
+        this.setState({ user: true, userId });
+>>>>>>> 7eede2c961e98abdfb87189a8e7df2644c6eafa6
         axios.get(`/api/v1/applicants/${userId}`).then(({ data: { user } }) => {
           this.setState({ userData: user });
         });
@@ -67,7 +75,11 @@ export default class App extends React.Component {
   };
 
   render() {
+<<<<<<< HEAD
     const { user, admin, userData, USERID } = this.state;
+=======
+    const { user, admin, userData, userId } = this.state;
+>>>>>>> 7eede2c961e98abdfb87189a8e7df2644c6eafa6
     const {
       clickedSteps,
       available,
@@ -113,7 +125,11 @@ export default class App extends React.Component {
       <div>
         <AppBar
           logoutHandler={this.logoutHandler}
+<<<<<<< HEAD
           auth={user || admin}
+=======
+          auth={user}
+>>>>>>> 7eede2c961e98abdfb87189a8e7df2644c6eafa6
           UserAvatar={avatar}
         />
         <Switch>
@@ -177,7 +193,7 @@ export default class App extends React.Component {
                     path="/steps"
                     render={(props) => (
                       <>
-                        <ResponsiveDrawer />
+                        <ResponsiveDrawer userData={userData} />
                         <Steps {...props} />
                       </>
                     )}
@@ -186,7 +202,7 @@ export default class App extends React.Component {
                     path="/availability"
                     render={(props) => (
                       <>
-                        <ResponsiveDrawer />
+                        <ResponsiveDrawer userData={userData} />
                         <Availability {...props} />
                       </>
                     )}
@@ -195,7 +211,7 @@ export default class App extends React.Component {
                     path="/accounts"
                     render={(props) => (
                       <>
-                        <ResponsiveDrawer />
+                        <ResponsiveDrawer userData={userData} />
                         <Accounts {...props} />
                       </>
                     )}
@@ -204,7 +220,7 @@ export default class App extends React.Component {
                     path="/tasks"
                     render={(props) => (
                       <>
-                        <ResponsiveDrawer />
+                        <ResponsiveDrawer userData={userData} />
                         <Tasks {...props} />
                       </>
                     )}
@@ -213,17 +229,17 @@ export default class App extends React.Component {
                     path="/project"
                     render={(props) => (
                       <>
-                        <ResponsiveDrawer />
+                        <ResponsiveDrawer userData={userData} />
                         <Project {...props} />
                       </>
                     )}
                   />
                   <Route
                     path="/submit"
-                    render={(props) => (
+                    render={() => (
                       <>
-                        <ResponsiveDrawer />
-                        <Submit {...props} />
+                        <ResponsiveDrawer userData={userData} />
+                        <Submit userData={userData} userId={userId} />
                       </>
                     )}
                   />
