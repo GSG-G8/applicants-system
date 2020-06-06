@@ -71,114 +71,160 @@ const Accounts = () => {
       </Helmet>
       <img src={backGround} alt="backGround" className="backGround" />
       {UserId && userName ? (
-        <>
-          <div className="Form_container">
-            <Typography variant="h5">Accounts</Typography>
-            <>
-              <div className="label_container">
-                <img src={gitHub} alt="GitHub" />
-                <Typography className="label">Github</Typography>
-              </div>
-              <TextField
-                name="githubLink"
-                value={githubLink}
-                onChange={(e) => setGitHub(e.target.value)}
-                isError={
-                  message.includes('Enter GitHub link') ||
-                  message.includes('Error in Github link')
-                }
-                message={
-                  message.includes('Error in Github link') &&
-                  githubLink.trim() !== ''
-                    ? 'Error Github link'
-                    : ''
-                }
-                placeholder="ex: https://github.com/{code_academy}"
-              />
-            </>
-            <>
-              <div className="label_container">
-                <img src={freeCodeCamp} alt="FreeCode Camp" />
-                <Typography className="label">FreeCodeCamp</Typography>
-              </div>
-              <TextField
-                name="freeCodeCampLink"
-                value={freeCodeCampLink}
-                onChange={(e) => setFreeCode(e.target.value)}
-                isError={
-                  message.includes('Enter FreeCodeCamp link') ||
-                  message.includes('Error in FreeCodeCamp link')
-                }
-                message={
-                  message.includes('Error in FreeCodeCamp link') &&
-                  freeCodeCampLink.trim() !== ''
-                    ? 'Error FreeCodeCamp link'
-                    : ''
-                }
-                placeholder="ex: https://www.freecodecamp.org/{code_academy}"
-              />
-            </>
-            <>
-              <div className="label_container">
-                <img src={codeWars} alt="codeWars" />
-                <Typography className="label">CodeWars</Typography>
-              </div>
-              <TextField
-                name="codeWarsLink"
-                value={codeWarsLink}
-                onChange={(e) => setCodeWars(e.target.value)}
-                isError={
-                  message.includes('Enter CodeWars link') ||
-                  message.includes('Error in CodeWars link')
-                }
-                message={
-                  message.includes('Error in CodeWars link') &&
-                  codeWarsLink.trim() !== ''
-                    ? 'Error CodeWars link'
-                    : ''
-                }
-                placeholder="ex: https://www.codewars.com/users/{code_academy}"
-              />
-            </>
-            <>
-              <div className="label_container">
-                <img src={discord} alt="discord" />
-                <Typography className="label">Discord</Typography>
-              </div>
-              <div className="check_box">
-                <>
-                  <Checkbox checked={joinDiscord} onClick={handleChange} />
-                </>
-                <Typography>
-                  Click in this Link to Join The discord channel for code
-                  academy applicants{' '}
-                  <a
-                    href="https://discord.com/"
-                    target="popup"
-                    onClick={() => {
-                      window.open(
-                        'https://discord.com/',
-                        'popup',
-                        'width=600,height=600,scrollbars=no,resizable=no'
-                      );
-                    }}
-                  >
-                    Discord chanel
-                  </a>
-                </Typography>
-              </div>
-            </>
-            <div className="container_buttons">
-              <Button
-                onClick={() => history.push('/availability')}
-                customStyle="outlined"
-              >
-                Back
-              </Button>
-              <Button onClick={Next}>Next</Button>
+        <div className="Form_container Container_page__accounts">
+          <Typography variant="h5">Accounts</Typography>
+          <>
+            <div className="label_container">
+              <img src={gitHub} alt="GitHub" />
+              <Typography className="label">Github</Typography>
             </div>
+            <Typography className="label">
+              Follow this video to Know How to create GitHub Account{' '}
+              <a
+                href="https://youtu.be/2NxsjFtGjBA"
+                target="popup"
+                onClick={() => {
+                  window.open(
+                    'https://youtu.be/2NxsjFtGjBA',
+                    'popup',
+                    'width=600,height=600,scrollbars=no,resizable=no'
+                  );
+                }}
+              >
+                Video Link
+              </a>
+            </Typography>
+            <TextField
+              name="githubLink"
+              value={githubLink}
+              onChange={(e) => setGitHub(e.target.value)}
+              isError={
+                message.includes('Enter GitHub link') ||
+                message.includes('Error in Github link')
+              }
+              message={
+                message.includes('Error in Github link') &&
+                githubLink.trim() !== ''
+                  ? 'Error Github link'
+                  : ''
+              }
+              placeholder="ex: https://github.com/{code_academy}"
+            />
+          </>
+          <>
+            <div className="label_container">
+              <img src={freeCodeCamp} alt="FreeCode Camp" />
+              <Typography className="label">FreeCodeCamp</Typography>
+            </div>
+            <Typography className="label">
+              Follow this video to Know which is the setting you must change{' '}
+              <a
+                href="https://www.youtube.com/watch?v=IYXngOinwys"
+                target="popup"
+                onClick={() => {
+                  window.open(
+                    'https://www.youtube.com/watch?v=IYXngOinwys',
+                    'popup',
+                    'width=600,height=600,scrollbars=no,resizable=no'
+                  );
+                }}
+              >
+                Video Link
+              </a>
+            </Typography>
+            <TextField
+              name="freeCodeCampLink"
+              value={freeCodeCampLink}
+              onChange={(e) => setFreeCode(e.target.value)}
+              isError={
+                message.includes('Enter FreeCodeCamp link') ||
+                message.includes('Error in FreeCodeCamp link')
+              }
+              message={
+                message.includes('Error in FreeCodeCamp link') &&
+                freeCodeCampLink.trim() !== ''
+                  ? 'Error FreeCodeCamp link'
+                  : ''
+              }
+              placeholder="ex: https://www.freecodecamp.org/{code_academy}"
+            />
+          </>
+          <>
+            <div className="label_container">
+              <img src={codeWars} alt="codeWars" />
+              <Typography className="label">CodeWars</Typography>
+            </div>
+            <Typography className="label">
+              Follow this video to Know How to create CodeWars Account{' '}
+              <a
+                href="https://youtu.be/mlGstmcsvEk"
+                target="popup"
+                onClick={() => {
+                  window.open(
+                    'https://youtu.be/mlGstmcsvEk',
+                    'popup',
+                    'width=600,height=600,scrollbars=no,resizable=no'
+                  );
+                }}
+              >
+                Video Link
+              </a>
+            </Typography>
+            <TextField
+              name="codeWarsLink"
+              value={codeWarsLink}
+              onChange={(e) => setCodeWars(e.target.value)}
+              isError={
+                message.includes('Enter CodeWars link') ||
+                message.includes('Error in CodeWars link')
+              }
+              message={
+                message.includes('Error in CodeWars link') &&
+                codeWarsLink.trim() !== ''
+                  ? 'Error CodeWars link'
+                  : ''
+              }
+              placeholder="ex: https://www.codewars.com/users/{code_academy}"
+            />
+          </>
+          <>
+            <div className="label_container">
+              <img src={discord} alt="discord" />
+              <Typography className="label">Discord</Typography>
+            </div>
+            <div className="check_box">
+              <>
+                <Checkbox checked={joinDiscord} onClick={handleChange} />
+              </>
+              <Typography>
+                Click in this Link to Join The discord channel for code academy
+                applicants{' '}
+                <a
+                  href="https://discord.com/"
+                  target="popup"
+                  onClick={() => {
+                    window.open(
+                      'https://discord.com/',
+                      'popup',
+                      'width=600,height=600,scrollbars=no,resizable=no'
+                    );
+                  }}
+                >
+                  Discord chanel
+                </a>
+              </Typography>
+            </div>
+          </>
+          <div className="container_buttons">
+            <Button
+              onClick={() => history.push('/availability')}
+              customStyle="outlined"
+            >
+              Back
+            </Button>
+            <Button onClick={Next}>Next</Button>
           </div>
-        </>
+        </div>
       ) : (
         <Limitation />
       )}
