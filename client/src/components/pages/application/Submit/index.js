@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import moment from 'moment';
+import PropTypes from 'prop-types';
 
 import Typography from '../../../common/Typography';
 import backGround from '../../../../assets/images/backGround.svg';
@@ -10,89 +12,115 @@ import Limitation from '../../../common/limitation';
 
 import './index.css';
 
-const getUserID = async () => {
-  const { data } = await axios.get('/api/v1/isUser');
-  return data;
-};
-
-const Submit = () => {
-  const [UserId, setId] = useState('');
-  const [userName, setName] = useState('');
-  const [applicationSubmittedDate, setDate] = useState();
+const Submit = ({ userId, userData }) => {
   const history = useHistory();
-  const date = new Date();
+  const [FinishUser, setFinish] = useState([]);
+  const date = moment().format('DD-MM-YYYY hh:mm:ss');
 
   useEffect(() => {
-    getUserID().then((data) => {
-      if (data.message === 'you are authorized') {
-        setId(data.userId);
-      }
-    });
-    if (UserId) {
-      axios.get(`/api/v1/applicants/${UserId}`).then(({ data: { user } }) => {
-        setName(user.fullName);
-        setDate(user.applicationSubmittedDate);
-      });
+    const array = [];
+    if (userData.clickedSteps) {
+      array.push(true);
+    } else {
+      array.push(false);
     }
-  }, [UserId, applicationSubmittedDate]);
+    if (
+      !userData.available ||
+      !userData.address ||
+      !userData.age ||
+      !userData.employmentStatus ||
+      !userData.englishSpeaking ||
+      !userData.englishUnderstanding ||
+      !userData.fullName ||
+      !userData.gender ||
+      !userData.jobTitle ||
+      !userData.mobileNumber
+    ) {
+      array.push(false);
+    } else {
+      array.push(true);
+    }
+    if (
+      !userData.codeWarsLink ||
+      !userData.freeCodeCampLink ||
+      !userData.githubLink ||
+      !userData.joinDiscord
+    ) {
+      array.push(false);
+    } else {
+      array.push(true);
+    }
+    if (!userData.technicalTasks || !userData.technicalTasksLinks) {
+      array.push(false);
+    } else {
+      array.push(true);
+    }
+    if (!userData.projectGithubLink) {
+      array.push(false);
+    } else {
+      array.push(true);
+    }
+    setFinish(array);
+  }, [userData]);
+
   const Next = async () => {
-    setDate(date);
-    await axios.patch(`/api/v1/applicants/${UserId}`, {
+    await axios.patch(`/api/v1/applicants/${userId}`, {
       applicationSubmittedDate: date,
     });
-    // window.location.replace('/submit');
   };
 
-  const Name = userName.split(' ')[0];
+  const Name = userData.fullName.split(' ')[0];
   return (
     <div className="Container_page">
       <Helmet>
-        <title>Accounts</title>
+        <title>Submit</title>
       </Helmet>
       <img src={backGround} alt="backGround" className="backGround" />
-      {UserId && userName ? (
-        !applicationSubmittedDate ? (
-          <>
-            <div className="text_Welcome">
-              <Typography variant="h3" color="default">
-                Welcome, {Name}
-              </Typography>
-            </div>
-
-            <div className="text_submit">
+      <div className="container_submit_page">
+        {userId && userData.fullName ? (
+          !userData.applicationSubmittedDate ? (
+            <div className="Container_Submitted_finished">
               <Typography variant="h6">
                 Do you want to submit your application ?
               </Typography>
+
+              <div className="submit_buttons">
+                <Button
+                  onClick={() => history.push('/project')}
+                  customStyle="outlined"
+                >
+                  Cancel
+                </Button>
+                <Button onClick={Next} disabled={FinishUser.includes(false)}>
+                  Yes
+                </Button>
+              </div>
             </div>
-            <div className="submit_buttons">
-              <Button
-                onClick={() => history.push('/project')}
-                customStyle="outlined"
-              >
-                Cancel
-              </Button>
-              <Button onClick={Next}>Yes</Button>
+          ) : (
+            <div className="Container_Submitted_finished">
+              <div className="text_Submitted_finished">
+                <Typography variant="h5">
+                  Your Application Submit Successfully
+                </Typography>
+              </div>
+              <div className="text_Submitted_finished">
+                <Typography variant="h4" color="default">
+                  Thanks, {Name}
+                </Typography>
+              </div>
             </div>
-          </>
+          )
         ) : (
-          <>
-            <div className="text_submit">
-              <Typography variant="h6">
-                Your Application Submit Successfully
-              </Typography>
-            </div>
-            <div className="text_thanks">
-              <Typography variant="h3" color="default">
-                Thanks, {Name}
-              </Typography>
-            </div>
-          </>
-        )
-      ) : (
-        <Limitation />
-      )}
+          <Limitation />
+        )}
+      </div>
     </div>
   );
+};
+
+Submit.propTypes = {
+  userId: PropTypes.string.isRequired,
+  userData: PropTypes.node.isRequired,
 };
 
 export default Submit;
