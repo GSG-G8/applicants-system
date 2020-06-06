@@ -117,7 +117,7 @@ export default function HorizontalNonLinearStepper({ userID, UserData }) {
   };
 
   return (
-    <div className={classes.root}>
+    <div>
       <Container maxWidth="sm">
         <div className="availability__head">
           <Typography variant="h6" color="default" align="left">
@@ -137,26 +137,28 @@ export default function HorizontalNonLinearStepper({ userID, UserData }) {
               <div className={classes.validation}>{message}</div>
               {getStepContent(activeStep)}
               <div className={classes.gender}>
-                <Button
-                  customStyle="outlined"
-                  disabled={activeStep === 0}
-                  onClick={handleBack}
-                >
-                  Back
-                </Button>
-                <div className={classes.nextButton}>
-                  {activeStep === steps.length - 1 ? (
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      type="submit"
-                      onClick={() => handleSubmit(formValues)}
-                    >
-                      Next
-                    </Button>
-                  ) : (
-                    <Button onClick={handleNext}>Next</Button>
-                  )}
+                <div className="container_buttons">
+                  <Button
+                    customStyle="outlined"
+                    disabled={activeStep === 0}
+                    onClick={handleBack}
+                  >
+                    Back
+                  </Button>
+                  <div className={classes.nextButton}>
+                    {activeStep === steps.length - 1 ? (
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        type="submit"
+                        onClick={() => handleSubmit(formValues)}
+                      >
+                        Next
+                      </Button>
+                    ) : (
+                      <Button onClick={handleNext}>Next</Button>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
