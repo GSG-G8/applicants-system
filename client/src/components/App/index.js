@@ -28,11 +28,7 @@ export default class App extends React.Component {
   state = {
     user: false,
     admin: false,
-<<<<<<< HEAD
-    USERID: '',
-=======
     userId: '',
->>>>>>> 7eede2c961e98abdfb87189a8e7df2644c6eafa6
     userData: '',
   };
 
@@ -46,11 +42,7 @@ export default class App extends React.Component {
     axios
       .get('/api/v1/isUser')
       .then(({ data: { userId } }) => {
-<<<<<<< HEAD
-        this.setState({ user: true, USERID: userId });
-=======
         this.setState({ user: true, userId });
->>>>>>> 7eede2c961e98abdfb87189a8e7df2644c6eafa6
         axios.get(`/api/v1/applicants/${userId}`).then(({ data: { user } }) => {
           this.setState({ userData: user });
         });
@@ -75,11 +67,7 @@ export default class App extends React.Component {
   };
 
   render() {
-<<<<<<< HEAD
-    const { user, admin, userData, USERID } = this.state;
-=======
     const { user, admin, userData, userId } = this.state;
->>>>>>> 7eede2c961e98abdfb87189a8e7df2644c6eafa6
     const {
       clickedSteps,
       available,
