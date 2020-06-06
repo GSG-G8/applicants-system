@@ -5,46 +5,7 @@ import axios from 'axios';
 
 class ChartsPage extends React.Component {
   state = {
-    dataLine: {
-      labels: [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'November',
-        'December',
-      ],
-      datasets: [
-        {
-          label: 'Monthly Submitted Applicants',
-          fill: true,
-          lineTension: 0.3,
-          backgroundColor: 'transparent',
-          borderColor: '#ed6d23',
-          borderCapStyle: 'butt',
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: 'miter',
-          pointBorderColor: '#ed6d23',
-          pointBackgroundColor: '#ffffff',
-          pointBorderWidth: 10,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: '#ffffff',
-          pointHoverBorderColor: 'rgba(220, 220, 220,1)',
-          pointHoverBorderWidth: 2,
-          pointRadius: 1,
-          pointHitRadius: 10,
-          data: [],
-        },
-      ],
-    },
+    dataLine: '',
   };
 
   componentDidMount = async () => {
@@ -124,9 +85,13 @@ class ChartsPage extends React.Component {
   render() {
     const { dataLine } = this.state;
     return (
-      <MDBContainer>
-        <Line data={dataLine} options={{ responsive: true }} />
-      </MDBContainer>
+      <>
+        {dataLine && (
+          <MDBContainer>
+            <Line data={dataLine} options={{ responsive: true }} />
+          </MDBContainer>
+        )}
+      </>
     );
   }
 }
