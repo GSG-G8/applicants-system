@@ -5,7 +5,46 @@ import axios from 'axios';
 
 class ChartsPage extends React.Component {
   state = {
-    dataLine: '',
+    dataLine: {
+      labels: [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'November',
+        'December',
+      ],
+      datasets: [
+        {
+          label: 'Monthly Submitted Applicants',
+          fill: true,
+          lineTension: 0.3,
+          backgroundColor: 'transparent',
+          borderColor: '#ed6d23',
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: '#ed6d23',
+          pointBackgroundColor: '#ffffff',
+          pointBorderWidth: 10,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: '#ffffff',
+          pointHoverBorderColor: 'rgba(220, 220, 220,1)',
+          pointHoverBorderWidth: 2,
+          pointRadius: 1,
+          pointHitRadius: 10,
+          data: [],
+        },
+      ],
+    },
   };
 
   componentDidMount = async () => {
@@ -22,8 +61,8 @@ class ChartsPage extends React.Component {
       '05',
       '06',
       '07',
-      '8',
-      '9',
+      '08',
+      '09',
       '10',
       '11',
       '12',
@@ -52,7 +91,6 @@ class ChartsPage extends React.Component {
           'August',
           'September',
           'October',
-          'November',
           'November',
           'December',
         ],
