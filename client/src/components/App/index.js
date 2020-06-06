@@ -3,7 +3,6 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 import AppBar from '../common/AppBar';
-import Limitation from '../common/limitation';
 import Error404 from '../pages/common/errors/Error-404';
 import Error500 from '../pages/common/errors/Error-500';
 import Home from '../pages/common/Home';
@@ -21,6 +20,7 @@ import Opened from '../pages/admin/Opened';
 import SubmittedAll from '../pages/admin/Submitted_all';
 import SubmittedId from '../pages/admin/Submitted_Id';
 import Completed from '../pages/admin/Completed';
+import Alert from '../common/Alert';
 import ResponsiveDrawer from '../application/ResponsiveDrawer';
 import './index.css';
 
@@ -28,26 +28,26 @@ export default class App extends React.Component {
   state = {
     user: false,
     admin: false,
-    loading: true,
+    userId: '',
+    userData: '',
   };
 
   componentDidMount() {
     axios
       .get('/api/v1/isAdmin')
       .then((result) => {
-        this.setState({ admin: true, loading: false, ...result.data });
+        this.setState({ admin: true, ...result.data });
       })
-      .catch(() => {
-        this.setState({ loading: true });
-      });
+      .catch(() => {});
     axios
       .get('/api/v1/isUser')
-      .then((result) => {
-        this.setState({ user: true, loading: false, ...result.data });
+      .then(({ data: { userId } }) => {
+        this.setState({ user: true, userId });
+        axios.get(`/api/v1/applicants/${userId}`).then(({ data: { user } }) => {
+          this.setState({ userData: user });
+        });
       })
-      .catch(() => {
-        this.setState({ loading: true });
-      });
+      .catch();
   }
 
   signupHandler = () => {
@@ -67,7 +67,30 @@ export default class App extends React.Component {
   };
 
   render() {
-    const { user, admin, loading } = this.state;
+    const { user, admin, userData, userId } = this.state;
+    const {
+      clickedSteps,
+      available,
+      address,
+      age,
+      employmentStatus,
+      englishSpeaking,
+      englishUnderstanding,
+      fullName,
+      gender,
+      jobTitle,
+      mobileNumber,
+      codeWarsLink,
+      freeCodeCampLink,
+      githubLink,
+      joinDiscord,
+      technicalTasks,
+      technicalTasksLinks,
+      projectGithubLink,
+      applicationSubmittedDate,
+      avatar,
+    } = userData;
+
     const { pathname } = window.location;
     const paths = pathname.split('/');
     const lastIndexUrl = paths[paths.length - 1];
@@ -85,27 +108,20 @@ export default class App extends React.Component {
       '/submit',
       '/myprofile',
     ];
+    const staticRoutes = ['/', '/login', '/signup'];
     return (
       <div>
-        <AppBar logoutHandler={this.logoutHandler} auth={user || admin} />
+        <AppBar
+          logoutHandler={this.logoutHandler}
+          auth={user}
+          UserAvatar={avatar}
+        />
         <Switch>
-          <Route path="/404" render={() => <Error404 />} />
           <Route path="/500" render={() => <Error500 />} />
-          <Route exact path="/" render={(props) => <Home {...props} />} />
-          <Route exact path="/login" render={(props) => <Login {...props} />} />
-          <Route
-            exact
-            path="/signup"
-            render={(props) => <Signup {...props} />}
-          />
-
+          <Route path="/404" render={() => <Error404 />} />
           <main className="container">
             {Routes.includes(pathname) ? (
-              loading ? (
-                <div className="limitation">
-                  <Limitation />
-                </div>
-              ) : admin ? (
+              admin ? (
                 <div>
                   <Route
                     path="/dashboard"
@@ -128,13 +144,40 @@ export default class App extends React.Component {
                     render={(props) => <Completed {...props} />}
                   />
                 </div>
-              ) : (
+              ) : user ? (
                 <div>
+                  {!clickedSteps ? (
+                    <Redirect to="/steps" />
+                  ) : !available ||
+                    !address ||
+                    !age ||
+                    !employmentStatus ||
+                    !englishSpeaking ||
+                    !englishUnderstanding ||
+                    !fullName ||
+                    !gender ||
+                    !jobTitle ||
+                    !mobileNumber ? (
+                    <Redirect to="/availability" />
+                  ) : !codeWarsLink ||
+                    !freeCodeCampLink ||
+                    !githubLink ||
+                    !joinDiscord ? (
+                    <Redirect to="accounts" />
+                  ) : !technicalTasks || !technicalTasksLinks ? (
+                    <Redirect to="tasks" />
+                  ) : !projectGithubLink ? (
+                    <Redirect to="project" />
+                  ) : !applicationSubmittedDate ? (
+                    <Redirect to="submit" />
+                  ) : (
+                    <Redirect to="myprofile" />
+                  )}
                   <Route
                     path="/steps"
                     render={(props) => (
                       <>
-                        <ResponsiveDrawer />
+                        <ResponsiveDrawer userData={userData} />
                         <Steps {...props} />
                       </>
                     )}
@@ -143,7 +186,7 @@ export default class App extends React.Component {
                     path="/availability"
                     render={(props) => (
                       <>
-                        <ResponsiveDrawer />
+                        <ResponsiveDrawer userData={userData} />
                         <Availability {...props} />
                       </>
                     )}
@@ -152,7 +195,7 @@ export default class App extends React.Component {
                     path="/accounts"
                     render={(props) => (
                       <>
-                        <ResponsiveDrawer />
+                        <ResponsiveDrawer userData={userData} />
                         <Accounts {...props} />
                       </>
                     )}
@@ -161,7 +204,7 @@ export default class App extends React.Component {
                     path="/tasks"
                     render={(props) => (
                       <>
-                        <ResponsiveDrawer />
+                        <ResponsiveDrawer userData={userData} />
                         <Tasks {...props} />
                       </>
                     )}
@@ -170,17 +213,17 @@ export default class App extends React.Component {
                     path="/project"
                     render={(props) => (
                       <>
-                        <ResponsiveDrawer />
+                        <ResponsiveDrawer userData={userData} />
                         <Project {...props} />
                       </>
                     )}
                   />
                   <Route
                     path="/submit"
-                    render={(props) => (
+                    render={() => (
                       <>
-                        <ResponsiveDrawer />
-                        <Submit {...props} />
+                        <ResponsiveDrawer userData={userData} />
+                        <Submit userData={userData} userId={userId} />
                       </>
                     )}
                   />
@@ -189,7 +232,42 @@ export default class App extends React.Component {
                     render={(props) => <Profile {...props} />}
                   />
                 </div>
+              ) : (
+                <>
+                  {/* {window.location.replace('/')}
+                  <Alert
+                    Type="warning"
+                    Msg="You are Not allowed to access this page, please Login First."
+                  /> */}
+                  <Redirect to="/" />
+                </>
               )
+            ) : staticRoutes.includes(pathname) ? (
+              <>
+                {user ? (
+                  <Redirect to="steps" />
+                ) : admin ? (
+                  <Redirect to="dashboard" />
+                ) : (
+                  <>
+                    <Route
+                      exact
+                      path="/"
+                      render={(props) => <Home {...props} />}
+                    />
+                    <Route
+                      exact
+                      path="/login"
+                      render={(props) => <Login {...props} />}
+                    />
+                    <Route
+                      exact
+                      path="/signup"
+                      render={(props) => <Signup {...props} />}
+                    />
+                  </>
+                )}
+              </>
             ) : (
               <Redirect to="/404" />
             )}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import PropTypes from 'prop-types';
@@ -9,8 +9,9 @@ import IconButton from '@material-ui/core/IconButton';
 import DrawerList from './list';
 import useStyles from './style';
 
-const ResponsiveDrawer = ({ Content, window }) => {
+const ResponsiveDrawer = ({ Content, window, userData }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [FinishUser, setFinish] = useState([]);
   const theme = useTheme();
   const classes = useStyles();
   const container =
@@ -19,6 +20,57 @@ const ResponsiveDrawer = ({ Content, window }) => {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  useEffect(() => {
+    const array = [];
+    if (userData.clickedSteps) {
+      array.push(true);
+    } else {
+      array.push(false);
+    }
+    if (
+      !userData.available ||
+      !userData.address ||
+      !userData.age ||
+      !userData.employmentStatus ||
+      !userData.englishSpeaking ||
+      !userData.englishUnderstanding ||
+      !userData.fullName ||
+      !userData.gender ||
+      !userData.jobTitle ||
+      !userData.mobileNumber
+    ) {
+      array.push(false);
+    } else {
+      array.push(true);
+    }
+    if (
+      !userData.codeWarsLink ||
+      !userData.freeCodeCampLink ||
+      !userData.githubLink ||
+      !userData.joinDiscord
+    ) {
+      array.push(false);
+    } else {
+      array.push(true);
+    }
+    if (!userData.technicalTasks || !userData.technicalTasksLinks) {
+      array.push(false);
+    } else {
+      array.push(true);
+    }
+    if (!userData.projectGithubLink) {
+      array.push(false);
+    } else {
+      array.push(true);
+    }
+    if (!userData.applicationSubmittedDate) {
+      array.push(false);
+    } else {
+      array.push(true);
+    }
+    setFinish(array);
+  }, [userData]);
 
   return (
     <div>
@@ -48,7 +100,7 @@ const ResponsiveDrawer = ({ Content, window }) => {
               keepMounted: true,
             }}
           >
-            <DrawerList content={Content} />
+            <DrawerList content={Content} isFinished={FinishUser} />
           </Drawer>
         </Hidden>
         <Hidden xsDown implementation="js">
@@ -59,7 +111,7 @@ const ResponsiveDrawer = ({ Content, window }) => {
             variant="permanent"
             open
           >
-            <DrawerList content={Content} />
+            <DrawerList content={Content} isFinished={FinishUser} />
           </Drawer>
         </Hidden>
       </nav>
@@ -69,6 +121,7 @@ const ResponsiveDrawer = ({ Content, window }) => {
 
 ResponsiveDrawer.propTypes = {
   Content: PropTypes.node,
+  userData: PropTypes.node.isRequired,
   // eslint-disable-next-line react/require-default-props
   window: PropTypes.func,
 };
