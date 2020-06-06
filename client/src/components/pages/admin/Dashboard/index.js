@@ -45,7 +45,7 @@ const Dashboard = () => {
   });
 
   useEffect(() => {
-    getStatics().then(setData);
+    if (data.all === 0) getStatics().then(setData);
   }, [data]);
 
   return (
@@ -70,82 +70,81 @@ const Dashboard = () => {
                   </Typography>
                   <hr className="control__line" />
                 </div>
-                {data && (
-                  <table className="control__table">
-                    <tr>
-                      <td className="control__line__state">
-                        <Typography variant="body1" align="left">
-                          All applications
-                        </Typography>
-                      </td>
-                      <td>
-                        <Typography variant="body1" align="left">
-                          {data.all}
-                        </Typography>
-                      </td>
-                    </tr>
-                    <tr>
-                      <BorderLinearProgress
-                        variant="determinate"
-                        value={data.all}
-                      />
-                    </tr>
-                    <tr>
-                      <td className="control__line__state">
-                        <Typography variant="body1" align="left">
-                          Open applications
-                        </Typography>
-                      </td>
-                      <td>
-                        <Typography variant="body1" align="left">
-                          {data.opened}
-                        </Typography>
-                      </td>
-                    </tr>
-                    <tr>
-                      <BorderLinearProgress
-                        variant="determinate"
-                        value={data.opened}
-                      />
-                    </tr>
-                    <tr>
-                      <td className="control__line__state">
-                        <Typography variant="body1" align="left">
-                          Submitted applications
-                        </Typography>
-                      </td>
-                      <td>
-                        <Typography variant="body1" align="left">
-                          {data.submitted}
-                        </Typography>
-                      </td>
-                    </tr>
-                    <tr>
-                      <BorderLinearProgress
-                        variant="determinate"
-                        value={data.submitted}
-                      />
-                    </tr>
-                    <tr>
-                      <td className="control__line__state">
-                        <Typography variant="body1" align="left">
-                          Accepted applications
-                        </Typography>
-                      </td>
-                      <td>
-                        <Typography variant="body1" align="left">
-                          {data.accepted}
-                        </Typography>
-                      </td>
-                    </tr>
-                    <tr>
-                      <BorderLinearProgress
-                        variant="determinate"
-                        value={data.accepted}
-                      />
-                    </tr>
-                  </table>
-                )}
+                <table className="control__table">
+                  <tr>
+                    <td className="control__line__state">
+                      <Typography variant="body1" align="left">
+                        All applications
+                      </Typography>
+                    </td>
+                    <td>
+                      <Typography variant="body1" align="left">
+                        {data.all}
+                      </Typography>
+                    </td>
+                  </tr>
+                  <tr>
+                    <BorderLinearProgress variant="determinate" value="100" />
+                  </tr>
+                  <tr>
+                    <td className="control__line__state">
+                      <Typography variant="body1" align="left">
+                        Open applications
+                      </Typography>
+                    </td>
+                    <td>
+                      <Typography variant="body1" align="left">
+                        {data.opened}
+                      </Typography>
+                    </td>
+                  </tr>
+                  <tr>
+                    <BorderLinearProgress
+                      variant="determinate"
+                      value={(100 * data.opened) / data.all}
+                    />
+                  </tr>
+                  <tr>
+                    <td className="control__line__state">
+                      <Typography variant="body1" align="left">
+                        Submitted applications
+                      </Typography>
+                    </td>
+                    <td>
+                      <Typography variant="body1" align="left">
+                        {data.submitted}
+                      </Typography>
+                    </td>
+                  </tr>
+                  <tr>
+                    <BorderLinearProgress
+                      variant="determinate"
+                      value={
+                        data.all > 0 ? (100 * data.submitted) / data.all : 0
+                      }
+                    />
+                  </tr>
+                  <tr>
+                    <td className="control__line__state">
+                      <Typography variant="body1" align="left">
+                        Accepted applications
+                      </Typography>
+                    </td>
+                    <td>
+                      <Typography variant="body1" align="left">
+                        {data.accepted}
+                      </Typography>
+                    </td>
+                  </tr>
+                  <tr>
+                    <BorderLinearProgress
+                      variant="determinate"
+                      value={
+                        data.all > 0 ? (100 * data.accepted) / data.all : 0
+                      }
+                    />
+                  </tr>
+                </table>
               </div>
             }
           />
