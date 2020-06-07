@@ -101,6 +101,7 @@ const applicantSchema = new Schema({
   },
   freeCodeCampPoints: {
     type: Number,
+    default: 0,
   },
   freeCodeCampTopics: {
     type: Boolean,
@@ -116,6 +117,7 @@ const applicantSchema = new Schema({
   },
   codeWarsKyu: {
     type: Number,
+    default: 8,
     trim: true,
   },
   technicalTasks: {
