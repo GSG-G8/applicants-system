@@ -64,7 +64,7 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         name="mobileNumber"
         onChange={handleFormInput}
         isError={
-          errorMsg.includes('Mobile Nubmer is required') ||
+          errorMsg.includes('Mobile Number is required') ||
           errorMsg.includes('Error Mobile Number')
         }
         message="ex:- 05xx xxx xxx"

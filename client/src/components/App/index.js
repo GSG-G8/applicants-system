@@ -16,7 +16,6 @@ import Tasks from '../pages/application/Tasks';
 import Project from '../pages/application/Project';
 import Submit from '../pages/application/Submit';
 import Profile from '../pages/application/Profile';
-import Dashboard from '../pages/admin/Dashboard';
 import Opened from '../pages/admin/Opened';
 import SubmittedAll from '../pages/admin/Submitted_all';
 import SubmittedId from '../pages/admin/Submitted_Id';
@@ -63,7 +62,6 @@ const App = () => {
     if (Cookies.get('applicant')) {
       checkUser()
         .then((data) => {
-          console.log({ data });
           setUser(true);
           setUserId(data.userId);
           getUserData(data.userId).then((user) => {
@@ -180,13 +178,13 @@ const App = () => {
   if (User) {
     return (
       <>
-        <AppBar
+        {/* <AppBar
           logoutHandler={logoutHandler}
           auth={User}
           userName={fullName}
           UserAvatar={avatar}
           loading={loading}
-        />
+        /> */}
         <Switch>
           <Route
             path="/500"

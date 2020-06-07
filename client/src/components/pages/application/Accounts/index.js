@@ -209,7 +209,7 @@ const Accounts = ({ userId, userData }) => {
               {alert && (
                 <Alert
                   Type="warning"
-                  Msg="You should check Availability before going next"
+                  Msg="You should join discord channel to be in touch with other applicants"
                 />
               )}
             </div>

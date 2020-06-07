@@ -222,7 +222,7 @@ const ProfilePage = ({ userId, userData }) => {
                   <tr>
                     <td className="item">
                       <Typography variant="body2" align="left">
-                        codewars Score
+                        code wars score
                       </Typography>
                     </td>
                     <td className="points-value">
@@ -234,7 +234,7 @@ const ProfilePage = ({ userId, userData }) => {
                   <tr>
                     <td className="item">
                       <Typography variant="body2" align="left">
-                        freecodecamp Score
+                        FreeCode Camp Score
                       </Typography>
                     </td>
                     <td className="points-value">

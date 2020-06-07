@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
@@ -21,21 +21,17 @@ const Availability = ({ userId, userData }) => {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 
-  const next = async () => {
-    if (!userData || !userId || !available) throwAlert(true);
-    else {
+  const next = () => {
+    // throwAlert(false);
+    if (available) {
       setLoading(true);
-      try {
-        await axios.patch(`/api/v1/applicants/${userId}`, {
-          available,
-        });
-        setLoading(false);
-        setNonLinear(true);
-      } catch (error) {
-        throwAlert(true);
-      }
+      axios.patch(`/api/v1/applicants/${userId}`, {
+        available,
+      });
+      setLoading(false);
+      setNonLinear(true);
     }
-    throwAlert(false);
+    throwAlert(true);
   };
 
   return (
@@ -77,6 +73,12 @@ const Availability = ({ userId, userData }) => {
                   </Typography>
                 }
               />
+              {alert && (
+                <Alert
+                  Type="warning"
+                  Msg="You should check Availability before going next"
+                />
+              )}
             </div>
             <div className="container_buttons">
               <Button
@@ -87,12 +89,6 @@ const Availability = ({ userId, userData }) => {
               </Button>
               <Button onClick={() => next()}>Next</Button>
             </div>
-            {alert && (
-              <Alert
-                Type="warning"
-                Msg="You should check Availability before going next"
-              />
-            )}
           </>
         ) : loading ? (
           <Limitation />

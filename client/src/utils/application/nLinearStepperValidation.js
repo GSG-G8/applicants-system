@@ -6,7 +6,7 @@ const generalInfosSchema = yup.object().shape({
   mobileNumber: yup
     .string()
     .matches(/^(05)[0-9]{8}$/, 'Error Mobile Number')
-    .required('Mobile Nubmer is required'),
+    .required('Mobile Number is required'),
   age: yup.string().required('Age is required').trim(),
   address: yup.string().required('Address is required'),
 });
@@ -20,7 +20,7 @@ const prosInfoSchema = yup.object().shape({
   jobTitle: yup
     .string()
     .nullable()
-    .required(`if you don't have job write no`)
+    .required(`if you don't have job just write [ No ]`)
     .trim(),
 });
 
