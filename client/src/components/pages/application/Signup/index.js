@@ -34,7 +34,8 @@ class SignUp extends React.Component {
   throwMessage = (message) => this.setState({ message });
 
   resetForm = () => {
-    this.setState(initialState);
+    const { message, ...rest } = initialState;
+    this.setState(rest);
   };
 
   submit = async () => {

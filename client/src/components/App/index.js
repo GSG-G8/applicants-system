@@ -23,6 +23,7 @@ import Completed from '../pages/admin/Completed';
 import Limitation from '../common/limitation';
 import Alert from '../common/Alert';
 import ResponsiveDrawer from '../application/ResponsiveDrawer';
+import Chart from '../dashboard/chart';
 import './index.css';
 
 const checkAdmin = async () => {
@@ -55,32 +56,37 @@ const App = () => {
   const history = useHistory();
 
   useEffect(() => {
-    checkAdmin()
-      .then((data) => setAdmin(true))
-      .catch(() => {
-        setAdmin(false);
-        setLoading(false);
-      });
     checkUser()
-      .then(async (data) => {
-        await setUser(true);
-        await setUserId(data.userId);
-        await getUserData(data.userId).then(async (user) => {
-          await setUserData(user);
+      .then((data) => {
+        console.log({ data });
+        setUser(true);
+        setUserId(data.userId);
+        console.log(userId, 'from state');
+        console.log(data.userId, 'from data');
+        getUserData(data.userId).then((user) => {
+          setUserData(user);
         });
-        await setLoading(false);
+        setLoading(false);
       })
       .catch(() => {
         setUser(false);
         setLoading(false);
       });
-  }, []);
+    checkAdmin()
+      .then((data) => {
+        setAdmin(true);
+      })
+      .catch(() => {
+        setAdmin(false);
+        setLoading(false);
+      });
+  }, [userId, userData]);
 
   const logoutHandler = () => {
     LogOut().then(() => {
       setAdmin(false);
       setUser(false);
-      window.location.replace('/');
+      history.push('/');
     });
   };
 
@@ -136,12 +142,15 @@ const App = () => {
         <Switch>
           <Route path="/500" render={() => <Error500 />} />
           <Route path="/404" render={() => <Error404 auth="admin" />} />
+          {/* {staticRoutes.includes(pathname) && (
+            <>
+              <Alert Type="warning" Msg="You already login" />
+              {window.location.replace('/dashboard')}
+            </>
+          )} */}
           {!Routes.includes(pathname) && <Redirect to="/404" />}
           <div>
-            <Route
-              path="/dashboard"
-              render={(props) => <Dashboard {...props} />}
-            />
+            <Route path="/dashboard" render={() => <Chart />} />
             <Route
               path="/dashboard/applications/opened"
               render={(props) => <Opened {...props} />}
@@ -174,8 +183,22 @@ const App = () => {
           loading={loading}
         />
         <Switch>
-          <Route path="/500" render={() => <Error500 />} />
+          <Route
+            path="/500"
+            render={() => (
+              <>
+                <Error500 /> <Redirect to="/steps" />
+              </>
+            )}
+          />
           <Route path="/404" render={() => <Error404 auth="user" />} />
+
+          {staticRoutes.includes(pathname) && (
+            <>
+              <Alert Type="warning" Msg="You already login" />
+              {window.location.replace('/steps')}
+            </>
+          )}
           {!Routes.includes(pathname) && <Redirect to="/404" />}
           <div>
             {!clickedSteps ? (
@@ -200,10 +223,8 @@ const App = () => {
               <Redirect to="tasks" />
             ) : !projectGithubLink ? (
               <Redirect to="project" />
-            ) : !applicationSubmittedDate ? (
-              <Redirect to="submit" />
             ) : (
-              <Redirect to="myprofile" />
+              <Redirect to="submit" />
             )}
             <Route
               path="/steps"
