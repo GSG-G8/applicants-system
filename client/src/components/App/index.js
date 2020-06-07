@@ -247,7 +247,7 @@ const App = () => {
             />
             <Route
               path="/accounts"
-              render={(props) => <Accounts {...props} />}
+              render={() => <Accounts userId={userId} userData={userData} />}
             />
             <Route path="/tasks" render={(props) => <Tasks {...props} />} />
             <Route path="/project" render={(props) => <Project {...props} />} />
