@@ -252,7 +252,7 @@ const App = () => {
             />
             <Route
               path="/tasks"
-              render={(props) => <Tasks userId={userId} userData={userData} />}
+              render={() => <Tasks userId={userId} userData={userData} />}
             />
             <Route path="/project" render={(props) => <Project {...props} />} />
             <Route
@@ -261,7 +261,7 @@ const App = () => {
             />
             <Route
               path="/myprofile"
-              render={(props) => <Profile {...props} />}
+              render={() => <Profile userId={userId} userData={userData} />}
             />
             {pathname !== '/myprofile' && (
               <ResponsiveDrawer userData={userData} userId={userId} />
