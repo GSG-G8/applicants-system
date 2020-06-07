@@ -22,7 +22,7 @@ const Availability = ({ userId, userData }) => {
   const history = useHistory();
 
   const next = () => {
-    // throwAlert(false);
+    throwAlert(false);
     if (available) {
       setLoading(true);
       axios.patch(`/api/v1/applicants/${userId}`, {
