@@ -89,7 +89,7 @@ const Dashboard = () => {
                   <tr>
                     <td className="control__line__state">
                       <Typography variant="body1" align="left">
-                        Open applications
+                        Opened applications
                       </Typography>
                     </td>
                     <td>
