@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import PropTypes from 'prop-types';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import NonLinearStepper from '../../../application/NonlinearStepper';
@@ -13,21 +14,7 @@ import backGround from '../../../../assets/images/backGround.svg';
 import { availability } from './availability.json';
 import './index.css';
 
-const getUserID = async () => {
-  const { data } = await axios.get('/api/v1/isUser');
-  return data;
-};
-
-const applicantData = async (id) => {
-  const {
-    data: { user },
-  } = await axios.get(`/api/v1/applicants/${id}`);
-  return user;
-};
-
-const Availability = () => {
-  const [UserId, setId] = useState();
-  const [data, setData] = useState();
+const Availability = ({ userId, userData }) => {
   const [available, setAvailable] = useState(false);
   const [alert, throwAlert] = useState(false);
   const [nonLinear, setNonLinear] = useState(false);
@@ -35,11 +22,11 @@ const Availability = () => {
   const history = useHistory();
 
   const next = async () => {
-    if (!available || !UserId) throwAlert(true);
+    if (!userData || !userId) throwAlert(true);
     else {
       setLoading(true);
       try {
-        await axios.patch(`/api/v1/applicants/${UserId}`, {
+        await axios.patch(`/api/v1/applicants/${userId}`, {
           available,
         });
         setLoading(false);
@@ -51,18 +38,10 @@ const Availability = () => {
   };
 
   useEffect(() => {
-    if (!UserId)
-      getUserID().then((data) => {
-        if (data.message === 'you are authorized') {
-          setId(data.userId);
-        }
-      });
-    if (!data && UserId)
-      applicantData(UserId).then((data) => {
-        setData(data);
-        setAvailable(data.available);
-      });
-  }, [UserId, available, data]);
+    if (userData.available !== undefined) {
+      setAvailable(userData.available);
+    }
+  });
 
   return (
     <div className="Container_page">
@@ -124,12 +103,17 @@ const Availability = () => {
           <Limitation />
         ) : (
           <div className="Container_page__availability">
-            <NonLinearStepper userID={UserId} UserData={data} />
+            <NonLinearStepper userID={userId} UserData={userData} />
           </div>
         )}
       </div>
     </div>
   );
+};
+
+Availability.propTypes = {
+  userId: PropTypes.string.isRequired,
+  userData: PropTypes.node.isRequired,
 };
 
 export default Availability;

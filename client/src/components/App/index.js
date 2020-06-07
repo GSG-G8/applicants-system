@@ -241,7 +241,9 @@ const App = () => {
             />
             <Route
               path="/availability"
-              render={(props) => <Availability {...props} />}
+              render={() => (
+                <Availability userId={userId} userData={userData} />
+              )}
             />
             <Route
               path="/accounts"
