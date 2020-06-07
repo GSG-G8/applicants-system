@@ -3,7 +3,10 @@ import * as yup from 'yup';
 const generalInfosSchema = yup.object().shape({
   gender: yup.string().required('Gender is required'),
   fullName: yup.string().required('Full Name is required').trim(),
-  mobileNumber: yup.string().required('Mobile Nubmer is required'),
+  mobileNumber: yup
+    .string()
+    .matches(/^(05)[0-9]{8}$/, 'Error Mobile Number')
+    .required('Mobile Nubmer is required'),
   age: yup.string().required('Age is required').trim(),
   address: yup.string().required('Address is required'),
 });
@@ -14,7 +17,11 @@ const prosInfoSchema = yup.object().shape({
     .string()
     .required('Language Understand is required'),
   employmentStatus: yup.string().required('Current Employment is required'),
-  jobTitle: yup.string('job title is not a string').trim(),
+  jobTitle: yup
+    .string()
+    .nullable()
+    .required(`if you don't have job write no`)
+    .trim(),
 });
 
 const generalInfosValidation = (value) =>
