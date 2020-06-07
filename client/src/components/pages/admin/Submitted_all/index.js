@@ -10,7 +10,9 @@ import './index.css';
 
 const getSubmitted = async () => {
   const { data } = (await axios.get('/api/v1/dashboard/applicants')).data;
-  return data;
+  return data.filter((element) => {
+    if (element.applicationSubmittedDate) return element;
+  });
 };
 
 const Header = {

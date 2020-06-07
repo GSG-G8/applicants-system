@@ -7,7 +7,8 @@
 }
 
 .submitted__container td{
-  line-height: .8rem;
+  line-height: 1rem;
+  padding: .5rem 1rem .5rem 1rem;
 }
 .submitted__container tr{
   margin: 0 auto;
