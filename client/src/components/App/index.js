@@ -235,7 +235,10 @@ const App = () => {
               </>
             )}
 
-            <Route path="/steps" render={() => <Steps userId={userId} />} />
+            <Route
+              path="/steps"
+              render={() => <Steps userId={userId} fullName={fullName} />}
+            />
             <Route
               path="/availability"
               render={(props) => <Availability {...props} />}
