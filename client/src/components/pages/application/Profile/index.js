@@ -23,11 +23,6 @@ const getTec = async () => {
   return data;
 };
 
-const updatePoints = async (id) => {
-  const Points = await axios.get(`/api/v1/applicants/${id}/points`);
-  return Points;
-};
-
 const getUserID = async () => {
   const { data } = await axios.get('/api/v1/isUser');
   return data;
@@ -47,7 +42,6 @@ const ProfilePage = () => {
         }
       });
     if (!data && UserId) {
-      updatePoints(UserId).then();
       applicantData(UserId).then(setData);
     }
     if (!Technical) getTec().then(setTechnical);

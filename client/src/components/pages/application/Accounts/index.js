@@ -19,6 +19,11 @@ import AccountsValidation from '../../../../utils/application/AccountsValidation
 
 import './index.css';
 
+const updatePoints = async (id) => {
+  const Points = await axios.get(`/api/v1/applicants/${id}/points`);
+  return Points;
+};
+
 const Accounts = ({ userId, userData }) => {
   const [githubLink, setGitHub] = useState(userData.githubLink);
   const [freeCodeCampLink, setFreeCode] = useState(userData.freeCodeCampLink);
@@ -41,6 +46,7 @@ const Accounts = ({ userId, userData }) => {
             codeWarsLink,
             joinDiscord,
           });
+          updatePoints(userId);
         } else {
           throwAlert(true);
         }
