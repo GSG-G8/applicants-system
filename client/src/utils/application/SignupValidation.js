@@ -1,7 +1,11 @@
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
-  fullName: yup.string().trim().required('Enter your First Name'),
+  fullName: yup
+    .string()
+    .matches(/^[A-Za-z\s]{5,}$/, 'You must add only Letters')
+    .trim()
+    .required('Enter your First Name'),
   email: yup.string().email('Enter your Email').required('Enter your Email'),
   password: yup
     .string()

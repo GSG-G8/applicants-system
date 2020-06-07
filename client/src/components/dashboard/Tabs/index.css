@@ -1,0 +1,26 @@
+.dash__bar {
+  display: flex;
+  background-color: transparent;
+  position: absolute;
+  margin: 2rem;
+  width: 70%;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.dash__bar__link {
+  margin-top: 1rem;
+}
+
+.dash__bar__link li {
+  display: inline;
+  padding: 2rem 1rem 0 1rem;
+  list-style: none;
+}
+
+.dash__bar__img {
+  padding: .5rem;
+  width: 1rem;
+  background-color: #ffffff;
+  border-radius: 50%;
+}
