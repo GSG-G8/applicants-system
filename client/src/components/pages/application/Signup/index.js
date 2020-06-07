@@ -186,10 +186,10 @@ class SignUp extends React.Component {
                     />
                   </div>
                   <div className="buttons">
-                    <Button onClick={this.handleSignIn}>Login</Button>
-                    <Button customStyle="outlined" onClick={this.submit}>
-                      Sign Up
-                    </Button>
+                    <Button onClick={this.submit}>Sign Up</Button>
+                    <Button customStyle="outlined" onClick={this.handleSignIn}>
+                      Login
+                    </Button> 
                   </div>
                 </div>
               }

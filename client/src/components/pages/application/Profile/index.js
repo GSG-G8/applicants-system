@@ -294,7 +294,7 @@ const ProfilePage = () => {
                         />
                         Submitted
                         {data.applicationSubmittedDate &&
-                          `on ${data.applicationSubmittedDate.split('T')[0]}`}
+                          ` on ${data.applicationSubmittedDate.split('T')[0]}`}
                       </Typography>
                     </td>
                   </tr>
