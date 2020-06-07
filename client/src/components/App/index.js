@@ -205,89 +205,58 @@ const App = () => {
           )}
           {!Routes.includes(pathname) && <Redirect to="/404" />}
           <div>
-            {!clickedSteps ? (
-              <Redirect to="/steps" />
-            ) : !available ||
-              !address ||
-              !age ||
-              !employmentStatus ||
-              !englishSpeaking ||
-              !englishUnderstanding ||
-              !fullName ||
-              !gender ||
-              !jobTitle ||
-              !mobileNumber ? (
-              <Redirect to="/availability" />
-            ) : !codeWarsLink ||
-              !freeCodeCampLink ||
-              !githubLink ||
-              !joinDiscord ? (
-              <Redirect to="accounts" />
-            ) : !technicalTasks || !technicalTasksLinks ? (
-              <Redirect to="tasks" />
-            ) : !projectGithubLink ? (
-              <Redirect to="project" />
-            ) : (
-              <Redirect to="submit" />
+            {pathname !== '/myprofile' && (
+              <>
+                {!clickedSteps ? (
+                  <Redirect to="/steps" />
+                ) : !available ||
+                  !address ||
+                  !age ||
+                  !employmentStatus ||
+                  !englishSpeaking ||
+                  !englishUnderstanding ||
+                  !fullName ||
+                  !gender ||
+                  !jobTitle ||
+                  !mobileNumber ? (
+                  <Redirect to="/availability" />
+                ) : !codeWarsLink ||
+                  !freeCodeCampLink ||
+                  !githubLink ||
+                  !joinDiscord ? (
+                  <Redirect to="accounts" />
+                ) : !technicalTasks || !technicalTasksLinks ? (
+                  <Redirect to="tasks" />
+                ) : !projectGithubLink ? (
+                  <Redirect to="project" />
+                ) : (
+                  <Redirect to="submit" />
+                )}
+              </>
             )}
-            <Route
-              path="/steps"
-              render={() => (
-                <>
-                  <ResponsiveDrawer userData={userData} />
-                  <Steps userId={userId} />
-                </>
-              )}
-            />
+
+            <Route path="/steps" render={() => <Steps userId={userId} />} />
             <Route
               path="/availability"
-              render={(props) => (
-                <>
-                  <ResponsiveDrawer userData={userData} />
-                  <Availability {...props} />
-                </>
-              )}
+              render={(props) => <Availability {...props} />}
             />
             <Route
               path="/accounts"
-              render={(props) => (
-                <>
-                  <ResponsiveDrawer userData={userData} />
-                  <Accounts {...props} />
-                </>
-              )}
+              render={(props) => <Accounts {...props} />}
             />
-            <Route
-              path="/tasks"
-              render={(props) => (
-                <>
-                  <ResponsiveDrawer userData={userData} />
-                  <Tasks {...props} />
-                </>
-              )}
-            />
-            <Route
-              path="/project"
-              render={(props) => (
-                <>
-                  <ResponsiveDrawer userData={userData} />
-                  <Project {...props} />
-                </>
-              )}
-            />
+            <Route path="/tasks" render={(props) => <Tasks {...props} />} />
+            <Route path="/project" render={(props) => <Project {...props} />} />
             <Route
               path="/submit"
-              render={() => (
-                <>
-                  <ResponsiveDrawer userData={userData} />
-                  <Submit userData={userData} userId={userId} />
-                </>
-              )}
+              render={() => <Submit userData={userData} userId={userId} />}
             />
             <Route
               path="/myprofile"
               render={(props) => <Profile {...props} />}
             />
+            {pathname !== '/myprofile' && (
+              <ResponsiveDrawer userData={userData} />
+            )}
           </div>
         </Switch>
       </>
