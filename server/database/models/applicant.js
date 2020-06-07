@@ -91,6 +91,7 @@ const applicantSchema = new Schema({
   },
   available: {
     type: Boolean,
+    default: false,
   },
   githubLink: {
     type: String,

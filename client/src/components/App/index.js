@@ -178,13 +178,13 @@ const App = () => {
   if (User) {
     return (
       <>
-        {/* <AppBar
+        <AppBar
           logoutHandler={logoutHandler}
           auth={User}
           userName={fullName}
           UserAvatar={avatar}
           loading={loading}
-        /> */}
+        />
         <Switch>
           <Route
             path="/500"
