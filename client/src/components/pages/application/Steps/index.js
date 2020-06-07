@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import PropTypes from 'prop-types';
+
 import Limitation from '../../../common/limitation';
 import Typography from '../../../common/Typography';
 import Button from '../../../common/Button';
@@ -13,59 +15,40 @@ const getSteps = async () => {
   return data;
 };
 
-const getUserID = async () => {
-  const { data } = await axios.get('/api/v1/isUser');
-  return data;
-};
-
-const Steps = () => {
-  const [UserId, setId] = useState('');
+const Steps = ({ userId, fullName }) => {
   const [steps, setSteps] = useState();
-  const [userName, setName] = useState('');
   const history = useHistory();
 
   useEffect(() => {
-    getUserID().then((data) => {
-      if (data.message === 'you are authorized') {
-        setId(data.userId);
-      }
+    getSteps().then((data) => {
+      setSteps(data);
     });
-    if (UserId) {
-      getSteps()
-        .then((data) => {
-          setSteps(data);
-        })
-        .then(() =>
-          axios
-            .get(`/api/v1/applicants/${UserId}`)
-            .then(({ data: { user } }) => setName(user.fullName))
-        );
-    }
-  }, [UserId]);
+  }, [userId]);
 
   const Next = () => {
-    axios.patch(`/api/v1/applicants/${UserId}`, {
+    axios.patch(`/api/v1/applicants/${userId}`, {
       clickedSteps: true,
     });
     history.push('/availability');
   };
 
-  const Name = userName.split(' ')[0];
+  const Name = fullName.split(' ')[0];
 
   return (
     <div className="Container_page">
       <Helmet>
         <title>Steps</title>
       </Helmet>
-      <div className="text_Welcome">
-        <Typography variant="h4" color="default">
-          Welcome, {Name}
-        </Typography>
-      </div>
+
       <img src={backGround} alt="backGround" className="backGround" />
       <div className="Container_page__content">
-        {steps && userName ? (
+        {steps && fullName ? (
           <>
+            <div className="text_Welcome">
+              <Typography variant="h4" color="default">
+                Welcome, {Name}
+              </Typography>
+            </div>
             <div className="steps">
               <Typography variant="h6" color="default" align="left">
                 Application Steps
@@ -94,6 +77,11 @@ const Steps = () => {
       </div>
     </div>
   );
+};
+
+Steps.propTypes = {
+  userId: PropTypes.string.isRequired,
+  fullName: PropTypes.string.isRequired,
 };
 
 export default Steps;

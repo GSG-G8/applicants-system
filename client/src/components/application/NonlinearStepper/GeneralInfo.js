@@ -63,7 +63,10 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         label="Mobile Number"
         name="mobileNumber"
         onChange={handleFormInput}
-        isError={errorMsg.includes('Mobile Number is required')}
+        isError={
+          errorMsg.includes('Mobile Number is required') ||
+          errorMsg.includes('Error Mobile Number')
+        }
         message="ex:- 05xx xxx xxx"
       />
       <SelectBox

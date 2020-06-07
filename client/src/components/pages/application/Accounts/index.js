@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import PropTypes from 'prop-types';
 
 import { Checkbox } from '@material-ui/core';
 import TextField from '../../../common/TextField';
@@ -12,55 +13,47 @@ import discord from '../../../../assets/icons/discord.svg';
 import freeCodeCamp from '../../../../assets/icons/freeCodeCamp.png';
 import codeWars from '../../../../assets/icons/codewars-512.png';
 import Button from '../../../common/Button';
+import Alert from '../../../common/Alert';
 import Limitation from '../../../common/limitation';
 import AccountsValidation from '../../../../utils/application/AccountsValidation';
 
 import './index.css';
 
-const getUserID = async () => {
-  const { data } = await axios.get('/api/v1/isUser');
-  return data;
+const updatePoints = async (id) => {
+  const Points = await axios.get(`/api/v1/applicants/${id}/points`);
+  return Points;
 };
 
-const Accounts = () => {
-  const [githubLink, setGitHub] = useState('');
-  const [freeCodeCampLink, setFreeCode] = useState('');
-  const [codeWarsLink, setCodeWars] = useState('');
-  const [joinDiscord, setDiscord] = useState(false);
+const Accounts = ({ userId, userData }) => {
+  const [githubLink, setGitHub] = useState(userData.githubLink);
+  const [freeCodeCampLink, setFreeCode] = useState(userData.freeCodeCampLink);
+  const [codeWarsLink, setCodeWars] = useState(userData.codeWarsLink);
+  const [joinDiscord, setDiscord] = useState(userData.joinDiscord);
+  const [alert, throwAlert] = useState(false);
   const [message, setMessage] = useState([]);
-  const [UserId, setId] = useState('');
-  const [userName, setName] = useState('');
   const history = useHistory();
 
   const throwMessage = (msg) => setMessage(msg);
-  useEffect(() => {
-    getUserID().then((data) => {
-      if (data.message === 'you are authorized') {
-        setId(data.userId);
-      }
-    });
-    if (UserId) {
-      axios.get(`/api/v1/applicants/${UserId}`).then(({ data: { user } }) => {
-        setGitHub(user.githubLink);
-        setFreeCode(user.freeCodeCampLink);
-        setCodeWars(user.codeWarsLink);
-        setName(user.fullName);
-        setDiscord(user.joinDiscord);
-      });
-    }
-  }, [UserId]);
   const handleChange = () => setDiscord(!joinDiscord);
   const Next = () => {
     AccountsValidation({ githubLink, freeCodeCampLink, codeWarsLink })
-      .then(() =>
-        axios.patch(`/api/v1/applicants/${UserId}`, {
-          githubLink,
-          freeCodeCampLink,
-          codeWarsLink,
-          joinDiscord,
-        })
-      )
-      .then(() => history.push('/tasks'))
+      .then(() => {
+        throwAlert(false);
+        if (joinDiscord) {
+          axios.patch(`/api/v1/applicants/${userId}`, {
+            githubLink,
+            freeCodeCampLink,
+            codeWarsLink,
+            joinDiscord,
+          });
+          updatePoints(userId);
+        } else {
+          throwAlert(true);
+        }
+      })
+      .then(() => {
+        if (joinDiscord) history.push('/tasks');
+      })
       .catch(({ errors }) => throwMessage(errors));
   };
 
@@ -70,7 +63,7 @@ const Accounts = () => {
         <title>Accounts</title>
       </Helmet>
       <img src={backGround} alt="backGround" className="backGround" />
-      {UserId && userName ? (
+      {userId ? (
         <div className="Form_container Container_page__accounts">
           <Typography variant="h5">Accounts</Typography>
           <>
@@ -213,6 +206,12 @@ const Accounts = () => {
                   Discord chanel
                 </a>
               </Typography>
+              {alert && (
+                <Alert
+                  Type="warning"
+                  Msg="You should join discord channel to be in touch with other applicants"
+                />
+              )}
             </div>
           </>
           <div className="container_buttons">
@@ -230,6 +229,11 @@ const Accounts = () => {
       )}
     </div>
   );
+};
+
+Accounts.propTypes = {
+  userId: PropTypes.string.isRequired,
+  userData: PropTypes.string.isRequired,
 };
 
 export default Accounts;

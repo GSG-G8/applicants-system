@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Helmet } from 'react-helmet';
 import Checkbox from '@material-ui/core/Checkbox';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import Limitation from '../../../common/limitation';
 import Typography from '../../../common/Typography';
 import Button from '../../../common/Button';
@@ -13,10 +15,6 @@ import tasksValidation from '../../../../utils/application/tasksValidation';
 
 import './index.css';
 
-const getUserID = async () => {
-  const { data } = await axios.get('/api/v1/isUser');
-  return data;
-};
 const getTasksData = async (user) => {
   const array = [];
   const taskData = (await axios.get('/api/v1/tasks')).data;
@@ -31,17 +29,10 @@ const getTasksData = async (user) => {
   }
   return { taskData, array };
 };
-const getUserData = async (UserId) => {
-  const {
-    data: { user },
-  } = await axios.get(`/api/v1/applicants/${UserId}`);
-  return user;
-};
 
-const Tasks = () => {
+const Tasks = ({ userId, userData }) => {
   const [data, setData] = useState();
   const [arrayChecks, setCheckedItem] = useState([false]);
-  const [UserId, setId] = useState('');
   const [technicalTasks, setTechnicalTasks] = useState('');
   const [message, setMessage] = useState('');
   const [technicalTasksLinks, setTechnicalTasksLinks] = useState('');
@@ -50,24 +41,15 @@ const Tasks = () => {
 
   const throwMessage = (msg) => setMessage(msg);
   useEffect(() => {
-    getUserID().then((response) => {
-      if (response.message === 'you are authorized') {
-        setId(response.userId);
-      }
-    });
-    if (UserId) {
-      getUserData(UserId).then((user) => {
-        setTechnicalTasks(user.technicalTasks);
-        if (user.technicalTasksLinks) {
-          setTechnicalTasksLinks(user.technicalTasksLinks);
-        }
-        getTasksData(user).then(({ taskData, array }) => {
-          setData(taskData.data);
-          setCheckedItem(array);
-        });
-      });
+    setTechnicalTasks(userData.technicalTasks);
+    if (userData.technicalTasksLinks) {
+      setTechnicalTasksLinks(userData.technicalTasksLinks);
     }
-  }, [UserId]);
+    getTasksData(userData).then(({ taskData, array }) => {
+      setData(taskData.data);
+      setCheckedItem(array);
+    });
+  }, [userId]);
   useEffect(() => {
     if (!arrayChecks.includes(false)) {
       setTechnicalTasks(true);
@@ -81,7 +63,7 @@ const Tasks = () => {
     tasksValidation({ technicalTasks, technicalTasksLinks })
       .then(() =>
         axios
-          .patch(`/api/v1/applicants/${UserId}`, {
+          .patch(`/api/v1/applicants/${userId}`, {
             technicalTasks,
             technicalTasksLinks,
           })
@@ -173,6 +155,11 @@ const Tasks = () => {
       )}
     </div>
   );
+};
+
+Tasks.propTypes = {
+  userId: PropTypes.string.isRequired,
+  userData: PropTypes.string.isRequired,
 };
 
 export default Tasks;
