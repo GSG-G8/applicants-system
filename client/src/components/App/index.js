@@ -55,6 +55,9 @@ const App = () => {
   const [userId, setUserId] = useState('');
   const [userData, setUserData] = useState({});
   const history = useHistory();
+  const { pathname } = window.location;
+  const paths = pathname.split('/');
+  const lastIndexUrl = paths[paths.length - 1];
 
   useEffect(() => {
     if (Cookies.get('applicant')) {
@@ -85,7 +88,7 @@ const App = () => {
     } else {
       setLoading(false);
     }
-  }, [userId]);
+  }, [userId, pathname]);
 
   const logoutHandler = () => {
     LogOut().then(() => {
@@ -117,9 +120,6 @@ const App = () => {
     avatar,
   } = userData;
 
-  const { pathname } = window.location;
-  const paths = pathname.split('/');
-  const lastIndexUrl = paths[paths.length - 1];
   const Routes = [
     '/dashboard',
     '/dashboard/applications/opened',
@@ -255,7 +255,7 @@ const App = () => {
               render={(props) => <Profile {...props} />}
             />
             {pathname !== '/myprofile' && (
-              <ResponsiveDrawer userData={userData} />
+              <ResponsiveDrawer userData={userData} userId={userId} />
             )}
           </div>
         </Switch>
