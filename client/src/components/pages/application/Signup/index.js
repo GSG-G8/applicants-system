@@ -67,6 +67,7 @@ class SignUp extends React.Component {
               .then(() => {
                 this.resetForm();
                 this.throwMessage('SignUp Successfully');
+                window.location.replace('/steps');
               })
               .catch(() => this.throwMessage('Your Email is Exist'))
           : this.throwMessage('Please Enter Correct Data')
@@ -212,10 +213,10 @@ class SignUp extends React.Component {
                     />
                   </div>
                   <div className="buttons">
-                    <Button onClick={this.submit}>Sign Up</Button>
                     <Button customStyle="outlined" onClick={this.handleSignIn}>
                       Login
                     </Button>
+                    <Button onClick={this.submit}>Sign Up</Button>
                   </div>
                 </div>
               </div>
