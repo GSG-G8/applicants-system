@@ -98,6 +98,11 @@ const Submit = ({ userId, userData }) => {
             </div>
           ) : (
             <div className="Container_Submitted_finished">
+              <div className="submit_buttons">
+                <Button onClick={() => history.push('/myprofile')}>
+                  See Your Profile
+                </Button>
+              </div>
               <div className="text_Submitted_finished">
                 <Typography variant="h5">
                   Your Application Submit Successfully

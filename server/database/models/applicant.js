@@ -98,6 +98,7 @@ const applicantSchema = new Schema({
   },
   joinDiscord: {
     type: Boolean,
+    default: false,
   },
   freeCodeCampPoints: {
     type: Number,
