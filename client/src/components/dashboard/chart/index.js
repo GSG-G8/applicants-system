@@ -22,8 +22,8 @@ class ChartsPage extends React.Component {
       '05',
       '06',
       '07',
-      '8',
-      '9',
+      '08',
+      '09',
       '10',
       '11',
       '12',
@@ -52,7 +52,6 @@ class ChartsPage extends React.Component {
           'August',
           'September',
           'October',
-          'November',
           'November',
           'December',
         ],
@@ -86,9 +85,13 @@ class ChartsPage extends React.Component {
   render() {
     const { dataLine } = this.state;
     return (
-      <MDBContainer>
-        <Line data={dataLine} options={{ responsive: true }} />
-      </MDBContainer>
+      <>
+        {dataLine && (
+          <MDBContainer>
+            <Line data={dataLine} options={{ responsive: true }} />
+          </MDBContainer>
+        )}
+      </>
     );
   }
 }
