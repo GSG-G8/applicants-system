@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
+import Cookies from 'js-cookie';
 import AppBar from '../common/AppBar';
 import Error404 from '../pages/common/errors/Error-404';
 import Error500 from '../pages/common/errors/Error-500';
@@ -56,31 +57,35 @@ const App = () => {
   const history = useHistory();
 
   useEffect(() => {
-    checkUser()
-      .then((data) => {
-        console.log({ data });
-        setUser(true);
-        setUserId(data.userId);
-        console.log(userId, 'from state');
-        console.log(data.userId, 'from data');
-        getUserData(data.userId).then((user) => {
-          setUserData(user);
+    if (Cookies.get('applicant')) {
+      checkUser()
+        .then((data) => {
+          console.log({ data });
+          setUser(true);
+          setUserId(data.userId);
+          getUserData(data.userId).then((user) => {
+            setUserData(user);
+            setLoading(false);
+          });
+        })
+        .catch(() => {
+          setUser(false);
+          setLoading(false);
         });
-        setLoading(false);
-      })
-      .catch(() => {
-        setUser(false);
-        setLoading(false);
-      });
-    checkAdmin()
-      .then((data) => {
-        setAdmin(true);
-      })
-      .catch(() => {
-        setAdmin(false);
-        setLoading(false);
-      });
-  }, [userId, userData]);
+    } else if (Cookies.get('admin')) {
+      checkAdmin()
+        .then((data) => {
+          setAdmin(true);
+          setLoading(false);
+        })
+        .catch(() => {
+          setAdmin(false);
+          setLoading(false);
+        });
+    } else {
+      setLoading(false);
+    }
+  }, [userId]);
 
   const logoutHandler = () => {
     LogOut().then(() => {
@@ -109,7 +114,6 @@ const App = () => {
     technicalTasks,
     technicalTasksLinks,
     projectGithubLink,
-    applicationSubmittedDate,
     avatar,
   } = userData;
 
@@ -133,7 +137,7 @@ const App = () => {
   const staticRoutes = ['/', '/login', '/signup'];
 
   if (loading) {
-    return <Limitation />;
+    return <Limitation ClassName="body" />;
   }
 
   if (admin) {
@@ -142,12 +146,12 @@ const App = () => {
         <Switch>
           <Route path="/500" render={() => <Error500 />} />
           <Route path="/404" render={() => <Error404 auth="admin" />} />
-          {/* {staticRoutes.includes(pathname) && (
+          {staticRoutes.includes(pathname) && (
             <>
               <Alert Type="warning" Msg="You already login" />
               {window.location.replace('/dashboard')}
             </>
-          )} */}
+          )}
           {!Routes.includes(pathname) && <Redirect to="/404" />}
           <div>
             <Route path="/dashboard" render={() => <Chart />} />
@@ -228,10 +232,10 @@ const App = () => {
             )}
             <Route
               path="/steps"
-              render={(props) => (
+              render={() => (
                 <>
                   <ResponsiveDrawer userData={userData} />
-                  <Steps {...props} />
+                  <Steps userId={userId} />
                 </>
               )}
             />
