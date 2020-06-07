@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
 import axios from 'axios';
-
+import PropTypes from 'prop-types';
 import Cookies from 'js-cookie';
+
 import AppBar from '../common/AppBar';
 import Error404 from '../pages/common/errors/Error-404';
 import Error500 from '../pages/common/errors/Error-500';
@@ -249,7 +250,10 @@ const App = () => {
               path="/accounts"
               render={() => <Accounts userId={userId} userData={userData} />}
             />
-            <Route path="/tasks" render={(props) => <Tasks {...props} />} />
+            <Route
+              path="/tasks"
+              render={(props) => <Tasks userId={userId} userData={userData} />}
+            />
             <Route path="/project" render={(props) => <Project {...props} />} />
             <Route
               path="/submit"
