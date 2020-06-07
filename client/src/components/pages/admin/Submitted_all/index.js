@@ -21,8 +21,8 @@ const Header = {
     { title: 'Email', field: 'email', width: '20%' },
     { title: 'Mobile', field: 'mobileNumber' },
     { title: 'Age', field: 'age' },
+    { title: 'Academy Location', field: 'location' },
     { title: 'Address', field: 'address' },
-    { title: 'Status', render: () => 'Submitted' },
     {
       title: 'Profile',
       render: ({ _id }) => (
@@ -31,7 +31,7 @@ const Header = {
           exact
           to={`/dashboard/applications/submitted/${_id}`}
         >
-          Profile
+          View
         </Link>
       ),
     },
@@ -58,7 +58,7 @@ const SubmittedApplications = () => {
             className="submitted__table"
             title="Submitted Applications"
             columns={Header.columns}
-            data={submitted && submitted}
+            data={submitted}
           />
         </div>
       </div>
