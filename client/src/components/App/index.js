@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
 import axios from 'axios';
-import PropTypes from 'prop-types';
 import Cookies from 'js-cookie';
 
 import AppBar from '../common/AppBar';
@@ -78,7 +77,7 @@ const App = () => {
         });
     } else if (Cookies.get('admin')) {
       checkAdmin()
-        .then((data) => {
+        .then(() => {
           setAdmin(true);
           setLoading(false);
         })
@@ -254,7 +253,7 @@ const App = () => {
               path="/tasks"
               render={() => <Tasks userId={userId} userData={userData} />}
             />
-            <Route path="/project" render={(props) => <Project {...props} />} />
+            <Route path="/project" render={() => <Project userId={userId} />} />
             <Route
               path="/submit"
               render={() => <Submit userData={userData} userId={userId} />}
