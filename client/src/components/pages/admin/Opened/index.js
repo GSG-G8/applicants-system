@@ -3,7 +3,6 @@ import MaterialTable from 'material-table';
 import { Helmet } from 'react-helmet';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import backGround from '../../../../assets/images/backgroundDash.svg';
 import DashBar from '../../../dashboard/Tabs';
 
@@ -65,7 +64,4 @@ const Opened = () => {
   );
 };
 
-getOpened.propTypes = {
-  _id: PropTypes.string.isRequired,
-};
 export default Opened;
