@@ -12,11 +12,8 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "fg-loadcss": "^2.1.0",
-<<<<<<< HEAD
     "js-cookie": "^2.2.1",
-=======
     "material-table": "^1.59.0",
->>>>>>> 1907af04ad15e999032ff19b156ff4295ca1d7cb
     "material-ui-image": "^3.2.3",
     "mdbreact": "^4.27.0",
     "moment": "^2.26.0",
