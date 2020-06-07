@@ -13,6 +13,7 @@ import discord from '../../../../assets/icons/discord.svg';
 import freeCodeCamp from '../../../../assets/icons/freeCodeCamp.png';
 import codeWars from '../../../../assets/icons/codewars-512.png';
 import Button from '../../../common/Button';
+import Alert from '../../../common/Alert';
 import Limitation from '../../../common/limitation';
 import AccountsValidation from '../../../../utils/application/AccountsValidation';
 
@@ -23,6 +24,7 @@ const Accounts = ({ userId, userData }) => {
   const [freeCodeCampLink, setFreeCode] = useState(userData.freeCodeCampLink);
   const [codeWarsLink, setCodeWars] = useState(userData.codeWarsLink);
   const [joinDiscord, setDiscord] = useState(userData.joinDiscord);
+  const [alert, throwAlert] = useState(false);
   const [message, setMessage] = useState([]);
   const history = useHistory();
 
@@ -30,15 +32,21 @@ const Accounts = ({ userId, userData }) => {
   const handleChange = () => setDiscord(!joinDiscord);
   const Next = () => {
     AccountsValidation({ githubLink, freeCodeCampLink, codeWarsLink })
-      .then(() =>
-        axios.patch(`/api/v1/applicants/${userId}`, {
-          githubLink,
-          freeCodeCampLink,
-          codeWarsLink,
-          joinDiscord,
-        })
-      )
-      .then(() => history.push('/tasks'))
+      .then(() => {
+        if (joinDiscord) {
+          axios.patch(`/api/v1/applicants/${userId}`, {
+            githubLink,
+            freeCodeCampLink,
+            codeWarsLink,
+            joinDiscord,
+          });
+        } else {
+          throwAlert(true);
+        }
+      })
+      .then(() => {
+        if (joinDiscord) history.push('/tasks');
+      })
       .catch(({ errors }) => throwMessage(errors));
   };
 
@@ -191,6 +199,12 @@ const Accounts = ({ userId, userData }) => {
                   Discord chanel
                 </a>
               </Typography>
+              {alert && (
+                <Alert
+                  Type="warning"
+                  Msg="You should check Availability before going next"
+                />
+              )}
             </div>
           </>
           <div className="container_buttons">
