@@ -211,12 +211,12 @@ class SignUp extends React.Component {
                       isError={message.includes('Select your Location')}
                     />
                   </div>
-                </div>
-                <div className="buttons">
-                  <Button onClick={this.handleSignIn}>Login</Button>
-                  <Button customStyle="outlined" onClick={this.submit}>
-                    Sign Up
-                  </Button>
+                  <div className="buttons">
+                    <Button onClick={this.submit}>Sign Up</Button>
+                    <Button customStyle="outlined" onClick={this.handleSignIn}>
+                      Login
+                    </Button>
+                  </div>
                 </div>
               </div>
             }

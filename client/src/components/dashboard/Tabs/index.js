@@ -32,7 +32,7 @@ const DashBar = () => (
         </Link>
       </li>
       <li>
-        <Link className="dashLink" to="/dashboard">
+        <Link className="dashLink" to="/dashboard/applications/submitted">
           <img src={staticImg6} alt="dash" className="dash__bar__img" />
         </Link>
       </li>

@@ -8,7 +8,14 @@ import { GeneralInfoStyles } from './style';
 
 const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
   const classes = GeneralInfoStyles();
-
+  const GazaAreas = [
+    'North of Gaza Strip',
+    'Gaza City',
+    'Middle Area of Gaza',
+    'Khan Younis',
+    'Rafah',
+  ];
+  const KhalilAreas = ['Old Town', 'New Town'];
   return (
     <div className="availability">
       <div className={classes.gender}>
@@ -75,13 +82,7 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         className="nonlinearSelect"
         label="Address"
         name="address"
-        items={[
-          'North of Gaza Strip',
-          'Gaza City',
-          'Middle Area of Gaza',
-          'Khan Younis',
-          'Rafah',
-        ]}
+        items={formValues.location === 'gaza' ? GazaAreas : KhalilAreas}
         setVal={handleFormInput}
         value={formValues.address}
         isError={errorMsg.includes('Address is required')}
@@ -103,6 +104,7 @@ GereralInfos.propTypes = {
     mobileNumber: PropTypes.string,
     age: PropTypes.string,
     address: PropTypes.string,
+    location: PropTypes.string,
   }),
   errorMsg: PropTypes.arrayOf(PropTypes.string),
 };
