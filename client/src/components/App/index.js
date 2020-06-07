@@ -183,6 +183,7 @@ const App = () => {
         <AppBar
           logoutHandler={logoutHandler}
           auth={User}
+          userName={fullName}
           UserAvatar={avatar}
           loading={loading}
         />
@@ -234,7 +235,6 @@ const App = () => {
                 )}
               </>
             )}
-
             <Route
               path="/steps"
               render={() => <Steps userId={userId} fullName={fullName} />}
