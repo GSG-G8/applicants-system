@@ -33,6 +33,7 @@ const Accounts = ({ userId, userData }) => {
   const Next = () => {
     AccountsValidation({ githubLink, freeCodeCampLink, codeWarsLink })
       .then(() => {
+        throwAlert(false);
         if (joinDiscord) {
           axios.patch(`/api/v1/applicants/${userId}`, {
             githubLink,

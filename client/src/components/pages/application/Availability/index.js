@@ -15,14 +15,14 @@ import { availability } from './availability.json';
 import './index.css';
 
 const Availability = ({ userId, userData }) => {
-  const [available, setAvailable] = useState(false);
+  const [available, setAvailable] = useState(userData.available);
   const [alert, throwAlert] = useState(false);
   const [nonLinear, setNonLinear] = useState(false);
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 
   const next = async () => {
-    if (!userData || !userId) throwAlert(true);
+    if (!userData || !userId || !available) throwAlert(true);
     else {
       setLoading(true);
       try {
@@ -35,13 +35,8 @@ const Availability = ({ userId, userData }) => {
         throwAlert(true);
       }
     }
+    throwAlert(false);
   };
-
-  useEffect(() => {
-    if (userData.available !== undefined) {
-      setAvailable(userData.available);
-    }
-  });
 
   return (
     <div className="Container_page">
