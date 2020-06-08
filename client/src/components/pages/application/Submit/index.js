@@ -122,7 +122,7 @@ const Submit = ({ userId, userData }) => {
             <div className="Container_Submitted_finished">
               <div className="text_Submitted_finished">
                 <Typography variant="h5">
-                  Your Application Submit Successfully
+                  Your Application Submitted Successfully
                 </Typography>
               </div>
               <div className="text_Submitted_finished">

@@ -21,6 +21,7 @@
 .dash__bar__img {
   padding: .5rem;
   width: 1rem;
+  height: 1rem;
   background-color: #ffffff;
   border-radius: 50%;
 }
