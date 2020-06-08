@@ -64,9 +64,11 @@ const Submit = ({ userId, userData }) => {
   }, [userData]);
 
   const Next = async () => {
-    await axios.patch(`/api/v1/applicants/${userId}`, {
-      applicationSubmittedDate: date,
-    });
+    await axios
+      .patch(`/api/v1/applicants/${userId}`, {
+        applicationSubmittedDate: date,
+      })
+      .then(() => window.location.replace('/submit'));
   };
 
   const Name = userData.fullName.split(' ')[0];
@@ -107,6 +109,11 @@ const Submit = ({ userId, userData }) => {
                 <Typography variant="h4" color="default">
                   Thanks, {Name}
                 </Typography>
+              </div>
+              <div className="submit_buttons">
+                <Button onClick={() => history.push('/myprofile')}>
+                  See Your Profile
+                </Button>
               </div>
             </div>
           )

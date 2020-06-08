@@ -1,4 +1,5 @@
 const { hash } = require('bcrypt');
+const { sign } = require('jsonwebtoken');
 const applicant = require('../../database/models/applicant');
 const project = require('../../database/models/project');
 const {
@@ -46,9 +47,20 @@ const signupApplicant = (req, res, next) => {
                 newApplicant
                   .save()
                   .then(() =>
-                    res
-                      .status(201)
-                      .json({ message: 'Your Signup successfully Complete' })
+                    applicant.findOne({ email }).then((data) => {
+                      const userToken = { userId: data.id };
+                      const cookie = sign(userToken, process.env.SECRET_KEY);
+                      res.cookie('applicant', cookie).json({
+                        status: 'successfully',
+                        role: 'applicant',
+                        data: {
+                          email,
+                          fullName: `${data.fullName}`,
+                          location: `${data.location}`,
+                          avatar: `${data.avatar}`,
+                        },
+                      });
+                    })
                   )
                   .catch((err) => {
                     res.status(400).json({

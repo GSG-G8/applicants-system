@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { TextareaAutosize } from '@material-ui/core';
+import PropTypes from 'prop-types';
+
 import TextField from '../../../common/TextField';
 import Limitation from '../../../common/limitation';
 import Typography from '../../../common/Typography';
@@ -12,47 +14,35 @@ import FProjectValidation from '../../../../utils/application/ProjectValidation'
 
 import './style.css';
 
-const getUserID = async () => {
-  const { data } = await axios.get('/api/v1/isUser');
-  return data;
-};
 const projectData = async (ID) => {
   const {
     data: { project },
   } = await axios.get(`/api/v1/project/${ID}`);
   return project;
 };
-const Project = () => {
+const Project = ({ userId }) => {
   const [projectTitle, setProjectTitle] = useState('');
   const [projectDesc, setProjectDesc] = useState('');
   const [projectGithubLink, setProjectGithubLink] = useState('');
   const [message, setMessage] = useState([]);
-  const [UserId, setId] = useState('');
   const history = useHistory();
 
   const throwMessage = (msg) => setMessage(msg);
 
   useEffect(() => {
-    getUserID().then((data) => {
-      if (data.message === 'you are authorized') {
-        setId(data.userId);
-      }
-    });
-    if (UserId) {
-      axios.get(`/api/v1/applicants/${UserId}`).then(({ data: { user } }) => {
-        setProjectGithubLink(user.projectGithubLink);
-        projectData(user.projectId).then((project) => {
-          setProjectTitle(project.projectName);
-          setProjectDesc(project.projectInstructions);
-        });
+    axios.get(`/api/v1/applicants/${userId}`).then(({ data: { user } }) => {
+      setProjectGithubLink(user.projectGithubLink);
+      projectData(user.projectId).then((project) => {
+        setProjectTitle(project.projectName);
+        setProjectDesc(project.projectInstructions);
       });
-    }
-  }, [UserId]);
+    });
+  }, [userId]);
 
   const Next = () => {
     FProjectValidation({ projectGithubLink })
       .then(() =>
-        axios.patch(`/api/v1/applicants/${UserId}`, {
+        axios.patch(`/api/v1/applicants/${userId}`, {
           projectGithubLink,
         })
       )
@@ -132,6 +122,10 @@ const Project = () => {
       )}
     </div>
   );
+};
+
+Project.propTypes = {
+  userId: PropTypes.string.isRequired,
 };
 
 export default Project;

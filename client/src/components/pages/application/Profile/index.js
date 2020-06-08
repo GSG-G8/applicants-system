@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Helmet } from 'react-helmet';
 import Checkbox from '@material-ui/core/Checkbox';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import Limitation from '../../../common/limitation';
 import Card from '../../../common/card';
 import Typography from '../../../common/Typography';
@@ -11,47 +13,18 @@ import backGround from '../../../../assets/images/backGround.svg';
 import profileImage from '../../../../assets/images/HomeImg.svg';
 import './index.css';
 
-const applicantData = async (id) => {
-  const {
-    data: { user },
-  } = await axios.get(`/api/v1/applicants/${id}`);
-  return user;
-};
-
 const getTec = async () => {
   const { data } = (await axios.get('/api/v1/tasks')).data;
   return data;
 };
 
-const updatePoints = async (id) => {
-  const Points = await axios.get(`/api/v1/applicants/${id}/points`);
-  return Points;
-};
-
-const getUserID = async () => {
-  const { data } = await axios.get('/api/v1/isUser');
-  return data;
-};
-
-const ProfilePage = () => {
-  const [data, setData] = useState();
+const ProfilePage = ({ userId, userData }) => {
   const [Technical, setTechnical] = useState();
-  const [UserId, setId] = useState();
   const history = useHistory();
 
   useEffect(() => {
-    if (!UserId)
-      getUserID().then((response) => {
-        if (response.message === 'you are authorized') {
-          setId(response.userId);
-        }
-      });
-    if (!data && UserId) {
-      updatePoints(UserId).then();
-      applicantData(UserId).then(setData);
-    }
     if (!Technical) getTec().then(setTechnical);
-  }, [data, Technical, UserId]);
+  }, [Technical, userId]);
 
   return (
     <div className="Container_page Container_page_profile">
@@ -65,7 +38,7 @@ const ProfilePage = () => {
         className="profileImage profile"
       />
 
-      {data && Technical ? (
+      {userData && Technical ? (
         <div className="Profile__container">
           <Card
             ClassName="card_profile"
@@ -75,8 +48,8 @@ const ProfilePage = () => {
                   <tr>
                     <td colSpan="2">
                       <img
-                        src={data.avatar}
-                        alt={data.fullName}
+                        src={userData.avatar}
+                        alt={userData.fullName}
                         className="Profile__avatar"
                       />
                     </td>
@@ -89,7 +62,7 @@ const ProfilePage = () => {
                     </td>
                     <td>
                       <Typography variant="body2" align="left">
-                        {data.fullName}
+                        {userData.fullName}
                       </Typography>
                     </td>
                   </tr>
@@ -109,7 +82,7 @@ const ProfilePage = () => {
                     </td>
                     <td>
                       <Typography variant="body2" align="left">
-                        {data.email}
+                        {userData.email}
                       </Typography>
                     </td>
                   </tr>
@@ -121,7 +94,7 @@ const ProfilePage = () => {
                     </td>
                     <td>
                       <Typography variant="body2" align="left">
-                        {data.gender}
+                        {userData.gender}
                       </Typography>
                     </td>
                   </tr>
@@ -133,7 +106,7 @@ const ProfilePage = () => {
                     </td>
                     <td>
                       <Typography variant="body2" align="left">
-                        {data.age}
+                        {userData.age}
                       </Typography>
                     </td>
                   </tr>
@@ -153,7 +126,7 @@ const ProfilePage = () => {
                     </td>
                     <td>
                       <Typography variant="body2" align="left">
-                        {data.githubLink}
+                        {userData.githubLink}
                       </Typography>
                     </td>
                   </tr>
@@ -165,7 +138,7 @@ const ProfilePage = () => {
                     </td>
                     <td>
                       <Typography variant="body2" align="left">
-                        {data.freeCodeCampLink}
+                        {userData.freeCodeCampLink}
                       </Typography>
                     </td>
                   </tr>
@@ -177,7 +150,7 @@ const ProfilePage = () => {
                     </td>
                     <td>
                       <Typography variant="body2" align="left">
-                        {data.codeWarsLink}
+                        {userData.codeWarsLink}
                       </Typography>
                     </td>
                   </tr>
@@ -195,7 +168,7 @@ const ProfilePage = () => {
                         <td className="item" colSpan="2">
                           <Typography variant="body2" align="left">
                             <Checkbox
-                              checked={data && data.technicalTasks}
+                              checked={userData && userData.technicalTasks}
                               className="profile_check_box"
                               color="primary"
                             />
@@ -216,14 +189,14 @@ const ProfilePage = () => {
                     <td className="item" colSpan="2">
                       <Typography variant="body2" align="left">
                         <Checkbox
-                          checked={data && data.projectGithubLink}
+                          checked={userData && userData.projectGithubLink}
                           className="profile_check_box"
                           color="primary"
                           disabled
                         />
                         <a
                           className="Link"
-                          href={data.projectGithubLink}
+                          href={userData.projectGithubLink}
                           target="popup"
                           onClick={() => {
                             window.open(
@@ -249,24 +222,24 @@ const ProfilePage = () => {
                   <tr>
                     <td className="item">
                       <Typography variant="body2" align="left">
-                        codewars Score
+                        code wars score
                       </Typography>
                     </td>
                     <td className="points-value">
                       <Typography variant="body2" color="primary" align="left">
-                        {data.codeWarsKyu}
+                        {userData.codeWarsKyu}
                       </Typography>
                     </td>
                   </tr>
                   <tr>
                     <td className="item">
                       <Typography variant="body2" align="left">
-                        freecodecamp Score
+                        FreeCode Camp Score
                       </Typography>
                     </td>
                     <td className="points-value">
                       <Typography variant="body2" color="primary" align="left">
-                        {data.freeCodeCampPoints}
+                        {userData.freeCodeCampPoints}
                       </Typography>
                     </td>
                   </tr>
@@ -274,7 +247,7 @@ const ProfilePage = () => {
                     <td className="item" colSpan="2">
                       <Typography variant="body2" align="left">
                         <Checkbox
-                          checked={data && data.freeCodeCampTopics}
+                          checked={userData && userData.freeCodeCampTopics}
                           className="profile_check_box"
                           color="primary"
                           disabled
@@ -287,14 +260,18 @@ const ProfilePage = () => {
                     <td className="item" colSpan="2">
                       <Typography variant="body2" align="left">
                         <Checkbox
-                          checked={data && data.applicationSubmittedDate}
+                          checked={
+                            userData && userData.applicationSubmittedDate
+                          }
                           className="profile_check_box"
                           color="primary"
                           disabled
                         />
                         Submitted
-                        {data.applicationSubmittedDate &&
-                          ` on ${data.applicationSubmittedDate.split('T')[0]}`}
+                        {userData.applicationSubmittedDate &&
+                          `on ${
+                            userData.applicationSubmittedDate.split('T')[0]
+                          }`}
                       </Typography>
                     </td>
                   </tr>
@@ -302,7 +279,7 @@ const ProfilePage = () => {
                     <td className="item" colSpan="2">
                       <Typography variant="body2" align="left">
                         <Checkbox
-                          checked={data && data.accepted}
+                          checked={userData && userData.accepted}
                           className="profile_check_box"
                           color="primary"
                           disabled
@@ -330,6 +307,11 @@ const ProfilePage = () => {
       )}
     </div>
   );
+};
+
+ProfilePage.propTypes = {
+  userId: PropTypes.string.isRequired,
+  userData: PropTypes.string.isRequired,
 };
 
 export default ProfilePage;
