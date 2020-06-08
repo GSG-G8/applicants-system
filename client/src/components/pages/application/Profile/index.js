@@ -157,6 +157,26 @@ const ProfilePage = ({ userId, userData }) => {
                   <tr className="doted">
                     <td>
                       <Typography variant="body2" color="primary" align="left">
+                        Cohorts
+                      </Typography>
+                    </td>
+                    <td />
+                  </tr>
+                  <tr className="doted">
+                    <td className="item">
+                      <Typography variant="body2" align="left">
+                        Cohorts
+                      </Typography>
+                    </td>
+                    <td>
+                      <Typography variant="body2" align="left">
+                        {userData.cohorts}
+                      </Typography>
+                    </td>
+                  </tr>
+                  <tr className="doted">
+                    <td>
+                      <Typography variant="body2" color="primary" align="left">
                         Technical Task
                       </Typography>
                     </td>
