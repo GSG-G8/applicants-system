@@ -40,7 +40,11 @@ const DashBar = ({ logOut }) => (
       </li>
       <li>
         <Link className="dashLink" to="/dashboard/applications/accepted">
-          <img src={staticImg4} alt="dash" className="dash__bar__img" />
+          <img
+            src={staticImg4}
+            alt="Accepted Application"
+            className="dash__bar__img"
+          />
         </Link>
       </li>
       <li>
