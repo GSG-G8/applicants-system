@@ -86,7 +86,7 @@ const DashBar = ({ logOut }) => {
         </li>
         <li>
           <Link
-            title="ِAccepted Applications"
+            title="Accepted Applications"
             className="dashLink"
             to="/dashboard/applications/accepted"
           >
