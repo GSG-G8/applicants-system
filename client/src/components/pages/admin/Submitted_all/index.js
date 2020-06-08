@@ -9,9 +9,7 @@ import './index.css';
 
 const getSubmitted = async () => {
   const { data } = (await axios.get('/api/v1/dashboard/applicants')).data;
-  return data.filter((element) => {
-    if (element.applicationSubmittedDate) return element;
-  });
+  return data.filter((element) => !!element.applicationSubmittedDate);
 };
 
 const Header = {
@@ -24,6 +22,7 @@ const Header = {
     { title: 'Address', field: 'address' },
     {
       title: 'Profile',
+      // eslint-disable-next-line react/prop-types
       render: ({ _id }) => (
         <Link
           className="profile_Link"
@@ -57,6 +56,14 @@ const SubmittedApplications = () => {
             title="Submitted Applications"
             columns={Header.columns}
             data={submitted}
+            options={{
+              exportButton: true,
+              pageSizeOptions: [
+                5,
+                10,
+                !submitted ? 15 : submitted.length > 10 ? submitted.length : 15,
+              ],
+            }}
           />
         </div>
       </div>

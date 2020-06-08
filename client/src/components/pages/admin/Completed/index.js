@@ -60,6 +60,14 @@ const Completed = () => {
             title="Completed Applications"
             columns={Header.columns}
             data={completed}
+            options={{
+              exportButton: true,
+              pageSizeOptions: [
+                5,
+                10,
+                !completed ? 15 : completed.length > 10 ? completed.length : 15,
+              ],
+            }}
           />
         </div>
       </div>
