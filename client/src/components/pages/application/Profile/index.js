@@ -169,9 +169,11 @@ const ProfilePage = ({ userId, userData }) => {
                       </Typography>
                     </td>
                     <td>
-                      <Typography variant="body2" align="left">
-                        {userData.cohorts}
-                      </Typography>
+                      {userData.cohorts.map((element) => (
+                        <Typography variant="body2" align="left">
+                          {element}
+                        </Typography>
+                      ))}
                     </td>
                   </tr>
                   <tr className="doted">
