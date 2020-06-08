@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import axios from 'axios';
 
 import IconButton from '@material-ui/core/IconButton';
-import { AccountCircle, Person, ExitToApp } from '@material-ui/icons';
+import { Person, ExitToApp } from '@material-ui/icons';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { Link } from 'react-router-dom';

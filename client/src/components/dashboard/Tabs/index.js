@@ -22,8 +22,18 @@ const DashBar = () => (
         </Link>
       </li>
       <li>
-        <Link className="dashLink" to="/dashboard">
+        <Link className="dashLink" to="/dashboard/applications/opened">
           <img src={staticImg8} alt="dash" className="dash__bar__img" />
+        </Link>
+      </li>
+      <li>
+        <Link className="dashLink" to="/dashboard/applications/submitted">
+          <img src={staticImg9} alt="dash" className="dash__bar__img" />
+        </Link>
+      </li>
+      <li>
+        <Link className="dashLink" to="/dashboard/applications/completed">
+          <img src={staticImg1} alt="dash" className="dash__bar__img" />
         </Link>
       </li>
       <li>
@@ -32,21 +42,13 @@ const DashBar = () => (
         </Link>
       </li>
       <li>
-        <Link className="dashLink" to="/dashboard/applications/submitted">
+        <Link className="dashLink" to="/dashboard">
           <img src={staticImg6} alt="dash" className="dash__bar__img" />
         </Link>
       </li>
       <li>
-        <img src={staticImg1} alt="dash" className="dash__bar__img" />
-      </li>
-      <li>
         <Link className="dashLink" to="/dashboard">
           <img src={staticImg2} alt="dash" className="dash__bar__img" />
-        </Link>
-      </li>
-      <li>
-        <Link className="dashLink" to="/dashboard">
-          <img src={staticImg9} alt="dash" className="dash__bar__img" />
         </Link>
       </li>
       <li>
