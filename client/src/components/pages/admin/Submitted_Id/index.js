@@ -8,7 +8,7 @@ import Limitation from '../../../common/limitation';
 import Card from '../../../common/card';
 import Typography from '../../../common/Typography';
 import Button from '../../../common/Button';
-import backGround from '../../../../assets/images/backGround.svg';
+import backGround from '../../../../assets/images/backgroundDash.svg';
 import profileImage from '../../../../assets/images/HomeImg.svg';
 import DashBar from '../../../dashboard/Tabs';
 import './index.css';
@@ -34,6 +34,7 @@ const SubmittedId = ({ location: { pathname } }) => {
   const [data, setData] = useState();
   const [Technical, setTechnical] = useState();
   const [UserId, setId] = useState('');
+  const [accepted, setAccepted] = useState(true);
   const history = useHistory();
 
   useEffect(() => {
@@ -45,7 +46,12 @@ const SubmittedId = ({ location: { pathname } }) => {
       applicantData(UserId).then(setData);
     }
     if (!Technical) getTec().then(setTechnical);
-  }, [data, Technical, pathname]);
+  }, [data, Technical, pathname, UserId]);
+
+  const setAccept = async (id, acceptedValue) => {
+    setAccepted(!acceptedValue);
+    await axios.patch(`/api/v1/applicants/${id}`, { accepted: !acceptedValue });
+  };
 
   return (
     <>
@@ -54,7 +60,7 @@ const SubmittedId = ({ location: { pathname } }) => {
         <Helmet>
           <title>Application Profile</title>
         </Helmet>
-        <img src={backGround} alt="backGround" className="profile backGround" />
+        <img src={backGround} alt="backGround" className="dash__background" />
         <img
           src={profileImage}
           alt="backGround"
@@ -341,9 +347,14 @@ const SubmittedId = ({ location: { pathname } }) => {
                     </tr>
                     <tr>
                       <td colSpan="2" className="profile__btn">
-                        <Button onClick={() => history.goBack()}>
-                          Go Back
-                        </Button>
+                        <div className="profile__btn__toggle">
+                          <Button onClick={() => history.goBack()}>
+                            Go Back
+                          </Button>
+                          <Button onClick={() => setAccept(UserId, accepted)}>
+                            {accepted ? 'Disapprove' : 'Accept'}
+                          </Button>
+                        </div>
                       </td>
                     </tr>
                   </tbody>
