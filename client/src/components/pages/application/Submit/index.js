@@ -12,9 +12,14 @@ import Limitation from '../../../common/limitation';
 
 import './index.css';
 
+const lastCohort = async () => {
+  const data = await axios.get('/api/v1/cohorts/last');
+  return data;
+};
 const Submit = ({ userId, userData }) => {
   const history = useHistory();
   const [FinishUser, setFinish] = useState([]);
+  const [cohorts, setCohort] = useState(userData.cohorts);
   const date = moment().format('DD-MM-YYYY hh:mm:ss');
 
   useEffect(() => {
@@ -63,10 +68,25 @@ const Submit = ({ userId, userData }) => {
     setFinish(array);
   }, [userData]);
 
+  useEffect(() => {
+    lastCohort().then(({ data: { cohortGaza, cohortKhalil } }) => {
+      if (userData.location === 'khalil' && !cohorts.includes(cohortKhalil)) {
+        cohorts.push(cohortKhalil);
+      } else if (
+        userData.location === 'gaza' &&
+        !cohorts.includes(cohortGaza)
+      ) {
+        cohorts.push(cohortGaza);
+      }
+      setCohort(cohorts);
+    });
+  }, []);
+
   const Next = async () => {
     await axios
       .patch(`/api/v1/applicants/${userId}`, {
         applicationSubmittedDate: date,
+        cohorts,
       })
       .then(() => window.location.replace('/submit'));
   };
@@ -102,7 +122,7 @@ const Submit = ({ userId, userData }) => {
             <div className="Container_Submitted_finished">
               <div className="text_Submitted_finished">
                 <Typography variant="h5">
-                  Your Application Submit Successfully
+                  Your Application Submitted Successfully
                 </Typography>
               </div>
               <div className="text_Submitted_finished">

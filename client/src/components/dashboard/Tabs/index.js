@@ -34,7 +34,9 @@ const DashBar = ({ logOut }) => {
 
   return (
     <div className="dash__bar">
-      <img src={logo} alt="Logo" className="logo" />
+      <a target="_blank" href="https://gazaskygeeks.com/">
+        <img src={logo} alt="Gaza sky Geeks logo" className="logo" />
+      </a>
       <ul className="dash__bar__link">
         <li>
           <Link title="Home" className="dashLink" to="/dashboard">
