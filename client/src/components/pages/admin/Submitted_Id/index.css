@@ -4,3 +4,28 @@
   justify-content: space-around;
 }
 
+.profileImage_admin{
+    position: fixed;
+    left: 0;
+    opacity: .7;
+    margin: 0;
+    width: 15rem;
+    align-self: flex-end;
+    bottom: 2%;
+    transform: scaleX(-1);
+    margin-left: 2rem;
+}
+
+.dashboard_page_admin{
+  width: 100vw;
+  height: 127vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background-image: url('../../../../assets/images/dashbackground.png');
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+  background-attachment: fixed;
+}
