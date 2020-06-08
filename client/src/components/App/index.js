@@ -1,6 +1,7 @@
-import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 import AppBar from '../common/AppBar';
 import Error404 from '../pages/common/errors/Error-404';
@@ -15,265 +16,293 @@ import Tasks from '../pages/application/Tasks';
 import Project from '../pages/application/Project';
 import Submit from '../pages/application/Submit';
 import Profile from '../pages/application/Profile';
-import Dashboard from '../pages/admin/Dashboard';
 import Opened from '../pages/admin/Opened';
 import SubmittedAll from '../pages/admin/Submitted_all';
 import SubmittedId from '../pages/admin/Submitted_Id';
 import Completed from '../pages/admin/Completed';
+import Limitation from '../common/limitation';
 import Alert from '../common/Alert';
 import ResponsiveDrawer from '../application/ResponsiveDrawer';
+import Dashboard from '../pages/admin/Dashboard';
+import DashBar from '../dashboard/Tabs';
 import './index.css';
 
-export default class App extends React.Component {
-  state = {
-    user: false,
-    admin: false,
-    userId: '',
-    userData: '',
+const checkAdmin = async () => {
+  const { data } = await axios.get('/api/v1/isAdmin');
+  return data;
+};
+
+const checkUser = async () => {
+  const { data } = await axios.get('/api/v1/isUser');
+  return data;
+};
+
+const getUserData = async (userId) => {
+  const {
+    data: { user },
+  } = await axios.get(`/api/v1/applicants/${userId}`);
+  return user;
+};
+
+const LogOut = async () => {
+  const { data } = await axios.post('/api/v1/logout');
+  return data;
+};
+const App = () => {
+  const [User, setUser] = useState(false);
+  const [admin, setAdmin] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [userId, setUserId] = useState('');
+  const [userData, setUserData] = useState({});
+  const history = useHistory();
+  const { pathname } = window.location;
+  const paths = pathname.split('/');
+  const lastIndexUrl = paths[paths.length - 1];
+
+  useEffect(() => {
+    if (Cookies.get('applicant')) {
+      checkUser()
+        .then((data) => {
+          setUser(true);
+          setUserId(data.userId);
+          getUserData(data.userId).then((user) => {
+            setUserData(user);
+            setLoading(false);
+          });
+        })
+        .catch(() => {
+          setUser(false);
+          setLoading(false);
+        });
+    } else if (Cookies.get('admin')) {
+      checkAdmin()
+        .then(() => {
+          setAdmin(true);
+          setLoading(false);
+        })
+        .catch(() => {
+          setAdmin(false);
+          setLoading(false);
+        });
+    } else {
+      setLoading(false);
+    }
+  }, [userId, pathname]);
+
+  const logoutHandler = () => {
+    LogOut().then(() => {
+      setAdmin(false);
+      setUser(false);
+      history.push('/');
+    });
   };
 
-  componentDidMount() {
-    axios
-      .get('/api/v1/isAdmin')
-      .then((result) => {
-        this.setState({ admin: true, ...result.data });
-      })
-      .catch(() => {});
-    axios
-      .get('/api/v1/isUser')
-      .then(({ data: { userId } }) => {
-        this.setState({ user: true, userId });
-        axios.get(`/api/v1/applicants/${userId}`).then(({ data: { user } }) => {
-          this.setState({ userData: user });
-        });
-      })
-      .catch();
+  const {
+    clickedSteps,
+    available,
+    address,
+    age,
+    employmentStatus,
+    englishSpeaking,
+    englishUnderstanding,
+    fullName,
+    gender,
+    jobTitle,
+    mobileNumber,
+    codeWarsLink,
+    freeCodeCampLink,
+    githubLink,
+    joinDiscord,
+    technicalTasks,
+    technicalTasksLinks,
+    projectGithubLink,
+    avatar,
+  } = userData;
+
+  const Routes = [
+    '/dashboard',
+    '/dashboard/applications/opened',
+    '/dashboard/applications/submitted',
+    `/dashboard/applications/submitted/${lastIndexUrl}`,
+    '/dashboard/applications/completed',
+    '/steps',
+    '/availability',
+    '/accounts',
+    '/tasks',
+    '/project',
+    '/submit',
+    '/myprofile',
+  ];
+  const staticRoutes = ['/', '/login', '/signup'];
+
+  if (loading) {
+    return <Limitation ClassName="body" />;
   }
 
-  signupHandler = () => {
-    this.setState({
-      user: true,
-    });
-  };
-
-  logoutHandler = () => {
-    axios.post('/api/v1/logout').then(() => {
-      this.setState({
-        user: false,
-        admin: false,
-      });
-      window.location.replace('/');
-    });
-  };
-
-  render() {
-    const { user, admin, userData, userId } = this.state;
-    const {
-      clickedSteps,
-      available,
-      address,
-      age,
-      employmentStatus,
-      englishSpeaking,
-      englishUnderstanding,
-      fullName,
-      gender,
-      jobTitle,
-      mobileNumber,
-      codeWarsLink,
-      freeCodeCampLink,
-      githubLink,
-      joinDiscord,
-      technicalTasks,
-      technicalTasksLinks,
-      projectGithubLink,
-      applicationSubmittedDate,
-      avatar,
-    } = userData;
-
-    const { pathname } = window.location;
-    const paths = pathname.split('/');
-    const lastIndexUrl = paths[paths.length - 1];
-    const Routes = [
-      '/dashboard',
-      '/dashboard/applications/opened',
-      '/dashboard/applications/submitted',
-      `/dashboard/applications/submitted/${lastIndexUrl}`,
-      '/dashboard/applications/completed',
-      '/steps',
-      '/availability',
-      '/accounts',
-      '/tasks',
-      '/project',
-      '/submit',
-      '/myprofile',
-    ];
-    const staticRoutes = ['/', '/login', '/signup'];
+  if (admin) {
     return (
       <div>
-        <AppBar
-          logoutHandler={this.logoutHandler}
-          auth={user}
-          UserAvatar={avatar}
-        />
+        <DashBar />
         <Switch>
           <Route path="/500" render={() => <Error500 />} />
-          <Route path="/404" render={() => <Error404 />} />
-          <main className="container">
-            {Routes.includes(pathname) ? (
-              admin ? (
-                <div>
-                  <Route
-                    path="/dashboard"
-                    render={(props) => <Dashboard {...props} />}
-                  />
-                  <Route
-                    path="/dashboard/applications/opened"
-                    render={(props) => <Opened {...props} />}
-                  />
-                  <Route
-                    path="/dashboard/applications/submitted"
-                    render={(props) => <SubmittedAll {...props} />}
-                  />
-                  <Route
-                    path="/dashboard/applications/submitted/:applicantID"
-                    render={(props) => <SubmittedId {...props} />}
-                  />
-                  <Route
-                    path="/dashboard/applications/completed"
-                    render={(props) => <Completed {...props} />}
-                  />
-                </div>
-              ) : user ? (
-                <div>
-                  {!clickedSteps ? (
-                    <Redirect to="/steps" />
-                  ) : !available ||
-                    !address ||
-                    !age ||
-                    !employmentStatus ||
-                    !englishSpeaking ||
-                    !englishUnderstanding ||
-                    !fullName ||
-                    !gender ||
-                    !jobTitle ||
-                    !mobileNumber ? (
-                    <Redirect to="/availability" />
-                  ) : !codeWarsLink ||
-                    !freeCodeCampLink ||
-                    !githubLink ||
-                    !joinDiscord ? (
-                    <Redirect to="accounts" />
-                  ) : !technicalTasks || !technicalTasksLinks ? (
-                    <Redirect to="tasks" />
-                  ) : !projectGithubLink ? (
-                    <Redirect to="project" />
-                  ) : !applicationSubmittedDate ? (
-                    <Redirect to="submit" />
-                  ) : (
-                    <Redirect to="myprofile" />
-                  )}
-                  <Route
-                    path="/steps"
-                    render={(props) => (
-                      <>
-                        <ResponsiveDrawer userData={userData} />
-                        <Steps {...props} />
-                      </>
-                    )}
-                  />
-                  <Route
-                    path="/availability"
-                    render={(props) => (
-                      <>
-                        <ResponsiveDrawer userData={userData} />
-                        <Availability {...props} />
-                      </>
-                    )}
-                  />
-                  <Route
-                    path="/accounts"
-                    render={(props) => (
-                      <>
-                        <ResponsiveDrawer userData={userData} />
-                        <Accounts {...props} />
-                      </>
-                    )}
-                  />
-                  <Route
-                    path="/tasks"
-                    render={(props) => (
-                      <>
-                        <ResponsiveDrawer userData={userData} />
-                        <Tasks {...props} />
-                      </>
-                    )}
-                  />
-                  <Route
-                    path="/project"
-                    render={(props) => (
-                      <>
-                        <ResponsiveDrawer userData={userData} />
-                        <Project {...props} />
-                      </>
-                    )}
-                  />
-                  <Route
-                    path="/submit"
-                    render={() => (
-                      <>
-                        <ResponsiveDrawer userData={userData} />
-                        <Submit userData={userData} userId={userId} />
-                      </>
-                    )}
-                  />
-                  <Route
-                    path="/myprofile"
-                    render={(props) => <Profile {...props} />}
-                  />
-                </div>
-              ) : (
-                <>
-                  {/* {window.location.replace('/')}
-                  <Alert
-                    Type="warning"
-                    Msg="You are Not allowed to access this page, please Login First."
-                  /> */}
-                  <Redirect to="/" />
-                </>
-              )
-            ) : staticRoutes.includes(pathname) ? (
-              <>
-                {user ? (
-                  <Redirect to="steps" />
-                ) : admin ? (
-                  <Redirect to="dashboard" />
-                ) : (
-                  <>
-                    <Route
-                      exact
-                      path="/"
-                      render={(props) => <Home {...props} />}
-                    />
-                    <Route
-                      exact
-                      path="/login"
-                      render={(props) => <Login {...props} />}
-                    />
-                    <Route
-                      exact
-                      path="/signup"
-                      render={(props) => <Signup {...props} />}
-                    />
-                  </>
-                )}
-              </>
-            ) : (
-              <Redirect to="/404" />
-            )}
-          </main>
+          <Route path="/404" render={() => <Error404 auth="admin" />} />
+          {staticRoutes.includes(pathname) && (
+            <>
+              <Alert Type="warning" Msg="You already login" />
+              {window.location.replace('/dashboard')}
+            </>
+          )}
+          {!Routes.includes(pathname) && <Redirect to="/404" />}
+          <div>
+            <Route
+              exact
+              path="/dashboard"
+              render={(props) => <Dashboard {...props} />}
+            />
+            <Route
+              path="/dashboard/applications/opened"
+              render={(props) => <Opened {...props} />}
+            />
+            <Route
+              path="/dashboard/applications/submitted"
+              render={(props) => <SubmittedAll {...props} />}
+            />
+            <Route
+              path="/dashboard/applications/submitted/:applicantID"
+              render={(props) => <SubmittedId {...props} />}
+            />
+            <Route
+              path="/dashboard/applications/completed"
+              render={(props) => <Completed {...props} />}
+            />
+          </div>
         </Switch>
       </div>
     );
   }
-}
+
+  if (User) {
+    return (
+      <>
+        <AppBar
+          logoutHandler={logoutHandler}
+          auth={User}
+          userName={fullName}
+          UserAvatar={avatar}
+          loading={loading}
+        />
+        <Switch>
+          <Route
+            path="/500"
+            render={() => (
+              <>
+                <Error500 /> <Redirect to="/steps" />
+              </>
+            )}
+          />
+          <Route path="/404" render={() => <Error404 auth="user" />} />
+
+          {staticRoutes.includes(pathname) && (
+            <>
+              <Alert Type="warning" Msg="You already login" />
+              {window.location.replace('/steps')}
+            </>
+          )}
+          {!Routes.includes(pathname) && <Redirect to="/404" />}
+          <div>
+            {pathname !== '/myprofile' && (
+              <>
+                {!clickedSteps ? (
+                  <Redirect to="/steps" />
+                ) : !available ||
+                  !address ||
+                  !age ||
+                  !employmentStatus ||
+                  !englishSpeaking ||
+                  !englishUnderstanding ||
+                  !fullName ||
+                  !gender ||
+                  !jobTitle ||
+                  !mobileNumber ? (
+                  <Redirect to="/availability" />
+                ) : !codeWarsLink ||
+                  !freeCodeCampLink ||
+                  !githubLink ||
+                  !joinDiscord ? (
+                  <Redirect to="accounts" />
+                ) : !technicalTasks || !technicalTasksLinks ? (
+                  <Redirect to="tasks" />
+                ) : !projectGithubLink ? (
+                  <Redirect to="project" />
+                ) : (
+                  <Redirect to="submit" />
+                )}
+              </>
+            )}
+            <Route
+              path="/steps"
+              render={() => <Steps userId={userId} fullName={fullName} />}
+            />
+            <Route
+              path="/availability"
+              render={() => (
+                <Availability userId={userId} userData={userData} />
+              )}
+            />
+            <Route
+              path="/accounts"
+              render={() => <Accounts userId={userId} userData={userData} />}
+            />
+            <Route
+              path="/tasks"
+              render={() => <Tasks userId={userId} userData={userData} />}
+            />
+            <Route path="/project" render={() => <Project userId={userId} />} />
+            <Route
+              path="/submit"
+              render={() => <Submit userData={userData} userId={userId} />}
+            />
+            <Route
+              path="/myprofile"
+              render={() => <Profile userId={userId} userData={userData} />}
+            />
+            {pathname !== '/myprofile' && (
+              <ResponsiveDrawer userData={userData} userId={userId} />
+            )}
+          </div>
+        </Switch>
+      </>
+    );
+  }
+
+  return (
+    <div>
+      <AppBar
+        logoutHandler={logoutHandler}
+        auth={User}
+        UserAvatar={avatar}
+        loading={loading}
+      />
+      <Switch>
+        <Route path="/500" render={() => <Error500 />} />
+        <Route path="/404" render={() => <Error404 />} />
+        <Route exact path="/" render={(props) => <Home {...props} />} />
+        <Route exact path="/login" render={(props) => <Login {...props} />} />
+        <Route exact path="/signup" render={(props) => <Signup {...props} />} />
+        {Routes.includes(pathname) && !User && !admin ? (
+          <>
+            <Alert
+              Type="warning"
+              Msg="You are Not allowed to access this page, please Login First."
+            />
+            {window.location.replace('/')}
+          </>
+        ) : (
+          <Redirect to="/404" />
+        )}
+      </Switch>
+    </div>
+  );
+};
+
+export default App;

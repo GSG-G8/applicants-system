@@ -32,7 +32,7 @@ const login = (req, res) => {
               else {
                 const userToken = { userId: data.id };
                 const cookie = sign(userToken, process.env.SECRET_KEY);
-                res.cookie('applicant', cookie, { httpOnly: true }).json({
+                res.cookie('applicant', cookie).json({
                   status: 'successfully',
                   role: 'applicant',
                   data: {
@@ -54,7 +54,7 @@ const login = (req, res) => {
                   else {
                     const userToken = { AdminId: data.id };
                     const cookie = sign(userToken, process.env.SECRET_KEY);
-                    res.cookie('admin', cookie, { httpOnly: true }).json({
+                    res.cookie('admin', cookie).json({
                       status: 'successfully',
                       role: 'admin',
                       data: {

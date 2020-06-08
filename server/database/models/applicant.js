@@ -91,6 +91,7 @@ const applicantSchema = new Schema({
   },
   available: {
     type: Boolean,
+    default: false,
   },
   githubLink: {
     type: String,
@@ -98,9 +99,11 @@ const applicantSchema = new Schema({
   },
   joinDiscord: {
     type: Boolean,
+    default: false,
   },
   freeCodeCampPoints: {
     type: Number,
+    default: 0,
   },
   freeCodeCampTopics: {
     type: Boolean,
@@ -116,6 +119,7 @@ const applicantSchema = new Schema({
   },
   codeWarsKyu: {
     type: Number,
+    default: 8,
     trim: true,
   },
   technicalTasks: {

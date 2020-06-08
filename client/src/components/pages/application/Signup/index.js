@@ -34,7 +34,8 @@ class SignUp extends React.Component {
   throwMessage = (message) => this.setState({ message });
 
   resetForm = () => {
-    this.setState(initialState);
+    const { message, ...rest } = initialState;
+    this.setState(rest);
   };
 
   submit = async () => {
@@ -66,6 +67,7 @@ class SignUp extends React.Component {
               .then(() => {
                 this.resetForm();
                 this.throwMessage('SignUp Successfully');
+                window.location.replace('/steps');
               })
               .catch(() => this.throwMessage('Your Email is Exist'))
           : this.throwMessage('Please Enter Correct Data')

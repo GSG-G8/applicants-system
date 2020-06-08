@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import Typography from '@material-ui/core/Typography';
+import PropTypes from 'prop-types';
 import './index.css';
 
-const Error404 = () => (
+const Error404 = ({ auth }) => (
   <div className="notfound">
     <Helmet>
       <title>Page Not Found </title>
@@ -17,10 +18,26 @@ const Error404 = () => (
         <Typography variant="h5">404 - The Page can't be found</Typography>
       </div>
     </div>
-    <Link className="link" to="/">
-      Back TO Home page
-    </Link>
+    {auth === 'admin' ? (
+      <Link className="link" to="/dashboard">
+        Back To Dashboard
+      </Link>
+    ) : auth === 'user' ? (
+      <Link className="link" to="/steps">
+        Back To your complete your application
+      </Link>
+    ) : (
+      <Link className="link" to="/">
+        Back To Home page
+      </Link>
+    )}
   </div>
 );
+Error404.propTypes = {
+  auth: PropTypes.string,
+};
+Error404.defaultProps = {
+  auth: '',
+};
 
 export default Error404;

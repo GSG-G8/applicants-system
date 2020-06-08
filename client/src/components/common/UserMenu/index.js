@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import axios from 'axios';
 
 import IconButton from '@material-ui/core/IconButton';
-import { AccountCircle, Person, ExitToApp } from '@material-ui/icons';
+import { Person, ExitToApp } from '@material-ui/icons';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { Link } from 'react-router-dom';
@@ -16,24 +16,10 @@ const getUserID = async () => {
   return data;
 };
 
-const UserMenu = ({ logoutHandler, UserAvatar }) => {
+const UserMenu = ({ logoutHandler, UserAvatar, userName }) => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [UserId, setId] = useState('');
-  const [userName, setName] = useState('');
   const open = Boolean(anchorEl);
 
-  useEffect(() => {
-    getUserID().then((data) => {
-      if (data.message === 'you are authorized') {
-        setId(data.userId);
-      }
-    });
-    if (UserId) {
-      axios.get(`/api/v1/applicants/${UserId}`).then(({ data: { user } }) => {
-        setName(user.fullName);
-      });
-    }
-  }, [UserId]);
   const handleMenu = useCallback((event) => {
     setAnchorEl(event.currentTarget);
   }, []);
@@ -95,6 +81,7 @@ const UserMenu = ({ logoutHandler, UserAvatar }) => {
 UserMenu.propTypes = {
   logoutHandler: PropTypes.func.isRequired,
   UserAvatar: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
 };
 
 export default UserMenu;
