@@ -16,7 +16,9 @@ import './index.css';
 
 const DashBar = ({ logOut }) => (
   <div className="dash__bar">
-    <img src={logo} alt="Logo" className="logo" />
+    <a href="https://gazaskygeeks.com/">
+      <img src={logo} alt="Gaza sky Geeks logo" className="logo" />
+    </a>
     <ul className="dash__bar__link">
       <li>
         <Link className="dashLink" to="/dashboard">
