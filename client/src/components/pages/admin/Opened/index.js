@@ -48,7 +48,7 @@ const Header = {
       ),
     },
     {
-      title: 'Freecodecamp Profile',
+      title: 'Freecodecamp',
       render: ({ freeCodeCampLink, fullName }) => (
         <Link
           className="applicant_link"
@@ -57,7 +57,7 @@ const Header = {
           }}
           target="_blank"
         >
-          {fullName} Profile
+          {fullName.split(' ')[0]} Profile
         </Link>
       ),
     },
