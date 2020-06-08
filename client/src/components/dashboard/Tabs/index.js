@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -29,98 +29,107 @@ const getImg = (url) => {
   return false;
 };
 
-const DashBar = ({ logOut }) => (
-  <div className="dash__bar">
-    <img src={logo} alt="Logo" className="logo" />
-    <ul className="dash__bar__link">
-      <li>
-        <Link title="Home" className="dashLink" to="/dashboard">
-          <img
-            src={getImg('dashboard') ? homeImg : home}
-            alt="dash"
-            className="dash__bar__img"
-          />
-        </Link>
-      </li>
-      <li>
-        <Link
-          title="Opened Applications"
-          className="dashLink"
-          to="/dashboard/applications/opened"
-        >
-          <img
-            src={getImg('opened') ? toolsImg : tools}
-            alt="dash"
-            className="dash__bar__img"
-          />
-        </Link>
-      </li>
-      <li>
-        <Link
-          title="Submitted Applications"
-          className="dashLink"
-          to="/dashboard/applications/submitted"
-        >
-          <img
-            src={getImg('submitted') ? submittedImg : submitted}
-            alt="dash"
-            className="dash__bar__img"
-          />
-        </Link>
-      </li>
-      <li>
-        <Link
-          title="Completed Applications"
-          className="dashLink"
-          to="/dashboard/applications/completed"
-        >
-          <img
-            src={getImg('completed') ? completedImg : completed}
-            alt="dash"
-            className="dash__bar__img"
-          />
-        </Link>
-      </li>
-      <li>
-        <Link title="" className="dashLink" to="/dashboard">
-          <img
-            src={getImg('dashboard') ? acceptedImg : accepted}
-            alt="dash"
-            className="dash__bar__img"
-          />
-        </Link>
-      </li>
-      <li>
-        <Link title="" className="dashLink" to="/dashboard">
-          <img
-            src={getImg('dashboard') ? addImg : add}
-            alt="dash"
-            className="dash__bar__img"
-          />
-        </Link>
-      </li>
-      <li>
-        <Link title="" className="dashLink" to="/dashboard">
-          <img
-            src={getImg('dashboard') ? adminImg : admin}
-            alt="dash"
-            className="dash__bar__img"
-          />
-        </Link>
-      </li>
-      <li>
-        <Link title="Log Out" className="dashLink" onClick={logOut}>
-          <img
-            src={getImg('dashboard') ? logoutImg : logoutIcon}
-            alt="logout"
-            className="dash__bar__img"
-          />
-        </Link>
-      </li>
-    </ul>
-  </div>
-);
+const DashBar = ({ logOut }) => {
+  const [imgLog, setImgLog] = useState(logoutIcon);
 
+  return (
+    <div className="dash__bar">
+      <img src={logo} alt="Logo" className="logo" />
+      <ul className="dash__bar__link">
+        <li>
+          <Link title="Home" className="dashLink" to="/dashboard">
+            <img
+              src={getImg('dashboard') ? homeImg : home}
+              alt="dash"
+              className="dash__bar__img"
+            />
+          </Link>
+        </li>
+        <li>
+          <Link
+            title="Opened Applications"
+            className="dashLink"
+            to="/dashboard/applications/opened"
+          >
+            <img
+              src={getImg('opened') ? toolsImg : tools}
+              alt="dash"
+              className="dash__bar__img"
+            />
+          </Link>
+        </li>
+        <li>
+          <Link
+            title="Submitted Applications"
+            className="dashLink"
+            to="/dashboard/applications/submitted"
+          >
+            <img
+              src={getImg('submitted') ? submittedImg : submitted}
+              alt="dash"
+              className="dash__bar__img"
+            />
+          </Link>
+        </li>
+        <li>
+          <Link
+            title="Completed Applications"
+            className="dashLink"
+            to="/dashboard/applications/completed"
+          >
+            <img
+              src={getImg('completed') ? completedImg : completed}
+              alt="dash"
+              className="dash__bar__img"
+            />
+          </Link>
+        </li>
+        <li>
+          <Link
+            title="ِAccepted Applications"
+            className="dashLink"
+            to="/dashboard/applications/accepted"
+          >
+            <img
+              src={getImg('accepted') ? acceptedImg : accepted}
+              alt="dash"
+              className="dash__bar__img"
+            />
+          </Link>
+        </li>
+        <li>
+          <Link title="" className="dashLink" to="/dashboard">
+            <img
+              src={getImg('/') ? addImg : add}
+              alt="dash"
+              className="dash__bar__img"
+            />
+          </Link>
+        </li>
+        <li>
+          <Link title="" className="dashLink" to="/dashboard">
+            <img
+              src={getImg('/') ? adminImg : admin}
+              alt="dash"
+              className="dash__bar__img"
+            />
+          </Link>
+        </li>
+        <li>
+          <Link className="dashLink" title="Log Out" onClick={logOut}>
+            <img
+              src={imgLog}
+              alt="logout"
+              className="dash__bar__img"
+              onMouseEnter={() => setImgLog(logoutImg)}
+              onMouseLeave={() => setImgLog(logoutIcon)}
+            />
+          </Link>
+        </li>
+      </ul>
+    </div>
+  );
+};
 DashBar.propTypes = {
   logOut: PropTypes.func.isRequired,
 };
