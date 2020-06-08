@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table';
 import { Helmet } from 'react-helmet';
@@ -5,6 +6,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import backGround from '../../../../assets/images/backgroundDash.svg';
 import DashBar from '../../../dashboard/Tabs';
+import Limitaion from '../../../common/limitation';
 
 import './index.css';
 
@@ -17,19 +19,59 @@ const Header = {
   columns: [
     { title: 'Name', field: 'fullName', width: '20%' },
     { title: 'Email', field: 'email', width: '20%' },
-    { title: 'Mobile', field: 'mobileNumber' },
-    { title: 'Age', field: 'age' },
-    { title: 'Academy Location', field: 'location' },
-    { title: 'Address', field: 'address' },
     {
-      title: 'Profile',
-      render: ({ _id }) => (
+      title: 'Github Account',
+      render: ({ githubLink, fullName }) => (
         <Link
           className="profile_Link"
-          exact
-          to={`/dashboard/applications/submitted/${_id}`}
+          to={{
+            pathname: `${githubLink}`,
+          }}
+          target="_blank"
         >
-          View
+          {fullName} Account
+        </Link>
+      ),
+    },
+    {
+      title: 'Codewars Profile',
+      render: ({ codeWarsLink, fullName }) => (
+        <Link
+          className="profile_Link"
+          to={{
+            pathname: `${codeWarsLink}`,
+          }}
+          target="_blank"
+        >
+          {fullName} Profile
+        </Link>
+      ),
+    },
+    {
+      title: 'Freecodecamp Profile',
+      render: ({ freeCodeCampLink, fullName }) => (
+        <Link
+          className="profile_Link"
+          to={{
+            pathname: `${freeCodeCampLink}`,
+          }}
+          target="_blank"
+        >
+          {fullName} Profile
+        </Link>
+      ),
+    },
+    {
+      title: 'Project',
+      render: ({ projectGithubLink }) => (
+        <Link
+          className="profile_Link"
+          to={{
+            pathname: `${projectGithubLink}`,
+          }}
+          target="_blank"
+        >
+          View Project
         </Link>
       ),
     },
@@ -46,18 +88,24 @@ const Opened = () => {
   return (
     <>
       <Helmet>
-        <title>Submitted Applications</title>
+        <title>Opened Applications</title>
       </Helmet>
       <DashBar />
       <img src={backGround} alt="backGround" className="dash__background" />
       <div className="dashboard__page">
         <div className="submitted__container">
-          <MaterialTable
-            className="submitted__table"
-            title="Submitted Applications"
-            columns={Header.columns}
-            data={opened}
-          />
+          {!opened ? (
+            <div className="loading-spinner">
+              <Limitaion />
+            </div>
+          ) : (
+            <MaterialTable
+              className="submitted__table"
+              title="Opened Applications"
+              columns={Header.columns}
+              data={opened}
+            />
+          )}
         </div>
       </div>
     </>
