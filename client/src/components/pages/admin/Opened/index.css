@@ -1,0 +1,12 @@
+.loading-spinner{
+  text-align: center;
+}
+
+.applicant_link{
+  text-decoration: none;
+  color:rgba(0, 0, 0, 0.87);
+}
+
+.applicant_link:hover{
+  color: #ed6d23;
+}
