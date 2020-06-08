@@ -3,64 +3,118 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import logo from '../../../assets/images/logo1.svg';
-import staticImg1 from '../../../assets/icons/dashBarIcons/A.png';
-import staticImg2 from '../../../assets/icons/dashBarIcons/B.png';
-import staticImg3 from '../../../assets/icons/dashBarIcons/C.png';
-import staticImg4 from '../../../assets/icons/dashBarIcons/D.png';
-import staticImg5 from '../../../assets/icons/dashBarIcons/E.png';
-import staticImg6 from '../../../assets/icons/dashBarIcons/F.png';
-import staticImg7 from '../../../assets/icons/dashBarIcons/G.png';
-import staticImg8 from '../../../assets/icons/dashBarIcons/H.png';
-import staticImg9 from '../../../assets/icons/dashBarIcons/I.png';
+import accepted from '../../../assets/icons/dashBarIcons/accepted.png';
+import acceptedImg from '../../../assets/icons/dashBarIcons/acceptedImg.png';
+import addImg from '../../../assets/icons/dashBarIcons/addImg.png';
+import add from '../../../assets/icons/dashBarIcons/add.png';
+import admin from '../../../assets/icons/dashBarIcons/admin.png';
+import adminImg from '../../../assets/icons/dashBarIcons/adminImg.png';
+import tools from '../../../assets/icons/dashBarIcons/tools.png';
+import toolsImg from '../../../assets/icons/dashBarIcons/toolsImg.png';
+import logoutImg from '../../../assets/icons/dashBarIcons/logoutImg.png';
+import logoutIcon from '../../../assets/icons/dashBarIcons/logout.png';
+import submitted from '../../../assets/icons/dashBarIcons/submitted.png';
+import submittedImg from '../../../assets/icons/dashBarIcons/submittedImg.png';
+import home from '../../../assets/icons/dashBarIcons/home.png';
+import homeImg from '../../../assets/icons/dashBarIcons/homeImg.png';
+import completed from '../../../assets/icons/dashBarIcons/completed.png';
+import completedImg from '../../../assets/icons/dashBarIcons/completedImg.png';
+
 import './index.css';
+
+const getImg = (url) => {
+  const { pathname } = window.location;
+  const path = pathname.split('/');
+  if (path[path.length - 1] === url) return true;
+  return false;
+};
 
 const DashBar = ({ logOut }) => (
   <div className="dash__bar">
     <img src={logo} alt="Logo" className="logo" />
     <ul className="dash__bar__link">
       <li>
-        <Link className="dashLink" to="/dashboard">
-          <img src={staticImg3} alt="dash" className="dash__bar__img" />
+        <Link title="Home" className="dashLink" to="/dashboard">
+          <img
+            src={getImg('dashboard') ? homeImg : home}
+            alt="dash"
+            className="dash__bar__img"
+          />
         </Link>
       </li>
       <li>
-        <Link className="dashLink" to="/dashboard/applications/opened">
-          <img src={staticImg8} alt="dash" className="dash__bar__img" />
+        <Link
+          title="Opened Applications"
+          className="dashLink"
+          to="/dashboard/applications/opened"
+        >
+          <img
+            src={getImg('opened') ? toolsImg : tools}
+            alt="dash"
+            className="dash__bar__img"
+          />
         </Link>
       </li>
       <li>
-        <Link className="dashLink" to="/dashboard/applications/submitted">
-          <img src={staticImg9} alt="dash" className="dash__bar__img" />
+        <Link
+          title="Submitted Applications"
+          className="dashLink"
+          to="/dashboard/applications/submitted"
+        >
+          <img
+            src={getImg('submitted') ? submittedImg : submitted}
+            alt="dash"
+            className="dash__bar__img"
+          />
         </Link>
       </li>
       <li>
-        <Link className="dashLink" to="/dashboard/applications/completed">
-          <img src={staticImg1} alt="dash" className="dash__bar__img" />
+        <Link
+          title="Completed Applications"
+          className="dashLink"
+          to="/dashboard/applications/completed"
+        >
+          <img
+            src={getImg('completed') ? completedImg : completed}
+            alt="dash"
+            className="dash__bar__img"
+          />
         </Link>
       </li>
       <li>
-        <Link className="dashLink" to="/dashboard">
-          <img src={staticImg4} alt="dash" className="dash__bar__img" />
+        <Link title="" className="dashLink" to="/dashboard">
+          <img
+            src={getImg('dashboard') ? acceptedImg : accepted}
+            alt="dash"
+            className="dash__bar__img"
+          />
         </Link>
       </li>
       <li>
-        <Link className="dashLink" to="/dashboard">
-          <img src={staticImg6} alt="dash" className="dash__bar__img" />
+        <Link title="" className="dashLink" to="/dashboard">
+          <img
+            src={getImg('dashboard') ? addImg : add}
+            alt="dash"
+            className="dash__bar__img"
+          />
         </Link>
       </li>
       <li>
-        <Link className="dashLink" to="/dashboard">
-          <img src={staticImg2} alt="dash" className="dash__bar__img" />
+        <Link title="" className="dashLink" to="/dashboard">
+          <img
+            src={getImg('dashboard') ? adminImg : admin}
+            alt="dash"
+            className="dash__bar__img"
+          />
         </Link>
       </li>
       <li>
-        <Link className="dashLink" to="/dashboard">
-          <img src={staticImg7} alt="dash" className="dash__bar__img" />
-        </Link>
-      </li>
-      <li>
-        <Link className="dashLink" onClick={logOut}>
-          <img src={staticImg5} alt="logout" className="dash__bar__img" />
+        <Link title="Log Out" className="dashLink" onClick={logOut}>
+          <img
+            src={getImg('dashboard') ? logoutImg : logoutIcon}
+            alt="logout"
+            className="dash__bar__img"
+          />
         </Link>
       </li>
     </ul>
