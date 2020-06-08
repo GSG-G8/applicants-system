@@ -4,7 +4,6 @@ import { Helmet } from 'react-helmet';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import backGround from '../../../../assets/images/backgroundDash.svg';
-import DashBar from '../../../dashboard/Tabs';
 
 import './index.css';
 
@@ -50,7 +49,6 @@ const SubmittedApplications = () => {
       <Helmet>
         <title>Submitted Applications</title>
       </Helmet>
-      <DashBar />
       <img src={backGround} alt="backGround" className="dash__background" />
       <div className="dashboard__page">
         <div className="submitted__container">
@@ -65,4 +63,5 @@ const SubmittedApplications = () => {
     </>
   );
 };
+
 export default SubmittedApplications;

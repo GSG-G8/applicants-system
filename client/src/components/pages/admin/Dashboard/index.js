@@ -6,7 +6,6 @@ import axios from 'axios';
 import Chart from '../../../dashboard/chart';
 import backGround from '../../../../assets/images/backgroundDash.svg';
 import Card from '../../../common/card';
-import DashBar from '../../../dashboard/Tabs';
 import Typography from '../../../common/Typography';
 
 import './index.css';
@@ -53,7 +52,6 @@ const Dashboard = () => {
       <Helmet>
         <title>Dashboard</title>
       </Helmet>
-      <DashBar />
       <img src={backGround} alt="backGround" className="dash__background" />
       <div className="dashboard__page">
         <div>

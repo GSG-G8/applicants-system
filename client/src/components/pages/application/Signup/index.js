@@ -213,10 +213,10 @@ class SignUp extends React.Component {
                     />
                   </div>
                   <div className="buttons">
+                    <Button onClick={this.submit}>Sign Up</Button>
                     <Button customStyle="outlined" onClick={this.handleSignIn}>
                       Login
                     </Button>
-                    <Button onClick={this.submit}>Sign Up</Button>
                   </div>
                 </div>
               </div>

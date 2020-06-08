@@ -23,7 +23,8 @@ import Completed from '../pages/admin/Completed';
 import Limitation from '../common/limitation';
 import Alert from '../common/Alert';
 import ResponsiveDrawer from '../application/ResponsiveDrawer';
-import Chart from '../dashboard/chart';
+import Dashboard from '../pages/admin/Dashboard';
+import DashBar from '../dashboard/Tabs';
 import './index.css';
 
 const checkAdmin = async () => {
@@ -141,6 +142,7 @@ const App = () => {
   if (admin) {
     return (
       <div>
+        <DashBar />
         <Switch>
           <Route path="/500" render={() => <Error500 />} />
           <Route path="/404" render={() => <Error404 auth="admin" />} />
@@ -152,7 +154,11 @@ const App = () => {
           )}
           {!Routes.includes(pathname) && <Redirect to="/404" />}
           <div>
-            <Route path="/dashboard" render={() => <Chart />} />
+            <Route
+              exact
+              path="/dashboard"
+              render={(props) => <Dashboard {...props} />}
+            />
             <Route
               path="/dashboard/applications/opened"
               render={(props) => <Opened {...props} />}
