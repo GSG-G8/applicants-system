@@ -5,8 +5,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import backGround from '../../../../assets/images/backgroundDash.svg';
 
-import './style.css';
-
 const getAccepted = async () => {
   const { data } = (await axios.get('/api/v1/dashboard/applicants')).data;
   return data.filter((element) => {
@@ -24,6 +22,7 @@ const Header = {
     { title: 'Address', field: 'address' },
     {
       title: 'Profile',
+      // eslint-disable-next-line react/prop-types
       render: ({ _id }) => (
         <Link
           className="profile_Link"
@@ -57,6 +56,14 @@ const SubmittedApplications = () => {
             title="Accepted Applications"
             columns={Header.columns}
             data={Accepted}
+            options={{
+              exportButton: true,
+              pageSizeOptions: [
+                5,
+                10,
+                !Accepted ? 15 : Accepted.length > 10 ? Accepted.length : 15,
+              ],
+            }}
           />
         </div>
       </div>
