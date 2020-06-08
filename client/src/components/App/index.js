@@ -20,6 +20,7 @@ import Opened from '../pages/admin/Opened';
 import SubmittedAll from '../pages/admin/Submitted_all';
 import SubmittedId from '../pages/admin/Submitted_Id';
 import Completed from '../pages/admin/Completed';
+import Accepted from '../pages/admin/Accepted';
 import Limitation from '../common/limitation';
 import Alert from '../common/Alert';
 import ResponsiveDrawer from '../application/ResponsiveDrawer';
@@ -125,6 +126,7 @@ const App = () => {
     '/dashboard/applications/submitted',
     `/dashboard/applications/submitted/${lastIndexUrl}`,
     '/dashboard/applications/completed',
+    '/dashboard/applications/accepted',
     '/steps',
     '/availability',
     '/accounts',
@@ -174,6 +176,10 @@ const App = () => {
             <Route
               path="/dashboard/applications/completed"
               render={(props) => <Completed {...props} />}
+            />
+            <Route
+              path="/dashboard/applications/accepted"
+              render={(props) => <Accepted {...props} />}
             />
           </div>
         </Switch>

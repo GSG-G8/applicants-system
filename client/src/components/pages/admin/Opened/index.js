@@ -104,6 +104,14 @@ const Opened = () => {
               title="Opened Applications"
               columns={Header.columns}
               data={opened}
+              options={{
+                exportButton: true,
+                pageSizeOptions: [
+                  5,
+                  10,
+                  !opened ? 15 : opened.length > 10 ? opened.length : 15,
+                ],
+              }}
             />
           )}
         </div>

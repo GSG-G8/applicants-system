@@ -5,15 +5,11 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import backGround from '../../../../assets/images/backgroundDash.svg';
 
-import './index.css';
-
-const getCompleted = async () => {
-  const { data } = (
-    await axios.get(
-      '/api/v1/dashboard/applicants/query?submitted=true&fccpoints=220&cwscore=5&covered=true'
-    )
-  ).data;
-  return data.filter((element) => !!element.applicationSubmittedDate);
+const getAccepted = async () => {
+  const { data } = (await axios.get('/api/v1/dashboard/applicants')).data;
+  return data.filter((element) => {
+    if (element.applicationSubmittedDate && element.accepted) return element;
+  });
 };
 
 const Header = {
@@ -40,32 +36,32 @@ const Header = {
   ],
 };
 
-const Completed = () => {
-  const [completed, setCompleted] = useState();
+const SubmittedApplications = () => {
+  const [Accepted, setAccepted] = useState();
 
   useEffect(() => {
-    if (!completed) getCompleted().then(setCompleted);
-  }, [completed]);
+    if (!Accepted) getAccepted().then(setAccepted);
+  }, [Accepted]);
 
   return (
     <>
       <Helmet>
-        <title>Completed Applications</title>
+        <title>Accepted Applications</title>
       </Helmet>
       <img src={backGround} alt="backGround" className="dash__background" />
       <div className="dashboard__page">
         <div className="submitted__container">
           <MaterialTable
             className="submitted__table"
-            title="Completed Applications"
+            title="Accepted Applications"
             columns={Header.columns}
-            data={completed}
+            data={Accepted}
             options={{
               exportButton: true,
               pageSizeOptions: [
                 5,
                 10,
-                !completed ? 15 : completed.length > 10 ? completed.length : 15,
+                !Accepted ? 15 : Accepted.length > 10 ? Accepted.length : 15,
               ],
             }}
           />
@@ -75,4 +71,4 @@ const Completed = () => {
   );
 };
 
-export default Completed;
+export default SubmittedApplications;
