@@ -142,7 +142,7 @@ const App = () => {
   if (admin) {
     return (
       <div>
-        <DashBar logoutHandler={logoutHandler} />
+        <DashBar />
         <Switch>
           <Route path="/500" render={() => <Error500 />} />
           <Route path="/404" render={() => <Error404 auth="admin" />} />
