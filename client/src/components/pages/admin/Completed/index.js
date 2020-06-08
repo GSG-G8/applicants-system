@@ -7,7 +7,7 @@ import backGround from '../../../../assets/images/backgroundDash.svg';
 
 import './index.css';
 
-const getSubmitted = async () => {
+const getCompleted = async () => {
   const { data } = (
     await axios.get(
       '/api/v1/dashboard/applicants/query?submitted=true&fccpoints=220&cwscore=5&covered=true'
@@ -41,11 +41,11 @@ const Header = {
 };
 
 const Completed = () => {
-  const [submitted, setSubmitted] = useState();
+  const [completed, setCompleted] = useState();
 
   useEffect(() => {
-    if (!submitted) getSubmitted().then(setSubmitted);
-  }, [submitted]);
+    if (!completed) getCompleted().then(setCompleted);
+  }, [completed]);
 
   return (
     <>
@@ -57,9 +57,9 @@ const Completed = () => {
         <div className="submitted__container">
           <MaterialTable
             className="submitted__table"
-            title="Submitted Applications"
+            title="Completed Applications"
             columns={Header.columns}
-            data={submitted}
+            data={completed}
           />
         </div>
       </div>
