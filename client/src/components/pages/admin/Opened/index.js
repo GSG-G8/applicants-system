@@ -20,30 +20,30 @@ const Header = {
     { title: 'Name', field: 'fullName', width: '20%' },
     { title: 'Email', field: 'email', width: '20%' },
     {
-      title: 'Github Account',
+      title: 'Github',
       render: ({ githubLink, fullName }) => (
         <Link
-          className="profile_Link"
+          className="applicant_link"
           to={{
             pathname: `${githubLink}`,
           }}
           target="_blank"
         >
-          {fullName} Account
+          {fullName.split(' ')[0]} Account
         </Link>
       ),
     },
     {
-      title: 'Codewars Profile',
+      title: 'Codewars',
       render: ({ codeWarsLink, fullName }) => (
         <Link
-          className="profile_Link"
+          className="applicant_link"
           to={{
             pathname: `${codeWarsLink}`,
           }}
           target="_blank"
         >
-          {fullName} Profile
+          {fullName.split(' ')[0]} Profile
         </Link>
       ),
     },
@@ -51,7 +51,7 @@ const Header = {
       title: 'Freecodecamp Profile',
       render: ({ freeCodeCampLink, fullName }) => (
         <Link
-          className="profile_Link"
+          className="applicant_link"
           to={{
             pathname: `${freeCodeCampLink}`,
           }}
@@ -65,7 +65,7 @@ const Header = {
       title: 'Project',
       render: ({ projectGithubLink }) => (
         <Link
-          className="profile_Link"
+          className="applicant_link"
           to={{
             pathname: `${projectGithubLink}`,
           }}
