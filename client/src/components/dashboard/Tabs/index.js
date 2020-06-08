@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import logo from '../../../assets/images/logo1.svg';
 import staticImg1 from '../../../assets/icons/dashBarIcons/A.png';
 import staticImg2 from '../../../assets/icons/dashBarIcons/B.png';
@@ -12,7 +14,7 @@ import staticImg8 from '../../../assets/icons/dashBarIcons/H.png';
 import staticImg9 from '../../../assets/icons/dashBarIcons/I.png';
 import './index.css';
 
-const DashBar = () => (
+const DashBar = ({ logOut }) => (
   <div className="dash__bar">
     <img src={logo} alt="Logo" className="logo" />
     <ul className="dash__bar__link">
@@ -57,12 +59,16 @@ const DashBar = () => (
         </Link>
       </li>
       <li>
-        <Link className="dashLink" to="/dashboard">
-          <img src={staticImg5} alt="dash" className="dash__bar__img" />
+        <Link className="dashLink" onClick={logOut}>
+          <img src={staticImg5} alt="logout" className="dash__bar__img" />
         </Link>
       </li>
     </ul>
   </div>
 );
+
+DashBar.propTypes = {
+  logOut: PropTypes.func.isRequired,
+};
 
 export default DashBar;
