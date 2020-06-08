@@ -31,7 +31,7 @@ const Header = {
         <Link
           className="profile_Link"
           exact
-          to={`/dashboard/applications/submitted/${_id}`}
+          to={`/dashboard/applications/completed/${_id}`}
         >
           View
         </Link>

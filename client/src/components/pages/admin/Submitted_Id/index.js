@@ -3,13 +3,12 @@ import axios from 'axios';
 import { Helmet } from 'react-helmet';
 import Checkbox from '@material-ui/core/Checkbox';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import Limitation from '../../../common/limitation';
 import Card from '../../../common/card';
 import Typography from '../../../common/Typography';
 import Button from '../../../common/Button';
 import backGround from '../../../../assets/images/backgroundDash.svg';
-import profileImage from '../../../../assets/images/HomeImg.svg';
 import DashBar from '../../../dashboard/Tabs';
 import './index.css';
 
@@ -63,12 +62,6 @@ const SubmittedId = ({ location: { pathname } }) => {
         </Helmet>
         <img src={backGround} alt="backGround" className="dash__background" />
         <div className="dashboard_page_admin">
-          <img
-            src={profileImage}
-            alt="backGround"
-            className="profileImage_admin profile"
-          />
-
           {data && Technical ? (
             <div className="Profile__container">
               <Card
@@ -169,7 +162,15 @@ const SubmittedId = ({ location: { pathname } }) => {
                         </td>
                         <td>
                           <Typography variant="body2" align="left">
-                            {data.githubLink}
+                            <Link
+                              className="applicant_link"
+                              to={{
+                                pathname: `${data.githubLink}`,
+                              }}
+                              target="_blank"
+                            >
+                              {data.fullName.split(' ')[0]} Account
+                            </Link>
                           </Typography>
                         </td>
                       </tr>
@@ -181,7 +182,15 @@ const SubmittedId = ({ location: { pathname } }) => {
                         </td>
                         <td>
                           <Typography variant="body2" align="left">
-                            {data.freeCodeCampLink}
+                            <Link
+                              className="applicant_link"
+                              to={{
+                                pathname: `${data.freeCodeCampLink}`,
+                              }}
+                              target="_blank"
+                            >
+                              {data.fullName.split(' ')[0]} Profile
+                            </Link>
                           </Typography>
                         </td>
                       </tr>
@@ -193,7 +202,15 @@ const SubmittedId = ({ location: { pathname } }) => {
                         </td>
                         <td>
                           <Typography variant="body2" align="left">
-                            {data.codeWarsLink}
+                            <Link
+                              className="applicant_link"
+                              to={{
+                                pathname: `${data.codeWarsLink}`,
+                              }}
+                              target="_blank"
+                            >
+                              {data.fullName.split(' ')[0]} Profile
+                            </Link>
                           </Typography>
                         </td>
                       </tr>
@@ -246,7 +263,7 @@ const SubmittedId = ({ location: { pathname } }) => {
                               disabled
                             />
                             <a
-                              className="Link"
+                              className="applicant_link"
                               href={data.projectGithubLink}
                               target="popup"
                               onClick={() => {
