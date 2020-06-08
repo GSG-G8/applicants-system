@@ -125,6 +125,7 @@ const App = () => {
     '/dashboard/applications/opened',
     '/dashboard/applications/submitted',
     `/dashboard/applications/submitted/${lastIndexUrl}`,
+    `/dashboard/applications/completed/${lastIndexUrl}`,
     '/dashboard/applications/completed',
     '/dashboard/applications/accepted',
     '/steps',
@@ -171,6 +172,10 @@ const App = () => {
             />
             <Route
               path="/dashboard/applications/submitted/:applicantID"
+              render={(props) => <SubmittedId {...props} />}
+            />
+            <Route
+              path="/dashboard/applications/completed/:applicantID"
               render={(props) => <SubmittedId {...props} />}
             />
             <Route
