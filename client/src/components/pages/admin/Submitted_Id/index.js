@@ -34,7 +34,7 @@ const SubmittedId = ({ location: { pathname } }) => {
   const [data, setData] = useState();
   const [Technical, setTechnical] = useState();
   const [UserId, setId] = useState('');
-  const [accepted, setAccepted] = useState(true);
+  const [acceptedVal, setAcceptedVal] = useState();
   const history = useHistory();
 
   useEffect(() => {
@@ -44,12 +44,13 @@ const SubmittedId = ({ location: { pathname } }) => {
     if (!data && UserId) {
       updatePoints(UserId).then();
       applicantData(UserId).then(setData);
+      applicantData(UserId).then(({ accepted }) => setAcceptedVal(accepted));
     }
     if (!Technical) getTec().then(setTechnical);
-  }, [data, Technical, pathname, UserId]);
+  }, [data, Technical, pathname, UserId, acceptedVal]);
 
   const setAccept = async (id, acceptedValue) => {
-    setAccepted(!acceptedValue);
+    setAcceptedVal(!acceptedValue);
     await axios.patch(`/api/v1/applicants/${id}`, { accepted: !acceptedValue });
   };
 
@@ -336,7 +337,7 @@ const SubmittedId = ({ location: { pathname } }) => {
                       <td className="item" colSpan="2">
                         <Typography variant="body2" align="left">
                           <Checkbox
-                            checked={data && data.accepted}
+                            checked={acceptedVal}
                             className="profile_check_box"
                             color="primary"
                             disabled
@@ -351,8 +352,10 @@ const SubmittedId = ({ location: { pathname } }) => {
                           <Button onClick={() => history.goBack()}>
                             Go Back
                           </Button>
-                          <Button onClick={() => setAccept(UserId, accepted)}>
-                            {accepted ? 'Disapprove' : 'Accept'}
+                          <Button
+                            onClick={() => setAccept(UserId, acceptedVal)}
+                          >
+                            {acceptedVal ? 'Disapprove' : 'Accept'}
                           </Button>
                         </div>
                       </td>
