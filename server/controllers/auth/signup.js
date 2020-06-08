@@ -2,7 +2,7 @@ const { hash } = require('bcrypt');
 const { sign } = require('jsonwebtoken');
 const applicant = require('../../database/models/applicant');
 const project = require('../../database/models/project');
-const allCohort = require('../../database/models/cohort');
+const allCohorts = require('../../database/models/cohort');
 const {
   signupValidate,
 } = require('../../utils/validation/applicantSignupValidation');
@@ -35,7 +35,7 @@ const signupApplicant = (req, res, next) => {
             hash(password, 10).then(async (hashedPassword) => {
               project.aggregate([{ $sample: { size: 1 } }]).then((result) => {
                 // eslint-disable-next-line no-underscore-dangle
-                allCohort
+                allCohorts
                   .find()
                   .limit(1)
                   .sort({ $natural: -1 })

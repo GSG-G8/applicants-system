@@ -16,7 +16,7 @@ const AppBar = ({ auth, logoutHandler, UserAvatar, loading, userName }) => {
     <div className="app-bar">
       <MuiAppBar color="transparent">
         <Toolbar className="app-bar__toolbar">
-          <a href="https://gazaskygeeks.com/">
+          <a target="_blank" href="https://gazaskygeeks.com/">
             <img src={logo} alt="Gaza sky Geeks logo" className="logo" />
           </a>
           {auth && !loading ? (

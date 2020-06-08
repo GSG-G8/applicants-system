@@ -16,7 +16,7 @@ import './index.css';
 
 const DashBar = ({ logOut }) => (
   <div className="dash__bar">
-    <a href="https://gazaskygeeks.com/">
+    <a target="_blank" href="https://gazaskygeeks.com/">
       <img src={logo} alt="Gaza sky Geeks logo" className="logo" />
     </a>
     <ul className="dash__bar__link">
