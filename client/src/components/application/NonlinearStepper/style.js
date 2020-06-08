@@ -38,6 +38,10 @@ const GeneralInfoStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
   },
+  textArea: {
+    outlineColor: '#ed6d23',
+    marginLeft: '1rem',
+  },
 }));
 
 export { useStyles, GeneralInfoStyles };
