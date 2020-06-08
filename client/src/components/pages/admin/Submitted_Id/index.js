@@ -19,6 +19,9 @@ const applicantData = async (id) => {
   } = await axios.get(`/api/v1/applicants/${id}`);
   return user;
 };
+const setAccept = async (id, acceptedValue) => {
+  await axios.patch(`/api/v1/applicants/${id}`, { accepted: !acceptedValue });
+};
 
 const getTec = async () => {
   const { data } = (await axios.get('/api/v1/tasks')).data;
@@ -33,7 +36,7 @@ const updatePoints = async (id) => {
 const SubmittedId = ({ location: { pathname } }) => {
   const [data, setData] = useState();
   const [Technical, setTechnical] = useState();
-  const [UserId, setId] = useState('');
+  const [userId, setId] = useState('');
   const [acceptedVal, setAcceptedVal] = useState();
   const history = useHistory();
 
@@ -41,18 +44,15 @@ const SubmittedId = ({ location: { pathname } }) => {
     if (pathname) {
       setId(pathname.split('/')[4]);
     }
-    if (!data && UserId) {
-      updatePoints(UserId).then();
-      applicantData(UserId).then(setData);
-      applicantData(UserId).then(({ accepted }) => setAcceptedVal(accepted));
+    if (!data && userId) {
+      updatePoints(userId).then();
+      applicantData(userId).then((rows) => {
+        setData(rows);
+        setAcceptedVal(rows.accepted);
+      });
     }
     if (!Technical) getTec().then(setTechnical);
-  }, [data, Technical, pathname, UserId, acceptedVal]);
-
-  const setAccept = async (id, acceptedValue) => {
-    setAcceptedVal(!acceptedValue);
-    await axios.patch(`/api/v1/applicants/${id}`, { accepted: !acceptedValue });
-  };
+  }, [data, Technical, pathname, userId, acceptedVal]);
 
   return (
     <>
@@ -353,7 +353,10 @@ const SubmittedId = ({ location: { pathname } }) => {
                             Go Back
                           </Button>
                           <Button
-                            onClick={() => setAccept(UserId, acceptedVal)}
+                            onClick={() => {
+                              setAccept(userId, acceptedVal);
+                              setAcceptedVal(!acceptedVal);
+                            }}
                           >
                             {acceptedVal ? 'Disapprove' : 'Accept'}
                           </Button>
