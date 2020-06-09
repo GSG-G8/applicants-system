@@ -1,19 +1,47 @@
 
-.Form_container input {
+.Extra_container_accounts {
+  background-color: rgb(245, 245, 245);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 1%;
+}
+
+.Container_page__accounts {
+  background-color: rgba(245, 245, 245, 0.411);
+  display: flex;
+  flex-direction: column;
+  padding-top: 2%;
+  padding-right: 10%;
+  width: 32rem;
+  z-index: 1;
+}
+
+.Container_page__accounts input {
   height: 0.3rem;
   background-color: rgb(255, 255, 255);
   width: 30rem;
 }
+.Container_page__accounts h6 {
+  font-size: 1.5rem;
+  align-self: flex-start;
+  margin: 1rem ;
+  font-weight: 500;
+}
 
-.Form_container h5 {
+.Container_page__accounts h5 {
   padding-left: 4%;
   margin-bottom: 3%;
 }
 
-.Form_container p {
+.Container_page__accounts p {
   padding-left: 4%;
   margin-top: 1rem;
-  font-weight: bolder;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: left;
 }
 
 .label_container {
@@ -31,7 +59,7 @@
 }
 
 .label_container img {
-  margin: 0;
+  padding-right: 0.5rem;
   width: 1.5rem;
   height: 1.3rem;
 }
@@ -40,31 +68,23 @@
   display: flex;
   justify-content: space-around;
   width: 90%;
-  margin: 0 auto;
-  margin-top: 1.5rem;
+  padding: 2rem 0;
 }
 
 .check_box {
   display: flex;
   flex-direction: row;
   width: 24rem;
-  padding-left: 5%;
+  padding-left: 2%;
 }
 
 .check_box p {
   padding: 0;
   margin-top: 1rem;
-  font-weight: bolder;
+  text-align: left;
 }
 
-.Container_page__accounts {
-  background-color: rgba(245, 245, 245, 0.411);
-  display: flex;
-  flex-direction: column;
-  padding-right: 10%;
-  width: 32rem;
-  z-index: 1;
-}
+
 @media only screen and (max-width: 1150px) {
  
   .Container_page__accounts {
@@ -138,9 +158,15 @@
     display: flex;
     flex-direction: column;
     padding-right: 0%;
+    padding-top: 0;
     padding-left: 0%;
     margin-left: 0;
     width: 25rem;
   }
+  .Container_page__accounts input {
+  height: 0.3rem;
+  background-color: rgb(255, 255, 255);
+  width: 21rem;
+}
   
 }

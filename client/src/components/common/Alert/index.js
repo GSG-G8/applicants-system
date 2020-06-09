@@ -10,6 +10,8 @@ const useStyles = makeStyles((theme) => ({
     '& > * + *': {
       marginTop: theme.spacing(2),
     },
+    position: 'fixed',
+    zIndex: 5,
   },
   alert: {
     marginTop: '3rem',
