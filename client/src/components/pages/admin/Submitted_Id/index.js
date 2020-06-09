@@ -10,6 +10,7 @@ import Typography from '../../../common/Typography';
 import Button from '../../../common/Button';
 import backGround from '../../../../assets/images/backgroundDash.svg';
 import DashBar from '../../../dashboard/Tabs';
+import Alert from '../../../common/Alert';
 import './index.css';
 
 const applicantData = async (id) => {
@@ -20,7 +21,7 @@ const applicantData = async (id) => {
 };
 const setAccept = async (id, acceptedValue) => {
   await axios.patch(`/api/v1/dashboard/applicant/${id}`, {
-    accepted: !acceptedValue,
+    accepted: acceptedValue,
   });
 };
 
@@ -34,6 +35,7 @@ const SubmittedId = ({ location: { pathname } }) => {
   const [Technical, setTechnical] = useState();
   const [userId, setId] = useState('');
   const [acceptedVal, setAcceptedVal] = useState();
+  const [alertMsg, setAlertMsg] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
@@ -57,6 +59,7 @@ const SubmittedId = ({ location: { pathname } }) => {
           <title>Application Profile</title>
         </Helmet>
         <img src={backGround} alt="backGround" className="dash__background" />
+
         <div className="dashboard_page_admin">
           {data && Technical ? (
             <div className="Profile__container">
@@ -65,6 +68,8 @@ const SubmittedId = ({ location: { pathname } }) => {
                 content={
                   <table className="Profile__table">
                     <tbody>
+                      {alertMsg}
+
                       <tr>
                         <td colSpan="2">
                           <img
@@ -486,8 +491,16 @@ const SubmittedId = ({ location: { pathname } }) => {
                             </Button>
                             <Button
                               onClick={() => {
-                                setAccept(userId, acceptedVal);
+                                setAccept(userId, !acceptedVal);
                                 setAcceptedVal(!acceptedVal);
+                                setAlertMsg([
+                                  ...alertMsg,
+                                  acceptedVal ? (
+                                    <Alert Msg="Applicant successfully Unaccepted" />
+                                  ) : (
+                                    <Alert Msg="Applicant successfully Accepted" />
+                                  ),
+                                ]);
                               }}
                             >
                               {acceptedVal ? 'Unaccept' : 'Accept'}
