@@ -12,7 +12,7 @@ import backGround from '../../../../assets/images/backGround.svg';
 import Button from '../../../common/Button';
 import FProjectValidation from '../../../../utils/application/ProjectValidation';
 
-import './style.css';
+import './index.css';
 
 const projectData = async (ID) => {
   const {

@@ -8,7 +8,7 @@ import Limitation from '../../../common/limitation';
 import Typography from '../../../common/Typography';
 import Button from '../../../common/Button';
 import backGround from '../../../../assets/images/backGround.svg';
-import './style.css';
+import './index.css';
 
 const getSteps = async () => {
   const { data } = (await axios.get('/api/v1/steps')).data;
