@@ -71,12 +71,7 @@ const GeneralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         className={` nonlinearSelect ${classes.textArea}`}
         label="Motivation"
         name="motivation"
-        placeholder="What is your motivation for joining the Code Academy?        
-        - Tell us 
-        - in your own words 
-        - about your background and why you want to be considered for this program.             
-        - This is your opportunity to tell your story and make your application unique.                          
-        - Please write at least 5 sentences"
+        placeholder="Tell us - in your own words - about your background and why you want to be considered for this program. This is your opportunity to tell your story and make your application unique. Please write at least 5 sentences."
         aria-label="minimum height"
         onChange={handleFormInput}
         rowsMin={11}
