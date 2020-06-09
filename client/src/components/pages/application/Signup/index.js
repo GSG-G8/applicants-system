@@ -138,6 +138,7 @@ class SignUp extends React.Component {
                       message.includes('You must add only Letters')
                     }
                     message={
+                      (fullName.length > 0 && fullName.length < 5) ||
                       message.includes('Enter your First Name')
                         ? 'You must enter at least 5 characters'
                         : message.includes('You must add only Letters')
