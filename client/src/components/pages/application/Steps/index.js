@@ -66,7 +66,9 @@ const Steps = ({ userId, fullName }) => {
             </div>
           </>
         ) : (
-          <Limitation />
+          <div className="steps_loading">
+            <Limitation />
+          </div>
         )}
 
         {steps && (
