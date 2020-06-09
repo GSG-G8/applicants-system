@@ -1,0 +1,51 @@
+.profile_body_table{
+  display: flex;
+  justify-content: space-around;
+}
+
+.profile__btn__toggle{
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.dashboard_page_admin{
+  width: 100vw;
+  height: 253vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background-image: url('../../../../assets/images/dashbackground.png');
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+  background-attachment: fixed;
+}
+
+.avatar_td{
+  padding-right: 3.938rem;
+}
+
+.table_card .MuiCard-root {
+  margin: 4rem 0rem 1rem 0rem;
+  width: 46rem;
+}
+
+.table_card .MuiTypography-body2 {
+  line-height: 1.9;
+}
+
+.table_card .profile_table{
+  width: 61%;
+}
+
+.table_card .MuiCardContent-root:last-child{
+  padding-left: 3.938rem;
+}
+
+.scrollable_field{
+  width: 250px;
+  height: 150px;
+  overflow: scroll;
+}
