@@ -1,21 +1,29 @@
 import React from 'react';
-import { Radio, FormControlLabel, RadioGroup } from '@material-ui/core';
+import {
+  Radio,
+  FormControlLabel,
+  RadioGroup,
+  TextareaAutosize,
+} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import InputText from '../../common/TextField';
 import SelectBox from '../SelectBox';
 import Typography from '../../common/Typography';
+import selectBoxQuestions from './questions';
 import { GeneralInfoStyles } from './style';
 
 const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
   const classes = GeneralInfoStyles();
-  const GazaAreas = [
-    'North of Gaza Strip',
-    'Gaza City',
-    'Middle Area of Gaza',
-    'Khan Younis',
-    'Rafah',
-  ];
-  const KhalilAreas = ['Old Town', 'New Town'];
+  const {
+    GazaAreas,
+    GazaUniversities,
+    KhalilUniversities,
+    advertisement,
+    codeExperience,
+    primaryMotivationForm,
+    KhalilAreas,
+  } = selectBoxQuestions;
+
   return (
     <div className="availability">
       <div className={classes.gender}>
@@ -55,6 +63,23 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         isError={errorMsg.includes('Full Name is required')}
         message="ex:- Sam Smith"
       />
+
+      <TextareaAutosize
+        className={` nonlinearSelect ${classes.textArea}`}
+        label="Motivation"
+        name="motivation"
+        placeholder="What is your motivation for joining the Code Academy?        
+        - Tell us 
+        - in your own words 
+        - about your background and why you want to be considered for this program.             
+        - This is your opportunity to tell your story and make your application unique.                          
+        - Please write at least 5 sentences"
+        aria-label="minimum height"
+        onChange={handleFormInput}
+        rowsMin={11}
+        value={formValues.motivation}
+        onError={errorMsg.includes('Insert motivation')}
+      />
       <InputText
         className="nonlinearSelect"
         id="mobID"
@@ -87,6 +112,66 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         value={formValues.address}
         isError={errorMsg.includes('Address is required')}
       />
+      <SelectBox
+        className="nonlinearSelect"
+        label="university"
+        name="university"
+        items={
+          formValues.location === 'gaza' ? GazaUniversities : KhalilUniversities
+        }
+        setVal={handleFormInput}
+        value={formValues.university}
+        isError={errorMsg.includes('Select your university')}
+      />
+      <InputText
+        className="nonlinearSelect"
+        value={formValues.specialization}
+        placeholder="If you went to university, what was your specialization?"
+        label="specialization"
+        name="specialization"
+        onChange={handleFormInput}
+        isError={errorMsg.includes('Insert your Specialization')}
+        message="(If you didn't go to university, just write N/A) ?"
+      />
+      <SelectBox
+        className="nonlinearSelect"
+        label="Coding Experience"
+        name="codingExperience"
+        items={codeExperience}
+        setVal={handleFormInput}
+        value={formValues.codingExperience}
+        isError={errorMsg.includes('Select your coding experience')}
+      />
+      <SelectBox
+        className="nonlinearSelect"
+        label="Primary Motivation"
+        name="primaryMotivation"
+        items={primaryMotivationForm}
+        setVal={handleFormInput}
+        value={formValues.primaryMotivation}
+        isError={errorMsg.includes('Select your primary motivation first')}
+      />
+      <SelectBox
+        className="nonlinearSelect"
+        label="How did you hear about the Code Academy"
+        name="caReading"
+        items={advertisement}
+        setVal={handleFormInput}
+        value={formValues.caReading}
+        isError={errorMsg.includes('Select how did you hear about Us first')}
+      />
+      <InputText
+        className="nonlinearSelect"
+        value={formValues.cvLink}
+        placeholder="Link for latest version of your CV in English"
+        label="CV Link"
+        name="cvLink"
+        onChange={handleFormInput}
+        isError={
+          errorMsg.includes('Insert Your Cv Link first') ||
+          errorMsg.includes('Enter correct url!')
+        }
+      />
     </div>
   );
 };
@@ -101,10 +186,17 @@ GereralInfos.propTypes = {
   formValues: PropTypes.shape({
     gender: PropTypes.string,
     fullName: PropTypes.string,
+    motivation: PropTypes.string,
     mobileNumber: PropTypes.string,
     age: PropTypes.string,
     address: PropTypes.string,
     location: PropTypes.string,
+    university: PropTypes.string,
+    specialization: PropTypes.string,
+    codingExperience: PropTypes.string,
+    primaryMotivation: PropTypes.string,
+    caReading: PropTypes.string,
+    cvLink: PropTypes.string,
   }),
   errorMsg: PropTypes.arrayOf(PropTypes.string),
 };
