@@ -1,12 +1,12 @@
-.loading-spinner{
+.loading-spinner {
   text-align: center;
 }
 
-.applicant_link{
+.applicant_link {
   text-decoration: none;
-  color:rgba(0, 0, 0, 0.87);
+  color: rgba(0, 0, 0, 0.87);
 }
 
-.applicant_link:hover{
+.applicant_link:hover {
   color: #ed6d23;
 }

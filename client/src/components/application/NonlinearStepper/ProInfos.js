@@ -4,7 +4,7 @@ import InputText from '../../common/TextField';
 import SelectBox from '../SelectBox';
 
 const ProInfos = ({ handleFormInput, formValues, errorMsg }) => (
-  <div className="availability">
+  <div className="availability Extra_nonlinear">
     <SelectBox
       className="nonlinearSelect"
       label="How confident are you at English speaking?"
