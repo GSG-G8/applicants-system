@@ -21,9 +21,9 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
     advertisement,
     codeExperience,
     primaryMotivationForm,
+    KhalilAreas,
   } = selectBoxQuestions;
 
-  const KhalilAreas = ['Old Town', 'New Town'];
   return (
     <div className="availability">
       <div className={classes.gender}>
@@ -121,7 +121,7 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         }
         setVal={handleFormInput}
         value={formValues.university}
-        isError={errorMsg.includes('Chose your university')}
+        isError={errorMsg.includes('Select your university')}
       />
       <InputText
         className="nonlinearSelect"
@@ -158,7 +158,7 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         items={advertisement}
         setVal={handleFormInput}
         value={formValues.caReading}
-        isError={errorMsg.includes('Select how you here about Us first')}
+        isError={errorMsg.includes('Select how did you hear about Us first')}
       />
       <InputText
         className="nonlinearSelect"
