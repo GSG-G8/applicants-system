@@ -20,7 +20,10 @@ const generalInfosSchema = yup.object().shape({
     .string()
     .required(`Select your primary motivation first`)
     .trim(),
-  caReading: yup.string().required(`Select how you here about Us first`).trim(),
+  caReading: yup
+    .string()
+    .required(`Select how did you hear about Us first`)
+    .trim(),
   cvLink: yup
     .string()
     .matches(

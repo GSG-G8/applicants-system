@@ -53,6 +53,7 @@ const primaryMotivationForm = [
   "I want to learn something new - I don't know if I want a coding career",
   'I want to be part of the GSG and Code Academy community',
 ];
+const KhalilAreas = ['Old Town', 'New Town'];
 
 export default {
   GazaAreas,
@@ -61,4 +62,5 @@ export default {
   advertisement,
   codeExperience,
   primaryMotivationForm,
+  KhalilAreas,
 };
