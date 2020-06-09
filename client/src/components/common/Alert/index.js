@@ -11,6 +11,9 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(2),
     },
   },
+  alert: {
+    marginTop: '3rem',
+  },
 }));
 
 const Alerts = ({ Type, Msg, vertical, horizontal }) => {
@@ -31,7 +34,7 @@ const Alerts = ({ Type, Msg, vertical, horizontal }) => {
         onClose={handleClose}
         anchorOrigin={{ vertical, horizontal }}
       >
-        <Alert onClose={handleClose} severity={Type}>
+        <Alert onClose={handleClose} severity={Type} className={classes.alert}>
           {Msg}
         </Alert>
       </Snackbar>
