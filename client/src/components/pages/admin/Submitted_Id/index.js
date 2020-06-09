@@ -36,6 +36,7 @@ const SubmittedId = ({ location: { pathname } }) => {
   const [userId, setId] = useState('');
   const [acceptedVal, setAcceptedVal] = useState();
   const [alertMsg, setAlertMsg] = useState([]);
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -48,6 +49,7 @@ const SubmittedId = ({ location: { pathname } }) => {
         setAcceptedVal(rows.accepted);
       });
     }
+
     if (!Technical) getTec().then(setTechnical);
   }, [data, Technical, pathname, userId, acceptedVal]);
 
@@ -584,9 +586,11 @@ const SubmittedId = ({ location: { pathname } }) => {
                                 Go Back
                               </Button>
                               <Button
-                                onClick={() => {
-                                  setAccept(userId, !acceptedVal);
+                                onClick={async () => {
+                                  setLoading(true);
+                                  await setAccept(userId, !acceptedVal);
                                   setAcceptedVal(!acceptedVal);
+                                  setLoading(false);
                                   setAlertMsg([
                                     ...alertMsg,
                                     acceptedVal ? (
@@ -596,6 +600,7 @@ const SubmittedId = ({ location: { pathname } }) => {
                                     ),
                                   ]);
                                 }}
+                                disabled={loading}
                               >
                                 {acceptedVal ? 'Unaccept' : 'Accept'}
                               </Button>
