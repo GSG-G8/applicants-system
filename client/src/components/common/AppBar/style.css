@@ -15,5 +15,6 @@
 @media only screen and (max-width: 610px) {
   .logo{
     margin-left: 3rem;
+    margin-top: 0.5rem;
   }
 }

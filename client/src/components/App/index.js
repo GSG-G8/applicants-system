@@ -197,6 +197,9 @@ const App = () => {
           UserAvatar={avatar}
           loading={loading}
         />
+        {pathname !== '/myprofile' && (
+          <ResponsiveDrawer userData={userData} userId={userId} />
+        )}
         <Switch>
           <Route
             path="/500"
@@ -272,9 +275,6 @@ const App = () => {
               path="/myprofile"
               render={() => <Profile userId={userId} userData={userData} />}
             />
-            {pathname !== '/myprofile' && (
-              <ResponsiveDrawer userData={userData} userId={userId} />
-            )}
           </div>
         </Switch>
       </>

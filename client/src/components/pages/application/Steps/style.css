@@ -47,6 +47,9 @@
   margin-left: 1rem;
   list-style: none;
 }
+.steps h6 {
+  font-size: 1.5rem;
+}
 
 @media only screen and (max-width: 1150px) {
   .text_Welcome {
@@ -159,6 +162,7 @@
     padding-right: 5%;
     padding-left: 5%;
     margin-left: 0;
+    padding-bottom: 30%;
     width: 35rem;
     z-index: 1;
   }
