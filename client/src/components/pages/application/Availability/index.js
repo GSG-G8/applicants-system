@@ -35,7 +35,7 @@ const Availability = ({ userId, userData }) => {
   };
 
   return (
-    <div className="Container_page">
+    <div className="Container_page Extra_Availability">
       <Helmet>
         <title>Availability</title>
       </Helmet>

@@ -7,11 +7,13 @@
   align-items: center;
   padding-top: 3%;
 }
+
 .tasks_buttons {
   display: flex;
   justify-content: space-around;
   margin: 2rem;
 }
+
 .Task_container_page {
   background-color: rgba(245, 245, 245, 0.411);
   display: flex;
@@ -20,6 +22,7 @@
   width: 40rem;
   z-index: 1;
 }
+
 .tasks-paragraph {
   margin-left: 2.5rem;
   margin-bottom: 2rem;
@@ -28,81 +31,101 @@
   padding: 0.5rem;
 }
 
+.Task_container_page h6 {
+  font-size: 1.5rem;
+}
+
+.Task_container_page input {
+  height: 0.3rem;
+  background-color: rgb(255, 255, 255);
+  width: 30rem;
+}
+
 @media only screen and (max-width: 1150px) {
- 
+
   .Task_container_page {
-    padding-right: 0%;
-    margin-left: 10%;
-    width: 32rem;
+      padding-right: 0%;
+      margin-left: 10%;
+      width: 32rem;
   }
 }
 
 @media only screen and (max-width: 1050px) {
- 
+
   .Task_container_page {
-    padding-right: 0%;
-    margin-left: 20%;
-    width: 32rem;
+      padding-right: 0%;
+      margin-left: 20%;
+      width: 32rem;
   }
 }
+
 @media only screen and (max-width: 960px) {
   .Task_container_page {
-    background-color: rgba(245, 245, 245, 0.411);
-    display: flex;
-    flex-direction: column;
-    padding-right: 0%;
-    margin-left: 30%;
-    width: 32rem;
-    z-index: 1;
+      background-color: rgba(245, 245, 245, 0.411);
+      display: flex;
+      flex-direction: column;
+      padding-right: 0%;
+      margin-left: 30%;
+      width: 32rem;
+      z-index: 1;
   }
- 
+
 }
 
 @media only screen and (max-width: 870px) {
   .Task_container_page {
-    background-color: rgba(245, 245, 245, 0.411);
-    display: flex;
-    flex-direction: column;
-    padding-right: 0%;
-    margin-left: 30%;
-    width: 25rem;
-    z-index: 1;
+      background-color: rgba(245, 245, 245, 0.411);
+      display: flex;
+      flex-direction: column;
+      padding-right: 0%;
+      margin-left: 30%;
+      width: 25rem;
+      z-index: 1;
   }
- 
+
 }
 
 @media only screen and (max-width: 790px) {
   .Task_container_page {
-    background-color: rgba(245, 245, 245, 0.411);
-    display: flex;
-    flex-direction: column;
-    padding-right: 0%;
-    margin-left: 40%;
-    width: 20rem;
-    z-index: 1;
+      background-color: rgba(245, 245, 245, 0.411);
+      display: flex;
+      flex-direction: column;
+      padding-right: 0%;
+      margin-left: 40%;
+      width: 20rem;
+      z-index: 1;
   }
- 
+
 }
+
 @media only screen and (max-width: 640px) {
   .Task_container_page {
-    background-color: rgba(245, 245, 245, 0.411);
-    display: flex;
-    flex-direction: column;
-    padding-right: 0%;
-    margin-left: 40%;
-    width: 15rem;
-    z-index: 1;
+      background-color: rgba(245, 245, 245, 0.411);
+      display: flex;
+      flex-direction: column;
+      padding-right: 0%;
+      margin-left: 40%;
+      width: 15rem;
+      z-index: 1;
   }
- 
+
 }
+
 @media only screen and (max-width: 610px) {
   .Task_container_page {
-    background-color: rgba(245, 245, 245, 0.699);
-    display: flex;
-    flex-direction: column;
-    width: 30rem;
-    z-index: 1;
-    margin-left: 10rem;
-    padding-right: 15%;
+      background-color: rgba(245, 245, 245, 0.699);
+      display: flex;
+      flex-direction: column;
+      width: 23rem;
+      z-index: 1;
+      margin-left: 0;
+      padding-right: 0%;
+      margin-top: 2rem;
+  }
+
+  .Task_container_page input {
+      height: 0.3rem;
+      background-color: rgb(255, 255, 255);
+      width: 20rem;
   }
 }

@@ -1,33 +1,35 @@
-.submitted__container{
+.submitted__container {
   min-width: 50rem;
   margin-top: 2rem;
   width: 72%;
   position: absolute;
-  top:12%;
+  top: 12%;
 }
 
-.submitted__container td{
+.submitted__container td {
   line-height: 1rem;
   padding: .5rem 1rem .5rem 1rem;
 }
-.submitted__container tr{
+
+.submitted__container tr {
   margin: 0 auto;
   width: 50%;
   margin-left: 10rem;
 }
 
-.submitted__container th{
+.submitted__container th {
   width: 20%;
-margin-top: 10rem;
-border: 1px dashed #e3e3e3;
-height: 20px;
-color: #ed6d23;
-font-family: Raleway;
-font-size: 1rem;
-font-weight: 400;
-line-height: 1rem;
+  margin-top: 10rem;
+  border: 1px dashed #e3e3e3;
+  height: 20px;
+  color: #ed6d23;
+  font-family: Raleway;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1rem;
 }
-.profile_Link{
+
+.profile_Link {
   text-decoration: none;
   color: #ed6d23;
 }

@@ -1,7 +1,12 @@
 .Container_page_profile {
-  height: auto;
+  height: 100vh;
+  padding-top: 15%;
   margin: 0;
-  
+  background-color: rgb(245, 245, 245);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 15%;
 }
 
 .profile {
@@ -10,6 +15,16 @@
 
 .Profile__container {
   margin: 4rem 0 1rem 0;
+  z-index: 3;
+}
+
+.profileImage_backGround {
+  position: fixed;
+  left: 2%;
+  z-index: 0;
+  top: 30%;
+  height: 70vh;
+  width: 20vw;
 }
 
 .profileImage {
@@ -48,7 +63,8 @@
 .item {
   padding-left: 2rem;
 }
-.points-value{
+
+.points-value {
   padding-bottom: 0.3rem;
 }
 
@@ -56,4 +72,15 @@
   height: .1rem;
   margin: 0;
   padding: 0;
+}
+
+@media only screen and (max-width: 610px) {
+  .Profile__container {
+      width: 100%;
+  }
+
+  .Container_page_profile {
+      height: 100vh;
+      padding-top: 20%;
+  }
 }

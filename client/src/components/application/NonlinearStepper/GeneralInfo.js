@@ -25,33 +25,34 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
   } = selectBoxQuestions;
 
   return (
-    <div className="availability">
-      <div className={classes.gender}>
-        <Typography variant="h5" color="primary">
-          Gender
-        </Typography>
-        <RadioGroup
-          row
-          aria-label="gender"
-          name="gender"
-          onChange={handleFormInput}
-          value={formValues.gender}
-        >
-          <FormControlLabel
-            className={classes.gender}
-            value="female"
-            control={<Radio color="primary" />}
-            label="Female"
-          />
+    <div className="availability Extra_nonlinear">
+      <Typography variant="h5" color="primary">
+        Gender
+      </Typography>
+      {/* <div className="Gender_Radio"> */}
+      <RadioGroup
+        row
+        aria-label="gender"
+        name="gender"
+        className="Gender_Radio"
+        onChange={handleFormInput}
+        value={formValues.gender}
+      >
+        <FormControlLabel
+          className={classes.gender}
+          value="female"
+          control={<Radio color="primary" />}
+          label="Female"
+        />
 
-          <FormControlLabel
-            className={classes.gender}
-            value="male"
-            control={<Radio color="primary" />}
-            label="Male"
-          />
-        </RadioGroup>
-      </div>
+        <FormControlLabel
+          className={classes.gender}
+          value="male"
+          control={<Radio color="primary" />}
+          label="Male"
+        />
+      </RadioGroup>
+      {/* </div> */}
       <InputText
         className="nonlinearSelect"
         id="nameID"
