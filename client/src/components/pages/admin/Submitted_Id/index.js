@@ -54,7 +54,7 @@ const SubmittedId = ({ location: { pathname } }) => {
   return (
     <>
       <DashBar />
-      <div className="Container_page Container_page_profile">
+      <div className="Container_page Extra_page_profile">
         <Helmet>
           <title>Application Profile</title>
         </Helmet>
