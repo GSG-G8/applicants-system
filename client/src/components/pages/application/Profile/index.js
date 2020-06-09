@@ -27,15 +27,15 @@ const ProfilePage = ({ userId, userData }) => {
   }, [Technical, userId]);
 
   return (
-    <div className="Container_page Container_page_profile">
+    <div className=" Container_page_profile">
       <Helmet>
         <title>Profile</title>
       </Helmet>
-      <img src={backGround} alt="backGround" className="profile backGround" />
+      <img src={backGround} alt="backGround" className="backGround" />
       <img
         src={profileImage}
         alt="backGround"
-        className="profileImage profile"
+        className="profileImage_backGround"
       />
 
       {userData && Technical ? (
