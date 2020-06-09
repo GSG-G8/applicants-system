@@ -217,7 +217,7 @@ const SubmittedId = ({ location: { pathname } }) => {
                       <tr>
                         <td className="item">
                           <Typography variant="body2" align="left">
-                            CA Reading
+                            CA Reaching
                           </Typography>
                         </td>
                         <td>
@@ -430,7 +430,7 @@ const SubmittedId = ({ location: { pathname } }) => {
                             color="primary"
                             align="left"
                           >
-                            {data.freeCodeCampPoints || 'No Data'}
+                            {data.freeCodeCampPoints || 0}
                           </Typography>
                         </td>
                       </tr>
