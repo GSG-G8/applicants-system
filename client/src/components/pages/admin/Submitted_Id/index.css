@@ -1,3 +1,8 @@
+.profile_body_table{
+  display: flex;
+  justify-content: space-around;
+}
+
 .profile__btn__toggle{
   margin-top: 12px;
   display: flex;
@@ -6,7 +11,7 @@
 
 .dashboard_page_admin{
   width: 100vw;
-  height: 127vh;
+  height: 164vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -16,4 +21,10 @@
   background-repeat: no-repeat;
   background-size: 100vw 100vh;
   background-attachment: fixed;
+}
+
+.scrollable_field{
+    width: 200px;
+    height: 100px;
+    overflow: scroll;
 }

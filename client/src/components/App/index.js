@@ -163,26 +163,32 @@ const App = () => {
               render={(props) => <Dashboard {...props} />}
             />
             <Route
+              exact
               path="/dashboard/applications/opened"
               render={(props) => <Opened {...props} />}
             />
             <Route
+              exact
               path="/dashboard/applications/submitted"
               render={(props) => <SubmittedAll {...props} />}
             />
             <Route
+              exact
               path="/dashboard/applications/submitted/:applicantID"
               render={(props) => <SubmittedId {...props} />}
             />
             <Route
+              exact
               path="/dashboard/applications/completed/:applicantID"
               render={(props) => <SubmittedId {...props} />}
             />
             <Route
+              exact
               path="/dashboard/applications/completed"
               render={(props) => <Completed {...props} />}
             />
             <Route
+              exact
               path="/dashboard/applications/accepted"
               render={(props) => <Accepted {...props} />}
             />

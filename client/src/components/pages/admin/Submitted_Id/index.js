@@ -126,11 +126,11 @@ const SubmittedId = ({ location: { pathname } }) => {
                         </td>
                         <td>
                           <Typography variant="body2" align="left">
-                            {data.gender}
+                            {data.gender || 'No Data'}
                           </Typography>
                         </td>
                       </tr>
-                      <tr className="doted">
+                      <tr>
                         <td className="item">
                           <Typography variant="body2" align="left">
                             Age
@@ -138,10 +138,99 @@ const SubmittedId = ({ location: { pathname } }) => {
                         </td>
                         <td>
                           <Typography variant="body2" align="left">
-                            {data.age}
+                            {data.age || 'No Data'}
                           </Typography>
                         </td>
                       </tr>
+                      <tr>
+                        <td className="item">
+                          <Typography variant="body2" align="left">
+                            University
+                          </Typography>
+                        </td>
+                        <td>
+                          <Typography variant="body2" align="left">
+                            {data.university || 'No Data'}
+                          </Typography>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="item">
+                          <Typography variant="body2" align="left">
+                            Specialization
+                          </Typography>
+                        </td>
+                        <td>
+                          <Typography variant="body2" align="left">
+                            {data.specialization || 'No Data'}
+                          </Typography>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="item">
+                          <Typography variant="body2" align="left">
+                            CV Link
+                          </Typography>
+                        </td>
+                        <td>
+                          <Typography variant="body2" align="left">
+                            {data.cvLink || 'No Data'}
+                          </Typography>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="item">
+                          <Typography variant="body2" align="left">
+                            Coding Experience
+                          </Typography>
+                        </td>
+                        <td>
+                          <Typography variant="body2" align="left">
+                            {data.codingExperience || 'No Data'}
+                          </Typography>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="item">
+                          <Typography variant="body2" align="left">
+                            Primary Motivation
+                          </Typography>
+                        </td>
+                        <td>
+                          <div className="scrollable_field">
+                            <Typography variant="body2" align="left">
+                              {data.primaryMotivation || 'No Data'}
+                            </Typography>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="item">
+                          <Typography variant="body2" align="left">
+                            Motivation
+                          </Typography>
+                        </td>
+                        <td>
+                          <div className="scrollable_field">
+                            <Typography variant="body2" align="left">
+                              {data.motivation || 'No Data'}
+                            </Typography>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="item">
+                          <Typography variant="body2" align="left">
+                            CA Reading
+                          </Typography>
+                        </td>
+                        <td>
+                          <Typography variant="body2" align="left">
+                            {data.caReading || 'No Data'}
+                          </Typography>
+                        </td>
+                      </tr>
+
                       <tr className="doted">
                         <td>
                           <Typography
@@ -236,7 +325,7 @@ const SubmittedId = ({ location: { pathname } }) => {
                                   className="profile_check_box"
                                   color="primary"
                                 />
-                                {taskName}
+                                {taskName || 'No Data'}
                               </Typography>
                             </td>
                           </tr>
@@ -303,14 +392,14 @@ const SubmittedId = ({ location: { pathname } }) => {
                             color="primary"
                             align="left"
                           >
-                            {data.codeWarsKyu}
+                            {data.codeWarsKyu || 'No Data'}
                           </Typography>
                         </td>
                       </tr>
                       <tr>
                         <td className="item">
                           <Typography variant="body2" align="left">
-                            freecodecamp Score
+                            freecodecamp Points
                           </Typography>
                         </td>
                         <td className="points-value">
@@ -319,7 +408,7 @@ const SubmittedId = ({ location: { pathname } }) => {
                             color="primary"
                             align="left"
                           >
-                            {data.freeCodeCampPoints}
+                            {data.freeCodeCampPoints || 'No Data'}
                           </Typography>
                         </td>
                       </tr>
@@ -346,10 +435,11 @@ const SubmittedId = ({ location: { pathname } }) => {
                               disabled
                             />
                             Submitted
-                            {data.applicationSubmittedDate &&
-                              `on ${
+                            {(data.applicationSubmittedDate &&
+                              ` on ${
                                 data.applicationSubmittedDate.split('T')[0]
-                              }`}
+                              }`) ||
+                              'No Data'}
                           </Typography>
                         </td>
                       </tr>
@@ -378,7 +468,7 @@ const SubmittedId = ({ location: { pathname } }) => {
                                 setAcceptedVal(!acceptedVal);
                               }}
                             >
-                              {acceptedVal ? 'Disapprove' : 'Accept'}
+                              {acceptedVal ? 'Unaccept' : 'Accept'}
                             </Button>
                           </div>
                         </td>
