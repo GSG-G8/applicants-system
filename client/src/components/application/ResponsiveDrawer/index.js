@@ -82,7 +82,7 @@ const ResponsiveDrawer = ({ Content, window, userData }) => {
           onClick={handleDrawerToggle}
           className={classes.menuButton}
         >
-          <MenuIcon />
+          <MenuIcon style={{ fontSize: 35 }} />
         </IconButton>
       </Toolbar>
       <nav className={classes.drawer} aria-label="mailbox folders">
