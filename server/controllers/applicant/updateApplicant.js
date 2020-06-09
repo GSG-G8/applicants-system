@@ -9,7 +9,6 @@ const updateApplicant = (req, res, next) => {
     freeCodeCampTopics,
     codeWarsKyu,
     projectId,
-    accepted,
     ...rest
   } = req.body;
 
