@@ -23,11 +23,13 @@
   background-attachment: fixed;
 }
 
+.avatar_td{
+  padding-right: 3.938rem;
+}
 
-.table_card .MuiPaper-root {
+.table_card .MuiCard-root {
   margin: 4rem 0rem 1rem 0rem;
   width: 46rem;
-
 }
 
 .table_card .MuiTypography-body2 {
@@ -43,7 +45,7 @@
 }
 
 .scrollable_field{
-    width: 250px;
-    height: 150px;
-    overflow: scroll;
+  width: 250px;
+  height: 150px;
+  overflow: scroll;
 }

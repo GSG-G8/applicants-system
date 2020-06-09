@@ -68,11 +68,10 @@ const SubmittedId = ({ location: { pathname } }) => {
                   ClassName="card_profile"
                   content={
                     <table className="Profile__table">
+                      {alertMsg}
                       <tbody>
-                        {alertMsg}
-
                         <tr>
-                          <td colSpan="2">
+                          <td className="avatar_td" colSpan="2">
                             <img
                               src={data.avatar}
                               alt={data.fullName}
@@ -171,7 +170,7 @@ const SubmittedId = ({ location: { pathname } }) => {
                         <tr>
                           <td className="item">
                             <Typography variant="body2" align="left">
-                              Adress
+                              Address
                             </Typography>
                           </td>
                           <td>
