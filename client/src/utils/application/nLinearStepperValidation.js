@@ -2,7 +2,14 @@ import * as yup from 'yup';
 
 const generalInfosSchema = yup.object().shape({
   gender: yup.string().required('Gender is required'),
-  fullName: yup.string().required('Full Name is required').trim(),
+  fullName: yup
+    .string()
+    .matches(
+      /^[A-Za-z\s]{5,}$/,
+      'You must add only letters, at least 5 characters'
+    )
+    .trim()
+    .required('Enter your First Name'),
   mobileNumber: yup
     .string()
     .matches(/^(05)[0-9]{8}$/, 'Error Mobile Number')
