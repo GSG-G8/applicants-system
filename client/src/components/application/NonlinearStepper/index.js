@@ -90,6 +90,13 @@ export default function HorizontalNonLinearStepper({ userID, UserData }) {
       englishSpeaking,
       employmentStatus,
       jobTitle,
+      motivation,
+      specialization,
+      university,
+      codingExperience,
+      primaryMotivation,
+      caReading,
+      cvLink,
     } = formValues;
     try {
       await generalInfosValidation(values);
@@ -105,6 +112,13 @@ export default function HorizontalNonLinearStepper({ userID, UserData }) {
           englishSpeaking,
           employmentStatus,
           jobTitle,
+          motivation,
+          specialization,
+          university,
+          codingExperience,
+          primaryMotivation,
+          caReading,
+          cvLink,
         });
         history.push('/accounts');
       } catch (error) {
