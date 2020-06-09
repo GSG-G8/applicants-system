@@ -5,8 +5,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import backGround from '../../../../assets/images/backgroundDash.svg';
 
-import './index.css';
-
 const getCompleted = async () => {
   const { data } = (
     await axios.get(
