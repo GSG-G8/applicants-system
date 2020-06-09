@@ -15,21 +15,18 @@ import './index.css';
 const applicantData = async (id) => {
   const {
     data: { user },
-  } = await axios.get(`/api/v1/applicants/${id}`);
+  } = await axios.get(`/api/v1/dashboard/applicant/${id}`);
   return user;
 };
 const setAccept = async (id, acceptedValue) => {
-  await axios.patch(`/api/v1/applicants/${id}`, { accepted: !acceptedValue });
+  await axios.patch(`/api/v1/dashboard/applicant/${id}`, {
+    accepted: !acceptedValue,
+  });
 };
 
 const getTec = async () => {
   const { data } = (await axios.get('/api/v1/tasks')).data;
   return data;
-};
-
-const updatePoints = async (id) => {
-  const Points = await axios.get(`/api/v1/applicants/${id}/points`);
-  return Points;
 };
 
 const SubmittedId = ({ location: { pathname } }) => {
@@ -44,7 +41,6 @@ const SubmittedId = ({ location: { pathname } }) => {
       setId(pathname.split('/')[4]);
     }
     if (!data && userId) {
-      updatePoints(userId).then();
       applicantData(userId).then((rows) => {
         setData(rows);
         setAcceptedVal(rows.accepted);
@@ -304,6 +300,32 @@ const SubmittedId = ({ location: { pathname } }) => {
                         </td>
                       </tr>
                       <tr className="doted">
+                        <td>
+                          <Typography
+                            variant="body2"
+                            color="primary"
+                            align="left"
+                          >
+                            Cohorts
+                          </Typography>
+                        </td>
+                        <td />
+                      </tr>
+                      <tr className="doted">
+                        <td className="item">
+                          <Typography variant="body2" align="left">
+                            Cohorts
+                          </Typography>
+                        </td>
+                        <td>
+                          {data.cohorts.map((element) => (
+                            <Typography variant="body2" align="left">
+                              {element}
+                            </Typography>
+                          ))}
+                        </td>
+                      </tr>
+                      <tr>
                         <td>
                           <Typography
                             variant="body2"

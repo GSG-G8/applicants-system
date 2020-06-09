@@ -123,10 +123,11 @@ const App = () => {
   const Routes = [
     '/dashboard',
     '/dashboard/applications/opened',
-    '/dashboard/applications/submitted',
     `/dashboard/applications/submitted/${lastIndexUrl}`,
+    '/dashboard/applications/submitted',
     `/dashboard/applications/completed/${lastIndexUrl}`,
     '/dashboard/applications/completed',
+    `/dashboard/applications/accepted/${lastIndexUrl}`,
     '/dashboard/applications/accepted',
     '/steps',
     '/availability',
@@ -191,6 +192,11 @@ const App = () => {
               exact
               path="/dashboard/applications/accepted"
               render={(props) => <Accepted {...props} />}
+            />
+            <Route
+              exact
+              path="/dashboard/applications/accepted/:applicantID"
+              render={(props) => <SubmittedId {...props} />}
             />
           </div>
         </Switch>
