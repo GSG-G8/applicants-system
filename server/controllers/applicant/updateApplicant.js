@@ -4,7 +4,6 @@ const validationUpdate = require('../../utils/validation/applicantValidation');
 const updateApplicant = (req, res, next) => {
   const { id } = req.params;
   const {
-    cohorts,
     freeCodeCampPoints,
     freeCodeCampTopics,
     codeWarsKyu,
