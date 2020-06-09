@@ -1,3 +1,4 @@
+
 .availability {
   max-width: 43rem;
   display: flex;
@@ -37,13 +38,31 @@
   margin-top: 5rem;
 }
 
+.Extra_Availability {
+  height: 100%;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+.Extra_Availability h6 {
+  font-size: 1.5rem;
+}
+.Extra_nonlinear {
+  padding-top: 0;
+  margin-top: 0;
+}
+.Extra_nonlinear h5 {
+  text-align: left;
+  padding-left: 1rem;
+}
+.Gender_Radio {
+  padding-left: 2rem;
+}
 @media only screen and (max-width: 1150px) {
   .Container_page__availability {
     margin-left: 2%;
     width: 32rem;
   }
 }
-
 @media only screen and (max-width: 1050px) {
   .Container_page__availability {
     padding-right: 0%;
@@ -60,7 +79,6 @@
     width: 32rem;
   }
 }
-
 @media only screen and (max-width: 870px) {
   .Container_page__availability {
     background-color: rgba(245, 245, 245, 0.411);
@@ -70,7 +88,6 @@
     width: 25rem;
   }
 }
-
 @media only screen and (max-width: 790px) {
   .Container_page__availability {
     background-color: rgba(245, 245, 245, 0.411);
@@ -99,5 +116,22 @@
     margin-left: 1rem;
     width: 25rem;
     margin-top: 2rem;
+  }
+  .Container_page__availability input {
+    height: 0.3rem;
+    background-color: rgb(255, 255, 255);
+    width: 21rem;
+  }
+  .Extra_Availability {
+    padding-top: 2rem;
+  }
+  .nonlinearSelect {
+    width: 20rem;
+  }
+  .Gender_Radio {
+    width: 2rem;
+  }
+  .Extra_nonlinear {
+    padding-top: 0;
   }
 }
