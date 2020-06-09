@@ -9,66 +9,19 @@ import PropTypes from 'prop-types';
 import InputText from '../../common/TextField';
 import SelectBox from '../SelectBox';
 import Typography from '../../common/Typography';
-
+import selectBoxQuestions from './questions';
 import { GeneralInfoStyles } from './style';
 
 const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
   const classes = GeneralInfoStyles();
-  const GazaAreas = [
-    'North of Gaza Strip',
-    'Gaza City',
-    'Middle Area of Gaza',
-    'Khan Younis',
-    'Rafah',
-  ];
-  const GazaUniversity = [
-    "I didn't go to university",
-    'Islamic University of Gaza',
-    'Al Azhar University',
-    'Palestine University',
-    'UCAS',
-    'Al Quds Open University',
-    'University College of Science and Technology',
-    'Al Aqsa University',
-    'Gaza University',
-    'I went to university outside of Gaza',
-  ];
-
-  const KhalilUniversity = [
-    "I didn't go to university",
-    'Palestine Polytechnic University (PPU)',
-    'Hebron University',
-    'Bethlehem University',
-    'Birzeit University',
-    'Al Najah University',
-    'Arab American University',
-    'Al Quds Open University',
-    'Al Quds University',
-    'Palestine Technical University - Kadoori',
-    'IT College - Vocational Center',
-    'University outside of Palestine',
-    'Other',
-  ];
-  const advert = [
-    'Gaza Sky Geeks Social Media (Facebook, Twitter, Instagram)',
-    'Friend or family member who is a Code Academy graduate',
-    'I came to a GSG workshop or event (such as “Coding for Everyone”)',
-    'Online / browsing the web',
-    'Jobs.ps',
-    'Other',
-  ];
-  const codeExperience = [
-    'No Experience',
-    'Some experience as hobby',
-    'A lot of experience as a hobby',
-    'I have a university degree in Computer Science or another related field',
-    'I have had a paid job as a developer.',
-  ];
-  const primaryMotivationForm = [
-    'I want to gain employment/earn income as a developer.',
-    "I want to learn something new - I don't know if I want a coding career",
-    'I want to be part of the GSG and Code Academy community',
-  ];
+  const {
+    GazaAreas,
+    GazaUniversities,
+    KhalilUniversities,
+    advertisement,
+    codeExperience,
+    primaryMotivationForm,
+  } = selectBoxQuestions;
 
   const KhalilAreas = ['Old Town', 'New Town'];
   return (
@@ -164,11 +117,11 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         label="university"
         name="university"
         items={
-          formValues.location === 'gaza' ? GazaUniversity : KhalilUniversity
+          formValues.location === 'gaza' ? GazaUniversities : KhalilUniversities
         }
         setVal={handleFormInput}
         value={formValues.university}
-        isError={errorMsg.includes('university')}
+        isError={errorMsg.includes('Chose your university')}
       />
       <InputText
         className="nonlinearSelect"
@@ -177,7 +130,7 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         label="specialization"
         name="specialization"
         onChange={handleFormInput}
-        isError={errorMsg.includes('specialization')}
+        isError={errorMsg.includes('Insert your Specialization')}
         message="(If you didn't go to university, just write N/A) ?"
       />
       <SelectBox
@@ -187,7 +140,7 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         items={codeExperience}
         setVal={handleFormInput}
         value={formValues.codingExperience}
-        isError={errorMsg.includes('codingExperience')}
+        isError={errorMsg.includes('Select your coding experience')}
       />
       <SelectBox
         className="nonlinearSelect"
@@ -196,16 +149,16 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         items={primaryMotivationForm}
         setVal={handleFormInput}
         value={formValues.primaryMotivation}
-        isError={errorMsg.includes('primaryMotivation')}
+        isError={errorMsg.includes('Select your primary motivation first')}
       />
       <SelectBox
         className="nonlinearSelect"
         label="How did you hear about the Code Academy"
         name="caReading"
-        items={advert}
+        items={advertisement}
         setVal={handleFormInput}
         value={formValues.caReading}
-        isError={errorMsg.includes('caReading')}
+        isError={errorMsg.includes('Select how you here about Us first')}
       />
       <InputText
         className="nonlinearSelect"
@@ -215,7 +168,8 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         name="cvLink"
         onChange={handleFormInput}
         isError={
-          errorMsg.includes('cvLink') || errorMsg.includes('Enter correct url!')
+          errorMsg.includes('Insert Your Cv Link first') ||
+          errorMsg.includes('Enter correct url!')
         }
       />
     </div>
