@@ -11,7 +11,7 @@
 
 .dashboard_page_admin{
   width: 100vw;
-  height: 177vh;
+  height: 253vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -23,8 +23,28 @@
   background-attachment: fixed;
 }
 
+
+.table_card .makeStyles-card_profile-17 {
+  margin: 4rem 0rem 1rem 0rem;
+  width: 46rem;
+
+}
+
+.table_card .MuiTypography-body2 {
+  line-height: 1.9;
+}
+
+.table_card .profile_table{
+  width: 61%;
+}
+
+.table_card .MuiCardContent-root:last-child{
+  padding-left: 3.938rem;
+}
+
+
 .scrollable_field{
-    width: 150px;
-    height: 100px;
+    width: 250px;
+    height: 150px;
     overflow: scroll;
 }

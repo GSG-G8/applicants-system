@@ -60,458 +60,554 @@ const SubmittedId = ({ location: { pathname } }) => {
         </Helmet>
         <img src={backGround} alt="backGround" className="dash__background" />
 
-        <div className="dashboard_page_admin">
+        <div className="dashboard_page_admin ">
           {data && Technical ? (
             <div className="Profile__container">
-              <Card
-                ClassName="card_profile"
-                content={
-                  <table className="Profile__table">
-                    <tbody>
-                      {alertMsg}
+              <div className="table_card">
+                <Card
+                  ClassName="card_profile"
+                  content={
+                    <table className="Profile__table">
+                      <tbody>
+                        {alertMsg}
 
-                      <tr>
-                        <td colSpan="2">
-                          <img
-                            src={data.avatar}
-                            alt={data.fullName}
-                            className="Profile__avatar"
-                          />
-                        </td>
-                      </tr>
-                      <tr className="doted">
-                        <td>
-                          <Typography
-                            variant="body2"
-                            color="primary"
-                            align="left"
-                          >
-                            User Name
-                          </Typography>
-                        </td>
-                        <td>
-                          <Typography variant="body2" align="left">
-                            {data.fullName}
-                          </Typography>
-                        </td>
-                      </tr>
-                      <tr className="doted">
-                        <td>
-                          <Typography
-                            variant="body2"
-                            color="primary"
-                            align="left"
-                          >
-                            Availability
-                          </Typography>
-                        </td>
-                        <td />
-                      </tr>
-                      <tr>
-                        <td className="item">
-                          <Typography variant="body2" align="left">
-                            Email
-                          </Typography>
-                        </td>
-                        <td>
-                          <Typography variant="body2" align="left">
-                            {data.email}
-                          </Typography>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="item">
-                          <Typography variant="body2" align="left">
-                            Gender
-                          </Typography>
-                        </td>
-                        <td>
-                          <Typography variant="body2" align="left">
-                            {data.gender || 'No Data'}
-                          </Typography>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="item">
-                          <Typography variant="body2" align="left">
-                            Age
-                          </Typography>
-                        </td>
-                        <td>
-                          <Typography variant="body2" align="left">
-                            {data.age || 'No Data'}
-                          </Typography>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="item">
-                          <Typography variant="body2" align="left">
-                            University
-                          </Typography>
-                        </td>
-                        <td>
-                          <Typography variant="body2" align="left">
-                            {data.university || 'No Data'}
-                          </Typography>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="item">
-                          <Typography variant="body2" align="left">
-                            Specialization
-                          </Typography>
-                        </td>
-                        <td>
-                          <Typography variant="body2" align="left">
-                            {data.specialization || 'No Data'}
-                          </Typography>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="item">
-                          <Typography variant="body2" align="left">
-                            CV Link
-                          </Typography>
-                        </td>
-                        <td>
-                          <Typography variant="body2" align="left">
-                            {data.cvLink || 'No Data'}
-                          </Typography>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="item">
-                          <Typography variant="body2" align="left">
-                            Coding Experience
-                          </Typography>
-                        </td>
-                        <td>
-                          <Typography variant="body2" align="left">
-                            {data.codingExperience || 'No Data'}
-                          </Typography>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="item">
-                          <Typography variant="body2" align="left">
-                            Primary Motivation
-                          </Typography>
-                        </td>
-                        <td>
-                          <div className="scrollable_field">
-                            <Typography variant="body2" align="left">
-                              {data.primaryMotivation || 'No Data'}
-                            </Typography>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="item">
-                          <Typography variant="body2" align="left">
-                            Motivation
-                          </Typography>
-                        </td>
-                        <td>
-                          <div className="scrollable_field">
-                            <Typography variant="body2" align="left">
-                              {data.motivation || 'No Data'}
-                            </Typography>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="item">
-                          <Typography variant="body2" align="left">
-                            CA Reaching
-                          </Typography>
-                        </td>
-                        <td>
-                          <Typography variant="body2" align="left">
-                            {data.caReading || 'No Data'}
-                          </Typography>
-                        </td>
-                      </tr>
-
-                      <tr className="doted">
-                        <td>
-                          <Typography
-                            variant="body2"
-                            color="primary"
-                            align="left"
-                          >
-                            Accounts
-                          </Typography>
-                        </td>
-                        <td />
-                      </tr>
-                      <tr>
-                        <td className="item">
-                          <Typography variant="body2" align="left">
-                            Github
-                          </Typography>
-                        </td>
-                        <td>
-                          <Typography variant="body2" align="left">
-                            <Link
-                              className="applicant_link"
-                              to={{
-                                pathname: `${data.githubLink}`,
-                              }}
-                              target="_blank"
+                        <tr>
+                          <td colSpan="2">
+                            <img
+                              src={data.avatar}
+                              alt={data.fullName}
+                              className="Profile__avatar"
+                            />
+                          </td>
+                        </tr>
+                        <tr className="doted">
+                          <td>
+                            <Typography
+                              variant="body2"
+                              color="primary"
+                              align="left"
                             >
-                              {data.fullName.split(' ')[0]} Account
-                            </Link>
-                          </Typography>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="item">
-                          <Typography variant="body2" align="left">
-                            FreeCode Camp
-                          </Typography>
-                        </td>
-                        <td>
-                          <Typography variant="body2" align="left">
-                            <Link
-                              className="applicant_link"
-                              to={{
-                                pathname: `${data.freeCodeCampLink}`,
-                              }}
-                              target="_blank"
-                            >
-                              {data.fullName.split(' ')[0]} Profile
-                            </Link>
-                          </Typography>
-                        </td>
-                      </tr>
-                      <tr className="doted">
-                        <td className="item">
-                          <Typography variant="body2" align="left">
-                            Code Wares
-                          </Typography>
-                        </td>
-                        <td>
-                          <Typography variant="body2" align="left">
-                            <Link
-                              className="applicant_link"
-                              to={{
-                                pathname: `${data.codeWarsLink}`,
-                              }}
-                              target="_blank"
-                            >
-                              {data.fullName.split(' ')[0]} Profile
-                            </Link>
-                          </Typography>
-                        </td>
-                      </tr>
-                      <tr className="doted">
-                        <td>
-                          <Typography
-                            variant="body2"
-                            color="primary"
-                            align="left"
-                          >
-                            Cohorts
-                          </Typography>
-                        </td>
-                        <td />
-                      </tr>
-                      <tr className="doted">
-                        <td className="item">
-                          <Typography variant="body2" align="left">
-                            Cohorts
-                          </Typography>
-                        </td>
-                        <td>
-                          {data.cohorts.map((element) => (
-                            <Typography variant="body2" align="left">
-                              {element}
+                              User Name
                             </Typography>
-                          ))}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <Typography
-                            variant="body2"
-                            color="primary"
-                            align="left"
-                          >
-                            Technical Task
-                          </Typography>
-                        </td>
-                        <td />
-                      </tr>
-                      {Technical &&
-                        Technical.map(({ taskName, _id }) => (
-                          <tr key={_id}>
-                            <td className="item" colSpan="2">
+                          </td>
+                          <td>
+                            <Typography variant="body2" align="left">
+                              {data.fullName}
+                            </Typography>
+                          </td>
+                        </tr>
+                        <tr className="doted">
+                          <td>
+                            <Typography
+                              variant="body2"
+                              color="primary"
+                              align="left"
+                            >
+                              Availability
+                            </Typography>
+                          </td>
+                          <td />
+                        </tr>
+                        <tr>
+                          <td className="item">
+                            <Typography variant="body2" align="left">
+                              Email
+                            </Typography>
+                          </td>
+                          <td>
+                            <Typography variant="body2" align="left">
+                              {data.email}
+                            </Typography>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="item">
+                            <Typography variant="body2" align="left">
+                              Gender
+                            </Typography>
+                          </td>
+                          <td>
+                            <Typography variant="body2" align="left">
+                              {data.gender || 'No Data'}
+                            </Typography>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="item">
+                            <Typography variant="body2" align="left">
+                              Age
+                            </Typography>
+                          </td>
+                          <td>
+                            <Typography variant="body2" align="left">
+                              {data.age || 'No Data'}
+                            </Typography>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="item">
+                            <Typography variant="body2" align="left">
+                              Mobile Number
+                            </Typography>
+                          </td>
+                          <td>
+                            <Typography variant="body2" align="left">
+                              {data.mobileNumber || 'No Data'}
+                            </Typography>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="item">
+                            <Typography variant="body2" align="left">
+                              Location
+                            </Typography>
+                          </td>
+                          <td>
+                            <Typography variant="body2" align="left">
+                              {data.location || 'No Data'}
+                            </Typography>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="item">
+                            <Typography variant="body2" align="left">
+                              Adress
+                            </Typography>
+                          </td>
+                          <td>
+                            <Typography variant="body2" align="left">
+                              {data.address || 'No Data'}
+                            </Typography>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="item">
+                            <Typography variant="body2" align="left">
+                              Employment Statement
+                            </Typography>
+                          </td>
+                          <td>
+                            <Typography variant="body2" align="left">
+                              {data.employmentStatus || 'No Data'}
+                            </Typography>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="item">
+                            <Typography variant="body2" align="left">
+                              Job Title
+                            </Typography>
+                          </td>
+                          <td>
+                            <Typography variant="body2" align="left">
+                              {data.jobTitle || 'No Data'}
+                            </Typography>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="item">
+                            <Typography variant="body2" align="left">
+                              English Speaking
+                            </Typography>
+                          </td>
+                          <td>
+                            <Typography variant="body2" align="left">
+                              {data.englishSpeaking || 'No Data'}
+                            </Typography>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="item">
+                            <Typography variant="body2" align="left">
+                              English Understanding
+                            </Typography>
+                          </td>
+                          <td>
+                            <Typography variant="body2" align="left">
+                              {data.englishUnderstanding || 'No Data'}
+                            </Typography>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="item">
+                            <Typography variant="body2" align="left">
+                              University
+                            </Typography>
+                          </td>
+                          <td>
+                            <Typography variant="body2" align="left">
+                              {data.university || 'No Data'}
+                            </Typography>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="item">
+                            <Typography variant="body2" align="left">
+                              Specialization
+                            </Typography>
+                          </td>
+                          <td>
+                            <Typography variant="body2" align="left">
+                              {data.specialization || 'No Data'}
+                            </Typography>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="item">
+                            <Typography variant="body2" align="left">
+                              CV Link
+                            </Typography>
+                          </td>
+                          <td>
+                            <Typography variant="body2" align="left">
+                              {(
+                                <Link
+                                  className="applicant_link"
+                                  to={{
+                                    pathname: `${data.cvLink}`,
+                                  }}
+                                  target="_blank"
+                                >
+                                  {data.fullName.split(' ')[0]} CV Link
+                                </Link>
+                              ) || 'No Data'}
+                            </Typography>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="item">
+                            <Typography variant="body2" align="left">
+                              Coding Experience
+                            </Typography>
+                          </td>
+                          <td>
+                            <Typography variant="body2" align="left">
+                              {data.codingExperience || 'No Data'}
+                            </Typography>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="item">
+                            <Typography variant="body2" align="left">
+                              Primary Motivation
+                            </Typography>
+                          </td>
+                          <td>
+                            <div className="scrollable_field">
                               <Typography variant="body2" align="left">
-                                <Checkbox
-                                  checked={data && data.technicalTasks}
-                                  className="profile_check_box"
-                                  color="primary"
-                                />
-                                {taskName || 'No Data'}
+                                {data.primaryMotivation || 'No Data'}
                               </Typography>
-                            </td>
-                          </tr>
-                        ))}
-                      <tr className="doted">
-                        <td>
-                          <Typography
-                            variant="body2"
-                            color="primary"
-                            align="left"
-                          >
-                            Project
-                          </Typography>
-                        </td>
-                        <td />
-                      </tr>
-                      <tr>
-                        <td className="item" colSpan="2">
-                          <Typography variant="body2" align="left">
-                            <Checkbox
-                              checked={data && data.projectGithubLink}
-                              className="profile_check_box"
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="item">
+                            <Typography variant="body2" align="left">
+                              Motivation
+                            </Typography>
+                          </td>
+                          <td>
+                            <div className="scrollable_field">
+                              <Typography variant="body2" align="left">
+                                {data.motivation || 'No Data'}
+                              </Typography>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="item">
+                            <Typography variant="body2" align="left">
+                              CA Reaching
+                            </Typography>
+                          </td>
+                          <td>
+                            <Typography variant="body2" align="left">
+                              {data.caReading || 'No Data'}
+                            </Typography>
+                          </td>
+                        </tr>
+
+                        <tr className="doted">
+                          <td>
+                            <Typography
+                              variant="body2"
                               color="primary"
-                              disabled
-                            />
-                            <a
-                              className="applicant_link"
-                              href={data.projectGithubLink}
-                              target="popup"
-                              onClick={() => {
-                                window.open(
-                                  'https://discord.com/',
-                                  'popup',
-                                  'width=600,height=600,scrollbars=no,resizable=no'
-                                );
-                              }}
+                              align="left"
                             >
-                              Project Github Link
-                            </a>
-                          </Typography>
-                        </td>
-                      </tr>
-                      <tr className="doted">
-                        <td>
-                          <Typography
-                            variant="body2"
-                            color="primary"
-                            align="left"
-                          >
-                            Submitted
-                          </Typography>
-                        </td>
-                        <td />
-                      </tr>
-                      <tr>
-                        <td className="item">
-                          <Typography variant="body2" align="left">
-                            codewars Score
-                          </Typography>
-                        </td>
-                        <td className="points-value">
-                          <Typography
-                            variant="body2"
-                            color="primary"
-                            align="left"
-                          >
-                            {data.codeWarsKyu || 'No Data'}
-                          </Typography>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="item">
-                          <Typography variant="body2" align="left">
-                            freecodecamp Points
-                          </Typography>
-                        </td>
-                        <td className="points-value">
-                          <Typography
-                            variant="body2"
-                            color="primary"
-                            align="left"
-                          >
-                            {data.freeCodeCampPoints || 0}
-                          </Typography>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="item" colSpan="2">
-                          <Typography variant="body2" align="left">
-                            <Checkbox
-                              checked={data && data.freeCodeCampTopics}
-                              className="profile_check_box"
+                              Accounts
+                            </Typography>
+                          </td>
+                          <td />
+                        </tr>
+                        <tr>
+                          <td className="item">
+                            <Typography variant="body2" align="left">
+                              Github
+                            </Typography>
+                          </td>
+                          <td>
+                            <Typography variant="body2" align="left">
+                              <Link
+                                className="applicant_link"
+                                to={{
+                                  pathname: `${data.githubLink}`,
+                                }}
+                                target="_blank"
+                              >
+                                {data.fullName.split(' ')[0]} Account
+                              </Link>
+                            </Typography>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="item">
+                            <Typography variant="body2" align="left">
+                              FreeCode Camp
+                            </Typography>
+                          </td>
+                          <td>
+                            <Typography variant="body2" align="left">
+                              <Link
+                                className="applicant_link"
+                                to={{
+                                  pathname: `${data.freeCodeCampLink}`,
+                                }}
+                                target="_blank"
+                              >
+                                {data.fullName.split(' ')[0]} Profile
+                              </Link>
+                            </Typography>
+                          </td>
+                        </tr>
+                        <tr className="doted">
+                          <td className="item">
+                            <Typography variant="body2" align="left">
+                              Code Wares
+                            </Typography>
+                          </td>
+                          <td>
+                            <Typography variant="body2" align="left">
+                              <Link
+                                className="applicant_link"
+                                to={{
+                                  pathname: `${data.codeWarsLink}`,
+                                }}
+                                target="_blank"
+                              >
+                                {data.fullName.split(' ')[0]} Profile
+                              </Link>
+                            </Typography>
+                          </td>
+                        </tr>
+                        <tr className="doted">
+                          <td>
+                            <Typography
+                              variant="body2"
                               color="primary"
-                              disabled
-                            />
-                            FreeCode Camp Topics
-                          </Typography>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="item" colSpan="2">
-                          <Typography variant="body2" align="left">
-                            <Checkbox
-                              checked={data && data.applicationSubmittedDate}
-                              className="profile_check_box"
-                              color="primary"
-                              disabled
-                            />
-                            Submitted
-                            {(data.applicationSubmittedDate &&
-                              ` on ${
-                                data.applicationSubmittedDate.split('T')[0]
-                              }`) ||
-                              'No Data'}
-                          </Typography>
-                        </td>
-                      </tr>
-                      <tr className="doted">
-                        <td className="item" colSpan="2">
-                          <Typography variant="body2" align="left">
-                            <Checkbox
-                              checked={acceptedVal}
-                              className="profile_check_box"
-                              color="primary"
-                              disabled
-                            />
-                            Accepted
-                          </Typography>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td colSpan="2" className="profile__btn">
-                          <div className="profile__btn__toggle">
-                            <Button onClick={() => history.goBack()}>
-                              Go Back
-                            </Button>
-                            <Button
-                              onClick={() => {
-                                setAccept(userId, !acceptedVal);
-                                setAcceptedVal(!acceptedVal);
-                                setAlertMsg([
-                                  ...alertMsg,
-                                  acceptedVal ? (
-                                    <Alert Msg="Applicant successfully Unaccepted" />
-                                  ) : (
-                                    <Alert Msg="Applicant successfully Accepted" />
-                                  ),
-                                ]);
-                              }}
+                              align="left"
                             >
-                              {acceptedVal ? 'Unaccept' : 'Accept'}
-                            </Button>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                }
-              />
+                              Cohorts
+                            </Typography>
+                          </td>
+                          <td />
+                        </tr>
+                        <tr className="doted">
+                          <td className="item">
+                            <Typography variant="body2" align="left">
+                              Cohorts
+                            </Typography>
+                          </td>
+                          <td>
+                            {data.cohorts.map((element) => (
+                              <Typography variant="body2" align="left">
+                                {element}
+                              </Typography>
+                            ))}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <Typography
+                              variant="body2"
+                              color="primary"
+                              align="left"
+                            >
+                              Technical Task
+                            </Typography>
+                          </td>
+                          <td />
+                        </tr>
+                        {Technical &&
+                          Technical.map(({ taskName, _id }) => (
+                            <tr key={_id}>
+                              <td className="item" colSpan="2">
+                                <Typography variant="body2" align="left">
+                                  <Checkbox
+                                    checked={data && data.technicalTasks}
+                                    className="profile_check_box"
+                                    color="primary"
+                                  />
+                                  {taskName || 'No Data'}
+                                </Typography>
+                              </td>
+                            </tr>
+                          ))}
+                        <tr className="doted">
+                          <td>
+                            <Typography
+                              variant="body2"
+                              color="primary"
+                              align="left"
+                            >
+                              Project
+                            </Typography>
+                          </td>
+                          <td />
+                        </tr>
+                        <tr>
+                          <td className="item" colSpan="2">
+                            <Typography variant="body2" align="left">
+                              <Checkbox
+                                checked={data && data.projectGithubLink}
+                                className="profile_check_box"
+                                color="primary"
+                                disabled
+                              />
+                              <a
+                                className="applicant_link"
+                                href={data.projectGithubLink}
+                                target="popup"
+                                onClick={() => {
+                                  window.open(
+                                    'https://discord.com/',
+                                    'popup',
+                                    'width=600,height=600,scrollbars=no,resizable=no'
+                                  );
+                                }}
+                              >
+                                Project Github Link
+                              </a>
+                            </Typography>
+                          </td>
+                        </tr>
+                        <tr className="doted">
+                          <td>
+                            <Typography
+                              variant="body2"
+                              color="primary"
+                              align="left"
+                            >
+                              Submitted
+                            </Typography>
+                          </td>
+                          <td />
+                        </tr>
+                        <tr>
+                          <td className="item">
+                            <Typography variant="body2" align="left">
+                              codewars Score
+                            </Typography>
+                          </td>
+                          <td className="points-value">
+                            <Typography
+                              variant="body2"
+                              color="primary"
+                              align="left"
+                            >
+                              {data.codeWarsKyu || 'No Data'}
+                            </Typography>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="item">
+                            <Typography variant="body2" align="left">
+                              freecodecamp Points
+                            </Typography>
+                          </td>
+                          <td className="points-value">
+                            <Typography
+                              variant="body2"
+                              color="primary"
+                              align="left"
+                            >
+                              {data.freeCodeCampPoints || 0}
+                            </Typography>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="item" colSpan="2">
+                            <Typography variant="body2" align="left">
+                              <Checkbox
+                                checked={data && data.freeCodeCampTopics}
+                                className="profile_check_box"
+                                color="primary"
+                                disabled
+                              />
+                              FreeCode Camp Topics
+                            </Typography>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="item" colSpan="2">
+                            <Typography variant="body2" align="left">
+                              <Checkbox
+                                checked={data && data.applicationSubmittedDate}
+                                className="profile_check_box"
+                                color="primary"
+                                disabled
+                              />
+                              Submitted
+                              {(data.applicationSubmittedDate &&
+                                ` on ${
+                                  data.applicationSubmittedDate.split('T')[0]
+                                }`) ||
+                                'No Data'}
+                            </Typography>
+                          </td>
+                        </tr>
+                        <tr className="doted">
+                          <td className="item" colSpan="2">
+                            <Typography variant="body2" align="left">
+                              <Checkbox
+                                checked={acceptedVal}
+                                className="profile_check_box"
+                                color="primary"
+                                disabled
+                              />
+                              Accepted
+                            </Typography>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colSpan="2" className="profile__btn">
+                            <div className="profile__btn__toggle">
+                              <Button onClick={() => history.goBack()}>
+                                Go Back
+                              </Button>
+                              <Button
+                                onClick={() => {
+                                  setAccept(userId, !acceptedVal);
+                                  setAcceptedVal(!acceptedVal);
+                                  setAlertMsg([
+                                    ...alertMsg,
+                                    acceptedVal ? (
+                                      <Alert Msg="Applicant successfully Unaccepted" />
+                                    ) : (
+                                      <Alert Msg="Applicant successfully Accepted" />
+                                    ),
+                                  ]);
+                                }}
+                              >
+                                {acceptedVal ? 'Unaccept' : 'Accept'}
+                              </Button>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  }
+                />
+              </div>
             </div>
           ) : (
             <div className="loading">
