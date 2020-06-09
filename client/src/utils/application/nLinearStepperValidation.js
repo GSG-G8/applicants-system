@@ -9,6 +9,29 @@ const generalInfosSchema = yup.object().shape({
     .required('Mobile Number is required'),
   age: yup.string().required('Age is required').trim(),
   address: yup.string().required('Address is required'),
+  motivation: yup.string().required(`Insert motivation`).trim(),
+  specialization: yup.string().required(`Insert your Specialization`).trim(),
+  university: yup.string().required(`Select your university`).trim(),
+  codingExperience: yup
+    .string()
+    .required(`Select your coding experience`)
+    .trim(),
+  primaryMotivation: yup
+    .string()
+    .required(`Select your primary motivation first`)
+    .trim(),
+  caReading: yup
+    .string()
+    .required(`Select how did you hear about Us first`)
+    .trim(),
+  cvLink: yup
+    .string()
+    .matches(
+      /^((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+      'Enter correct url!'
+    )
+    .required(`Insert Your Cv Link first`)
+    .trim(),
 });
 
 const prosInfoSchema = yup.object().shape({
