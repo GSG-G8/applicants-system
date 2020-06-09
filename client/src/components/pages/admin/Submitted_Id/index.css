@@ -1,15 +1,15 @@
-.profile_body_table{
+.profile_body_table {
   display: flex;
   justify-content: space-around;
 }
 
-.profile__btn__toggle{
+.profile__btn__toggle {
   margin-top: 12px;
   display: flex;
   justify-content: space-around;
 }
 
-.dashboard_page_admin{
+.dashboard_page_admin {
   width: 100vw;
   height: 253vh;
   display: flex;
@@ -23,7 +23,7 @@
   background-attachment: fixed;
 }
 
-.avatar_td{
+.avatar_td {
   padding-right: 3.938rem;
 }
 
@@ -36,15 +36,15 @@
   line-height: 1.9;
 }
 
-.table_card .profile_table{
+.table_card .profile_table {
   width: 61%;
 }
 
-.table_card .MuiCardContent-root:last-child{
+.table_card .MuiCardContent-root:last-child {
   padding-left: 3.938rem;
 }
 
-.scrollable_field{
+.scrollable_field {
   width: 250px;
   height: 150px;
   overflow: scroll;

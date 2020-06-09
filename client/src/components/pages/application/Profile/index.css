@@ -17,7 +17,8 @@
   margin: 4rem 0 1rem 0;
   z-index: 3;
 }
-.profileImage_backGround{
+
+.profileImage_backGround {
   position: fixed;
   left: 2%;
   z-index: 0;
@@ -62,7 +63,8 @@
 .item {
   padding-left: 2rem;
 }
-.points-value{
+
+.points-value {
   padding-bottom: 0.3rem;
 }
 
@@ -73,11 +75,12 @@
 }
 
 @media only screen and (max-width: 610px) {
- .Profile__container{
-   width: 100%;
- }
+  .Profile__container {
+      width: 100%;
+  }
+
   .Container_page_profile {
-    height: 100vh;
-    padding-top: 20%;
+      height: 100vh;
+      padding-top: 20%;
   }
 }

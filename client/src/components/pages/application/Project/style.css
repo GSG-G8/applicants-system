@@ -1,21 +1,22 @@
-
 .label_container p {
   padding-left: 0%;
   font-weight: bolder;
   margin: 0;
 }
+
 .text_area {
-    height: 200px;
-    padding: 12px 20px;
-    box-sizing: border-box;
-    resize: none;
-    margin-top: 16px;
-    margin-bottom: 17px;
-    background-color: rgb(255, 255, 255);
-    width: 31.7rem;
-    margin-left: 16px;
-    border-radius: 5px; 
+  height: 200px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  resize: none;
+  margin-top: 16px;
+  margin-bottom: 17px;
+  background-color: rgb(255, 255, 255);
+  width: 31.7rem;
+  margin-left: 16px;
+  border-radius: 5px;
 }
+
 .github-field .MuiFormHelperText-root.Mui-error {
   color: #f44336;
   position: absolute;
@@ -40,11 +41,11 @@
 
 @media only screen and (max-width: 610px) {
   .text_area {
-    width: 23rem;
-}
-  
+      width: 23rem;
+  }
+
   .Extra_Project {
-    align-items: flex-start;
-    padding-top: 2%;
+      align-items: flex-start;
+      padding-top: 2%;
   }
 }

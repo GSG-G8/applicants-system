@@ -1,20 +1,22 @@
-.app-bar{
+.app-bar {
   position: fixed;
   z-index: 5;
 }
-.app-bar__toolbar{
+
+.app-bar__toolbar {
   background-color: white;
   justify-content: space-between;
 }
-.logo{
+
+.logo {
   pointer-events: none;
   width: 10rem;
 
 }
 
 @media only screen and (max-width: 610px) {
-  .logo{
-    margin-left: 3rem;
-    margin-top: 0.5rem;
+  .logo {
+      margin-left: 3rem;
+      margin-top: 0.5rem;
   }
 }
