@@ -12,7 +12,7 @@ import Typography from '../../common/Typography';
 import selectBoxQuestions from './questions';
 import { GeneralInfoStyles } from './style';
 
-const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
+const GeneralInfos = ({ handleFormInput, formValues, errorMsg }) => {
   const classes = GeneralInfoStyles();
   const {
     GazaAreas,
@@ -60,7 +60,10 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         label="Full Name"
         name="fullName"
         onChange={handleFormInput}
-        isError={errorMsg.includes('Full Name is required')}
+        isError={
+          (formValues.fullName.length > 0 && formValues.fullName.length < 5) ||
+          errorMsg.includes('Full Name is required')
+        }
         message="ex:- Sam Smith"
       />
 
@@ -176,12 +179,12 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
   );
 };
 
-GereralInfos.defaultProps = {
+GeneralInfos.defaultProps = {
   handleFormInput: () => {},
   formValues: '',
   errorMsg: [],
 };
-GereralInfos.propTypes = {
+GeneralInfos.propTypes = {
   handleFormInput: PropTypes.func,
   formValues: PropTypes.shape({
     gender: PropTypes.string,
@@ -201,4 +204,4 @@ GereralInfos.propTypes = {
   errorMsg: PropTypes.arrayOf(PropTypes.string),
 };
 
-export default GereralInfos;
+export default GeneralInfos;
