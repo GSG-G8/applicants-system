@@ -1,49 +1,8 @@
 
-.Form_container {
-  z-index: 1;
-  top: 20%;
-  right: 35%;
-  margin-top: 1.5rem;
-  padding-top: 2%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.Form_container input {
-  height: 0.3rem;
-  background-color: rgb(255, 255, 255);
-  width: 30rem;
-}
-.Form_container h5 {
-  padding-left: 4%;
-  margin-bottom: 3%;
-}
-.Form_container p {
-  padding-left: 4%;
-  margin-top: 1rem;
-  font-weight: bolder;
-}
-.label_container{
-  display: flex;
-  align-items: center;
-  padding-left: 4%;
-  height: 0.5rem;
-  margin-top: 0.5rem;
-}
 .label_container p {
   padding-left: 0%;
   font-weight: bolder;
   margin: 0;
-}
-.label_container img {
-  margin: 0;
-  width: 1.5rem;
-  height: 1.3rem;
-}
-.container_buttons {
-  display: flex;
-  justify-content: space-around;
-  width: 90%;
 }
 .text_area {
     height: 200px;
@@ -63,4 +22,29 @@
   width: 151px;
   top: 73%;
   right: 67%;
+}
+
+.Extra_Project {
+  background-color: rgb(245, 245, 245);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 1%;
+}
+
+.Extra_inside_Project {
+  padding-top: 0%;
+}
+
+@media only screen and (max-width: 610px) {
+  .text_area {
+    width: 23rem;
+}
+  
+  .Extra_Project {
+    align-items: flex-start;
+    padding-top: 2%;
+  }
 }
