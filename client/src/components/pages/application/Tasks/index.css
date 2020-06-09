@@ -28,6 +28,10 @@
   padding: 0.5rem;
 }
 
+.Task_container_page h6{
+  font-size: 1.5rem;
+}
+
 @media only screen and (max-width: 1150px) {
  
   .Task_container_page {
@@ -103,6 +107,7 @@
     width: 30rem;
     z-index: 1;
     margin-left: 10rem;
-    padding-right: 15%;
+    padding-right: 10%;
+    margin-top: 2rem;
   }
 }

@@ -93,7 +93,7 @@ const Tasks = ({ userId, userData }) => {
 
             {data.map(({ taskName, taskDescription }, index) => (
               <div>
-                <Typography variant="h6" align="left">
+                <Typography variant="h5" align="left">
                   <Checkbox
                     index={index}
                     onClick={(e) => {
