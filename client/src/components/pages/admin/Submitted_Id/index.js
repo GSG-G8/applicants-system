@@ -9,7 +9,6 @@ import Card from '../../../common/card';
 import Typography from '../../../common/Typography';
 import Button from '../../../common/Button';
 import backGround from '../../../../assets/images/backgroundDash.svg';
-import DashBar from '../../../dashboard/Tabs';
 import Alert from '../../../common/Alert';
 import './index.css';
 
@@ -34,7 +33,7 @@ const SubmittedId = ({ location: { pathname } }) => {
   const [data, setData] = useState();
   const [Technical, setTechnical] = useState();
   const [userId, setId] = useState('');
-  const [acceptedVal, setAcceptedVal] = useState();
+  const [acceptedVal, setAcceptedVal] = useState(false);
   const [alertMsg, setAlertMsg] = useState([]);
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -55,7 +54,6 @@ const SubmittedId = ({ location: { pathname } }) => {
 
   return (
     <>
-      <DashBar />
       <div className="Container_page Extra_page_profile">
         <Helmet>
           <title>Application Profile</title>
