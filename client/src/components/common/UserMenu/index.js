@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from 'react';
-import axios from 'axios';
 
 import IconButton from '@material-ui/core/IconButton';
 import { Person, ExitToApp } from '@material-ui/icons';
@@ -10,11 +9,6 @@ import PropTypes from 'prop-types';
 import Typography from '../Typography';
 
 import useStyles from './style';
-
-const getUserID = async () => {
-  const { data } = await axios.get('/api/v1/isUser');
-  return data;
-};
 
 const UserMenu = ({ logoutHandler, UserAvatar, userName }) => {
   const [anchorEl, setAnchorEl] = useState(null);

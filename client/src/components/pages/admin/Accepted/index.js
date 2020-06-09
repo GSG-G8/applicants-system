@@ -7,9 +7,7 @@ import backGround from '../../../../assets/images/backgroundDash.svg';
 
 const getAccepted = async () => {
   const { data } = (await axios.get('/api/v1/dashboard/applicants')).data;
-  return data.filter((element) => {
-    if (element.applicationSubmittedDate && element.accepted) return element;
-  });
+  return data.filter((element) => !!element.accepted);
 };
 
 const Header = {

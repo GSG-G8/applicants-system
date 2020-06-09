@@ -80,7 +80,7 @@ const Submit = ({ userId, userData }) => {
       }
       setCohort(cohorts);
     });
-  }, []);
+  }, [cohorts, userData.location]);
 
   const Next = async () => {
     await axios

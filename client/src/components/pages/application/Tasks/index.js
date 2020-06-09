@@ -49,7 +49,7 @@ const Tasks = ({ userId, userData }) => {
       setData(taskData.data);
       setCheckedItem(array);
     });
-  }, [userId]);
+  }, [userId, userData]);
   useEffect(() => {
     if (!arrayChecks.includes(false)) {
       setTechnicalTasks(true);

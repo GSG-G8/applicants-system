@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import MuiAppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import PropTypes from 'prop-types';
@@ -16,7 +16,11 @@ const AppBar = ({ auth, logoutHandler, UserAvatar, loading, userName }) => {
     <div className="app-bar">
       <MuiAppBar color="transparent">
         <Toolbar className="app-bar__toolbar">
-          <a target="_blank" href="https://gazaskygeeks.com/">
+          <a
+            target="_blank"
+            href="https://gazaskygeeks.com/"
+            rel="noopener noreferrer"
+          >
             <img src={logo} alt="Gaza sky Geeks logo" className="logo" />
           </a>
           {auth && !loading ? (

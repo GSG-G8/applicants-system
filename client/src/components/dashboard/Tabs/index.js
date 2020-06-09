@@ -34,7 +34,11 @@ const DashBar = ({ logOut }) => {
 
   return (
     <div className="dash__bar">
-      <a target="_blank" href="https://gazaskygeeks.com/">
+      <a
+        target="_blank"
+        href="https://gazaskygeeks.com/"
+        rel="noopener noreferrer"
+      >
         <img src={logo} alt="Gaza sky Geeks logo" className="logo" />
       </a>
       <ul className="dash__bar__link">
