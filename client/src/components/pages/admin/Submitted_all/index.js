@@ -17,7 +17,10 @@ const Header = {
     { title: 'Name', field: 'fullName', width: '20%' },
     { title: 'Email', field: 'email', width: '20%' },
     { title: 'Mobile', field: 'mobileNumber' },
-    { title: 'Age', field: 'age' },
+    {
+      title: 'Submitted Date',
+      field: 'applicationSubmittedDate',
+    },
     { title: 'Academy Location', field: 'location' },
     { title: 'Address', field: 'address' },
     {
@@ -40,7 +43,17 @@ const SubmittedApplications = () => {
   const [submitted, setSubmitted] = useState();
 
   useEffect(() => {
-    if (!submitted) getSubmitted().then(setSubmitted);
+    if (!submitted)
+      getSubmitted()
+        .then((arr) =>
+          arr.map((obj) => ({
+            ...obj,
+            applicationSubmittedDate: obj.applicationSubmittedDate.split(
+              'T'
+            )[0],
+          }))
+        )
+        .then(setSubmitted);
   }, [submitted]);
 
   return (
