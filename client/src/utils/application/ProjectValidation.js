@@ -7,7 +7,7 @@ const schema = yup.object().shape({
     .required('Enter your GitHub Link')
     .matches(
       /^(https):\/\/(github.com)\/[a-zA-Z0-9-_]+\/[a-zA-Z0-9-_]+$/,
-      'Github Not Match'
+      'Error in Github link'
     ),
 });
 const ProjectValidation = (value) =>
