@@ -16,7 +16,7 @@ const generalInfosSchema = yup.object().shape({
     .required('Mobile Number is required'),
   age: yup.string().required('Age is required').trim(),
   address: yup.string().required('Address is required'),
-  motivation: yup.string().required(`Insert motivation`).trim(),
+  motivation: yup.string().required('Insert motivation').trim(),
   specialization: yup.string().required(`Insert your Specialization`).trim(),
   university: yup.string().required(`Select your university`).trim(),
   codingExperience: yup

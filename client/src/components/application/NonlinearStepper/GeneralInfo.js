@@ -29,7 +29,6 @@ const GeneralInfos = ({ handleFormInput, formValues, errorMsg }) => {
       <Typography variant="h5" color="primary">
         Gender
       </Typography>
-      {/* <div className="Gender_Radio"> */}
       <RadioGroup
         row
         aria-label="gender"
@@ -52,7 +51,6 @@ const GeneralInfos = ({ handleFormInput, formValues, errorMsg }) => {
           label="Male"
         />
       </RadioGroup>
-      {/* </div> */}
       <InputText
         className="nonlinearSelect"
         id="nameID"
@@ -69,15 +67,14 @@ const GeneralInfos = ({ handleFormInput, formValues, errorMsg }) => {
       />
 
       <TextareaAutosize
-        className={` nonlinearSelect ${classes.textArea}`}
+        className="nonlinearSelect textarea"
         label="Motivation"
         name="motivation"
         placeholder="Tell us - in your own words - about your background and why you want to be considered for this program. This is your opportunity to tell your story and make your application unique. Please write at least 5 sentences."
         aria-label="minimum height"
         onChange={handleFormInput}
-        rowsMin={11}
+        rowsMin={4}
         value={formValues.motivation}
-        onError={errorMsg.includes('Insert motivation')}
       />
       <InputText
         className="nonlinearSelect"

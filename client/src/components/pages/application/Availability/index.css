@@ -61,6 +61,20 @@
   padding-left: 2rem;
 }
 
+.textarea {
+  resize: none;
+  margin-left: 1rem;
+  border-radius: 0.3rem;
+  padding: 3% 0 0 2%;
+  outline: none;
+  font-weight: lighter;
+  width: 30.5rem;
+}
+
+.Extra_Text_Area {
+  border: 1px solid red;
+}
+
 @media only screen and (max-width: 1150px) {
   .Container_page__availability {
       margin-left: 2%;
