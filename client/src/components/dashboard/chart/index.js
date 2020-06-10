@@ -12,7 +12,9 @@ class ChartsPage extends React.Component {
     const SubmittedDates = (
       await axios.get('api/v1/dashboard/applicants')
     ).data.data.map(({ applicationSubmittedDate }) =>
-      applicationSubmittedDate ? applicationSubmittedDate.split('-')[1] : ''
+      applicationSubmittedDate
+        ? applicationSubmittedDate.split('T')[0].split('-')[2]
+        : ''
     );
     const Months = [
       '01',
