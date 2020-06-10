@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     position: 'fixed',
     left: theme.spacing(2),
+    top: theme.spacing(0.1),
     fontSize: '2rem',
     zIndex: '10',
     [theme.breakpoints.up('sm')]: {

@@ -58,14 +58,14 @@ const Accounts = ({ userId, userData }) => {
   };
 
   return (
-    <div className="Container_page">
+    <div className="Extra_container_accounts">
       <Helmet>
         <title>Accounts</title>
       </Helmet>
       <img src={backGround} alt="backGround" className="backGround" />
       {userId ? (
-        <div className="Form_container Container_page__accounts">
-          <Typography variant="h5">Accounts</Typography>
+        <div className="Container_page__accounts">
+          <Typography variant="h6">Accounts</Typography>
           <>
             <div className="label_container">
               <img src={gitHub} alt="GitHub" />
@@ -206,12 +206,6 @@ const Accounts = ({ userId, userData }) => {
                   Discord chanel
                 </a>
               </Typography>
-              {alert && (
-                <Alert
-                  Type="warning"
-                  Msg="You should join discord channel to be in touch with other applicants"
-                />
-              )}
             </div>
           </>
           <div className="container_buttons">
@@ -226,6 +220,12 @@ const Accounts = ({ userId, userData }) => {
         </div>
       ) : (
         <Limitation />
+      )}
+      {alert && (
+        <Alert
+          Type="warning"
+          Msg="You should join discord channel to be in touch with other applicants"
+        />
       )}
     </div>
   );

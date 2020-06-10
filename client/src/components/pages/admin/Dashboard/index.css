@@ -1,18 +1,20 @@
-.dashboard__page{
+.dashboard__page {
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: row;
-  justify-content:center  ;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   background-image: url('../../../../assets/images/dashbackground.png');
   background-repeat: no-repeat;
   background-size: 100vw 100vh;
 }
-.dashboard__chart{
+
+.dashboard__chart {
   margin-top: 3rem;
 }
+
 .dash__background {
   position: fixed;
   z-index: 0;
@@ -21,16 +23,20 @@
   right: 2%;
   margin-bottom: 1rem;
 }
+
 .control__line {
-  margin:  1rem -1rem .5rem -1rem;
-  border-top: 1px solid  #ffffff;
+  margin: 1rem -1rem .5rem -1rem;
+  border-top: 1px solid #ffffff;
 }
-.control__line__state{
+
+.control__line__state {
   width: 95%;
 }
+
 .control__table {
   padding-bottom: 1rem;
 }
-.control__table td{
+
+.control__table td {
   padding-top: 1rem;
 }

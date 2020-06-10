@@ -9,7 +9,6 @@ import Card from '../../../common/card';
 import Typography from '../../../common/Typography';
 import Button from '../../../common/Button';
 import backGround from '../../../../assets/images/backgroundDash.svg';
-import DashBar from '../../../dashboard/Tabs';
 import Alert from '../../../common/Alert';
 import './index.css';
 
@@ -34,8 +33,9 @@ const SubmittedId = ({ location: { pathname } }) => {
   const [data, setData] = useState();
   const [Technical, setTechnical] = useState();
   const [userId, setId] = useState('');
-  const [acceptedVal, setAcceptedVal] = useState();
+  const [acceptedVal, setAcceptedVal] = useState(false);
   const [alertMsg, setAlertMsg] = useState([]);
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -48,13 +48,13 @@ const SubmittedId = ({ location: { pathname } }) => {
         setAcceptedVal(rows.accepted);
       });
     }
+
     if (!Technical) getTec().then(setTechnical);
   }, [data, Technical, pathname, userId, acceptedVal]);
 
   return (
     <>
-      <DashBar />
-      <div className="Container_page Container_page_profile">
+      <div className="Container_page Extra_page_profile">
         <Helmet>
           <title>Application Profile</title>
         </Helmet>
@@ -584,9 +584,11 @@ const SubmittedId = ({ location: { pathname } }) => {
                                 Go Back
                               </Button>
                               <Button
-                                onClick={() => {
-                                  setAccept(userId, !acceptedVal);
+                                onClick={async () => {
+                                  setLoading(true);
+                                  await setAccept(userId, !acceptedVal);
                                   setAcceptedVal(!acceptedVal);
+                                  setLoading(false);
                                   setAlertMsg([
                                     ...alertMsg,
                                     acceptedVal ? (
@@ -596,6 +598,7 @@ const SubmittedId = ({ location: { pathname } }) => {
                                     ),
                                   ]);
                                 }}
+                                disabled={loading}
                               >
                                 {acceptedVal ? 'Unaccept' : 'Accept'}
                               </Button>

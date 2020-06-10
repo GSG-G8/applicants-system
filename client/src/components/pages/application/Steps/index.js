@@ -8,7 +8,7 @@ import Limitation from '../../../common/limitation';
 import Typography from '../../../common/Typography';
 import Button from '../../../common/Button';
 import backGround from '../../../../assets/images/backGround.svg';
-import './style.css';
+import './index.css';
 
 const getSteps = async () => {
   const { data } = (await axios.get('/api/v1/steps')).data;
@@ -37,7 +37,7 @@ const Steps = ({ userId, fullName }) => {
   return (
     <div className="Container_page">
       <Helmet>
-        <title>Steps</title>
+        <title>Application Stseps</title>
       </Helmet>
 
       <img src={backGround} alt="backGround" className="backGround" />
@@ -66,7 +66,9 @@ const Steps = ({ userId, fullName }) => {
             </div>
           </>
         ) : (
-          <Limitation />
+          <div className="steps_loading">
+            <Limitation />
+          </div>
         )}
 
         {steps && (

@@ -12,7 +12,7 @@ import Typography from '../../common/Typography';
 import selectBoxQuestions from './questions';
 import { GeneralInfoStyles } from './style';
 
-const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
+const GeneralInfos = ({ handleFormInput, formValues, errorMsg }) => {
   const classes = GeneralInfoStyles();
   const {
     GazaAreas,
@@ -25,33 +25,34 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
   } = selectBoxQuestions;
 
   return (
-    <div className="availability">
-      <div className={classes.gender}>
-        <Typography variant="h5" color="primary">
-          Gender
-        </Typography>
-        <RadioGroup
-          row
-          aria-label="gender"
-          name="gender"
-          onChange={handleFormInput}
-          value={formValues.gender}
-        >
-          <FormControlLabel
-            className={classes.gender}
-            value="female"
-            control={<Radio color="primary" />}
-            label="Female"
-          />
+    <div className="availability Extra_nonlinear">
+      <Typography variant="h5" color="primary">
+        Gender
+      </Typography>
+      {/* <div className="Gender_Radio"> */}
+      <RadioGroup
+        row
+        aria-label="gender"
+        name="gender"
+        className="Gender_Radio"
+        onChange={handleFormInput}
+        value={formValues.gender}
+      >
+        <FormControlLabel
+          className={classes.gender}
+          value="female"
+          control={<Radio color="primary" />}
+          label="Female"
+        />
 
-          <FormControlLabel
-            className={classes.gender}
-            value="male"
-            control={<Radio color="primary" />}
-            label="Male"
-          />
-        </RadioGroup>
-      </div>
+        <FormControlLabel
+          className={classes.gender}
+          value="male"
+          control={<Radio color="primary" />}
+          label="Male"
+        />
+      </RadioGroup>
+      {/* </div> */}
       <InputText
         className="nonlinearSelect"
         id="nameID"
@@ -60,7 +61,10 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         label="Full Name"
         name="fullName"
         onChange={handleFormInput}
-        isError={errorMsg.includes('Full Name is required')}
+        isError={
+          (formValues.fullName.length > 0 && formValues.fullName.length < 5) ||
+          errorMsg.includes('Full Name is required')
+        }
         message="ex:- Sam Smith"
       />
 
@@ -68,12 +72,7 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         className={` nonlinearSelect ${classes.textArea}`}
         label="Motivation"
         name="motivation"
-        placeholder="What is your motivation for joining the Code Academy?        
-        - Tell us 
-        - in your own words 
-        - about your background and why you want to be considered for this program.             
-        - This is your opportunity to tell your story and make your application unique.                          
-        - Please write at least 5 sentences"
+        placeholder="Tell us - in your own words - about your background and why you want to be considered for this program. This is your opportunity to tell your story and make your application unique. Please write at least 5 sentences."
         aria-label="minimum height"
         onChange={handleFormInput}
         rowsMin={11}
@@ -176,12 +175,12 @@ const GereralInfos = ({ handleFormInput, formValues, errorMsg }) => {
   );
 };
 
-GereralInfos.defaultProps = {
+GeneralInfos.defaultProps = {
   handleFormInput: () => {},
   formValues: '',
   errorMsg: [],
 };
-GereralInfos.propTypes = {
+GeneralInfos.propTypes = {
   handleFormInput: PropTypes.func,
   formValues: PropTypes.shape({
     gender: PropTypes.string,
@@ -201,4 +200,4 @@ GereralInfos.propTypes = {
   errorMsg: PropTypes.arrayOf(PropTypes.string),
 };
 
-export default GereralInfos;
+export default GeneralInfos;

@@ -1,0 +1,51 @@
+.label_container p {
+  padding-left: 0%;
+  font-weight: bolder;
+  margin: 0;
+}
+
+.text_area {
+  height: 200px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  resize: none;
+  margin-top: 16px;
+  margin-bottom: 17px;
+  background-color: rgb(255, 255, 255);
+  width: 31.7rem;
+  margin-left: 16px;
+  border-radius: 5px;
+}
+
+.github-field .MuiFormHelperText-root.Mui-error {
+  color: #f44336;
+  position: absolute;
+  width: 151px;
+  top: 73%;
+  right: 67%;
+}
+
+.Extra_Project {
+  background-color: rgb(245, 245, 245);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 1%;
+}
+
+.Extra_inside_Project {
+  padding-top: 0%;
+}
+
+@media only screen and (max-width: 610px) {
+  .text_area {
+      width: 23rem;
+  }
+
+  .Extra_Project {
+      align-items: flex-start;
+      padding-top: 2%;
+  }
+}

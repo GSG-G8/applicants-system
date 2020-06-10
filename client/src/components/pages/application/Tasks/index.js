@@ -93,7 +93,7 @@ const Tasks = ({ userId, userData }) => {
 
             {data.map(({ taskName, taskDescription }, index) => (
               <div>
-                <Typography variant="h6" align="left">
+                <Typography variant="h5" align="left">
                   <Checkbox
                     index={index}
                     onClick={(e) => {
@@ -116,33 +116,36 @@ const Tasks = ({ userId, userData }) => {
               </div>
             ))}
           </div>
-          <div className="Form_container">
-            <div className="label_container">
-              <img src={gitHub} alt="GitHub" />
-              <Typography className="label">Project link</Typography>
-            </div>
-            <TextField
-              name="technicalTasksProjects"
-              value={technicalTasksLinks}
-              onChange={(e) => {
-                setTechnicalTasksLinks(e.target.value);
-                setMessage('');
-              }}
-              isError={
-                message.includes('Enter Your GitHub Project link') ||
-                message.includes('Error in Github project link')
-              }
-              message={
-                message.includes('Error in Github project link') &&
-                technicalTasksLinks.trim() !== ''
-                  ? 'Error in Github project link'
-                  : ''
-              }
-              placeholder="ex: https://github.com/{yourGithubProfile}/{yourProjectName}"
-            />
+          <div className="label_container">
+            <img src={gitHub} alt="GitHub" />
+            <Typography className="label">Project link</Typography>
           </div>
-          <div className="tasks_buttons">
-            <Button onClick={() => history.push('/accounts')}>Back </Button>
+          <TextField
+            name="technicalTasksProjects"
+            value={technicalTasksLinks}
+            onChange={(e) => {
+              setTechnicalTasksLinks(e.target.value);
+              setMessage('');
+            }}
+            isError={
+              message.includes('Enter Your GitHub Project link') ||
+              message.includes('Error in Github project link')
+            }
+            message={
+              message.includes('Error in Github project link') &&
+              technicalTasksLinks.trim() !== ''
+                ? 'Error in Github project link'
+                : ''
+            }
+            placeholder="ex: https://github.com/{yourGithubProfile}/{yourProjectName}"
+          />
+          <div className="container_buttons">
+            <Button
+              onClick={() => history.push('/accounts')}
+              customStyle="outlined"
+            >
+              Back{' '}
+            </Button>
             <Button disabled={isDisable} onClick={Next}>
               Next
             </Button>

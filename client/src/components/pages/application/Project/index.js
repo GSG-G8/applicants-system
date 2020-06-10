@@ -12,7 +12,7 @@ import backGround from '../../../../assets/images/backGround.svg';
 import Button from '../../../common/Button';
 import FProjectValidation from '../../../../utils/application/ProjectValidation';
 
-import './style.css';
+import './index.css';
 
 const projectData = async (ID) => {
   const {
@@ -51,17 +51,14 @@ const Project = ({ userId }) => {
   };
 
   return (
-    <div className="Container_page">
+    <div className="Container_page Extra_Project">
       <Helmet>
         <title>Final Project</title>
       </Helmet>
       <img src={backGround} alt="backGround" className="backGround" />
-      <div className="text_Welcome">
-        <Typography variant="h3" color="default" />
-      </div>
       {projectTitle && projectDesc ? (
-        <div className="Form_container">
-          <Typography variant="h5">Final Project</Typography>
+        <div className="Container_page__accounts Extra_inside_Project">
+          <Typography variant="h6">Final Project</Typography>
           <>
             <div className="label_container">
               <Typography className="label">Project Title</Typography>

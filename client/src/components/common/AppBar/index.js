@@ -7,7 +7,7 @@ import logo from '../../../assets/images/logo1.svg';
 import UserMenu from '../UserMenu';
 import Button from '../Button';
 
-import './style.css';
+import './index.css';
 
 const AppBar = ({ auth, logoutHandler, UserAvatar, loading, userName }) => {
   const history = useHistory();
