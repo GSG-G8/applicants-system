@@ -10,6 +10,7 @@ import Limitation from '../../../common/limitation';
 import Typography from '../../../common/Typography';
 import backGround from '../../../../assets/images/backGround.svg';
 import Button from '../../../common/Button';
+import Alert from '../../../common/Alert';
 import FProjectValidation from '../../../../utils/application/ProjectValidation';
 
 import './index.css';
@@ -25,6 +26,7 @@ const Project = ({ userId }) => {
   const [projectDesc, setProjectDesc] = useState('');
   const [projectGithubLink, setProjectGithubLink] = useState('');
   const [message, setMessage] = useState([]);
+  const [alert, throwAlert] = useState(false);
   const history = useHistory();
 
   const throwMessage = (msg) => setMessage(msg);
@@ -40,6 +42,7 @@ const Project = ({ userId }) => {
   }, [userId]);
 
   const Next = () => {
+    throwAlert(false);
     FProjectValidation({ projectGithubLink })
       .then(() =>
         axios.patch(`/api/v1/applicants/${userId}`, {
@@ -47,7 +50,10 @@ const Project = ({ userId }) => {
         })
       )
       .then(() => history.push('/submit'))
-      .catch(({ errors }) => throwMessage(errors));
+      .catch(({ errors }) => {
+        throwAlert(true);
+        throwMessage(errors);
+      });
   };
 
   return (
@@ -55,6 +61,11 @@ const Project = ({ userId }) => {
       <Helmet>
         <title>Final Project</title>
       </Helmet>
+      {alert && message.length >= 1 ? (
+        <Alert Type="warning" Msg={message[0]} />
+      ) : (
+        <> </>
+      )}
       <img src={backGround} alt="backGround" className="backGround" />
       {projectTitle && projectDesc ? (
         <div className="Container_page__accounts Extra_inside_Project">
@@ -93,14 +104,8 @@ const Project = ({ userId }) => {
                 placeholder="ex:- https://github.com/{username}/{repo_name}"
                 isError={
                   message.includes('Enter your GitHub Link') ||
-                  message.includes('Github Not Match')
+                  message.includes('Error in Github link')
                 }
-                message={`${
-                  message.includes('Enter your GitHub Link') ||
-                  message.includes('Github Not Match')
-                    ? 'Error in Github link'
-                    : ''
-                }`}
               />
             </div>
           </>

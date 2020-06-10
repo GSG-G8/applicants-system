@@ -11,6 +11,7 @@ import GeneralInfos from './GeneralInfo';
 import Typography from '../../common/Typography';
 import { Theme } from '../../common/Typography/style';
 import Button from '../../common/Button';
+import Alert from '../../common/Alert';
 
 import {
   generalInfosValidation,
@@ -27,6 +28,7 @@ export default function HorizontalNonLinearStepper({ userID, UserData }) {
   const [formValues, setFormValues] = useState(UserData);
   const [errMsg, setErrMsg] = useState([]);
   const [message, setMessage] = useState([]);
+  const [alert, throwAlert] = useState(false);
   const handleFormInput = (e) => {
     setErrMsg([]);
     setFormValues({
@@ -36,13 +38,25 @@ export default function HorizontalNonLinearStepper({ userID, UserData }) {
   };
 
   const handleNext = async () => {
+    throwAlert(false);
     try {
       await generalInfosValidation(formValues);
       await setMessage('');
       await setActiveStep((prevActiveStep) => prevActiveStep + 1);
     } catch ({ errors }) {
-      setErrMsg(errors);
-      setMessage(errors[0]);
+      const ElementTextArea = document.querySelector('.textarea');
+      throwAlert(true);
+      if (ElementTextArea.value.trim() === '') {
+        ElementTextArea.classList.add('Extra_Text_Area');
+        setErrMsg(errors);
+        setMessage(
+          'You Must Write Your Motivation Message for Joining Code Academy'
+        );
+      } else {
+        ElementTextArea.classList.remove('Extra_Text_Area');
+        setErrMsg(errors);
+        setMessage(errors[0]);
+      }
     }
   };
 
@@ -80,6 +94,7 @@ export default function HorizontalNonLinearStepper({ userID, UserData }) {
   }
 
   const handleSubmit = async (values) => {
+    throwAlert(false);
     const {
       gender,
       fullName,
@@ -122,9 +137,11 @@ export default function HorizontalNonLinearStepper({ userID, UserData }) {
         });
         history.push('/accounts');
       } catch (error) {
+        throwAlert(true);
         setMessage(error.message);
       }
     } catch ({ errors }) {
+      throwAlert(true);
       setErrMsg(errors);
       setMessage(errors[0]);
     }
@@ -138,6 +155,12 @@ export default function HorizontalNonLinearStepper({ userID, UserData }) {
             Availability
           </Typography>
         </div>
+
+        {alert && message.length >= 1 ? (
+          <Alert Type="warning" Msg={message} />
+        ) : (
+          <> </>
+        )}
         <ThemeProvider theme={Theme}>
           <Stepper nonLinear activeStep={activeStep}>
             {steps.map((label, index) => (
@@ -148,7 +171,6 @@ export default function HorizontalNonLinearStepper({ userID, UserData }) {
           </Stepper>
           <div>
             <div>
-              <div className={classes.validation}>{message}</div>
               {getStepContent(activeStep)}
               <div className={classes.gender}>
                 <div className="container_buttons">
