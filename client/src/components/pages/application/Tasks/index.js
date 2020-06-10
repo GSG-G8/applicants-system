@@ -11,6 +11,7 @@ import Button from '../../../common/Button';
 import backGround from '../../../../assets/images/backGround.svg';
 import TextField from '../../../common/TextField';
 import gitHub from '../../../../assets/icons/github.svg';
+import Alert from '../../../common/Alert';
 import tasksValidation from '../../../../utils/application/tasksValidation';
 
 import './index.css';
@@ -34,7 +35,8 @@ const Tasks = ({ userId, userData }) => {
   const [data, setData] = useState();
   const [arrayChecks, setCheckedItem] = useState([false]);
   const [technicalTasks, setTechnicalTasks] = useState('');
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState([]);
+  const [alert, throwAlert] = useState(false);
   const [technicalTasksLinks, setTechnicalTasksLinks] = useState('');
   const [isDisable, setDisable] = useState(false);
   const history = useHistory();
@@ -60,6 +62,7 @@ const Tasks = ({ userId, userData }) => {
   }, [arrayChecks]);
 
   const Next = () => {
+    throwAlert(false);
     tasksValidation({ technicalTasks, technicalTasksLinks })
       .then(() =>
         axios
@@ -70,9 +73,15 @@ const Tasks = ({ userId, userData }) => {
           .then(() => {
             history.push('/project');
           })
-          .catch(() => throwMessage('Please try again later'))
+          .catch(() => {
+            throwMessage('Please try again later');
+            throwAlert(true);
+          })
       )
-      .catch(({ errors }) => throwMessage(errors));
+      .catch(({ errors }) => {
+        throwAlert(true);
+        throwMessage(errors);
+      });
   };
 
   return (
@@ -80,6 +89,11 @@ const Tasks = ({ userId, userData }) => {
       <Helmet>
         <title>Technical Tasks</title>
       </Helmet>
+      {alert && message.length >= 1 ? (
+        <Alert Type="warning" Msg={message[0]} />
+      ) : (
+        <> </>
+      )}
       <img src={backGround} alt="backGround" className="backGround" />
 
       {data ? (
@@ -130,12 +144,6 @@ const Tasks = ({ userId, userData }) => {
             isError={
               message.includes('Enter Your GitHub Project link') ||
               message.includes('Error in Github project link')
-            }
-            message={
-              message.includes('Error in Github project link') &&
-              technicalTasksLinks.trim() !== ''
-                ? 'Error in Github project link'
-                : ''
             }
             placeholder="ex: https://github.com/{yourGithubProfile}/{yourProjectName}"
           />
