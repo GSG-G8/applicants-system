@@ -33,9 +33,8 @@
   background-color: rgba(245, 245, 245, 0.411);
   display: flex;
   flex-direction: column;
-  width: 32rem;
+  width: 36rem;
   z-index: 1;
-  margin-top: 5rem;
 }
 
 .Extra_Availability {
