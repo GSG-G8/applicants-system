@@ -34,7 +34,7 @@ const generalInfosSchema = yup.object().shape({
   cvLink: yup
     .string()
     .required(`Insert Your Cv Link first`)
-    .url('Enter a valid URL!')
+    .url('Enter a valid CV URL!')
     .trim(),
 });
 

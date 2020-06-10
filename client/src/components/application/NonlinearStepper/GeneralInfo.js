@@ -165,7 +165,7 @@ const GeneralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         onChange={handleFormInput}
         isError={
           errorMsg.includes('Insert Your Cv Link first') ||
-          errorMsg.includes('Enter correct url!')
+          errorMsg.includes('Enter a valid CV URL!')
         }
       />
     </div>
