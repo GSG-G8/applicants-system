@@ -5,8 +5,6 @@ import { Helmet } from 'react-helmet';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import backGround from '../../../../assets/images/backgroundDash.svg';
-import DashBar from '../../../dashboard/Tabs';
-import Limitaion from '../../../common/limitation';
 
 import './index.css';
 
@@ -90,30 +88,23 @@ const Opened = () => {
       <Helmet>
         <title>Opened Applications</title>
       </Helmet>
-      <DashBar />
       <img src={backGround} alt="backGround" className="dash__background" />
       <div className="dashboard__page">
         <div className="submitted__container">
-          {!opened ? (
-            <div className="loading-spinner">
-              <Limitaion />
-            </div>
-          ) : (
-            <MaterialTable
-              className="submitted__table"
-              title="Opened Applications"
-              columns={Header.columns}
-              data={opened}
-              options={{
-                exportButton: true,
-                pageSizeOptions: [
-                  5,
-                  10,
-                  !opened ? 15 : opened.length > 10 ? opened.length : 15,
-                ],
-              }}
-            />
-          )}
+          <MaterialTable
+            className="submitted__table"
+            title="Opened Applications"
+            columns={Header.columns}
+            data={opened}
+            options={{
+              exportButton: true,
+              pageSizeOptions: [
+                5,
+                10,
+                !opened ? 15 : opened.length > 10 ? opened.length : 15,
+              ],
+            }}
+          />
         </div>
       </div>
     </>
