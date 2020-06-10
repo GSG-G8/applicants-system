@@ -36,10 +36,12 @@ const Accounts = ({ userId, userData }) => {
   const throwMessage = (msg) => setMessage(msg);
   const handleChange = () => setDiscord(!joinDiscord);
   const Next = () => {
+    throwAlert(false);
     AccountsValidation({ githubLink, freeCodeCampLink, codeWarsLink })
       .then(() => {
         throwAlert(false);
         if (joinDiscord) {
+          throwMessage([]);
           axios.patch(`/api/v1/applicants/${userId}`, {
             githubLink,
             freeCodeCampLink,
@@ -48,13 +50,17 @@ const Accounts = ({ userId, userData }) => {
           });
           updatePoints(userId);
         } else {
+          throwMessage([]);
           throwAlert(true);
         }
       })
       .then(() => {
         if (joinDiscord) history.push('/tasks');
       })
-      .catch(({ errors }) => throwMessage(errors));
+      .catch(({ errors }) => {
+        throwMessage(errors);
+        throwAlert(true);
+      });
   };
 
   return (
@@ -95,12 +101,6 @@ const Accounts = ({ userId, userData }) => {
                 message.includes('Enter GitHub link') ||
                 message.includes('Error in Github link')
               }
-              message={
-                message.includes('Error in Github link') &&
-                githubLink.trim() !== ''
-                  ? 'Error Github link'
-                  : ''
-              }
               placeholder="ex: https://github.com/{code_academy}"
             />
           </>
@@ -133,12 +133,6 @@ const Accounts = ({ userId, userData }) => {
                 message.includes('Enter FreeCodeCamp link') ||
                 message.includes('Error in FreeCodeCamp link')
               }
-              message={
-                message.includes('Error in FreeCodeCamp link') &&
-                freeCodeCampLink.trim() !== ''
-                  ? 'Error FreeCodeCamp link'
-                  : ''
-              }
               placeholder="ex: https://www.freecodecamp.org/{code_academy}"
             />
           </>
@@ -170,12 +164,6 @@ const Accounts = ({ userId, userData }) => {
               isError={
                 message.includes('Enter CodeWars link') ||
                 message.includes('Error in CodeWars link')
-              }
-              message={
-                message.includes('Error in CodeWars link') &&
-                codeWarsLink.trim() !== ''
-                  ? 'Error CodeWars link'
-                  : ''
               }
               placeholder="ex: https://www.codewars.com/users/{code_academy}"
             />
@@ -221,11 +209,15 @@ const Accounts = ({ userId, userData }) => {
       ) : (
         <Limitation />
       )}
-      {alert && (
+      {alert && message.length >= 1 ? (
+        <Alert Type="warning" Msg={message[0]} />
+      ) : alert ? (
         <Alert
           Type="warning"
           Msg="You should join discord channel to be in touch with other applicants"
         />
+      ) : (
+        <> </>
       )}
     </div>
   );
