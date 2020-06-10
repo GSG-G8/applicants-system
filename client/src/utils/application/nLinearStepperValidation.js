@@ -33,7 +33,7 @@ const generalInfosSchema = yup.object().shape({
     .trim(),
   cvLink: yup
     .string()
-    .required(`Insert Your Cv Link first`)
+    .required(`Insert Your CV Link first`)
     .url('Enter a valid CV URL!')
     .trim(),
 });
