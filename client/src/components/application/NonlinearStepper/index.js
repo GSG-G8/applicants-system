@@ -94,6 +94,7 @@ export default function HorizontalNonLinearStepper({ userID, UserData }) {
   }
 
   const handleSubmit = async (values) => {
+    throwAlert(false);
     const {
       gender,
       fullName,
@@ -136,9 +137,11 @@ export default function HorizontalNonLinearStepper({ userID, UserData }) {
         });
         history.push('/accounts');
       } catch (error) {
+        throwAlert(true);
         setMessage(error.message);
       }
     } catch ({ errors }) {
+      throwAlert(true);
       setErrMsg(errors);
       setMessage(errors[0]);
     }

@@ -17,8 +17,8 @@ const generalInfosSchema = yup.object().shape({
   age: yup.string().required('Age is required').trim(),
   address: yup.string().required('Address is required'),
   motivation: yup.string().required('Insert motivation').trim(),
-  specialization: yup.string().required(`Insert your Specialization`).trim(),
   university: yup.string().required(`Select your university`).trim(),
+  specialization: yup.string().required(`Insert your Specialization`).trim(),
   codingExperience: yup
     .string()
     .required(`Select your coding experience`)
@@ -33,11 +33,8 @@ const generalInfosSchema = yup.object().shape({
     .trim(),
   cvLink: yup
     .string()
-    .matches(
-      /^((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
-      'Enter correct url!'
-    )
     .required(`Insert Your Cv Link first`)
+    .url('Enter a valid URL!')
     .trim(),
 });
 
@@ -49,8 +46,8 @@ const prosInfoSchema = yup.object().shape({
   employmentStatus: yup.string().required('Current Employment is required'),
   jobTitle: yup
     .string()
-    .nullable()
     .required(`if you don't have job just write [ No ]`)
+    .nullable()
     .trim(),
 });
 
