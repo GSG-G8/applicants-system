@@ -37,7 +37,7 @@ const Steps = ({ userId, fullName }) => {
   return (
     <div className="Container_page">
       <Helmet>
-        <title>Application Stseps</title>
+        <title>Application Steps</title>
       </Helmet>
 
       <img src={backGround} alt="backGround" className="backGround" />
