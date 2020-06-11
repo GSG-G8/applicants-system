@@ -10,10 +10,8 @@ import InputText from '../../common/TextField';
 import SelectBox from '../SelectBox';
 import Typography from '../../common/Typography';
 import selectBoxQuestions from './questions';
-// import { GeneralInfoStyles } from './style';
 
 const GeneralInfos = ({ handleFormInput, formValues, errorMsg }) => {
-  // const classes = GeneralInfoStyles();
   const {
     GazaAreas,
     GazaUniversities,
@@ -91,38 +89,39 @@ const GeneralInfos = ({ handleFormInput, formValues, errorMsg }) => {
           errorMsg.includes('Error Mobile Number')
         }
       />
-      <br />
-
-      <SelectBox
-        className="nonlinearSelect"
-        label="Age"
-        name="age"
-        items={['<18', '18-20', '21-25', '26-30', '31-35', '36-40', '40+']}
-        setVal={handleFormInput}
-        value={formValues.age}
-        isError={errorMsg.includes('Age is required')}
-      />
-      <SelectBox
-        className="nonlinearSelect"
-        label="Address"
-        name="address"
-        items={formValues.location === 'gaza' ? GazaAreas : KhalilAreas}
-        setVal={handleFormInput}
-        value={formValues.address}
-        isError={errorMsg.includes('Address is required')}
-      />
-      <SelectBox
-        className="nonlinearSelect"
-        label="university"
-        name="university"
-        items={
-          formValues.location === 'gaza' ? GazaUniversities : KhalilUniversities
-        }
-        setVal={handleFormInput}
-        value={formValues.university}
-        isError={errorMsg.includes('Select your university')}
-      />
-      <br />
+      <div className="general_selects">
+        <SelectBox
+          className="nonlinearSelect"
+          label="Age"
+          name="age"
+          items={['<18', '18-20', '21-25', '26-30', '31-35', '36-40', '40+']}
+          setVal={handleFormInput}
+          value={formValues.age}
+          isError={errorMsg.includes('Age is required')}
+        />
+        <SelectBox
+          className="nonlinearSelect"
+          label="Address"
+          name="address"
+          items={formValues.location === 'gaza' ? GazaAreas : KhalilAreas}
+          setVal={handleFormInput}
+          value={formValues.address}
+          isError={errorMsg.includes('Address is required')}
+        />
+        <SelectBox
+          className="nonlinearSelect"
+          label="university"
+          name="university"
+          items={
+            formValues.location === 'gaza'
+              ? GazaUniversities
+              : KhalilUniversities
+          }
+          setVal={handleFormInput}
+          value={formValues.university}
+          isError={errorMsg.includes('Select your university')}
+        />
+      </div>
 
       <Typography className="label">Specialization</Typography>
 
@@ -134,36 +133,35 @@ const GeneralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         onChange={handleFormInput}
         isError={errorMsg.includes('Insert your Specialization')}
       />
-      <br />
-
-      <SelectBox
-        className="nonlinearSelect"
-        label="Coding Experience"
-        name="codingExperience"
-        items={codeExperience}
-        setVal={handleFormInput}
-        value={formValues.codingExperience}
-        isError={errorMsg.includes('Select your coding experience')}
-      />
-      <SelectBox
-        className="nonlinearSelect"
-        label="Primary Motivation"
-        name="primaryMotivation"
-        items={primaryMotivationForm}
-        setVal={handleFormInput}
-        value={formValues.primaryMotivation}
-        isError={errorMsg.includes('Select your primary motivation first')}
-      />
-      <SelectBox
-        className="nonlinearSelect"
-        label="How did you hear about the Code Academy"
-        name="caReading"
-        items={advertisement}
-        setVal={handleFormInput}
-        value={formValues.caReading}
-        isError={errorMsg.includes('Select how did you hear about Us first')}
-      />
-      <br />
+      <div className="general_selects">
+        <SelectBox
+          className="nonlinearSelect"
+          label="Coding Experience"
+          name="codingExperience"
+          items={codeExperience}
+          setVal={handleFormInput}
+          value={formValues.codingExperience}
+          isError={errorMsg.includes('Select your coding experience')}
+        />
+        <SelectBox
+          className="nonlinearSelect"
+          label="Primary Motivation"
+          name="primaryMotivation"
+          items={primaryMotivationForm}
+          setVal={handleFormInput}
+          value={formValues.primaryMotivation}
+          isError={errorMsg.includes('Select your primary motivation first')}
+        />
+        <SelectBox
+          className="nonlinearSelect"
+          label="How did you hear about the Code Academy"
+          name="caReading"
+          items={advertisement}
+          setVal={handleFormInput}
+          value={formValues.caReading}
+          isError={errorMsg.includes('Select how did you hear about Us first')}
+        />
+      </div>
 
       <Typography className="label">CV Link</Typography>
 
