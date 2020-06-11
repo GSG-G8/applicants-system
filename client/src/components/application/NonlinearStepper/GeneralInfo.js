@@ -10,10 +10,10 @@ import InputText from '../../common/TextField';
 import SelectBox from '../SelectBox';
 import Typography from '../../common/Typography';
 import selectBoxQuestions from './questions';
-import { GeneralInfoStyles } from './style';
+// import { GeneralInfoStyles } from './style';
 
 const GeneralInfos = ({ handleFormInput, formValues, errorMsg }) => {
-  const classes = GeneralInfoStyles();
+  // const classes = GeneralInfoStyles();
   const {
     GazaAreas,
     GazaUniversities,
@@ -38,33 +38,32 @@ const GeneralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         value={formValues.gender}
       >
         <FormControlLabel
-          className={classes.gender}
           value="female"
           control={<Radio color="primary" />}
           label="Female"
         />
 
         <FormControlLabel
-          className={classes.gender}
           value="male"
           control={<Radio color="primary" />}
           label="Male"
         />
       </RadioGroup>
+      <Typography className="label">Full Name</Typography>
+
       <InputText
         className="nonlinearSelect"
         id="nameID"
         value={formValues.fullName}
-        placeholder="Enter full name"
-        label="Full Name"
+        placeholder="ex:- Sam Smith"
         name="fullName"
         onChange={handleFormInput}
         isError={
           (formValues.fullName.length > 0 && formValues.fullName.length < 5) ||
           errorMsg.includes('Full Name is required')
         }
-        message="ex:- Sam Smith"
       />
+      <Typography className="label">Motivation</Typography>
 
       <TextareaAutosize
         className="nonlinearSelect textarea"
@@ -76,20 +75,24 @@ const GeneralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         rowsMin={4}
         value={formValues.motivation}
       />
+      <br />
+
+      <Typography className="label">Mobile Number</Typography>
+
       <InputText
         className="nonlinearSelect"
         id="mobID"
         value={formValues.mobileNumber}
-        placeholder="Enter Mobile Number"
-        label="Mobile Number"
+        placeholder="ex:- 05xx xxx xxx"
         name="mobileNumber"
         onChange={handleFormInput}
         isError={
           errorMsg.includes('Mobile Number is required') ||
           errorMsg.includes('Error Mobile Number')
         }
-        message="ex:- 05xx xxx xxx"
       />
+      <br />
+
       <SelectBox
         className="nonlinearSelect"
         label="Age"
@@ -119,16 +122,20 @@ const GeneralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         value={formValues.university}
         isError={errorMsg.includes('Select your university')}
       />
+      <br />
+
+      <Typography className="label">Specialization</Typography>
+
       <InputText
         className="nonlinearSelect"
         value={formValues.specialization}
         placeholder="If you went to university, what was your specialization?"
-        label="specialization"
         name="specialization"
         onChange={handleFormInput}
         isError={errorMsg.includes('Insert your Specialization')}
-        message="(If you didn't go to university, just write N/A) ?"
       />
+      <br />
+
       <SelectBox
         className="nonlinearSelect"
         label="Coding Experience"
@@ -156,11 +163,14 @@ const GeneralInfos = ({ handleFormInput, formValues, errorMsg }) => {
         value={formValues.caReading}
         isError={errorMsg.includes('Select how did you hear about Us first')}
       />
+      <br />
+
+      <Typography className="label">CV Link</Typography>
+
       <InputText
         className="nonlinearSelect"
         value={formValues.cvLink}
         placeholder="Link for latest version of your CV in English"
-        label="CV Link"
         name="cvLink"
         onChange={handleFormInput}
         isError={
