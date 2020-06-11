@@ -4,11 +4,23 @@
 
 [check it out from here](https://ca-applicants-system.herokuapp.com/)
 
+
+## Team :busts_in_silhouette:
+
+### Team Lead
+  - Asmaa Thabet  
+
+### Team members 
+- Hassan Al-Najjar
+- Ahmed Salah 
+- Mohammed Flaifel 
+- Ali Dahdouh
+
+
 ## Application description :information_source: 
 
-An application to facilitate code academy application process for applicants and help them to complete their applications easily and on time, also help code academy team to track , filter and create applications.  
-
-
+An application to facilitate code academy application process for applicants and help them to complete their applications easily and on time, also help code academy team to track , filter and create applications. 
+![](https://i.imgur.com/Q8X3qaV.png)
 ## Main Problems :heavy_exclamation_mark: 
 
 1- Incorrect data that entered by applicants like problems in email, full name, GitHub handle, codewars link, free codecamp link, and others.   
@@ -92,7 +104,17 @@ The Admin sign in through sign-in page and he will be redirected to the dashboar
 
 ## The MVP :rainbow:
 
- GIF Image
+ - Web
+ 
+![](https://i.imgur.com/KtYlkTi.gif)
+
+![](https://i.imgur.com/CaNT7yA.gif)
+
+
+
+- Mobile
+![](https://i.imgur.com/0MXdmo2.gif)
+
  
 ## Application Setup :mag: 
 - clone this repo 
@@ -108,14 +130,15 @@ we will use `Heroku` Platform to deploy our website.
 
 
 ## Database Schema :file_cabinet: 
-![applicantsSystemDB](https://user-images.githubusercontent.com/29041512/78392404-e0a91680-75f0-11ea-8227-72a498c54463.png)
 
+![](https://i.imgur.com/HfQMKaB.png)
 
 
 ## Technologies :computer: 
 
 ### Frontend
 - React JS
+- React Hooks
 - Material-UI
 - Javascript
 - HTML and CSS
@@ -127,14 +150,12 @@ we will use `Heroku` Platform to deploy our website.
 - MongoDB
 - mongoose
 
+## Stretch Goals :goal_net:
 
-## Team :busts_in_silhouette:
+- Send a notifications from admin to applicants.
+- Add new cohorts,technical tasks and project from admin dashboard.
+- Add a new application from  the admin dashboard and control its settings.
+- Add a percentage progress bar in applicant profile page. 
+- Add page for common asked questions.
+- Add admin users  from dashbboard.
 
-### Team Lead
-  - Asmaa Thabet  
-
-### Team members 
-- Hassan Al-Najjar
-- Ahmed Salah 
-- Mohammed Flaifel 
-- Ali Dahdouh
