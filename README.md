@@ -150,20 +150,10 @@ The Admin sign in through sign-in page and he will be redirected to the dashboar
 
 ## The MVP :rainbow:
 
- - Web
  
-![](https://i.imgur.com/coHnSvE.gif)
-
 ![](https://i.imgur.com/atYNeNT.gif)
 
 
-
-
-- Mobile
-
-![](https://i.imgur.com/0MXdmo2.gif)
-
- 
 
  
 ## Application Deployment :sparkles:
