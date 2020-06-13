@@ -20,7 +20,7 @@ const Submit = ({ userId, userData }) => {
   const history = useHistory();
   const [FinishUser, setFinish] = useState([]);
   const [cohorts, setCohort] = useState(userData.cohorts);
-  const date = moment().format('DD-MM-YYYY hh:mm:ss');
+  const date = moment().format('YYYY-MM-DD hh:mm:ss');
 
   useEffect(() => {
     const array = [];
