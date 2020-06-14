@@ -12,18 +12,16 @@ import Typography from '../../common/Typography';
 import { Theme } from '../../common/Typography/style';
 import Button from '../../common/Button';
 import Alert from '../../common/Alert';
-
+import './style.css';
 import {
   generalInfosValidation,
   prosInfoValidation,
 } from '../../../utils/application/nLinearStepperValidation';
-import { useStyles } from './style';
 
 const steps = ['General Information', 'Professional Information'];
 
 export default function HorizontalNonLinearStepper({ userID, UserData }) {
   const history = useHistory();
-  const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [formValues, setFormValues] = useState(UserData);
   const [errMsg, setErrMsg] = useState([]);
@@ -148,7 +146,7 @@ export default function HorizontalNonLinearStepper({ userID, UserData }) {
   };
 
   return (
-    <div>
+    <div className="Container_page__availability">
       <Container maxWidth="sm">
         <div className="availability__head">
           <Typography variant="h6" color="default" align="left">
@@ -162,17 +160,21 @@ export default function HorizontalNonLinearStepper({ userID, UserData }) {
           <> </>
         )}
         <ThemeProvider theme={Theme}>
-          <Stepper nonLinear activeStep={activeStep}>
-            {steps.map((label, index) => (
-              <Step key={label}>
-                <StepButton onClick={handleStep(index)}>{label}</StepButton>
-              </Step>
-            ))}
-          </Stepper>
           <div>
+            <Stepper nonLinear activeStep={activeStep}>
+              {steps.map((label, index) => (
+                <Step key={label}>
+                  <StepButton onClick={() => handleStep(index)}>
+                    {label}
+                  </StepButton>
+                </Step>
+              ))}
+            </Stepper>
+          </div>
+          <div className="stepper_style">
             <div>
               {getStepContent(activeStep)}
-              <div className={classes.gender}>
+              <div>
                 <div className="container_buttons">
                   <Button
                     customStyle="outlined"
@@ -181,7 +183,7 @@ export default function HorizontalNonLinearStepper({ userID, UserData }) {
                   >
                     Back
                   </Button>
-                  <div className={classes.nextButton}>
+                  <div>
                     {activeStep === steps.length - 1 ? (
                       <Button
                         variant="contained"

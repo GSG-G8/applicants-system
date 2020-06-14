@@ -51,10 +51,8 @@ const ProInfos = ({ handleFormInput, formValues, errorMsg }) => (
       className="nonlinearSelect"
       id="job-title"
       value={formValues.jobTitle}
-      placeholder="Enter your job title.."
-      label="If employed, what is your job title?"
+      placeholder="Write [No] if you are not employed"
       name="jobTitle"
-      message="Write [No] if you are not employed"
       onChange={handleFormInput}
       isError={errorMsg.includes(`if you don't have job just write [ No ]`)}
     />
